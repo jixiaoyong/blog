@@ -1,5 +1,9 @@
 
-# jixiaoyong.github.io
-这是我在 github 上面的个人博客，记录学习编程过程中的心得。
-=======
 
+**[我的博客](http://jixiaoyong.github.io) **
+
+这是我在github上面搭建的基于hexo的个人博客。
+
+在这里我会分享一些学习编程中的知识见解，同时也会将我自己制作的一些APP在这里分享。
+
+很高兴与你相遇，既然来了，不妨[进来聊聊](http://jixiaoyong.github.io)。
