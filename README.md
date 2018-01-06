@@ -1,6 +1,6 @@
 
 
-**[我的博客](http://jixiaoyong.github.io) **
+# [我的博客](http://jixiaoyong.github.io) 
 
 这是我在github上面搭建的基于hexo的个人博客。
 
