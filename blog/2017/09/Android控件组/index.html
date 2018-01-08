@@ -94,17 +94,19 @@
 
 
 
-<meta name="description" content="这几天学习 AppWidget ，很简单的组件却花费了不少功夫，今天对 PendingIntent 的用法做了一些简单的整理。 PendingIntent  PandingIntent 就像是一个设计好的处理预案，当达到某个特定条件时，便会调用该 Intent 所指定动作（打开服务，Activity或者发送广播）。 这里使用该方法在 AppWidget 里面为按钮添加监听事件，当按钮被点击的时候触">
+<meta name="description" content="这几天的工作中用到了控件组来实现复杂布局，效果不错，记录下来备用。 1. 定义控件组布局xxx_layout.xml在这里定义要使用的控件组布局，这里的布局决定了布局显示的样子。 1234567891011121314151617&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;&amp;lt;LinearLayout xmlns:android=&quot;http://sc">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AppWidget的使用之PendingIntent">
-<meta property="og:url" content="http://jixiaoyong.github.io/blog/2016/04/小白日记/index.html">
+<meta property="og:title" content="Android控件组">
+<meta property="og:url" content="http://jixiaoyong.github.io/blog/2017/09/Android控件组/index.html">
 <meta property="og:site_name" content="季小勇的博客">
-<meta property="og:description" content="这几天学习 AppWidget ，很简单的组件却花费了不少功夫，今天对 PendingIntent 的用法做了一些简单的整理。 PendingIntent  PandingIntent 就像是一个设计好的处理预案，当达到某个特定条件时，便会调用该 Intent 所指定动作（打开服务，Activity或者发送广播）。 这里使用该方法在 AppWidget 里面为按钮添加监听事件，当按钮被点击的时候触">
+<meta property="og:description" content="这几天的工作中用到了控件组来实现复杂布局，效果不错，记录下来备用。 1. 定义控件组布局xxx_layout.xml在这里定义要使用的控件组布局，这里的布局决定了布局显示的样子。 1234567891011121314151617&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;&amp;lt;LinearLayout xmlns:android=&quot;http://sc">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-08T14:30:45.525Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/120748-48d0cbbf03ded7f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-01-08T16:05:50.909Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AppWidget的使用之PendingIntent">
-<meta name="twitter:description" content="这几天学习 AppWidget ，很简单的组件却花费了不少功夫，今天对 PendingIntent 的用法做了一些简单的整理。 PendingIntent  PandingIntent 就像是一个设计好的处理预案，当达到某个特定条件时，便会调用该 Intent 所指定动作（打开服务，Activity或者发送广播）。 这里使用该方法在 AppWidget 里面为按钮添加监听事件，当按钮被点击的时候触">
+<meta name="twitter:title" content="Android控件组">
+<meta name="twitter:description" content="这几天的工作中用到了控件组来实现复杂布局，效果不错，记录下来备用。 1. 定义控件组布局xxx_layout.xml在这里定义要使用的控件组布局，这里的布局决定了布局显示的样子。 1234567891011121314151617&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;&amp;lt;LinearLayout xmlns:android=&quot;http://sc">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/120748-48d0cbbf03ded7f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -133,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://jixiaoyong.github.io/blog/2016/04/小白日记/"/>
+  <link rel="canonical" href="http://jixiaoyong.github.io/blog/2017/09/Android控件组/"/>
 
 
 
 
 
-  <title>AppWidget的使用之PendingIntent | 季小勇的博客</title>
+  <title>Android控件组 | 季小勇的博客</title>
   
 
 
@@ -306,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2016/04/小白日记/">
+    <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2017/09/Android控件组/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="季小勇">
@@ -323,7 +325,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">AppWidget的使用之PendingIntent</h1>
+          <h1 class="post-title" itemprop="name headline">Android控件组</h1>
         
 
         <div class="post-meta">
@@ -335,8 +337,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-25T06:06:06+08:00">
-                2016-04-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T23:25:05+08:00">
+                2017-09-20
               </time>
             
 
@@ -373,79 +375,48 @@
       
 
       
-        <p>这几天学习 AppWidget ，很简单的组件却花费了不少功夫，今天对 PendingIntent 的用法做了一些简单的整理。</p>
-<p><strong>PendingIntent</strong></p>
-<blockquote>
-<p>PandingIntent 就像是一个设计好的处理预案，当达到某个特定条件时，便会调用该 Intent 所指定动作（打开服务，Activity或者发送广播）。</p>
-<p>这里使用该方法在 AppWidget 里面为按钮添加监听事件，当按钮被点击的时候触发相应的动作</p>
-</blockquote>
-<p>AppWidget 和应用程序不再同一个进程当中，而是在 HomeScreen 上面执行,所以不能直接为 AppWidget 中的 Button 添加监听事件，需要用 <code>remoteViews.setPendingIntent(R.id.widget_button,pendingIntent);</code>意思是当按下按钮的时候 pendingIntent 中的 Intent 就会执行</p>
-<p>PendingIntent 当某个事件出现之后才会执行</p>
-<p>RemoteViews对象 代表了一系列的 View 对象，和主程序不在同一个进程为 AppWidget 控件绑定处理器</p>
-<p><strong>流程概述：</strong></p>
-<ul>
-<li><p>添加 appwidget_provider_info.xml 在 res/xml 下新建 appwidget_provider_info.xml</p>
-<ul>
-<li>描述 AppWidget 的基本信息如最小高度、宽度等，还有就是该挂件的布局文件</li>
-</ul>
+        <p>这几天的工作中用到了控件组来实现复杂布局，效果不错，记录下来备用。</p>
+<h1 id="1-定义控件组布局xxx-layout-xml"><a href="#1-定义控件组布局xxx-layout-xml" class="headerlink" title="1. 定义控件组布局xxx_layout.xml"></a>1. 定义控件组布局xxx_layout.xml</h1><p>在这里定义要使用的控件组布局，这里的布局决定了布局显示的样子。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:padding</span>=<span class="string">"10dp"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">...</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">EditText</span></span></span><br><span class="line"><span class="tag">        <span class="attr">...</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">...</span> /&gt;</span></span><br><span class="line">      </span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="2-新建自定义属性文件attr-xml（可选）"><a href="#2-新建自定义属性文件attr-xml（可选）" class="headerlink" title="2.新建自定义属性文件attr.xml（可选）"></a>2.新建自定义属性文件attr.xml（可选）</h1><ul>
+<li><p>在<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```xml</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;resources&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- MSearchBar表明是给该控件使用的自定义属性 --&gt;</span><br><span class="line">    &lt;declare-styleable name=&quot;MSearchBar&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 以下为示例，可以根据需求增减 --&gt;</span><br><span class="line">        &lt;attr name=&quot;textColor&quot; format=&quot;color&quot; /&gt;</span><br><span class="line">        &lt;attr name=&quot;textSize&quot; format=&quot;dimension&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/declare-styleable&gt;</span><br><span class="line"></span><br><span class="line">&lt;/resources&gt;</span><br></pre></td></tr></table></figure></p>
 </li>
-<li><p>在 res/layout 下面为该挂件设置具体的布局样式</p>
+<li><p>在该自定义控件的类xxx.java中，通过如下语句获取从用户使用时赋给这些属性的值：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.MSearchBar);</span><br><span class="line"><span class="keyword">float</span> textSize = array.getDimension(R.styleable.MSearchBar_textSize, <span class="number">13</span>);</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>用户动态给这些属性赋值：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">cf.android666.jixiaoyong.weightgroup.weight.MSearchBar</span></span></span><br><span class="line"><span class="tag">        <span class="attr">...</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:textColor</span>=<span class="string">"@color/colorPrimaryDark"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">cf.android666.jixiaoyong.weightgroup.weight.MSearchBar</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>注意，这里写的是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  ​</span><br><span class="line"></span><br><span class="line"># 3. 新建组合控件的类XXX.java</span><br><span class="line"></span><br><span class="line">* 新建XXX.java，继承自布局文件的父布局LinearLayout</span><br><span class="line"></span><br><span class="line">* 更改参数少的构造方法的```super(a1,a2,a3)```为```this(a1,a2,a3)```，其中```this()```中的参数个数为参数最多的构造方法的参数数。</span><br><span class="line"></span><br><span class="line">  **注意** ：一定要做这一步，否则在使用该自定义控件组时，新建该类的对象会提示出错</span><br><span class="line"></span><br><span class="line">* 在最终会被调用的构造方法里面将xml里面定义的布局加载进来：</span><br><span class="line"></span><br><span class="line">  ```java</span><br><span class="line">  //注意三个参数：布局文件：R.layout.weight_group_layout, root：this,是否依附到root：true</span><br><span class="line">  //必须有前两个参数，否则控件的宽高等会有异常</span><br><span class="line">  View view = LayoutInflater.from(context).inflate(R.layout.weight_group_layout, this,true);</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>使用自定义属性：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">MSearchBar</span><span class="params">(Context context, @Nullable AttributeSet attrs, <span class="keyword">int</span> defStyleAttr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs, defStyleAttr);</span><br><span class="line">  </span><br><span class="line">  		<span class="comment">//do sth</span></span><br><span class="line">  </span><br><span class="line">        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.MSearchBar);</span><br><span class="line">        <span class="keyword">float</span> textSize = array.getDimension(R.styleable.MSearchBar_textSize, <span class="number">13</span>);</span><br><span class="line">        editText.setTextSize(textSize);</span><br><span class="line">  </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>给控件组内部控件添加点击事件监听：</p>
 <ul>
-<li>向 AppWidget 的布局文件中添加一个 Button</li>
-<li>向 AppWidget 的布局文件中添加一个 TextView</li>
-</ul>
+<li><p>xxx.java 要实现点击事件监听接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MSearchBar</span> <span class="keyword">extends</span> <span class="title">LinearLayout</span> <span class="keyword">implements</span> <span class="title">View</span>.<span class="title">OnClickListener</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>新建 MyAppWidget.java 继承自 AppWidgetProvider</p>
-<p>在该类的 onUpdate() 方法中为 Button 设置、添加监听事件</p>
-<ul>
-<li>建立一个 Intent 对象</li>
-<li>用该 Intent 对象创建一个 PendingIntent 对象</li>
-<li>创建一个 RemoteViews 对象</li>
-<li>用该 RemoveViews 对象为 按钮绑定事件处理器</li>
-<li>更新按钮</li>
-</ul>
+<li><p>自定义接口，供使用xxx.java类时实现对监听事件的处理：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setImgLeftOnClickListener</span><span class="params">(OnImgClickListener listener)</span></span>&#123;</span><br><span class="line">    listenerL = listener;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnImgClickListener</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> OnImgClickListener listenerL;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>注册事件</p>
-</li>
-<li><p>备注：要是为 AppWidget 中的 Button 设置的事件是打开一个 TargetActivity ，还需要添加一个 TargetActivity 类和对应的布局文件</p>
+<li><p>对要监听点击事件的控件设置监听，并调用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```java</span><br><span class="line">	//在构造方法等地方设置监听事件</span><br><span class="line">	imageViewLeft.setOnClickListener(this);</span><br><span class="line"></span><br><span class="line">	//在xxx.java中重写onClick()方法</span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View view) &#123;</span><br><span class="line">        switch (view.getId()) &#123;</span><br><span class="line">            //ImageLeft</span><br><span class="line">            case R.id.imageView:</span><br><span class="line">                if (listenerL != null) &#123;</span><br><span class="line">                    listenerL.onClick();</span><br><span class="line">                &#125;</span><br><span class="line">                break;</span><br><span class="line">            //imageRight</span><br><span class="line">            case R.id.imageView2:</span><br><span class="line">                if (listenerR != null) &#123;</span><br><span class="line">                    listenerR.onClick();</span><br><span class="line">                &#125;</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 </li>
 </ul>
-<p><strong>以下是代码</strong></p>
-<ul>
-<li>appwidget_provider_info.xml</li>
+</li>
 </ul>
-<p>这个布局文件是 AppWidget 的信息</p>
-<p>描述了 AppWidget 的最小高，最小宽以及它的布局文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;appwidget-provider</span><br><span class="line">    android:minHeight=&quot;200dp&quot;</span><br><span class="line">    android:minWidth=&quot;300dp&quot;</span><br><span class="line">    android:initialLayout=&quot;@layout/app_widget&quot;</span><br><span class="line">    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; &gt;</span><br><span class="line">&lt;/appwidget-provider&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>app_widget.xml</li>
+<h1 id="4-使用自定义控件组xxx-java"><a href="#4-使用自定义控件组xxx-java" class="headerlink" title="4. 使用自定义控件组xxx.java"></a>4. 使用自定义控件组xxx.java</h1><ul>
+<li><p>在布局文件main_activity.xml中添加该控件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cf.android666.jixiaoyong.weightgroup.weight.MSearchBar</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:id</span>=<span class="string">"@+id/search_bar"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">app:textColor</span>=<span class="string">"@color/colorPrimaryDark"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">cf.android666.jixiaoyong.weightgroup.weight.MSearchBar</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>在java中使用该控件，设置监听事件</p>
+</li>
 </ul>
-<p>这个布局文件是 Widget 在桌面上显示的样式</p>
-<p>定义了 AppWidget 中各个组件及其样式</p>
-<p>其中 Button 用来响应点击事件，加入 TargetActivity</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:layout_width=&quot;200dp&quot;</span><br><span class="line">    android:layout_height=&quot;200dp&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;TextView</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:text=&quot;hello,world!&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;Button</span><br><span class="line">        android:id=&quot;@+id/app_widget_btn&quot;</span><br><span class="line">        android:layout_width=&quot;200dp&quot;</span><br><span class="line">        android:layout_height=&quot;150dp&quot;</span><br><span class="line">        android:background=&quot;#ff00ff&quot;</span><br><span class="line">        android:text=&quot;this is my app widget button&quot;/&gt;</span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>target_activity.xml</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:textSize=&quot;50sp&quot;</span><br><span class="line">        android:background=&quot;#00ff00&quot;</span><br><span class="line">        android:text=&quot;\n hello,welcome to target activity!&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>MyAppWidget.java</li>
-</ul>
-<p>主要是修改了 update() 方法：</p>
-<p>定义了一个预先设定的动作—- Intent 对象；</p>
-<p>利用该 Intent 读写，创建一个 PendingIntent 对象；</p>
-<p>创建一个 RemoteView 对象，并为按钮绑定监听事件</p>
-<p>刷新 AppWidget。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">public class MyAppWidget extends AppWidgetProvider &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">        // TODO Auto-generated method stub</span><br><span class="line">        super.onReceive(context, intent);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onUpdate(Context context, AppWidgetManager appWidgetManager,</span><br><span class="line">                         int[] appWidgetIds) &#123;</span><br><span class="line">        // TODO Auto-generated method stub</span><br><span class="line">        super.onUpdate(context, appWidgetManager, appWidgetIds);</span><br><span class="line"></span><br><span class="line">        //appWidgetIds 每一次向屏幕添加 AppWidget 的时候都会增加一个唯一的 appWidget 的 Id</span><br><span class="line">        for(int i = 0; i &lt; appWidgetIds.length;i++)&#123;</span><br><span class="line">          //创建一个 Intent 对象</span><br><span class="line">            Intent intent = new Intent(context,TargetActivity.class);</span><br><span class="line">            //创建一个 PendingIntent 对象</span><br><span class="line">            PendingIntent pendingIntent = PendingIntent.getActivity(context,0,intent,0);</span><br><span class="line">            // remoteViews 代表 AppWidget 上所有的控件</span><br><span class="line">            RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.app_widget);</span><br><span class="line">            //为按钮绑定事件处理器</span><br><span class="line">            /*</span><br><span class="line">            * 参1，指定被绑定处理器的控件id</span><br><span class="line">            * 参2，指定事件发生时会被执行的 PendingIntent</span><br><span class="line">             */</span><br><span class="line">            remoteViews.setOnClickPendingIntent(R.id.app_widget_btn,pendingIntent);</span><br><span class="line">            //更新 AppWidget ，参1是用于指定被更新 appWidget 的ID</span><br><span class="line">            appWidgetManager.updateAppWidget(appWidgetIds[i],remoteViews);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onDeleted(Context context, int[] appWidgetIds) &#123;</span><br><span class="line">        // TODO Auto-generated method stub</span><br><span class="line">        super.onDeleted(context, appWidgetIds);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onEnabled(Context context) &#123;</span><br><span class="line">        // TODO Auto-generated method stub</span><br><span class="line">        super.onEnabled(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onDisabled(Context context) &#123;</span><br><span class="line">        // TODO Auto-generated method stub</span><br><span class="line">        super.onDisabled(context);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>TargetActivity.java</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class TargetActivity extends Activity &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.target_activity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>AndroidManifest.xml</li>
-</ul>
-<p>在 AndroidManifest.xml 中注册 TargetActivity 和 MyAppWidget</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;application&gt;</span><br><span class="line">...</span><br><span class="line">    &lt;activity android:name=&quot;.TargetActivity&quot;&gt;</span><br><span class="line">    &lt;/activity&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 注意这里注册了一个 MyAppWidget 接收数据--&gt;</span><br><span class="line">    &lt;receiver android:name=&quot;.MyAppWidget&quot;&gt;</span><br><span class="line">        &lt;intent-filter&gt;</span><br><span class="line">            &lt;action android:name=&quot;android.appwidget.action.APPWIDGET_UPDATE&quot; /&gt;</span><br><span class="line">        &lt;/intent-filter&gt;</span><br><span class="line">        &lt;meta-data</span><br><span class="line">            android:name=&quot;android.appwidget.provider&quot;</span><br><span class="line">            android:resource=&quot;@xml/appwidget_provider_info&quot;/&gt;</span><br><span class="line">    &lt;/receiver&gt;</span><br><span class="line">&lt;/application&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MSearchBar searchBar = (MSearchBar) findViewById(R.id.search_bar);</span><br><span class="line">searchBar.setImgLeftOnClickListener(<span class="keyword">new</span> MSearchBar.OnImgClickListener() &#123;</span><br><span class="line">        <span class="meta">@SuppressLint</span>(<span class="string">"WrongConstant"</span>)</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"Click on Left"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="5-效果预览"><a href="#5-效果预览" class="headerlink" title="5.效果预览"></a>5.效果预览</h1><p><img src="http://upload-images.jianshu.io/upload_images/120748-48d0cbbf03ded7f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果预览"></p>
+<h1 id="6-源码"><a href="#6-源码" class="headerlink" title="6.源码"></a>6.源码</h1><p>demo的github链接:<a href="https://github.com/jixiaoyong/my_application_on_deepin/tree/master/weightgroup" target="_blank" rel="noopener">github</a></p>
+
       
     </div>
     
@@ -469,8 +440,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2016/04/AppWidget的使用之PendingIntent/" rel="next" title="AppWidget的使用之PendingIntent">
-                <i class="fa fa-chevron-left"></i> AppWidget的使用之PendingIntent
+              <a href="/blog/2017/09/android常用知识/" rel="next" title="Android常用知识">
+                <i class="fa fa-chevron-left"></i> Android常用知识
               </a>
             
           </div>
@@ -479,8 +450,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2016/04/linux下配置JDK和AndroidStudio开发环境/" rel="prev" title="linux下配置JDK和AndroidStudio开发环境">
-                linux下配置JDK和AndroidStudio开发环境 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2018/01/之前发布的几个App/" rel="prev" title="之前发布的几个App">
+                之前发布的几个App <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -571,8 +542,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/blog/images/default_avatar.jpg"
@@ -616,6 +596,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-定义控件组布局xxx-layout-xml"><span class="nav-text">1. 定义控件组布局xxx_layout.xml</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-新建自定义属性文件attr-xml（可选）"><span class="nav-text">2.新建自定义属性文件attr.xml（可选）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-使用自定义控件组xxx-java"><span class="nav-text">4. 使用自定义控件组xxx.java</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-效果预览"><span class="nav-text">5.效果预览</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-源码"><span class="nav-text">6.源码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
