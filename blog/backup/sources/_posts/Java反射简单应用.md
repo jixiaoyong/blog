@@ -77,4 +77,4 @@ public static void main(String[] args){
 其中需要注意的有
 
 * `f.setAccessible(true);` 方法可以解除`private` 限制，进而可以操作类的私有变量，方法
-* `clazz.getXXX()` 方法获取**全部公有**变量、方法 ，`clazz.getDeclaredXXX()` 方法获取**全部** 变量、方法，包括私有的
+* `clazz.getXXX()` 方法获取**全部公有**变量、方法 ，**包括父类或接口**的xx，`clazz.getDeclaredXXX()` 方法获取**全部** 变量、方法，包括私有的，实现接口的方法，**但是不包括父类的**

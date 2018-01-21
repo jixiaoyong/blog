@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="季小勇的博客">
 <meta property="og:description" content="简介反射，用来在运行时获取给定类的构造函数，变量，方法，并对其作以修改，而不必在编译时获取该类。  Reflection allows programmatic access to information about the fields, methods and constructors of loaded classes, and the use of reflected fields, me">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-16T14:44:07.276Z">
+<meta property="og:updated_time" content="2018-01-21T08:55:43.855Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java反射简单应用">
 <meta name="twitter:description" content="简介反射，用来在运行时获取给定类的构造函数，变量，方法，并对其作以修改，而不必在编译时获取该类。  Reflection allows programmatic access to information about the fields, methods and constructors of loaded classes, and the use of reflected fields, me">
@@ -392,7 +392,7 @@
 <p>其中需要注意的有</p>
 <ul>
 <li><code>f.setAccessible(true);</code> 方法可以解除<code>private</code> 限制，进而可以操作类的私有变量，方法</li>
-<li><code>clazz.getXXX()</code> 方法获取<strong>全部公有</strong>变量、方法 ，<code>clazz.getDeclaredXXX()</code> 方法获取<strong>全部</strong> 变量、方法，包括私有的</li>
+<li><code>clazz.getXXX()</code> 方法获取<strong>全部公有</strong>变量、方法 ，<strong>包括父类或接口</strong>的xx，<code>clazz.getDeclaredXXX()</code> 方法获取<strong>全部</strong> 变量、方法，包括私有的，实现接口的方法，<strong>但是不包括父类的</strong></li>
 </ul>
 
       
@@ -551,7 +551,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives/">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -564,7 +564,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
