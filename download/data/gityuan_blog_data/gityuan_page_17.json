@@ -1,0 +1,480 @@
+{"data":[{"url":"http://gityuan.com/android","title":"
+[置顶]Android系统开篇
+        ","summary":"
+            基于Android 6.0的源码，专注于分享Android系统原理、架构分析的原创文章，这是Android系列文章的开篇。
+        "},{"url":"http:// gityuan.com/2015/07/19/java-reflection-2/","title":"
+            Java反射之实用篇
+        ","summary":"
+            关于Java反射，文章Java反射之基础篇已基本介绍了反射的用法，但是反射的整个调用过程仍比较繁琐，尤其是对于新手，显得比较晦涩。下面介绍些更为简单有效的反射实用内容。
+
+一、反射用法
+前面介绍到，反射是为了在运行态能操作类和对象，接下来重点介绍如何反射使用。
+
+对于正常方式来调用方法，往往只需要一行到两行代码，即可完成相应工作。而反射则显得比较繁琐，之所以繁琐仍会才用反射方式，是因为反射能...
+        "},{"url":"http:// gityuan.com/2015/07/18/java-reflection/","title":"
+            Java反射之基础篇
+        ","summary":"
+            
+  从代码角度，关于反射的用法总结，请查看Java反射之实用篇.;
+
+
+一、概念
+
+1.1 概念
+简单说，JAVA反射机制是指在运行态可直接操作任意类或对象的所有属性和方法的功能。
+
+1.2 反射的用途
+
+
+  
+    在运行时获取任意对象所属的类
+  Class<?> clazz = Class.forName(String className);
+  
+  
+    在运...
+        "},{"url":"http:// gityuan.com/2015/07/05/design-patterns/","title":"
+            设计模式-开篇
+        ","summary":"
+            一、设计模式
+
+1.1 六大设计原则
+
+
+  单一职责原则(SRP)：一个类只负责一个职责，不要存在多个导致类变更的原因；
+  接口隔离原则(ISP)：客户端不应该依赖它不需要的接口，多用组合,少用继承
+  依赖倒置原则(DIP)： 提高灵活性,高层不依赖低层,两个都应该依赖于抽象
+  里氏替换原则(LSP)：子类必须能够替换他们的基类
+  迪米特法则(LOD)：类间解耦，类之间联系尽可能少...
+        "},{"url":"http:// gityuan.com/2015/06/28/adb-notes/","title":"
+            adb常用命令笔记
+        ","summary":"
+            
+  主要列举平时经常使用的一些adb命令
+
+
+一. 基本指令
+
+
+  adb -s serialNumber shell  //进入指定设备
+  adb version  //查看版本
+  adb logcat  //查看日志
+  adb devices  //查看设备
+  adb get-state //连接状态
+  adb start-server //启动ADB服务
+  adb ki...
+        "},{"url":"http:// gityuan.com/2015/06/27/git-notes/","title":"
+            Git常用命令
+        ","summary":"
+            一、概述
+
+先用一幅图，从总体上描述主要git命令的工作流程
+
+
+
+
+  workspace: 本地的工作目录。（记作A）
+  index：缓存区域，临时保存本地改动。（记作B）
+  local repository: 本地仓库，只想最后一次提交HEAD。（记作C）
+  remote repository：远程仓库。（记作D）
+
+
+二、命令笔记
+
+以下所有的命令的功能说明，都采用上述的标记的...
+        "},{"url":"http:// gityuan.com/2015/06/21/http-restful/","title":"
+            浅谈HTTP RESTful架构
+        ","summary":"
+            
+  RESTful 是一种非常流行的软件架构，或者说设计风格而非新的技术标准。提供了一组设计原则和约束条件，主要用于客户端与服务器的交互。RESTful架构更简洁，更有层次，更易于实现缓存等机制。
+
+
+1.理解RESTful
+RESTful, 全称Representational State Transfer。REST通常基于使用HTTP，URI，和XML以及HTML这些现有的广泛流行的协...
+        "},{"url":"http:// gityuan.com/2015/06/20/http-agreement/","title":"
+            浅谈HTTP协议
+        ","summary":"
+            
+  HTTP是一个属于应用层的面向对象的协议，工作于客户端-服务端架构为上。浏览器作为HTTP客户端通过URL向HTTP服务端发送请求。本文只介绍目前应用比较广泛的HTTP/1.1协议，下面从请求与响应两部分分开展开讲解。
+
+
+一. 请求(Request)
+
+1.消息格式
+
+
+
+一个完整的 HTTP/1.1消息格式分三部分：
+
+
+  
+    请求行:      {请求方法} {资源路径}...
+        "},{"url":"http:// gityuan.com/2015/06/13/SEAndroid-permission/","title":"
+            SELinux 权限问题
+        ","summary":"
+            
+  本文主要记录一下修改selinux权限的方法
+
+
+权限修改
+
+方法1: adb在线修改seLinux
+Enforcing(表示已打开)，Permissive（表示已关闭）
+
+    getenforce;  //获取当前seLinux状态
+    setenforce 1;   //打开seLinux
+    setenforce 0;   //关闭seLinux
+
+
+方法2: 从ke...
+        "},{"url":"http:// gityuan.com/2015/06/09/atom/","title":"
+            Atom编辑器
+        ","summary":"
+            一、概述
+
+今天给大家推荐一款文本编辑器，支持markdown语法，这是最初选择的出发点。Atom是Github专为hacker推出的开源的文本编辑器，支持linux、window等多平台，界面简洁优雅，当第一眼看到atom界面的时候就深深地被吸引：
+
+
+
+Atom提供非常方便进行主题二次开发，插件扩展化等非常适合定制，并且可以直接方便得修改所有相关的config配置，可以打造自己独有的编辑...
+        "},{"url":"http:// gityuan.com/2015/06/07/build-jekyll/","title":"
+            Windows下搭建本地Jekyll
+        ","summary":"
+            
+  前言：Jekyll是一个开源的博客生成工具，类似WordPress。但与之不同的是，jekyll只生成静态网页，并不需要数据库支持。
+ 通常配合第三方评论系统使用，例如Disqus, 最关键的是jekyll可以免费部署在Github上，而且可以绑定自己的域名。
+
+
+一、安装Ruby
+
+Jekyll是用ruby语言编写的，所以我们首先要在windows上装好ruby环境。
+
+
+  
+  ...
+        "},{"url":"http://gityuan.com/android","title":"
+[置顶]Android系统开篇
+        ","summary":"
+            基于Android 6.0的源码，专注于分享Android系统原理、架构分析的原创文章，这是Android系列文章的开篇。
+        "},{"url":"http:// gityuan.com/2015/09/05/android-anaimator-3/","title":"
+            Android动画之插值器（三）
+        ","summary":"
+            
+  本文从源码的角度，来展开对动画的深入解析，关于动画基本用法，可查看Android动画之入门篇(一），Android动画之入门篇（二）。
+
+
+关于动画有两个非常重要的类，那就是插值器(Interpolators)与 估值器（Evaluators），下面将详细讲解。
+
+一、 插值器
+时间插值器，定义了一个时间的函数：y = f(t),其中t=elapsed time / duration....
+        "},{"url":"http:// gityuan.com/2015/09/04/android-anaimator-2/","title":"
+            Android动画之入门篇（二）
+        ","summary":"
+            
+  本文重点讲述属性动画，关于逐帧动画与补间动画，可查看上一篇文章Android动画之入门篇（一）。
+
+
+属性动画功能非常强大，也是最常用的动画方法。可自定义如下属性：
+
+
+  动画时间（Duration）, 指定动画总共完成所需要的时间，默认为300ms;
+  时间插值器（Time interpolation）, 是一个基于当前动画已消耗时间的函数，用来计算属性的值；
+  重复次数（Re...
+        "},{"url":"http:// gityuan.com/2015/09/04/android-anaimator-1/","title":"
+            Android动画之入门篇（一）
+        ","summary":"
+            
+  作为Android开发者，动画是非常重要的知识点，本文主要从入门角度来探索动画。
+Android的动画主要包括三大类：逐帧（Frame）动画，补间（Tween）动画，属性动画。
+
+
+1. 逐帧（Frame）动画
+
+逐帧动画是最容易理解，最简单的动画。但需要把动画过程的每一帧静态图片都放到资源文件夹res/drawbale下，然后由Android来控制依次显示这些静态图片，利用人眼“视觉...
+        "},{"url":"http:// gityuan.com/2015/09/02/Android-multi-screen-adapter/","title":"
+            Android多屏适配
+        ","summary":"
+            
+  相信有不少开发者对于dp/sp/px，这些概念比较模糊，本文将讲解其含义和用途。
+
+
+基本概念
+
+  px： 像素（pixel），设备上的物理像素点。
+  dp：跟dip是同一个概念，与屏幕物理像素点无关，而是基于屏幕密度抽象单位，被称作“设备独立像素”,会随着屏幕的密度进行自动的大小调整。
+  sp： 专用于文字大小的设置，可根据字体大小首选项进行缩放。
+  inch： 英寸，1英寸...
+        "},{"url":"http:// gityuan.com/2015/08/30/optimize-array-loop/","title":"
+            数组遍历的性能分析
+        ","summary":"
+            问题
+
+
+  完全遍历有序和无序的数组，时间复杂度都是O(n)，为什么遍历有序数组比无序数组速度更快？
+
+
+下面是一个C++代码，由于一些奇怪的原因，已排序的数据数组比未排序地数组运算差不多快6倍。
+
+#include <algorithm>
+#include <ctime>
+#include <iostream>
+
+int main()
+{
+    //...
+        "},{"url":"http:// gityuan.com/2015/08/22/tool-dumpsys/","title":"
+            dumpsys原理简介
+        ","summary":"
+            dumpsys源码
+
+dumpsys是Android自带的强大debug工具，命令源码来自dumpsys.cpp文件。
+
+frameworks/native/cmds/dumpsys/dumpsys.cpp
+
+int main(int argc, char* const argv[])
+{
+    signal(SIGPIPE, SIG_IGN);
+    //获取ServiceManage...
+        "},{"url":"http:// gityuan.com/2015/08/10/android-arch-coding-style/","title":"
+            Android开发规范
+        ","summary":"
+            
+  Google官方Java代码风格参考规范链接， 中文翻译参考版链接。
+
+
+命名规范
+
+1. 包命名
+规则：包名全部小写，才用反域名命名规则，一级包名是顶级域名，通常为com, edu, gov, net, org等，二级包名，通过为公司名或部门名或者个人名，三级包名通常为项目名，四级包名为模块名或者层级名。以下是从层级包名来划分android项目中采用的包划分结构
+
+com.domai...
+        "},{"url":"http:// gityuan.com/2015/08/08/android-studio-shortcut/","title":"
+            Android Studio 快捷键
+        ","summary":"
+            本文的快捷键是在windows下，且Keymaps为default的情况下的映射关系，从以下几个方面来详细介绍快捷键：
+
+
+  
+    导航
+    搜索
+    编辑代码
+    查看代码
+    视图切换
+    重构
+    运行与调试
+    其他
+  
+
+
+一、导航
+
+
+  
+    
+      功能
+      快捷键组合
+       
+    
+  
+  
+    
+  ...
+        "},{"url":"http:// gityuan.com/2015/08/01/android-arvchitecture/","title":"
+            Android体系架构
+        ","summary":"
+            
+  本文讲述的Android系统体系架构，是指应用层之下的整个系统内部的架构层级关系。而并非常说的4层架构：应用层，framework，运行库与环境，Linux内核，而是把系统内部的流程调用划分更加详细。
+
+
+一、架构
+
+Android系统体系架构图：
+
+
+
+Android系统体系架构分为5层，自顶而下分别是：
+
+
+  应用程序框架（Application Framework）
+  进程通...
+        "},{"url":"http:// gityuan.com/2015/07/26/java-condition-compile/","title":"
+            Java中的条件编译
+        ","summary":"
+            
+  在代码中添加大量log，对于CPU和内存的影响如何，会不会降低性能？相信有不少人对此有疑问，本文将详细解答该问题。
+
+
+一、概述
+
+条件编译是指源程序的代码行，可以在满足一定条件的情况下才进行编译，而未选中的源码，不会生成中间码或机器码，即部分内容参与编译。
+
+条件编译的好处：对于不同硬件平台或者软件平台，或者不同功能模块的代码，编写到在同一个源文件，从而方便程序的维护和移植。
+
+很多...
+        "},{"url":"http://gityuan.com/android","title":"
+[置顶]Android系统开篇
+        ","summary":"
+            基于Android 6.0的源码，专注于分享Android系统原理、架构分析的原创文章，这是Android系列文章的开篇。
+        "},{"url":"http:// gityuan.com/2017/08/12/proc_stat/","title":"
+            /proc/stat解析
+        ","summary":"
+            
+  本文解析进程节点含义
+
+
+一. 概述
+
+1.1 CPU时间
+
+
+  
+    
+      cpu指标
+      含义
+    
+  
+  
+    
+      user
+      用户态时间
+    
+    
+      nice
+      用户态时间(低优先级，nice>0)
+    
+    
+      system
+      内核态时间
+    
+    
+...
+        "},{"url":"http:// gityuan.com/2017/08/06/linux_process_pid/","title":"
+            Linux进程pid分配法
+        ","summary":"
+            一. 概述
+
+Android系统创建进程，最终的实现还是调用linux fork方法，对于linux系统每个进程都有唯一的
+进程ID(值大于0)，也有pid上限，默认为32768。 pid可重复利用，当进程被杀后会回收该pid，以供后续的进程pid分配。
+
+上一篇文章Linux进程管理 详细地介绍了进程fork过程，在copy_process()过程，执行完父进行文件、内存等信息的拷贝，紧接...
+        "},{"url":"http:// gityuan.com/2017/08/05/linux-process-fork/","title":"
+            Linux进程管理(二)--fork
+        ","summary":"
+            
+  基于Kernel 4.4源码
+
+
+kernel/include/linux/sched.h
+kernel/include/linux/kthread.h
+kernel/arch/arm/include/asm/thread_info.h
+
+kernel/kernel/fork.c
+kernel/kernel/exit.c
+kernel/kernel/sched/core.c
+
+
+一. ...
+        "},{"url":"http:// gityuan.com/2017/07/30/linux-process/","title":"
+            Linux进程管理(一)
+        ","summary":"
+            一. 概述
+
+Linux是类Unix系统，借鉴了Unix的设计并实现相关接口，但并非Unix。Linux是由Linus Torvalds于1991年创造的开源免费系统，采用GNU GPL协议保护，下面列举Linux的一些主要特点：
+
+
+  Linux系统中万物皆为文件，这种抽象方便操作数据或设备，只需一套统一的系统接口open, read, write, close即可完成对文件的操作
+  ...
+        "},{"url":"http:// gityuan.com/2017/07/11/android_debug/","title":"
+            Android调试技巧(一)
+        ","summary":"
+            
+  本文介绍一些Android常见的调试技巧
+
+
+一. 获取Trace
+
+调用栈信息(Trace)是分析异常经常使用的，这里简单划分两类情况：
+
+
+  当前线程Trace: 当前执行流所在线程的调用栈信息；
+  目标进程Trace：可获取目标进程的调用栈，用于动态调试；
+
+
+1.1 当前线程Trace
+
+1) Java层
+
+Thread.currentThread().dumpStack(...
+        "},{"url":"http:// gityuan.com/2017/07/04/ams_dumpsys/","title":"
+            AMS之dumpsys篇
+        ","summary":"
+            
+  基于Android 7.0的源码分析
+
+
+一.概述
+
+前面介绍过AMS相关的一些数据结构，每个数据结构有大量的成员变量，为了查询当前手机运行时状态的
+变化值，可以通过dumpsys activity命令来完成，该方法最终是调用AMS.dump()方法。
+
+dumpsys命令用法简要介绍过dumpsys命令
+的基本用法，以及系统服务列表信息，那么本文重点介绍AMS。
+根据dumpsys ...
+        "},{"url":"http:// gityuan.com/2017/06/25/ams_summary_1/","title":"
+            AMS总结(一)
+        ","summary":"
+            
+  从另一个维度，简要总结下四大组件的超时统计区间，以及Handler情况。
+
+
+一. 组件超时统计
+
+1.1 Service
+
+
+  
+    
+      序号
+      App端方法
+      生命周期
+      计时起点
+      计时终点
+    
+  
+  
+    
+      1
+      AT.handleCreateService
+      onCreate...
+        "},{"url":"http:// gityuan.com/2017/06/18/SharedPreferences/","title":"
+            全面剖析SharedPreferences
+        ","summary":"
+            一. 概述
+
+SharedPreferences(简称SP)是Android中很常用的数据存储方式，SP采用key-value（键值对）形式, 主要用于轻量级的数据存储, 尤其适合保存应用的配置参数, 但不建议使用SP
+来存储大规模的数据, 可能会降低性能.
+
+SP采用xml文件格式来保存数据, 该文件所在目录位于/data/data//shared_prefs/
+
+1.1 使用示例
+
+Sh...
+        "},{"url":"http:// gityuan.com/2017/06/11/activity_record/","title":"
+            四大组件之ActivityRecord
+        ","summary":"
+            一. 引言
+
+BroadcastRecord，ServiceRecord都继承于Binder对象，而ActivityRecord并没有继承于Binder。
+但ActivityRecord的成员变量appToken的数据类型为Token，Token继承于IApplicationToken.Stub。
+
+appToken：system_server进程通过调用scheduleLaunchActi...
+        "},{"url":"http:// gityuan.com/2017/06/04/content_provider_record/","title":"
+            四大组件之ContentProviderRecord
+        ","summary":"
+            一. 引言
+
+作为四大组件之一的ContentProvider，相比来说是设计得稍逊色，有些地方不太合理，比如provider级联被杀，
+请求provider时占用system_server的binder线程来wait()等。
+
+即便很少自定义ContentProvider，但你也可以会需要使用到ContentProvider，比如通信录，Settings等；
+使用Provider往往跟数据...
+        "},{}]}
