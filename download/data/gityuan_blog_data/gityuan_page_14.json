@@ -1,0 +1,2010 @@
+{"data":[{"url":"http://gityuan.com/android","title":"
+[置顶]Android系统开篇
+        ","summary":"
+            基于Android 6.0的源码，专注于分享Android系统原理、架构分析的原创文章，这是Android系列文章的开篇。
+        "},{"url":"http:// gityuan.com/2015/07/19/java-reflection-2/","title":"
+            Java反射之实用篇
+        ","summary":"
+            关于Java反射，文章Java反射之基础篇已基本介绍了反射的用法，但是反射的整个调用过程仍比较繁琐，尤其是对于新手，显得比较晦涩。下面介绍些更为简单有效的反射实用内容。
+
+一、反射用法
+前面介绍到，反射是为了在运行态能操作类和对象，接下来重点介绍如何反射使用。
+
+对于正常方式来调用方法，往往只需要一行到两行代码，即可完成相应工作。而反射则显得比较繁琐，之所以繁琐仍会才用反射方式，是因为反射能...
+        "},{"url":"http:// gityuan.com/2015/07/18/java-reflection/","title":"
+            Java反射之基础篇
+        ","summary":"
+            
+  从代码角度，关于反射的用法总结，请查看Java反射之实用篇.;
+
+
+一、概念
+
+1.1 概念
+简单说，JAVA反射机制是指在运行态可直接操作任意类或对象的所有属性和方法的功能。
+
+1.2 反射的用途
+
+
+  
+    在运行时获取任意对象所属的类
+  Class<?> clazz = Class.forName(String className);
+  
+  
+    在运...
+        "},{"url":"http:// gityuan.com/2015/07/05/design-patterns/","title":"
+            设计模式-开篇
+        ","summary":"
+            一、设计模式
+
+1.1 六大设计原则
+
+
+  单一职责原则(SRP)：一个类只负责一个职责，不要存在多个导致类变更的原因；
+  接口隔离原则(ISP)：客户端不应该依赖它不需要的接口，多用组合,少用继承
+  依赖倒置原则(DIP)： 提高灵活性,高层不依赖低层,两个都应该依赖于抽象
+  里氏替换原则(LSP)：子类必须能够替换他们的基类
+  迪米特法则(LOD)：类间解耦，类之间联系尽可能少...
+        "},{"url":"http:// gityuan.com/2015/06/28/adb-notes/","title":"
+            adb常用命令笔记
+        ","summary":"
+            
+  主要列举平时经常使用的一些adb命令
+
+
+一. 基本指令
+
+
+  adb -s serialNumber shell  //进入指定设备
+  adb version  //查看版本
+  adb logcat  //查看日志
+  adb devices  //查看设备
+  adb get-state //连接状态
+  adb start-server //启动ADB服务
+  adb ki...
+        "},{"url":"http:// gityuan.com/2015/06/27/git-notes/","title":"
+            Git常用命令
+        ","summary":"
+            一、概述
+
+先用一幅图，从总体上描述主要git命令的工作流程
+
+
+
+
+  workspace: 本地的工作目录。（记作A）
+  index：缓存区域，临时保存本地改动。（记作B）
+  local repository: 本地仓库，只想最后一次提交HEAD。（记作C）
+  remote repository：远程仓库。（记作D）
+
+
+二、命令笔记
+
+以下所有的命令的功能说明，都采用上述的标记的...
+        "},{"url":"http:// gityuan.com/2015/06/21/http-restful/","title":"
+            浅谈HTTP RESTful架构
+        ","summary":"
+            
+  RESTful 是一种非常流行的软件架构，或者说设计风格而非新的技术标准。提供了一组设计原则和约束条件，主要用于客户端与服务器的交互。RESTful架构更简洁，更有层次，更易于实现缓存等机制。
+
+
+1.理解RESTful
+RESTful, 全称Representational State Transfer。REST通常基于使用HTTP，URI，和XML以及HTML这些现有的广泛流行的协...
+        "},{"url":"http:// gityuan.com/2015/06/20/http-agreement/","title":"
+            浅谈HTTP协议
+        ","summary":"
+            
+  HTTP是一个属于应用层的面向对象的协议，工作于客户端-服务端架构为上。浏览器作为HTTP客户端通过URL向HTTP服务端发送请求。本文只介绍目前应用比较广泛的HTTP/1.1协议，下面从请求与响应两部分分开展开讲解。
+
+
+一. 请求(Request)
+
+1.消息格式
+
+
+
+一个完整的 HTTP/1.1消息格式分三部分：
+
+
+  
+    请求行:      {请求方法} {资源路径}...
+        "},{"url":"http:// gityuan.com/2015/06/13/SEAndroid-permission/","title":"
+            SELinux 权限问题
+        ","summary":"
+            
+  本文主要记录一下修改selinux权限的方法
+
+
+权限修改
+
+方法1: adb在线修改seLinux
+Enforcing(表示已打开)，Permissive（表示已关闭）
+
+    getenforce;  //获取当前seLinux状态
+    setenforce 1;   //打开seLinux
+    setenforce 0;   //关闭seLinux
+
+
+方法2: 从ke...
+        "},{"url":"http:// gityuan.com/2015/06/09/atom/","title":"
+            Atom编辑器
+        ","summary":"
+            一、概述
+
+今天给大家推荐一款文本编辑器，支持markdown语法，这是最初选择的出发点。Atom是Github专为hacker推出的开源的文本编辑器，支持linux、window等多平台，界面简洁优雅，当第一眼看到atom界面的时候就深深地被吸引：
+
+
+
+Atom提供非常方便进行主题二次开发，插件扩展化等非常适合定制，并且可以直接方便得修改所有相关的config配置，可以打造自己独有的编辑...
+        "},{"url":"http:// gityuan.com/2015/06/07/build-jekyll/","title":"
+            Windows下搭建本地Jekyll
+        ","summary":"
+            
+  前言：Jekyll是一个开源的博客生成工具，类似WordPress。但与之不同的是，jekyll只生成静态网页，并不需要数据库支持。
+ 通常配合第三方评论系统使用，例如Disqus, 最关键的是jekyll可以免费部署在Github上，而且可以绑定自己的域名。
+
+
+一、安装Ruby
+
+Jekyll是用ruby语言编写的，所以我们首先要在windows上装好ruby环境。
+
+
+  
+  ...
+        "},{"url":"http://gityuan.com/android","title":"
+[置顶]Android系统开篇
+        ","summary":"
+            基于Android 6.0的源码，专注于分享Android系统原理、架构分析的原创文章，这是Android系列文章的开篇。
+        "},{"url":"http:// gityuan.com/2015/09/05/android-anaimator-3/","title":"
+            Android动画之插值器（三）
+        ","summary":"
+            
+  本文从源码的角度，来展开对动画的深入解析，关于动画基本用法，可查看Android动画之入门篇(一），Android动画之入门篇（二）。
+
+
+关于动画有两个非常重要的类，那就是插值器(Interpolators)与 估值器（Evaluators），下面将详细讲解。
+
+一、 插值器
+时间插值器，定义了一个时间的函数：y = f(t),其中t=elapsed time / duration....
+        "},{"url":"http:// gityuan.com/2015/09/04/android-anaimator-2/","title":"
+            Android动画之入门篇（二）
+        ","summary":"
+            
+  本文重点讲述属性动画，关于逐帧动画与补间动画，可查看上一篇文章Android动画之入门篇（一）。
+
+
+属性动画功能非常强大，也是最常用的动画方法。可自定义如下属性：
+
+
+  动画时间（Duration）, 指定动画总共完成所需要的时间，默认为300ms;
+  时间插值器（Time interpolation）, 是一个基于当前动画已消耗时间的函数，用来计算属性的值；
+  重复次数（Re...
+        "},{"url":"http:// gityuan.com/2015/09/04/android-anaimator-1/","title":"
+            Android动画之入门篇（一）
+        ","summary":"
+            
+  作为Android开发者，动画是非常重要的知识点，本文主要从入门角度来探索动画。
+Android的动画主要包括三大类：逐帧（Frame）动画，补间（Tween）动画，属性动画。
+
+
+1. 逐帧（Frame）动画
+
+逐帧动画是最容易理解，最简单的动画。但需要把动画过程的每一帧静态图片都放到资源文件夹res/drawbale下，然后由Android来控制依次显示这些静态图片，利用人眼“视觉...
+        "},{"url":"http:// gityuan.com/2015/09/02/Android-multi-screen-adapter/","title":"
+            Android多屏适配
+        ","summary":"
+            
+  相信有不少开发者对于dp/sp/px，这些概念比较模糊，本文将讲解其含义和用途。
+
+
+基本概念
+
+  px： 像素（pixel），设备上的物理像素点。
+  dp：跟dip是同一个概念，与屏幕物理像素点无关，而是基于屏幕密度抽象单位，被称作“设备独立像素”,会随着屏幕的密度进行自动的大小调整。
+  sp： 专用于文字大小的设置，可根据字体大小首选项进行缩放。
+  inch： 英寸，1英寸...
+        "},{"url":"http:// gityuan.com/2015/08/30/optimize-array-loop/","title":"
+            数组遍历的性能分析
+        ","summary":"
+            问题
+
+
+  完全遍历有序和无序的数组，时间复杂度都是O(n)，为什么遍历有序数组比无序数组速度更快？
+
+
+下面是一个C++代码，由于一些奇怪的原因，已排序的数据数组比未排序地数组运算差不多快6倍。
+
+#include <algorithm>
+#include <ctime>
+#include <iostream>
+
+int main()
+{
+    //...
+        "},{"url":"http:// gityuan.com/2015/08/22/tool-dumpsys/","title":"
+            dumpsys原理简介
+        ","summary":"
+            dumpsys源码
+
+dumpsys是Android自带的强大debug工具，命令源码来自dumpsys.cpp文件。
+
+frameworks/native/cmds/dumpsys/dumpsys.cpp
+
+int main(int argc, char* const argv[])
+{
+    signal(SIGPIPE, SIG_IGN);
+    //获取ServiceManage...
+        "},{"url":"http:// gityuan.com/2015/08/10/android-arch-coding-style/","title":"
+            Android开发规范
+        ","summary":"
+            
+  Google官方Java代码风格参考规范链接， 中文翻译参考版链接。
+
+
+命名规范
+
+1. 包命名
+规则：包名全部小写，才用反域名命名规则，一级包名是顶级域名，通常为com, edu, gov, net, org等，二级包名，通过为公司名或部门名或者个人名，三级包名通常为项目名，四级包名为模块名或者层级名。以下是从层级包名来划分android项目中采用的包划分结构
+
+com.domai...
+        "},{"url":"http:// gityuan.com/2015/08/08/android-studio-shortcut/","title":"
+            Android Studio 快捷键
+        ","summary":"
+            本文的快捷键是在windows下，且Keymaps为default的情况下的映射关系，从以下几个方面来详细介绍快捷键：
+
+
+  
+    导航
+    搜索
+    编辑代码
+    查看代码
+    视图切换
+    重构
+    运行与调试
+    其他
+  
+
+
+一、导航
+
+
+  
+    
+      功能
+      快捷键组合
+       
+    
+  
+  
+    
+  ...
+        "},{"url":"http:// gityuan.com/2015/08/01/android-arvchitecture/","title":"
+            Android体系架构
+        ","summary":"
+            
+  本文讲述的Android系统体系架构，是指应用层之下的整个系统内部的架构层级关系。而并非常说的4层架构：应用层，framework，运行库与环境，Linux内核，而是把系统内部的流程调用划分更加详细。
+
+
+一、架构
+
+Android系统体系架构图：
+
+
+
+Android系统体系架构分为5层，自顶而下分别是：
+
+
+  应用程序框架（Application Framework）
+  进程通...
+        "},{"url":"http:// gityuan.com/2015/07/26/java-condition-compile/","title":"
+            Java中的条件编译
+        ","summary":"
+            
+  在代码中添加大量log，对于CPU和内存的影响如何，会不会降低性能？相信有不少人对此有疑问，本文将详细解答该问题。
+
+
+一、概述
+
+条件编译是指源程序的代码行，可以在满足一定条件的情况下才进行编译，而未选中的源码，不会生成中间码或机器码，即部分内容参与编译。
+
+条件编译的好处：对于不同硬件平台或者软件平台，或者不同功能模块的代码，编写到在同一个源文件，从而方便程序的维护和移植。
+
+很多...
+        "},{"url":"http://gityuan.com/android","title":"
+[置顶]Android系统开篇
+        ","summary":"
+            基于Android 6.0的源码，专注于分享Android系统原理、架构分析的原创文章，这是Android系列文章的开篇。
+        "},{"url":"http:// gityuan.com/2015/10/10/Android-Tools/","title":"
+            Android Studio 内存工具
+        ","summary":"
+            一、内存工具
+
+Android Studio提供了强大的分析功能，关于内存分析工具包含：
+Memory Monitor, Heap Viewer, Allocation Tracker
+
+1. Memory Monitor
+
+
+
+2. Heap Viewer
+
+堆内存查看工具，用于监控App的某一时刻的内存堆上的具体使用情况，从而帮助找出内存泄露。
+
+用法
+
+打开Android Studio...
+        "},{"url":"http:// gityuan.com/2015/10/03/Android-GC/","title":"
+            Dalvik与ART的GC调试
+        ","summary":"
+            
+  本文主要讲述Dalvik与ART两种Android虚拟机，在GC时产生log信息的含义，便于分析。
+
+
+一、Dalvik
+
+1.1 GC含义
+
+Dalvik虚拟机，每一次GC打印内容格式：
+
+D/dalvikvm: <GC_Reason> <Amount_freed>, <Heap_stats>, <External_memory_stats&...
+        "},{"url":"http:// gityuan.com/2015/10/01/process-lifecycle/","title":"
+            Android进程生命周期与ADJ
+        ","summary":"
+            
+  做为应用开发者，对于进程生命周期和进程中的内存回收是透明的，但了解生命周期对加深对Andorid体系的理解很有帮助
+
+
+一、 进程生命周期
+
+Android系统将尽量长时间地保持应用进程，但为了新建进程或运行更重要的进程，最终需要清除旧进程来回收内存。 为了确定保留或终止哪些进程，系统会根据进程中正在运行的组件以及这些组件的状态，将每个进程放入“重要性层次结构”中。 必要时，系统会首先...
+        "},{"url":"http:// gityuan.com/2015/10/01/process-priority/","title":"
+            进程优先级
+        ","summary":"
+            
+  线程与进程的最大区别就是是否共享父进程的地址空间，内核角度来看没有线程与进程之分，都用task_struct结构体来表示，调度器操作的实体便是task_struct。
+
+
+一、 进程优先级
+
+进程可划分为普通进程和实时进程，那么优先级与nice值的关系图：
+
+
+
+优先级值越小表示进程优先级越高，3个进程优先级的概念：
+
+
+  
+    静态优先级： 不会时间而改变，内核也不会修改，只能...
+        "},{"url":"http:// gityuan.com/2015/09/26/App-optimize1/","title":"
+            APP优化(一)
+        ","summary":"
+            
+  本文是针对Android的App开发优化(一)
+
+
+一、代码优化
+
+1.  广播
+
+应用程序内部广播通信，优先采用LocalBroadcastManager，安全性更好，运行效率更高。 
+见文章LocalBroadcastManager原理分析
+
+2.  线程池
+
+线程创建优先采用线程池ThreadPoolExecutor，而不是new Thread()；
+另外设置线程优先级为后台运行...
+        "},{"url":"http:// gityuan.com/2015/09/20/android-launcher-1/","title":"
+            Android Launcher 1
+        ","summary":"
+            
+layout: post
+title:  “Android Launcher原理分析”
+date:   2015-9-20 15:30:00
+catalog:  true
+tags:
+    - android
+
+
+
+基本概念
+本文主要讲述Launcher3屏幕滑动过程，首先需要了解Android的触摸事件分发机制。关于分发机制，可查看文章Android事件分发机制。
+
+常用类介绍
+
+
+ ...
+        "},{"url":"http:// gityuan.com/2015/09/19/android-touch/","title":"
+            Android事件分发机制
+        ","summary":"
+            
+  本文源码来自andorid sdk 22，不同版本会有细微差别，但核心机制是一致的
+
+
+一.概述
+
+事件分发有多种类型, 本文主要介绍Touch相关的事件分发.
+
+
+  整个事件分发流程中，会有大量MotionEvent对象，该对象用于记录所有与移动相关的事件，比如手指触摸屏幕事件。
+  一次完整的MotionEvent事件，是从用户触摸屏幕到离开屏幕。整个过程的动作序列：ACTION...
+        "},{"url":"http:// gityuan.com/2015/09/18/adb-1/","title":"
+            adb连接不上手机的解决方法
+        ","summary":"
+            
+  adb驱动已正常安装，但仍无法通过adb devices找到设备？
+
+
+Windows用户
+
+方法1
+
+如果有sdk环境，只需要进入路径/{sdk目录}/tools/，再执行：
+
+Android update adb
+
+
+方法2
+
+如果没有sdk环境，也没关系，稍微复杂一些：
+
+步骤如下：
+
+
+  在目录C:\Users\{用户名}\.android，新建adb_usb.ini文件，如...
+        "},{"url":"http:// gityuan.com/2015/09/13/grep-and-find/","title":"
+            grep && find命令用法
+        ","summary":"
+            
+  Linux下搜索文件内容常用grep，搜索文件信息使用find
+
+
+一、 grep
+
+搜索文本的命令
+
+命令格式: grep [options]... pattern [file]...
+命令格式: grep 查找规则... 正则表达式 查看文件
+
+
+1.1 查找规则
+
+
+  
+    
+      options
+      解释
+    
+  
+  
+    
+      -i
+ ...
+        "},{"url":"http:// gityuan.com/2015/09/06/android-anaimator-4/","title":"
+            Android动画之原理篇（四）
+        ","summary":"
+            一. 概述
+
+前面已介绍Android属性动画的启动方式：
+
+ObjectAnimator anim = ObjectAnimator.ofFloat(targetObject, "alpha", 0f, 1f); //[见小节2.1]
+anim.setDuration(1000); // [见小节2.2]
+anim.start();           // [见小节2.3]
+
+
+接下来从...
+        "},{"url":"http://gityuan.com/android","title":"
+[置顶]Android系统开篇
+        ","summary":"
+            基于Android 6.0的源码，专注于分享Android系统原理、架构分析的原创文章，这是Android系列文章的开篇。
+        "},{"url":"http:// gityuan.com/2015/11/07/binder-start-sm/","title":"
+            Binder系列3—启动ServiceManager
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 本文详细地讲解了ServiceManager启动流程
+
+
+framework/native/cmds/servicemanager/
+  - service_manager.c
+  - binder.c
+  
+kernel/drivers/ (不同Linux分支路径略有不同)
+  - staging/android/binder.c
+  - an...
+        "},{"url":"http:// gityuan.com/2015/11/02/binder-driver-2/","title":"
+            Binder系列2—Binder Driver再探
+        ","summary":"
+            
+  基于Android 6.0的源码剖析，在讲解Binder原理之前，先从kernel的角度来讲解Binder Driver.
+
+
+一、Binder通信简述
+
+上一篇文章Binder Driver初探介绍了Binder驱动的init、open、mmap、ioctl这4个核心方法，并说明与Binder相关的常见结构体。
+
+Client进程通过RPC(Remote Procedure Call...
+        "},{"url":"http:// gityuan.com/2015/11/01/binder-driver/","title":"
+            Binder系列1—Binder Driver初探
+        ","summary":"
+            
+  基于Android 6.0的源码剖析，在讲解Binder原理之前，先从kernel的角度来讲解Binder Driver.
+
+
+kernel/drivers/ (不同Linux分支路径略有不同)
+  - staging/android/binder.c
+  - android/binder.c 
+
+
+一、Binder驱动概述
+
+1.1 概述
+
+Binder驱动是Android专用的，但...
+        "},{"url":"http:// gityuan.com/2015/10/31/binder-prepare/","title":"
+            Binder系列—开篇
+        ","summary":"
+            
+  基于Android 6.0的源码剖析
+
+
+一、概述
+Android系统中，每个应用程序是由Android的Activity，Service，Broadcast，ContentProvider这四剑客的中一个或多个组合而成，这四剑客所涉及的多进程间的通信底层都是依赖于Binder IPC机制。例如当进程A中的Activity要向进程B中的Service通信，这便需要依赖于Binder I...
+        "},{"url":"http:// gityuan.com/2015/10/30/kernel-memory/","title":"
+            Linux内存管理
+        ","summary":"
+            关于Linux的内存管理，本文分别从内核空间和用户空间两个视角来阐述
+
+一、内核空间
+
+1.1 页
+页(page)是内核的内存管理基本单位。
+
+==> linux/mm_types.h
+
+struct page {
+       page_flags_t flags;  页标志符
+       atomic_t _count;    页引用计数
+       atomic_t _map...
+        "},{"url":"http:// gityuan.com/2015/10/26/jvm-subsystem/","title":"
+            Jvm系列4—执行子系统
+        ","summary":"
+            
+  字节码执行引擎
+
+
+一、概述
+执行引擎是Java虚拟机非常最核心的部分，对于物理即的执行引擎是直接建立在处理器、硬件、指令集合操作系统层面，而虚拟机执行引擎则是由自行定制的指令集与执行引擎的结构体系。执行引擎在执行Java会有解释执行(通过解释器)和编译执行(通过JIT生成的本地代码)两种选择，对于Android ART又多了一种提前编译器(AOT)。
+
+接下来，主要讲解虚拟机的方法执...
+        "},{"url":"http:// gityuan.com/2015/10/25/jvm-class-loading/","title":"
+            Jvm系列3—类的加载
+        ","summary":"
+            一、概述
+本文主要讲述虚拟机如何把 Class文件加载到内存的过程。校验、转换解析和初始化，最终形成可被虚拟机使用的Java类型，这就是虚拟机的类加载机制。类型的加载、连接和初始化都是在程序运行期间完成，这样做的优劣势，如下：
+
+
+  优势：提高Java程序的灵活性，Java动态扩展的语言特性就是依赖运行期动态加载和动态连接。当面向接口的应用程序，可以等到运行时指定实现类；可以通过类加载器，...
+        "},{"url":"http:// gityuan.com/2015/10/24/jvm-bytecode-grammar/","title":"
+            Jvm系列2—字节码指令
+        ","summary":"
+            
+  介绍java虚拟机的指令功能，至少能阅读java代码生成的字节码指令含义
+
+
+一、概述
+
+Java虚拟机采用基于栈的架构，其指令由操作码和操作数组成。
+
+
+  操作码：一个字节长度(0~255)，意味着指令集的操作码个数不能操作256条。
+  操作数：一条指令可以有零或者多个操作数，且操作数可以是1个或者多个字节。编译后的代码没有采用操作数长度对齐方式，比如16位无符号整数需使用两个字...
+        "},{"url":"http:// gityuan.com/2015/10/17/jvm-class-instruction/","title":"
+            Jvm系列1—Class文件格式
+        ","summary":"
+            
+  Java编译过程是将Java文件转换为Claaa文件，从而实现了跨平台的功能， 本文详细讲述Class文件结构。
+
+
+一、 概述
+计算机只能识别0和1，所以大家编写的程序都需要经过编译器，转换为由0和1组成的二进制本地机器码(Native Code)。随着虚拟机的不断发展，很多程序语言开始选择与操作系统和机器指令集无关的格式作为编译后的存储格式（Class文件），从而实现”Write ...
+        "},{"url":"http:// gityuan.com/2015/10/11/ps-command/","title":"
+            ps进程命令
+        ","summary":"
+            ps进程命令
+
+在adb shell终端，输入 ps，可查看手机当前所有的进程状态，其中ps的英文全称是Process Status。
+
+1. ps命令参数
+
+
+  -t 显示进程里的所有子线程
+  -c 显示进程耗费的CPU时间
+  -p 显示进程优先级、nice值、调度策略
+  -P 显示进程，通常是bg(后台进程)或fg(前台进程)
+  -x 显示进程耗费的用户时间和系统时间，格式:(...
+        "},{"url":"http://gityuan.com/android","title":"
+[置顶]Android系统开篇
+        ","summary":"
+            基于Android 6.0的源码，专注于分享Android系统原理、架构分析的原创文章，这是Android系列文章的开篇。
+        "},{"url":"http:// gityuan.com/2015/12/12/android-process-manage/","title":"
+            进程状态的切换
+        ","summary":"
+            
+  进程状态转换，同样可用于线程的状态转移
+
+
+一、进程状态
+
+进程的生命周期内，有5种状态，分别为new, runnable, running, blocked, dead共5种状态，进程所处的状态，会随着系统负载以及运行环境的变化而不断发生改变(由一个状态切换到另一个状态)。
+
+
+
+
+  
+    创建状态(new)：进程正在被创建，仅仅在堆上分配内存，尚未进入就绪状态；
+  
+  
+...
+        "},{"url":"http:// gityuan.com/2015/12/06/linux_epoll/","title":"
+            select/poll/epoll对比分析
+        ","summary":"
+            select/poll/epoll都是IO多路复用机制，可以同时监控多个描述符，当某个描述符就绪(读或写就绪)，则立刻通知相应程序进行读或写操作。本质上select/poll/epoll都是同步I/O，即读写是阻塞的。
+
+一、select
+
+原型：
+
+int select (int n, fd_set *readfds, fd_set *writefds, fd_set *exceptfds...
+        "},{"url":"http:// gityuan.com/2015/12/05/android-refbase/","title":"
+            理解Refbase强弱引用
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 加深对Refbase，sp/wp的认知.
+
+
+system/core/libutils/RefBase.cpp
+system/core/include/utils/RefBase.h
+system/core/include/utils/StrongPointer.h
+
+
+一. 概述
+
+看过Android源码中的C++代码，一定不会对sp/wp感到...
+        "},{"url":"http:// gityuan.com/2015/11/28/binder-summary/","title":"
+            Binder系列10—总结
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， Binder所涉及的源码目录
+
+
+1. Binder概述
+
+
+  从IPC角度来说：Binder是Android中的一种跨进程通信方式，该通信方式在linux中没有，是Android独有；
+  从Android Driver层：Binder还可以理解为一种虚拟的物理设备，它的设备驱动是/dev/binder；
+  从Android Native层...
+        "},{"url":"http:// gityuan.com/2015/11/23/binder-aidl/","title":"
+            Binder系列9—如何使用AIDL
+        ","summary":"
+            
+  自定义binder架构的 client/ server组件
+
+
+一、AIDL
+
+1.1 Server端
+
+RemoteService.java
+
+本例是为了演示进程间的通信机制，故需要将Service与Activity处于不同的进程，需要在AndroidManifest.xml中，把service配置成android:process=":remote",进程也可以命名成其他的。
+
+pu...
+        "},{"url":"http:// gityuan.com/2015/11/22/binder-use/","title":"
+            Binder系列8—如何使用Binder
+        ","summary":"
+            
+  自定义binder架构的 client/ server组件
+
+
+一、Native层Binder
+
+源码结构：
+
+
+  ClientDemo.cpp: 客户端程序
+  ServerDemo.cpp：服务端程序
+  IMyService.h：自定义的MyService服务的头文件
+  IMyService.cpp：自定义的MyService服务
+  Android.mk：源码build文件...
+        "},{"url":"http:// gityuan.com/2015/11/21/binder-framework/","title":"
+            Binder系列7—framework层分析
+        ","summary":"
+            
+  主要分析Binder在java framework层的框架，相关源码：
+
+
+framework/base/core/java/android/os/
+  - IInterface.java
+  - IServiceManager.java
+  - ServiceManager.java
+  - ServiceManagerNative.java(包含内部类ServiceManagerP...
+        "},{"url":"http:// gityuan.com/2015/11/15/binder-get-service/","title":"
+            Binder系列6—获取服务(getService)
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 本文Client如何向Server获取服务的过程。
+
+
+一、 获取服务
+在Native层的服务注册，我们选择以media为例来展开讲解，先来看看media的类关系图。
+
+1.1 类图
+
+点击查看大图
+
+
+
+图解：
+
+
+  蓝色: 代表获取MediaPlayerService服务相关的类；
+  绿色: 代表Binder架构中与Binder驱动通信过...
+        "},{"url":"http:// gityuan.com/2015/11/14/binder-add-service/","title":"
+            Binder系列5—注册服务(addService)
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 本文讲解如何向ServiceManager注册Native层的服务的过程。
+
+
+framework/native/libs/binder/
+  - Binder.cpp
+  - BpBinder.cpp
+  - IPCThreadState.cpp
+  - ProcessState.cpp
+  - IServiceManager.cpp
+  - ...
+        "},{"url":"http:// gityuan.com/2015/11/08/binder-get-sm/","title":"
+            Binder系列4—获取ServiceManager
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 本文详细地讲解defaultServiceManager流程
+
+
+framework/native/libs/binder/
+  - ProcessState.cpp
+  - BpBinder.cpp
+  - Binder.cpp
+  - IServiceManager.cpp
+
+framework/native/include/binder/
+...
+        "},{"url":"http://gityuan.com/android","title":"
+[置顶]Android系统开篇
+        ","summary":"
+            基于Android 6.0的源码，专注于分享Android系统原理、架构分析的原创文章，这是Android系列文章的开篇。
+        "},{"url":"http:// gityuan.com/2016/01/16/thread-pool/","title":"
+            Java线程池分析
+        ","summary":"
+            
+  Android是基于Java开发的平台，本文java线程池也适用于Android。
+
+
+一、概述
+
+在执行一个异步任务或并发任务时，往往是通过直接new Thread()方法来创建新的线程，这样做弊端较多，更好的解决方案是合理地利用线程池，线程池的优势很明显，如下：
+
+
+  降低系统资源消耗，通过重用已存在的线程，降低线程创建和销毁造成的消耗；
+  提高系统响应速度，当有任务到达时，无...
+        "},{"url":"http:// gityuan.com/2016/01/10/power_rank/","title":"
+            Android耗电统计算法
+        ","summary":"
+            
+  基于Android 6.0的源码剖析
+
+
+一、 概述
+
+Android系统中的耗电统计分为软件排行榜和硬件排行榜，软件排序榜是统计每个App的耗电总量的排行榜，硬件排行榜则是统计主要硬件的耗电总量的排行榜。
+
+涉及耗电统计相关的核心类：
+
+/framework/base/core/res/res/xml/power_profile.xml
+/framework/base/core/ja...
+        "},{"url":"http:// gityuan.com/2016/01/09/java-memory/","title":"
+            Jvm内存模型
+        ","summary":"
+            
+  java是在java虚拟机上运行，一般地大家讲到的Java内存其实就是Jvm内存
+
+
+一、内存模型
+
+Java内存模型，往往是指Java程序在运行时内存的模型，而Java代码是运行在Java虚拟机之上的，由Java虚拟机通过解释执行(解释器)或编译执行(即时编译器)来完成，故Java内存模型，也就是指Java虚拟机的运行时内存模型。
+
+作为Java开发人员来说，并不需要像C/C++开发...
+        "},{"url":"http:// gityuan.com/2016/01/03/java-thread-wait-sleep/","title":"
+            wait、notify、sleep、interrupt对比分析
+        ","summary":"
+            
+  对比分析Java中的各个线程相关的wait()、notify()、sleep()、interrupt()方法
+
+
+方法简述
+
+Thread类
+
+
+  sleep：暂停当前正在执行的线程；（类方法）
+  yield：暂停当前正在执行的线程，并执行其他线程；（类方法）
+  join：等待该线程终止；
+  interrupt：中断该线程，当线程调用wait(),sleep(),join()或...
+        "},{"url":"http:// gityuan.com/2016/01/02/memory-analysis-command/","title":"
+             Android内存分析命令
+        ","summary":"
+            一、概述
+
+1.1 内存指标概念
+
+
+  
+    
+      Item
+      全称
+      含义
+      等价
+    
+  
+  
+    
+      USS
+      Unique Set Size
+      物理内存
+      进程独占的内存
+    
+    
+      PSS
+      Proportional Set Size
+      物理内存
+...
+        "},{"url":"http:// gityuan.com/2016/01/01/handler-message-usage/","title":"
+            Android消息机制3-Handler(实战)
+        ","summary":"
+            
+  本文基于Android 6.0的源代码，来分析Handler的用法
+
+
+相关源码
+
+framework/base/core/java/andorid/os/HandlerThread.java
+
+
+一、HandlerThread
+
+Android消息机制1-Handler(Java层)
+Android消息机制2-Handler(native篇)
+
+这两篇文章已经讲解了消息机制，那么对于...
+        "},{"url":"http:// gityuan.com/2015/12/27/handler-message-native/","title":"
+            Android消息机制2-Handler(Native层)
+        ","summary":"
+            
+  本文基于Android 6.0的源代码，来分析native层的消息处理机制
+
+
+相关源码
+
+framework/base/core/java/andorid/os/MessageQueue.java
+framework/base/core/jni/android_os_MessageQueue.cpp
+framework/base/core/java/andorid/os/Looper...
+        "},{"url":"http:// gityuan.com/2015/12/26/handler-message-framework/","title":"
+            Android消息机制1-Handler(Java层)
+        ","summary":"
+            
+  本文基于Android 6.0的源代码，来分析Java层的handler消息处理机制
+
+
+framework/base/core/java/andorid/os/
+  - Handler.java
+  - Looper.java
+  - Message.java
+  - MessageQueue.java
+
+
+一、概述
+
+在整个Android的源码世界里，有两大利剑，其一是Binder...
+        "},{"url":"http:// gityuan.com/2015/12/20/signal/","title":"
+            Linux信号(signal)机制
+        ","summary":"
+            
+  信号(signal)是一种软中断，信号机制是进程间通信的一种方式，采用异步通信方式
+
+
+一、信号类型
+
+Linux系统共定义了64种信号，分为两大类：可靠信号与不可靠信号，前32种信号为不可靠信号，后32种为可靠信号。
+
+1.1 概念
+
+
+  
+    不可靠信号： 也称为非实时信号，不支持排队，信号可能会丢失, 比如发送多次相同的信号, 进程只能收到一次. 信号值取值区间为1~31；...
+        "},{"url":"http:// gityuan.com/2015/12/19/android-process-category/","title":"
+            进程篇—进程整理
+        ","summary":"
+            
+  整理Android手机，核心进程和线程情况
+
+
+一、概括
+
+系统启动架构图：
+
+
+
+上图在Android系统-开篇中有讲解，是从Android系统启动的角度来分析，本文是从进程/线程的视角来分析该问题。
+
+1.1 父进程
+在所有进程中，以父进程的姿态存在的进程(即图中的浅红色项)，如下：
+
+
+  kthreadd进程: 是所有内核进程的父进程
+  init进程   ： 是所有用户进程的...
+        "},{"url":"http://gityuan.com/android","title":"
+[置顶]Android系统开篇
+        ","summary":"
+            基于Android 6.0的源码，专注于分享Android系统原理、架构分析的原创文章，这是Android系列文章的开篇。
+        "},{"url":"http:// gityuan.com/2016/02/21/activity-manager-service/","title":"
+            ActivityManagerService启动过程
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 分析Android系统服务ActivityManagerService，简称AMS
+
+
+frameworks/base/core/java/android/app/
+  - ActivityThread.java
+  - LoadedApk.java
+  - ContextImpl.java
+
+frameworks/base/services/j...
+        "},{"url":"http:// gityuan.com/2016/02/20/android-system-server-2/","title":"
+            Android系统启动-SystemServer下篇
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 分析Android启动过程的system_server进程
+
+
+frameworks/base/services/java/com/android/server/
+  - SystemServer.java
+
+frameworks/base/services/core/java/com/android/server/
+  - SystemServ...
+        "},{"url":"http:// gityuan.com/2016/02/14/android-system-server/","title":"
+            Android系统启动-SystemServer上篇
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 分析Android启动过程的system_server进程
+
+
+/frameworks/base/core/java/com/android/internal/os/
+  - ZygoteInit.java
+  - RuntimeInit.java
+  - Zygote.java
+
+/frameworks/base/core/services/j...
+        "},{"url":"http:// gityuan.com/2016/02/13/android-zygote/","title":"
+            Android系统启动-zygote篇
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 分析Android启动过程的Zygote进程
+
+
+/frameworks/base/cmds/app_process/App_main.cpp
+/frameworks/base/core/jni/AndroidRuntime.cpp
+
+/frameworks/base/core/java/com/android/internal/os/
+  - ...
+        "},{"url":"http:// gityuan.com/2016/02/05/android-init/","title":"
+            Android系统启动-Init篇
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 分析Android启动过程进程号为1的init进程的工作内容
+
+
+/system/core/init/
+  - init.cpp
+  - init_parser.cpp
+  - signal_handler.cpp
+
+
+一、概述
+
+init是Linux系统中用户空间的第一个进程，进程号为1。Kernel启动后，在用户空间，启动init进程，并调用...
+        "},{"url":"http:// gityuan.com/2016/02/01/android-booting/","title":"
+            Android系统启动-概述
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， Android启动过程概述
+
+
+一. 概述
+
+Android系统底层基于Linux Kernel, 当Kernel启动过程会创建init进程, 该进程是uoyou用户空间的鼻祖, 
+init进程会启动servicemanager(binder服务管家), Zygote进程(Java进程的鼻祖). Zygote进程会创建
+system_server...
+        "},{"url":"http:// gityuan.com/2016/01/24/java-classloader/","title":"
+            Java类加载器(ClassLoader)
+        ","summary":"
+            
+  本文主要讲述Java ClassLoader的工作原理，这为后面将Android App代码热替换或者插件化升级做铺垫
+
+
+一、 类加载器
+
+ClassLoader即常说的类加载器，其功能是用于从Class文件加载所需的类，主要场景用于热部署、代码热替换等场景。
+
+系统提供3种的类加载器：Bootstrap ClassLoader、Extension ClassLoader、Appli...
+        "},{"url":"http:// gityuan.com/2016/01/23/java-annotation/","title":"
+            Java注解(Annotation)
+        ","summary":"
+            
+  本文讲述Java Annotation的原理，如何自定义Java注解以及通过反射解析注解。
+
+
+一、注解
+
+1.1 概述
+
+注解(Annotation)在JDK1.5之后增加的一个新特性，注解的引入意义很大，有很多非常有名的框架，比如Hibernate、Spring等框架中都大量使用注解。注解作为程序的元数据嵌入到程序。注解可以被解析工具或编译工具解析，此处注意注解不同于注释(comm...
+        "},{"url":"http:// gityuan.com/2016/01/17/traceview/","title":"
+            性能工具Traceview
+        ","summary":"
+            Traceview
+
+性能分析功能，首推Systrace，建议看看另一篇文章性能工具Systrace，关于Trracview就简单地讲一下。
+
+代码实现:
+
+Debug.startMethodTracing("demo");
+Debug.stopMethodTracing();
+
+
+视图:
+
+
+
+参数说明:
+
+
+  Name：
+该线程运行过程中所调用的函数名
+  Incl Cpu Time：...
+        "},{"url":"http:// gityuan.com/2016/01/17/systrace/","title":"
+            性能工具Systrace
+        ","summary":"
+            
+  无论是系统开发者，还是应用开发者都应该掌握systrace这一神技。
+
+
+一、概述
+
+保证系统流畅度，也就是保证系统能连续不间断地提供每秒60帧的运行状态。当出现掉帧时（也可称为Jank），需要知道当前整个系统所处的状态，systrace便是最佳的选择，它能手机检测android系统各个组件随着时间的运行状态，并能提示该如何有效地修复问题，接下来说说systrace如何使用以及如何解读...
+        "},{"url":"http://gityuan.com/android","title":"
+[置顶]Android系统开篇
+        ","summary":"
+            基于Android 6.0的源码，专注于分享Android系统原理、架构分析的原创文章，这是Android系列文章的开篇。
+        "},{"url":"http:// gityuan.com/2016/04/16/kill-signal/","title":"
+            理解杀进程的实现原理
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 分析kill进程的实现原理，以及讲讲系统调用(syscall)过程，涉及源码：
+
+
+/framework/base/core/java/android/os/Process.java
+/framework/base/core/jni/android_util_Process.cpp
+/system/core/libprocessgroup/pro...
+        "},{"url":"http:// gityuan.com/2016/04/01/linux-kernel-map/","title":"
+            Linux Kernel简介
+        ","summary":"
+            一. Linux全局观
+
+先来看一幅Linux kernel map：点击查看大图
+
+
+
+这是makelinux网站提供的一幅非常经典的Linux内核图，涵盖了内核最为核心的方法.
+Linux除了驱动开发外，还有很多通用子系统，比如CPU, memory, file system等核心模块，即便不做底层驱动开发，
+掌握这些模块对于加深理解整个系统运转机制还是很有帮助。
+
+二. Kernel源...
+        "},{"url":"http:// gityuan.com/2016/03/26/app-process-create/","title":"
+            理解Android进程创建流程
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 分析Android进程是如何一步步创建的，本文涉及到的源码：
+
+
+/frameworks/base/core/java/com/android/internal/os/
+    - ZygoteInit.java
+    - ZygoteConnection.java
+    - RuntimeInit.java
+    - Zygote.jav...
+        "},{"url":"http:// gityuan.com/2016/03/19/android-build/","title":"
+            理解Android编译命令
+        ","summary":"
+            
+  工欲善其事，必先利其器，对于想要深入学习Android源码，必须先掌握Android编译命令.
+
+
+一、引言
+
+关于Android Build系统，这个话题很早就打算整理下，迟迟没有下笔，决定跟大家分享下。先看下面几条指令，相信编译过Android源码的人都再熟悉不过的。
+
+source setenv.sh
+lunch
+make -j12
+
+
+记得最初刚接触Android时，同事告诉我...
+        "},{"url":"http:// gityuan.com/2016/03/18/start-activity-cycle/","title":"
+            简述Activity生命周期
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 分析android Activity启动流程中ActivityManagerService所扮演的角色
+
+
+一、概述
+
+上一篇文章startActivity启动过程分析，介绍了startActivity是如何一步步创建的，再来看看生命周期的控制。先来一张官方的Activity状态转换图：
+
+
+
+Activity的生命周期中只有在以下3种状态之一，...
+        "},{"url":"http:// gityuan.com/2016/03/12/start-activity/","title":"
+            startActivity启动过程分析
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 分析android Activity启动流程，相关源码：
+
+
+frameworks/base/services/core/java/com/android/server/am/
+  - ActivityManagerService.java
+  - ActivityStackSupervisor.java
+  - ActivityStack.ja...
+        "},{"url":"http:// gityuan.com/2016/03/06/start-service/","title":"
+            startService启动过程分析
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 分析android Service启动流程，相关源码：
+
+
+frameworks/base/services/core/java/com/android/server/am/
+  - ActivityManagerService.java
+  - ActiveServices.java
+  - ServiceRecord.java
+  - Pro...
+        "},{"url":"http:// gityuan.com/2016/03/05/binder-clearCallingIdentity/","title":"
+            Binder IPC的权限控制
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 分析Binder IPC通信的权限控制方法clearCallingIdentity和restoreCallingIdentity的原理和用途。
+
+
+/frameworks/base/core/java/android/os/Binder.java
+/frameworks/base/core/jni/android_util_Binder.cpp
+...
+        "},{"url":"http:// gityuan.com/2016/02/28/pm-command/","title":"
+            Pm命令用法
+        ","summary":"
+            一、Pm命令
+
+命令格式：
+
+pm <command>
+
+
+命令列表：
+
+
+  
+    
+      命令
+      功能
+      实现方法
+    
+  
+  
+    
+      list packages
+      列举app包信息
+      PMS.getInstalledPackages
+    
+    
+      install [options] ...
+        "},{"url":"http:// gityuan.com/2016/02/27/am-command/","title":"
+            Am命令用法
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 分析am命令
+
+
+一、概述
+
+作为一名开发者，相信对adb指令一定不会陌生。那么在手机连接adb后，可通过am命令做很多操作：
+
+(1) 拨打电话10086
+
+adb shell am start -a android.intent.action.CALL -d tel:10086
+
+
+(2) 打开网站www.gityuan.com
+
+adb s...
+        "},{"url":"http://gityuan.com/android","title":"
+[置顶]Android系统开篇
+        ","summary":"
+            基于Android 6.0的源码，专注于分享Android系统原理、架构分析的原创文章，这是Android系列文章的开篇。
+        "},{"url":"http:// gityuan.com/2016/06/04/broadcast-receiver/","title":"
+            Android Broadcast广播机制分析
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 分析android广播的发送与接收流程。
+
+
+framework/base/services/core/java/com/android/server/
+  - ActivityManagerService.java
+  - BroadcastQueue.java
+  - BroadcastFilter.java
+  - BroadcastRec...
+        "},{"url":"http:// gityuan.com/2016/05/28/android-jni/","title":"
+            Android JNI原理分析
+        ","summary":"
+            
+  引言：分析Android源码6.0的过程，一定离不开Java与C/C++代码直接的来回跳转，那么就很有必要掌握JNI，这是链接Java层和Native层的桥梁，本文涉及相关源码：
+
+
+frameworks/base/core/jni/AndroidRuntime.cpp
+
+libcore/luni/src/main/java/java/lang/System.java
+libcore/...
+        "},{"url":"http:// gityuan.com/2016/05/21/syscall/","title":"
+            Linux系统调用(syscall)原理
+        ","summary":"
+            
+  引言：分析Android源码的过程中，要想从上至下完全明白一行代码，往往涉及app、framework、native一直到kernel，可能迷失到代码世界，明白了系统调用原理，或许能帮你峰回路转，找到进入kernel函数的入口。本文主要讲解ARM架构相关源码：
+
+
+/bionic/libc/kernel/uapi/asm-arm/asm/unistd.h
+/bionic/libc/ar...
+        "},{"url":"http:// gityuan.com/2016/05/15/event-log/","title":"
+            Android EventLog含义
+        ","summary":"
+            一. 概述
+
+在调试分析Android的过程中，比较常用的地查看EventLog，非常简洁明了地展现当前Activity各种状态，当然不至于此，比如还有window的信息。那么本文就列举以下am相关的tags含义。
+
+本文涉及的源码类有EventLog.java,  EventLogTags.java，另外tags格式的定义位于文件/system/etc/event-log-tags。
+
+如...
+        "},{"url":"http:// gityuan.com/2016/05/14/dumpsys-command/","title":"
+            dumpsys命令用法
+        ","summary":"
+            
+  dumpsys命令功能很强大，能dump系统服务的各种状态，非常有必要熟悉该命令的用法以及含义。
+
+
+一、 概述
+
+1.1 dumpsys命令用法
+
+可通过dumpsys命令查询系统服务的运行状态(对象的成员变量属性值)，命令格式：dumpsys 服务名，
+例如：
+
+dumpsys activity //查询AMS服务相关信息
+dumpsys window //查询WMS服务相关信息
+...
+        "},{"url":"http:// gityuan.com/2016/05/03/content_provider_release/","title":"
+            ContentProvider引用计数
+        ","summary":"
+            
+  基于Android 6.0源码剖析，本文涉及的相关源码：
+
+
+一.概述
+
+上一篇文章理解ContentProvider原理介绍了provider的整个原理,
+本文以查询操作为例,说一说provider引用计数的问题.
+
+1.1 query操作
+
+public final  Cursor query(final  Uri uri,  String[] projection,
+      ...
+        "},{"url":"http:// gityuan.com/2016/05/02/unbind-service/","title":"
+            unbindService流程分析
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 分析bind service的启动流程。
+
+
+/frameworks/base/core/java/android/app/ContextImpl.java
+/frameworks/base/core/java/android/app/LoadedApk.java
+/frameworks/base/core/java/android/app/IS...
+        "},{"url":"http:// gityuan.com/2016/05/01/bind-service/","title":"
+            bindService启动过程分析
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 分析bind service的启动流程。
+
+
+/frameworks/base/core/java/android/app/ContextImpl.java
+/frameworks/base/core/java/android/app/LoadedApk.java
+/frameworks/base/core/java/android/app/IS...
+        "},{"url":"http:// gityuan.com/2016/04/24/how-to-study-android/","title":"
+            如何自学Android
+        ","summary":"
+            
+  引言：知乎上我曾回答了 自学编程一年，压力过大，该怎么办？ - Gityuan 的回答，之后有不少知乎朋友私信或Email给我，希望能讲讲学习Android的心得。业内有不少同仁写过关于如何自学的文章，本文则是从自身的学习经历和经验，可能并不是适合每一个人，写出来仅供大家参考。
+
+
+看到很多人提问非科班该如何学习编程，其实科班也基本靠自学。有句话叫“师傅领进门修行靠个人”，再厉害的老师...
+        "},{"url":"http:// gityuan.com/2016/04/23/kill_process_case/","title":"
+            AMS杀进程场景之汇总
+        ","summary":"
+            
+  基于Android 6.0源码剖析，统计AMS所有可能杀进程的场景.
+
+
+一. 杀进程场景
+
+理解杀进程的实现原理, 介绍了杀进程的过程, 接下来本文介绍系统framework层, ActivityManagerService在哪些场景会调用ProcessRecord.java中的kill()方法来杀进程.
+
+void kill(String reason, boolean noisy...
+        "},{"url":"http://gityuan.com/android","title":"
+[置顶]Android系统开篇
+        ","summary":"
+            基于Android 6.0的源码，专注于分享Android系统原理、架构分析的原创文章，这是Android系列文章的开篇。
+        "},{"url":"http:// gityuan.com/2016/07/02/android-anr/","title":"
+            理解Android ANR的触发原理
+        ","summary":"
+            一、概述
+
+ANR(Application Not responding)，是指应用程序未响应，Android系统对于一些事件需要在一定的时间范围内完成，如果超过预定时间能未能得到有效响应或者响应时间过长，都会造成ANR。一般地，这时往往会弹出一个提示框，告知用户当前xxx未响应，用户可选择继续等待或者Force Close。
+
+那么哪些场景会造成ANR呢？
+
+
+  Service Time...
+        "},{"url":"http:// gityuan.com/2016/06/25/android-native-crash/","title":"
+            理解Native Crash处理流程
+        ","summary":"
+            
+  本文是基于Android 7.0源码，来分析Native Crash流程。
+
+
+一、Native Crash
+
+从系统全局来说，Crash分为Framework/App Crash， Native Crash，以及Kernel Crash。
+
+
+  对于framework层或者app层的Crash(即Java层面Crash)，那么往往是通过抛出未捕获异常而导致的Crash，这个内容在本...
+        "},{"url":"http:// gityuan.com/2016/06/24/app-crash/","title":"
+            理解Android Crash处理流程
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 分析Android应用Crash是如何处理的。
+
+
+/frameworks/base/core/java/com/android/internal/os/RuntimeInit.java
+/frameworks/base/core/java/android/app/ActivityManagerNative.java (含内部类AMP)
+/fra...
+        "},{"url":"http:// gityuan.com/2016/06/21/watchdog/","title":"
+            WatchDog工作原理
+        ","summary":"
+            一、概述
+
+Android系统中，有硬件WatchDog用于定时检测关键硬件是否正常工作，类似地，在framework层有一个软件WatchDog用于定期检测关键系统服务是否发生死锁事件。WatchDog功能主要是分析系统核心服务和重要线程是否处于Blocked状态。
+
+
+  监视reboot广播；
+  监视mMonitors关键系统服务是否死锁。
+
+
+二、WatchDog初始化
+
+2.1 ...
+        "},{"url":"http:// gityuan.com/2016/06/20/stack_trace/","title":"
+            简单聊一聊Throwable
+        ","summary":"
+            一.概述
+
+Android有一套异常处理机制, 分析Crash时最常见的便是先查看其调用栈stackTrace. 对于调用栈, 是从下往上调用的.
+其中经常会遇到”Caused by”, 以及”… 8 more”等信息, 具体是什么含义呢, 本文就是解答这个问题.
+
+1.1 初始化Throwable对象
+[-> Throwable.java]
+
+public Throwable(Str...
+        "},{"url":"http:// gityuan.com/2016/06/19/stability_summary/","title":"
+            Android系统稳定性简述
+        ","summary":"
+            一. 稳定性简述
+
+Android系统稳定性对于用户体验至关重要. 对于稳定性问题从表现来看有: 死机重启, 自动关机, 无法开机,冻屏,黑屏以及闪退, 无响应等情况;
+从技术层面来划分无外乎两大类: 长时间无法执行完成(Timeout) 以及异常崩溃(crash). 主要分类如下:
+
+
+
+1.1 Timeout
+
+长时间无法执行完成, 这只是描述性命题, 对于系统来说必须指定每一项操作超过...
+        "},{"url":"http:// gityuan.com/2016/06/15/android-debuggerd/","title":"
+            debuggerd守护进程
+        ","summary":"
+            
+  基于Android 6.0源码， 分析debuggerd守护进程的工作原理
+
+
+/system/core/debuggerd/debuggerd.cpp
+/system/core/debuggerd/tombstone.cpp
+/system/core/debuggerd/backtrace.cpp
+/system/core/debuggerd/arm/Machine.cpp
+/sys...
+        "},{"url":"http:// gityuan.com/2016/06/12/DropBoxManagerService/","title":"
+            DropBoxManager启动篇
+        ","summary":"
+            一、启动流程
+
+DropBoxManagerService(简称DBMS) 记录着系统关键log信息，主要功能用于Debug调试。
+Android系统启动过程SystemServer进程时，在startOtherServices()过程会启动DBMS服务，如下：
+
+1.1 启动DBMS
+[-> SystemServer.java]
+
+private void startOtherSer...
+        "},{"url":"http:// gityuan.com/2016/06/11/bugreport-2/","title":"
+            调试系列2：bugreport实战篇
+        ","summary":"
+            一、Bugreport
+
+文章Bugreport源码篇(一)从源码角度阐释了Bugreport，那么本文则是从实战角度来说说，如何看懂bugreport，对于通过bugreport获取到内容往往非常长，这里简单划分为19部分，先整体上简单说说每部分log的title信息。
+
+1. 系统build相关信息
+系统build信息：
+
+
+  dumpstate: date
+  Build: getp...
+        "},{"url":"http:// gityuan.com/2016/06/10/bugreport/","title":"
+            调试系列1：bugreport源码篇
+        ","summary":"
+            
+  基于android 6.0, 分析bugreport过程
+
+
+framework/native/cmds/bugreport/bugreport.cpp
+framework/native/cmds/dumpstate/dumpstate.cpp
+framework/native/cmds/dumpstate/utils.c
+
+
+一、概述
+
+通过adb命令可获取bugrepport信息，...
+        "},{"url":"http://gityuan.com/android","title":"
+[置顶]Android系统开篇
+        ","summary":"
+            基于Android 6.0的源码，专注于分享Android系统原理、架构分析的原创文章，这是Android系列文章的开篇。
+        "},{"url":"http:// gityuan.com/2016/09/03/binder-debug-3/","title":"
+            Binder子系统之调试分析(三)
+        ","summary":"
+            一. binder调试信息
+
+1.1 binder_thread
+
+调用方法:print_binder_thread
+
+thread 8980: l 12 //tid=8980，looper=12
+
+
+关于looper状态值:
+
+BINDER_LOOPER_STATE_REGISTERED  = 0x01, // 创建注册线程BC_REGISTER_LOOPER
+BINDER_LOOPER_...
+        "},{"url":"http:// gityuan.com/2016/08/28/binder-debug-2/","title":"
+            Binder子系统之调试分析(二)
+        ","summary":"
+            一. 节点创建
+
+上一篇文章已经介绍了binder子系统调试的一些手段,这篇文章再来挑选系统几个核心服务进程来进行分析.
+
+1.1 内核编译选项
+
+如果系统关闭了debugfs，则通过编辑kernel/arch/arm/configs/×××_defconfig
+
+//开启debugfs
+CONFIG_DEBUG_FS=y
+//有时，可能还需要配置fs的白名单列表，例如：
+CONFIG_DE...
+        "},{"url":"http:// gityuan.com/2016/08/27/binder-debug/","title":"
+            Binder子系统之调试分析(一)
+        ","summary":"
+            一. 概述
+
+在博客以前有写过关于binder系列，大概写了10篇关于binder的文章，从binder驱动，到native层，再到framework，一路写到app层的使用。有兴趣的可以看看
+Binder系列—开篇。
+
+二.Binder驱动调试
+
+看过Binder系列文章的同学，会发现Binder IPC过程最终都交给Binder Driver来完成，这是真正干跨进程通信活的地方，那么意...
+        "},{"url":"http:// gityuan.com/2016/08/20/Android_N/","title":"
+            搭建Android 7.0的源码环境
+        ","summary":"
+            一. 概述
+
+Google已发布Android 7.0源码，想要快人一步，先下载源码一睹为快。“show me the code, change the world”，接下来说一说如何搭建Android 7.0的源码环境。
+
+翻墙工具：要时刻能查看Google官方最新的源码资料，在我国天朝，必须要有一个得力地翻墙工具。 虽然各种方法总有人能找到一些免费的翻墙工具，经常会不稳定之类的问题，又...
+        "},{"url":"http:// gityuan.com/2016/08/13/android-os-env/","title":"
+            Android源码环境搭建
+        ","summary":"
+            一. 准备
+
+本文介绍采用Android Studio来搭建源码调试环境
+
+1.1 下载Android Studio
+
+**调整内存大小: ** Android Studio需要大量的内存来加载Android源码，所以经常会遇到内存不足的问题, 需要加大内存.
+点击Help-> Edit Custom VM Options, 比如 “-Xms4096m -Xmx4096m”
+
+更多资料...
+        "},{"url":"http:// gityuan.com/2016/08/07/android-adj/","title":"
+            Android进程调度之adj算法
+        ","summary":"
+            一、概述
+
+提到进程调度，可能大家首先想到的是Linux cpu调度算法，进程优先级之类概念，本文并不打算介绍这些内容，而是介绍Android framework层中承载activity/service/contentprovider/broadcastrecevier的进程是如何根据组件运行状态而动态调节进程自身的状态。进程有两个比较重要的状态值，即adj(定义在ProcessList.j...
+        "},{"url":"http:// gityuan.com/2016/07/30/content-provider/","title":"
+            理解ContentProvider原理
+        ","summary":"
+            
+  基于Android 6.0源码剖析，本文涉及的相关源码：
+
+
+frameworks/base/core/java/android/app/
+    - ActivityThread.java
+    - ContextImpl.java
+    - IActivityManager.java
+
+frameworks/base/core/java/android/content/
+   ...
+        "},{"url":"http:// gityuan.com/2016/07/23/android-io-arch/","title":"
+            Android存储系统之架构篇
+        ","summary":"
+            
+  基于Android 6.0的源码，剖析存储架构的设计
+
+
+一、概述
+
+本文讲述Android存储系统的架构与设计，涉及到最为核心的便是MountService和Vold这两个模块以及之间的交互。上一篇文章Android存储系统之源码篇从源码角度介绍相关模块的创建与启动过程，那么本文主要从全局角度把握和剖析Android的存储系统。
+
+MountService：Android Binde...
+        "},{"url":"http:// gityuan.com/2016/07/17/android-io/","title":"
+            Android存储系统之源码篇
+        ","summary":"
+            
+  基于Android 6.0源码, 来分析存储相关架构,涉及源码:
+
+
+/framework/base/services/java/com/android/server/SystemServer.java
+/framework/base/services/core/java/com/android/server/MountService.java
+/framework/base/serv...
+        "},{"url":"http:// gityuan.com/2016/07/09/android-reboot/","title":"
+            Android重启流程(一)
+        ","summary":"
+            framework/base/services/core/java/com/android/server/power/PowerManagerServer.java
+framework/base/services/core/java/com/android/server/power/ShutdownThread.java
+
+
+一、概述
+
+重启动作从按键触发中断，linux kernel层给A...
+        "},{"url":"http://gityuan.com/android","title":"
+[置顶]Android系统开篇
+        ","summary":"
+            基于Android 6.0的源码，专注于分享Android系统原理、架构分析的原创文章，这是Android系列文章的开篇。
+        "},{"url":"http:// gityuan.com/2016/11/06/packagemanager/","title":"
+            PackageManager启动篇
+        ","summary":"
+            
+  基于Android 6.0源码， 分析PackageManagerService的启动过程
+
+
+frameworks/base/services/core/java/com/android/server/pm/PackageManagerService.java
+frameworks/base/services/core/java/com/android/server/pm/Packa...
+        "},{"url":"http:// gityuan.com/2016/10/29/binder-thread-pool/","title":"
+            进程的Binder线程池工作过程
+        ","summary":"
+            
+  基于Android 6.0源码剖析，分析Binder线程池以及binder线程启动过程。
+
+
+frameworks/base/cmds/app_process/app_main.cpp
+frameworks/native/libs/binder/ProcessState.cpp
+framework/native/libs/binder/IPCThreadState.cpp
+kernel...
+        "},{"url":"http:// gityuan.com/2016/10/22/force-stop/","title":"
+            Android进程绝杀技--forceStop
+        ","summary":"
+            
+  基于Android 6.0源码剖析，force-stop的全过程
+
+
+一.概述
+
+1.1 引言
+话说Android开源系统拥有着App不计其数，百家争鸣，都想在这“大争之世”寻得系统存活的一席之地。然则系统资源有限，如若都割据为王，再强劲的CPU也会忙不过来，再庞大的内存终会消耗殆尽，再大容量的电池续航终会昙花一现。
+
+面对芸芸众生，无尽变数，系统以不变应万变，一招绝杀神技forceS...
+        "},{"url":"http:// gityuan.com/2016/10/09/app-process-create-2/","title":"
+            Android四大组件与进程启动的关系
+        ","summary":"
+            一. 概述
+
+Android系统将进程做得很友好的封装,对于上层app开发者来说进程几乎是透明的. 了解Android的朋友,一定知道Android四大组件,但对于进程可能会相对较陌生. 一个进程里面可以跑多个app(通过share uid的方式), 一个app也可以跑在多个进程里(通过配置Android:process属性).
+
+再进一步进程是如何创建的, 可能很多人不知道fork的存在....
+        "},{"url":"http:// gityuan.com/2016/10/03/binder_linktodeath/","title":"
+            Binder死亡通知机制之linkToDeath
+        ","summary":"
+            
+  基于Android 6.0源码, 涉及相关源码
+
+
+frameworks/base/core/java/android/os/Binder.java
+frameworks/base/core/jni/android_util_Binder.cpp
+frameworks/native/libs/binder/BpBinder.cpp
+
+
+一. 概述
+
+死亡通知是为了让Bp端(客户端进程)...
+        "},{"url":"http:// gityuan.com/2016/10/02/binder-died/","title":"
+            binderDied()过程分析
+        ","summary":"
+            一. 概述
+
+理解Android进程启动之全过程介绍了进程是如何从AMS.startProcessLocked一步步创建的; 当进程不再需要时便会有杀进程的过程; 理解杀进程的实现原理介绍了Process.killProcess()如何一步步地将进程杀死.
+
+当系统内存不足时,会触发lmk杀进程; 以及系统本身通过AMS也会控制系统中各个状态的进程个数上限. 当进程真正的被杀死之后,通过bi...
+        "},{"url":"http:// gityuan.com/2016/10/01/system_service_common/","title":"
+            Android系统服务的注册方式
+        ","summary":"
+            一. 概述
+
+启动启动过程有采用过两种不同的方式来注册系统服务：
+
+
+  ServiceManager的addService()
+  SystemServiceManager的startService()
+
+
+其核心都是向servicemanager进程注册binder服务，但功能略有不同，下面从源码角度详加说明。
+
+二. SM.addService方式
+
+这里以InputManagerSe...
+        "},{"url":"http:// gityuan.com/2016/09/24/android-thread/","title":"
+            理解Android线程创建流程
+        ","summary":"
+            
+  基于Android 6.0源码剖析，分析Android线程的创建过程
+
+
+/android/libcore/libart/src/main/java/java/lang/Thread.java
+/art/runtime/native/java_lang_Thread.cc
+/art/runtime/native/java_lang_Object.cc
+/art/runtime/thre...
+        "},{"url":"http:// gityuan.com/2016/09/17/android-lowmemorykiller/","title":"
+            Android LowMemoryKiller原理分析
+        ","summary":"
+            frameworks/base/services/core/java/com/android/server/am/ProcessList.java
+platform/system/core/lmkd/lmkd.c
+kernel/common/drivers/staging/Android/lowmemorykiller.c
+
+
+一. 概述
+
+Android的设计理念之一，便是应用程序退出,但...
+        "},{"url":"http:// gityuan.com/2016/09/04/binder-start-service/","title":"
+            彻底理解Android Binder通信架构
+        ","summary":"
+            
+  基于Android 6.0的源码剖析， 本文深度剖析Binder IPC过程, 这绝对是一篇匠心巨作，从Java framework到Native，再到Linux Kernel，带你全程看Binder通信过程.
+
+
+一. 引言
+
+1.1 Binder架构的思考
+
+Android内核是基于Linux系统, 而Linux现存多种进程间IPC方式:管道, 消息队列, 共享内存, 套接字, 信...
+        "},{"url":"http://gityuan.com/android","title":"
+[置顶]Android系统开篇
+        ","summary":"
+            基于Android 6.0的源码，专注于分享Android系统原理、架构分析的原创文章，这是Android系列文章的开篇。
+        "},{"url":"http:// gityuan.com/2016/12/31/input-ipc/","title":"
+            Input系统—事件处理全过程
+        ","summary":"
+            
+  基于Android 6.0源码， 分析Input系统的进程交互过程分析InputManagerService的启动过程.
+
+
+一. 概述
+
+先简单总结和回顾以下前几篇文章的内容：
+
+
+  Input系统—InputReader线程：通过EventHub从/dev/input节点获取事件，转换成EventEntry事件加入到InputDispatcher的mInboundQueue。
+ ...
+        "},{"url":"http:// gityuan.com/2016/12/24/input-ui/","title":"
+            Input系统—UI线程
+        ","summary":"
+            一. 概述
+
+前面文章都是介绍了两个线程InputReader和InputDispatcher的工作过程。在InputDispatcher的过程讲到
+调用InputChanel通过socket与远程进程通信，本文便展开讲解这个socket是如何建立的。
+
+对于InputReader和InputDispatcher都是运行在system_server进程；
+用户点击的界面往往可能是某一个app...
+        "},{"url":"http:// gityuan.com/2016/12/17/input-dispatcher/","title":"
+            Input系统—InputDispatcher线程
+        ","summary":"
+            
+  基于Android 6.0源码， 分析InputManagerService的启动过程
+
+
+一. InputDispatcher起点
+
+上篇文章输入系统之InputReader线程，介绍InputReader利用EventHub获取数据后生成EventEntry事件，加入到InputDispatcher的mInboundQueue队列，再唤醒InputDispatcher线程。本文将介...
+        "},{"url":"http:// gityuan.com/2016/12/11/input-reader/","title":"
+            Input系统—InputReader线程
+        ","summary":"
+            
+  基于Android 6.0源码， 分析InputManagerService的启动过程
+
+
+一. InputReader起点
+
+上一篇文章Input系统—启动篇，介绍IMS服务的启动过程会创建两个native线程，分别是InputReader,InputDispatcher.
+接下来从InputReader线程的执行过程从threadLoop为起点开始分析。
+
+1.1 threadLo...
+        "},{"url":"http:// gityuan.com/2016/12/10/input-manager/","title":"
+            Input系统—启动篇
+        ","summary":"
+            
+  基于Android 6.0源码， 分析InputManagerService的启动过程
+
+
+frameworks/native/services/inputflinger/
+  - InputDispatcher.cpp
+  - InputReader.cpp
+  - InputManager.cpp
+  - EventHub.cpp
+  - InputListener.cpp
+
+fr...
+        "},{"url":"http:// gityuan.com/2016/12/02/app-not-response/","title":"
+            理解Android ANR的信息收集过程
+        ","summary":"
+            
+  基于Android 6.0源码， 分析当发生ANR时系统的处理过程
+
+
+frameworks/base/core/java/android/os/Debug.java
+frameworks/base/core/jni/android_os_Debug.cpp
+system/core/libcutils/debugger.c
+
+
+一. ANR场景
+
+无论是四大组件或者进程等只要发生ANR...
+        "},{"url":"http:// gityuan.com/2016/11/27/native-traces/","title":"
+            Native进程之Trace原理
+        ","summary":"
+            一. 概述
+
+当发生ANR(Application Not Response，对于Java进程可通过kill -3向目标进程发送信号SIGNAL_QUIT, 输出相应的traces信息保存到目录/data/anr/traces.txt；而对于Native进程可通过
+debuggerd输出traces信息。
+
+可通过一条命令来获取指定Native进程的traces信息，例如输出pid=1752...
+        "},{"url":"http:// gityuan.com/2016/11/26/art-trace/","title":"
+            ART虚拟机之Trace原理
+        ","summary":"
+            
+  分析Art虚拟机的trace原理，相关源码都位于/art/runtime目录：
+
+
+/art/runtime/
+    - signal_catcher.cc
+    - runtime.cc
+    - intern_table.cc
+    - thread_list.cc
+    - java_vm_ext.cc
+    - class_linker.cc
+    - gc/he...
+        "},{"url":"http:// gityuan.com/2016/11/20/user_manager/","title":"
+            多用户管理UserManager
+        ","summary":"
+            
+  基于Android 6.0的源码剖析多用户模型
+
+
+framework/base/services/core/java/com/android/server/pm/UserManagerService.java
+framework/base/core/java/android/os/UserManager.java
+framework/base/core/java/android/co...
+        "},{"url":"http:// gityuan.com/2016/11/13/android-installd/","title":"
+            Installd守护进程
+        ","summary":"
+            
+  基于Android 6.0的源码剖析installd的过程
+
+
+system/core/rootdir/init.rc
+frameworks/base/cmds/installd/installd.cpp
+rameworks/base/cmds/installd/commands.cpp
+rameworks/base/cmds/installd/utils.cpp
+
+
+一、 概述
+
+P...
+        "},{"url":"http://gityuan.com/android","title":"
+[置顶]Android系统开篇
+        ","summary":"
+            基于Android 6.0的源码，专注于分享Android系统原理、架构分析的原创文章，这是Android系列文章的开篇。
+        "},{"url":"http:// gityuan.com/2017/03/12/alarm_manager_service/","title":"
+            理解AlarmManager机制
+        ","summary":"
+            一. 概述
+
+上一篇文章理解JobScheduler机制, 介绍了根据一定条件而触发的任务可以采用JobScheduler.
+那么对于只是定时的任务, 而非考虑网络/时间之类的条件,也可以直接采用AlarmManager来完成.
+
+AlarmManager的用法
+
+PendingIntent pi = PendingIntent.getBroadcast(mContext, 0, new I...
+        "},{"url":"http:// gityuan.com/2017/03/10/job_scheduler_service/","title":"
+            理解JobScheduler机制
+        ","summary":"
+            一. 概述
+
+对于满足网络、电量、时间等一定预定条件而触发的任务，那么jobScheduler便是绝佳选择。JobScheduler主要用于在未来某个时间下满足一定条件时触发执行某项任务的情况，那么可以创建一个JobService的子类，重写其onStartJob()方法来实现这个功能。
+
+JobScheduler的schedule过程：
+
+ JobScheduler scheduler =...
+        "},{"url":"http:// gityuan.com/2017/02/25/choreographer/","title":"
+            Choreographer原理
+        ","summary":"
+            Choreographer.java
+DisplayEventReceiver.java
+frameworks/base/core/jni/android_view_DisplayEventReceiver.cpp
+frameworks/native/libs/gui/DisplayEventReceiver.cpp
+
+
+一. 概述
+
+前面两篇文章介绍了SurfaceFlinger原理，讲述...
+        "},{"url":"http:// gityuan.com/2017/02/18/surface_flinger_2/","title":"
+            SurfaceFlinger绘图篇
+        ","summary":"
+            
+  基于Android 6.0源码， 分析SurfaceFlinger原理
+
+
+frameworks/native/services/surfaceflinger
+    - Layer.cpp
+    - Client.cpp
+
+
+一. 图形显示输出
+
+上一篇文章SurfaceFlinger原理(一)，介绍了SurfaceFlinger和VSync的处理流程。当SurfaceFlinge...
+        "},{"url":"http:// gityuan.com/2017/02/11/surface_flinger/","title":"
+            SurfaceFlinger启动篇
+        ","summary":"
+            
+  基于Android 6.0源码， 分析SurfaceFlinger原理
+
+
+frameworks/native/services/surfaceflinger/
+  - main_surfaceflinger.cpp
+  - SurfaceFlinger.cpp
+  - DispSync.cpp
+  - MessageQueue.cpp
+  - DisplayHardware/HWCo...
+        "},{"url":"http:// gityuan.com/2017/02/05/graphic_arch/","title":"
+            Android图形系统概述
+        ","summary":"
+            
+  基于Android 6.0源码， 简述Android图形系统
+
+
+frameworks/native/services/surfaceflinger/
+frameworks/native/libs/gui/
+
+
+一. 概述
+
+Android系统中图形系统是相当复杂的，包括WindowManager，SurfaceFlinger,Open GL,GPU等模块。
+其中SurfaceFlin...
+        "},{"url":"http:// gityuan.com/2017/01/22/start-activity-wms/","title":"
+            以Window视角来看startActivity
+        ","summary":"
+            
+  基于Android 6.0源码， 从Window角度来分析Activity启动过程。
+
+
+一. 概述
+
+前面的文章startActivity启动过程分析，已从AMS的角度讲述了Activity启动过程，那么本文从WMS的角度说一说这个过程。
+
+先用上一篇文章的流程图来简单回顾一下：点击查看大图
+
+
+
+接下来，从文章startActivity启动过程分析的小节[2.10] AS.star...
+        "},{"url":"http:// gityuan.com/2017/01/15/wms_starting_window/","title":"
+            WMS—启动窗口(StartingWindow)
+        ","summary":"
+            
+  基于Android 6.0源码， 分析启动窗口的启动和结束过程。
+
+
+一. 概述
+
+Activity组件启动后，窗口并非马上显示，而是先显示starting window，作为Activity的预览窗口。
+
+startActivity启动过程分析介绍了Activity
+的启动过程，那么本文将从window角度再来说说这个过程。
+
+二. 启动startingWindow
+
+AMS.sta...
+        "},{"url":"http:// gityuan.com/2017/01/08/windowmanger/","title":"
+            WMS—启动过程
+        ","summary":"
+            
+  基于Android 6.0源码， 分析WMS的启动过程。
+
+
+一. 概述
+
+
+  Surface:代表画布
+  WMS: 添加window的过程主要功能是添加Surface,管理所有的Surface布局,以及Z轴排序问题;
+  SurfaceFinger: 将Surface按次序混合并显示到物理屏幕上;
+
+
+1.1 WMS全貌
+
+
+
+说明: 点击查看大图
+
+
+  WMS继承于IWind...
+        "},{"url":"http:// gityuan.com/2017/01/01/input-anr/","title":"
+            Input系统—ANR原理分析
+        ","summary":"
+            
+  基于Android 6.0源码， 分析Input事件发生ANR的原理
+
+
+一. 概述
+
+当input事件处理得慢就会触发ANR，那ANR内部原理是什么，哪些场景会产生ANR呢。
+“工欲善其事必先利其器”，为了理解input ANR原理，前面几篇文章疏通了整个input框架的处理流程，都是为了这篇文章而做铺垫。在正式开始分析ANR触发原理以及触发场景之前，先来回顾一下input流程。
+
+...
+        "},{}]}

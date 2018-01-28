@@ -1,0 +1,154 @@
+{"data":[{"url":"http://gityuan.com/android","title":"
+[置顶]Android系统开篇
+        ","summary":"
+            基于Android 6.0的源码，专注于分享Android系统原理、架构分析的原创文章，这是Android系列文章的开篇。
+        "},{"url":"http:// gityuan.com/2015/07/19/java-reflection-2/","title":"
+            Java反射之实用篇
+        ","summary":"
+            关于Java反射，文章Java反射之基础篇已基本介绍了反射的用法，但是反射的整个调用过程仍比较繁琐，尤其是对于新手，显得比较晦涩。下面介绍些更为简单有效的反射实用内容。
+
+一、反射用法
+前面介绍到，反射是为了在运行态能操作类和对象，接下来重点介绍如何反射使用。
+
+对于正常方式来调用方法，往往只需要一行到两行代码，即可完成相应工作。而反射则显得比较繁琐，之所以繁琐仍会才用反射方式，是因为反射能...
+        "},{"url":"http:// gityuan.com/2015/07/18/java-reflection/","title":"
+            Java反射之基础篇
+        ","summary":"
+            
+  从代码角度，关于反射的用法总结，请查看Java反射之实用篇.;
+
+
+一、概念
+
+1.1 概念
+简单说，JAVA反射机制是指在运行态可直接操作任意类或对象的所有属性和方法的功能。
+
+1.2 反射的用途
+
+
+  
+    在运行时获取任意对象所属的类
+  Class<?> clazz = Class.forName(String className);
+  
+  
+    在运...
+        "},{"url":"http:// gityuan.com/2015/07/05/design-patterns/","title":"
+            设计模式-开篇
+        ","summary":"
+            一、设计模式
+
+1.1 六大设计原则
+
+
+  单一职责原则(SRP)：一个类只负责一个职责，不要存在多个导致类变更的原因；
+  接口隔离原则(ISP)：客户端不应该依赖它不需要的接口，多用组合,少用继承
+  依赖倒置原则(DIP)： 提高灵活性,高层不依赖低层,两个都应该依赖于抽象
+  里氏替换原则(LSP)：子类必须能够替换他们的基类
+  迪米特法则(LOD)：类间解耦，类之间联系尽可能少...
+        "},{"url":"http:// gityuan.com/2015/06/28/adb-notes/","title":"
+            adb常用命令笔记
+        ","summary":"
+            
+  主要列举平时经常使用的一些adb命令
+
+
+一. 基本指令
+
+
+  adb -s serialNumber shell  //进入指定设备
+  adb version  //查看版本
+  adb logcat  //查看日志
+  adb devices  //查看设备
+  adb get-state //连接状态
+  adb start-server //启动ADB服务
+  adb ki...
+        "},{"url":"http:// gityuan.com/2015/06/27/git-notes/","title":"
+            Git常用命令
+        ","summary":"
+            一、概述
+
+先用一幅图，从总体上描述主要git命令的工作流程
+
+
+
+
+  workspace: 本地的工作目录。（记作A）
+  index：缓存区域，临时保存本地改动。（记作B）
+  local repository: 本地仓库，只想最后一次提交HEAD。（记作C）
+  remote repository：远程仓库。（记作D）
+
+
+二、命令笔记
+
+以下所有的命令的功能说明，都采用上述的标记的...
+        "},{"url":"http:// gityuan.com/2015/06/21/http-restful/","title":"
+            浅谈HTTP RESTful架构
+        ","summary":"
+            
+  RESTful 是一种非常流行的软件架构，或者说设计风格而非新的技术标准。提供了一组设计原则和约束条件，主要用于客户端与服务器的交互。RESTful架构更简洁，更有层次，更易于实现缓存等机制。
+
+
+1.理解RESTful
+RESTful, 全称Representational State Transfer。REST通常基于使用HTTP，URI，和XML以及HTML这些现有的广泛流行的协...
+        "},{"url":"http:// gityuan.com/2015/06/20/http-agreement/","title":"
+            浅谈HTTP协议
+        ","summary":"
+            
+  HTTP是一个属于应用层的面向对象的协议，工作于客户端-服务端架构为上。浏览器作为HTTP客户端通过URL向HTTP服务端发送请求。本文只介绍目前应用比较广泛的HTTP/1.1协议，下面从请求与响应两部分分开展开讲解。
+
+
+一. 请求(Request)
+
+1.消息格式
+
+
+
+一个完整的 HTTP/1.1消息格式分三部分：
+
+
+  
+    请求行:      {请求方法} {资源路径}...
+        "},{"url":"http:// gityuan.com/2015/06/13/SEAndroid-permission/","title":"
+            SELinux 权限问题
+        ","summary":"
+            
+  本文主要记录一下修改selinux权限的方法
+
+
+权限修改
+
+方法1: adb在线修改seLinux
+Enforcing(表示已打开)，Permissive（表示已关闭）
+
+    getenforce;  //获取当前seLinux状态
+    setenforce 1;   //打开seLinux
+    setenforce 0;   //关闭seLinux
+
+
+方法2: 从ke...
+        "},{"url":"http:// gityuan.com/2015/06/09/atom/","title":"
+            Atom编辑器
+        ","summary":"
+            一、概述
+
+今天给大家推荐一款文本编辑器，支持markdown语法，这是最初选择的出发点。Atom是Github专为hacker推出的开源的文本编辑器，支持linux、window等多平台，界面简洁优雅，当第一眼看到atom界面的时候就深深地被吸引：
+
+
+
+Atom提供非常方便进行主题二次开发，插件扩展化等非常适合定制，并且可以直接方便得修改所有相关的config配置，可以打造自己独有的编辑...
+        "},{"url":"http:// gityuan.com/2015/06/07/build-jekyll/","title":"
+            Windows下搭建本地Jekyll
+        ","summary":"
+            
+  前言：Jekyll是一个开源的博客生成工具，类似WordPress。但与之不同的是，jekyll只生成静态网页，并不需要数据库支持。
+ 通常配合第三方评论系统使用，例如Disqus, 最关键的是jekyll可以免费部署在Github上，而且可以绑定自己的域名。
+
+
+一、安装Ruby
+
+Jekyll是用ruby语言编写的，所以我们首先要在windows上装好ruby环境。
+
+
+  
+  ...
+        "},{}]}
