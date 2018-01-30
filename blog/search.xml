@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[ddd]]></title>
-    <url>%2Fblog%2F2018%2F01%2Fddd%2F</url>
-    <content type="text"><![CDATA[vdf]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[hhh]]></title>
-    <url>%2Fblog%2F2018%2F01%2Fhhh%2F</url>
-    <content type="text"><![CDATA[ccc]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[heh]]></title>
-    <url>%2Fblog%2F2018%2F01%2Fheh%2F</url>
-    <content type="text"></content>
+    <title><![CDATA[python自动化部署文章]]></title>
+    <url>%2Fblog%2F2018%2F01%2F%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E6%96%87%E7%AB%A0%2F</url>
+    <content type="text"><![CDATA[python脚本实现一键自动新建文章，编译，预览，发布github. just test]]></content>
+      <tags>
+        <tag>python</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[test]]></title>
