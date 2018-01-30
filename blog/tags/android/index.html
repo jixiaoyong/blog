@@ -94,17 +94,13 @@
 
 
 
-<meta name="description" content="这篇文章介绍了如何在 linux 环境下安装和配置 git 与 github ，并且使用 Android Studio 将本地的项目同步到 github 上面。 安装 git1sudo apt-gat install git 配置 git 和 github 创建 Github 账号  生成 ssh key 1ssh-keygen -t rsa -C &amp;quot;your_email@yourema">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Linux下配置Git，使用AndroidStudio同步工程到Github">
-<meta property="og:url" content="http://jixiaoyong.github.io/blog/2016/04/Linux下配置Git，使用AndroidStudio同步工程到Github/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="季小勇的博客">
+<meta property="og:url" content="http://jixiaoyong.github.io/blog/tags/android/index.html">
 <meta property="og:site_name" content="季小勇的博客">
-<meta property="og:description" content="这篇文章介绍了如何在 linux 环境下安装和配置 git 与 github ，并且使用 Android Studio 将本地的项目同步到 github 上面。 安装 git1sudo apt-gat install git 配置 git 和 github 创建 Github 账号  生成 ssh key 1ssh-keygen -t rsa -C &amp;quot;your_email@yourema">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-08T14:34:02.291Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux下配置Git，使用AndroidStudio同步工程到Github">
-<meta name="twitter:description" content="这篇文章介绍了如何在 linux 环境下安装和配置 git 与 github ，并且使用 Android Studio 将本地的项目同步到 github 上面。 安装 git1sudo apt-gat install git 配置 git 和 github 创建 Github 账号  生成 ssh key 1ssh-keygen -t rsa -C &amp;quot;your_email@yourema">
+<meta name="twitter:title" content="季小勇的博客">
 
 
 
@@ -133,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://jixiaoyong.github.io/blog/2016/04/Linux下配置Git，使用AndroidStudio同步工程到Github/"/>
+  <link rel="canonical" href="http://jixiaoyong.github.io/blog/tags/android/"/>
 
 
 
 
 
-  <title>Linux下配置Git，使用AndroidStudio同步工程到Github | 季小勇的博客</title>
+  <title>标签: android | 季小勇的博客</title>
   
 
 
@@ -174,7 +170,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -292,247 +288,54 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block tag">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>android<small>标签</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2016/04/Linux下配置Git，使用AndroidStudio同步工程到Github/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="季小勇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="季小勇的博客">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">Linux下配置Git，使用AndroidStudio同步工程到Github</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/blog/2018/01/Android自定义透明背景的Dialog/" itemprop="url">
               
-                <span class="post-meta-item-text">发表于</span>
+                <span itemprop="name">Android自定义透明背景的Dialog</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-29T06:06:06+08:00">
-                2016-04-29
-              </time>
-            
+            </a>
+        
+      </h2>
 
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-01-26T15:09:40+08:00"
+              content="2018-01-26" >
+          01-26
+        </time>
+      </div>
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>这篇文章介绍了如何在 linux 环境下安装和配置 git 与 github ，并且使用 Android Studio 将本地的项目同步到 github 上面。</p>
-<h1 id="安装-git"><a href="#安装-git" class="headerlink" title="安装 git"></a>安装 git</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-gat install git</span><br></pre></td></tr></table></figure>
-<h1 id="配置-git-和-github"><a href="#配置-git-和-github" class="headerlink" title="配置 git 和 github"></a>配置 git 和 github</h1><ul>
-<li><p>创建 Github 账号</p>
-</li>
-<li><p>生成 ssh key</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;your_email@youremail.com</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在 github 上面添加 ssh key</p>
-</li>
-</ul>
-<p>进入 Account Settings –&gt; SSH Keys –&gt; Add SSH Key 添加 SSH Keys ：<br>名字起一个容易识别的名字，key 是生成的 <code>/home/username/.ssh/id_rsa.pub.</code> 中的内容，直接粘贴到指定位置就行</p>
-<ul>
-<li><p>测试 ssh key 是否成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>提示如<code>You’ve successfully authenticated, but GitHub does not provide shell access</code>则说明成功连接 github</p>
-<ul>
-<li><p>配置 Github</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;your name&quot; //配置用户名</span><br><span class="line">git config --global user.email &quot;your email&quot; //配置email</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="用-Android-Studio-同步工程到-Github"><a href="#用-Android-Studio-同步工程到-Github" class="headerlink" title="用 Android Studio 同步工程到 Github"></a>用 Android Studio 同步工程到 Github</h1><ul>
-<li><p>启动android studio</p>
-<p>进入<code>android studio/bin</code>，终端输入<code>./studio.sh</code></p>
-</li>
-<li><p>选择 <code>VCS ---&gt; Import into Version Control --&gt; Share Project on Github</code></p>
-</li>
-</ul>
-<p>第一次进入会要求输入 github 的账号和密码 按照要求输入即可<br>此后还会要求你输入一个本地密码，当下次同步的时候需要输入<br>之后就进入到选择同步的仓库，新建一个仓库，开始同步就可以了</p>
-<p><strong>到这里就顺利的在 Android Studio 上面将工程同步到 Github 上面了</strong></p>
-<hr>
-<p><strong>以下为原文提到的其他方法，摘录如下，以备后用：</strong></p>
-<h1 id="利用Git从本地上传到GitHub"><a href="#利用Git从本地上传到GitHub" class="headerlink" title="利用Git从本地上传到GitHub"></a>利用Git从本地上传到GitHub</h1><p>第一步： 进入要所要上传文件的目录</p>
-<p>输入命令 <code>git init</code></p>
-<p>第二步： 创建一个本地仓库 origin</p>
-<p>使用命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:yourName/yourRepo.git</span><br></pre></td></tr></table></figure>
-<p><code>youname</code>是你的GitHub的用户名，<code>yourRepo</code>是你要上传到GitHub的仓库</p>
-<p>第三步： 比如你要添加一个文件xxx到本地仓库，使用命令 <code>git add xxx</code>，可以使用 <code>git add .</code> 自动判断添加哪些文件</p>
-<p>然后把这个添加提交到本地的仓库，使用命令 <code>git commit -m</code>说明这次的提交</p>
-<p>最后把本地仓库origin提交到远程的GitHub仓库，使用命令 <code>git push origin master</code></p>
-<h1 id="从GitHub克隆项目到本地"><a href="#从GitHub克隆项目到本地" class="headerlink" title="从GitHub克隆项目到本地"></a>从GitHub克隆项目到本地</h1><p>第一步： 到GitHub的某个仓库，然后复制右边的有个<code>HTTPS clone url</code></p>
-<p>第二步： 回到要存放的目录下，使用命令 <code>git clone https://github.com/chenguolin/scrapy.git</code>，这里的url只是一个例子</p>
-<p>第三步： 如果本地的版本不是最新的，可以使用命令 <code>git fetch origin</code>，origin是本地仓库</p>
-<p>第四步： 把更新的内容合并到本地分支，可以使用命令 <code>git merge origin/master</code></p>
-<p>如果你不想手动去合并，那么你可以使用：<br><code>git pull &lt;本地仓库&gt; master</code> // 这个命令可以拉去最新版本并自动合并</p>
-<h1 id="GitHub的分支管理"><a href="#GitHub的分支管理" class="headerlink" title="GitHub的分支管理"></a>GitHub的分支管理</h1><ul>
-<li>创建</li>
-</ul>
-<p>1 创建一个本地分支： <code>git branch &lt;新分支名字&gt;</code></p>
-<p>2 将本地分支同步到GitHub上面： <code>git push &lt;本地仓库名&gt; &lt;新分支名&gt;</code></p>
-<p>3 切换到新建立的分支： <code>git checkout &lt;新分支名&gt;</code></p>
-<p>4 为你的分支加入一个新的远程端： <code>git remote add &lt;远程端名字&gt; &lt;地址&gt;</code></p>
-<p>5 查看当前仓库有几个分支: <code>git branch</code></p>
-<ul>
-<li>删除</li>
-</ul>
-<p>1 从本地删除一个分支： <code>git branch -d &lt;分支名称&gt;</code></p>
-<p>2 同步到GitHub上面删除这个分支： <code>git push &lt;本地仓库名&gt; :&lt;GitHub端分支&gt;</code></p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>这篇文章是我今天在 linux 下安装 git ，上传工程到 github 上面时的步骤的总结，大部分内容都参考/摘录自下面这篇文章，感谢原作者的分享，原文信息及链接如下：</p>
-<blockquote>
-<p>Linux下Git和GitHub使用方法总结<br>[日期：2014-03-07] 来源：Linux社区 作者：chenguolin<br><a href="http://www.linuxidc.com/Linux/2014-03/97821.htm" target="_blank" rel="noopener">http://www.linuxidc.com/Linux/2014-03/97821.htm</a></p>
-</blockquote>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/blog/2016/04/linux下配置JDK和AndroidStudio开发环境/" rel="next" title="linux下配置JDK和AndroidStudio开发环境">
-                <i class="fa fa-chevron-left"></i> linux下配置JDK和AndroidStudio开发环境
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2016/12/Java中三种常用的排序方法/" rel="prev" title="java中三种常用的排序方法">
-                java中三种常用的排序方法 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
-      
-        
-  <div class="bdsharebuttonbox">
-    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
-    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
-    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
-    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
-    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
-    <a href="#" class="bds_more" data-cmd="more"></a>
-    <a class="bds_count" data-cmd="count"></a>
-  </div>
-  <script>
-    window._bd_share_config = {
-      "common": {
-        "bdText": "",
-        "bdMini": "2",
-        "bdMiniList": false,
-        "bdPic": ""
-      },
-      "share": {
-        "bdSize": "16",
-        "bdStyle": "0"
-      },
-      "image": {
-        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
-        "viewText": "分享到：",
-        "viewSize": "16"
-      }
-    }
-  </script>
-
-<script>
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
-
       
     </div>
+
   </div>
+  
+  
+  
+
+  
 
 
           </div>
@@ -540,10 +343,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -564,17 +363,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/blog/images/default_avatar.jpg"
@@ -627,22 +417,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-git"><span class="nav-text">安装 git</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置-git-和-github"><span class="nav-text">配置 git 和 github</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用-Android-Studio-同步工程到-Github"><span class="nav-text">用 Android Studio 同步工程到 Github</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#利用Git从本地上传到GitHub"><span class="nav-text">利用Git从本地上传到GitHub</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从GitHub克隆项目到本地"><span class="nav-text">从GitHub克隆项目到本地</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GitHub的分支管理"><span class="nav-text">GitHub的分支管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-text">说明</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -756,10 +530,10 @@
   
 
   
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+    <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
 
-
+  
 
   
 
