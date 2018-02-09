@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="一个例子普通写法：  定义一个接口OnClickListener  123interface ClickListener&amp;#123;    fun onClick(view: View)&amp;#125;  定义方法SetOnClickListener  1fun setOnCLickListener(listener: ClickListener)&amp;#123;&amp;#125; 定义的方法和Java中写法类">
+<meta name="description" content="一个例子普通写法：  定义一个接口OnClickListener  123interface ClickListener&amp;#123;    fun onClick(view: View)&amp;#125;  定义方法SetOnClickListener  123fun setOnCLickListener(listener: ClickListener)&amp;#123;  this.listener = l">
 <meta name="keywords" content="lambda">
 <meta property="og:type" content="article">
 <meta property="og:title" content="lambda表达式在kotlin中的应用">
 <meta property="og:url" content="http://jixiaoyong.github.io/blog/2018/02/lambda表达式在kotlin中的应用/index.html">
 <meta property="og:site_name" content="季小勇的博客">
-<meta property="og:description" content="一个例子普通写法：  定义一个接口OnClickListener  123interface ClickListener&amp;#123;    fun onClick(view: View)&amp;#125;  定义方法SetOnClickListener  1fun setOnCLickListener(listener: ClickListener)&amp;#123;&amp;#125; 定义的方法和Java中写法类">
+<meta property="og:description" content="一个例子普通写法：  定义一个接口OnClickListener  123interface ClickListener&amp;#123;    fun onClick(view: View)&amp;#125;  定义方法SetOnClickListener  123fun setOnCLickListener(listener: ClickListener)&amp;#123;  this.listener = l">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-09T03:14:54.520Z">
+<meta property="og:updated_time" content="2018-02-09T02:39:14.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lambda表达式在kotlin中的应用">
-<meta name="twitter:description" content="一个例子普通写法：  定义一个接口OnClickListener  123interface ClickListener&amp;#123;    fun onClick(view: View)&amp;#125;  定义方法SetOnClickListener  1fun setOnCLickListener(listener: ClickListener)&amp;#123;&amp;#125; 定义的方法和Java中写法类">
+<meta name="twitter:description" content="一个例子普通写法：  定义一个接口OnClickListener  123interface ClickListener&amp;#123;    fun onClick(view: View)&amp;#125;  定义方法SetOnClickListener  123fun setOnCLickListener(listener: ClickListener)&amp;#123;  this.listener = l">
 
 
 
@@ -382,16 +382,21 @@
 <ol>
 <li>定义方法SetOnClickListener</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">setOnCLickListener</span><span class="params">(listener: <span class="type">ClickListener</span>)</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">setOnCLickListener</span><span class="params">(listener: <span class="type">ClickListener</span>)</span></span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.listener = listener;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>定义的方法和Java中写法类似，在使用该方法时也类似：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> testInterface = TestInterface()</span><br><span class="line"></span><br><span class="line">testInterface.setOnCLickListener(<span class="keyword">object</span> : TestInterface.ClickListener&#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onClick</span><span class="params">(view: <span class="type">View</span>)</span></span> &#123;</span><br><span class="line">            TODO(<span class="string">"not implemented"</span>) <span class="comment">//To change body of created functions use File | Settings | File Templates.</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
 <p><strong>lambda写法</strong>：</p>
 <p>定义只需要一步：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">setNewOnClickListener</span><span class="params">(listener :(<span class="type">uri</span> :<span class="type">String</span>)</span></span>-&gt; <span class="built_in">Unit</span> )&#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在初始化的时初始化listener</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AClass</span></span>(<span class="keyword">var</span> listener : (uri:String) -&gt; <span class="built_in">Unit</span>)&#123;...&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//或者直接定义这个变量</span></span><br><span class="line">listener:((uri : String)-&gt; <span class="built_in">Unit</span>)? = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//在需要用到方法时，listener的方法，比如onClickListener()&#123;&#125;</span></span><br><span class="line">listener.invoke(agrs)</span><br></pre></td></tr></table></figure>
 <p>使用起来也更加简洁：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testInterface.setNewOnClickListener &#123; uri: String -&gt; print(uri) &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> t = TestInterface&#123; uri: String -&gt; print(uri) &#125;<span class="comment">//获取对象的同时初始化listener</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>方法最后一个参数是lambda表达式时，lambda表达式的方法<code>{}</code>可以放到<code>()</code>的后面，如果只有这一个参数时，<code>()</code>也可以省略</p>
+</blockquote>
 <p>当方法只有一个参数时，可以省略参数，还用<code>it</code>代替：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testInterface.setNewOnClickListener &#123; print(it) &#125;</span><br></pre></td></tr></table></figure>
+<p>甚至更加简洁，如果要执行的方法和listener定义的方法返回值类型相同，可以直接引用该方法：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testInterface.setNewOnClickListener(::print)</span><br></pre></td></tr></table></figure>
 <h1 id="lambda"><a href="#lambda" class="headerlink" title="lambda"></a>lambda</h1><p>lambda在Java8中引进，可以很好的替代匿名内部类，使代码更加简洁。</p>
 <p>lambda表达式形式如下：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sum = &#123; x: <span class="built_in">Int</span>, y: <span class="built_in">Int</span> -&gt; x + y &#125;</span><br></pre></td></tr></table></figure>
@@ -402,6 +407,18 @@
 <p>使用lambda的形式如下<code>() -&gt; {}</code>,<code>()</code>内是参数，<code>{}</code>是函数具体的行为。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Java 8方式：</span></span><br><span class="line"><span class="keyword">new</span> Thread( () -&gt; System.out.println(<span class="string">"In Java8, Lambda expression rocks !!"</span>) ).start();</span><br></pre></td></tr></table></figure>
 <p>这个例子来自importNew.com,<a href="http://www.importnew.com/16436.html" target="_blank" rel="noopener">Java8 lambda表达式10个示例</a></p>
+<h1 id="小知识点"><a href="#小知识点" class="headerlink" title="小知识点"></a>小知识点</h1><ul>
+<li>xx.map()</li>
+</ul>
+<p>凡是<strong>可迭代</strong>的数据都可以使用<code>map()</code>函数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> args: Array&lt;String&gt; = arrayOf()</span><br><span class="line">args.map &#123;</span><br><span class="line">    print(it)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还可以更简洁：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">args.map(::print)</span><br><span class="line"><span class="comment">//::print表示引用该方法</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>xx.flatMap()</li>
+</ul>
+<p>返回<strong>可迭代</strong>的数组，可以和<code>xx.map()</code>一起使用</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">args.flatMap &#123;</span><br><span class="line">    it.split(<span class="string">" "</span>) <span class="comment">//把字符串按照" "切割</span></span><br><span class="line">&#125;.map&#123; </span><br><span class="line">    print(<span class="string">"<span class="subst">$&#123;it.toUpperCase()&#125;</span>"</span>) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -441,6 +458,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/02/Kotlin学习笔记1/" rel="prev" title="Kotlin学习笔记1">
+                Kotlin学习笔记1 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -555,7 +576,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives/">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -568,7 +589,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -603,7 +624,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一个例子"><span class="nav-text">一个例子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lambda"><span class="nav-text">lambda</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一个例子"><span class="nav-text">一个例子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lambda"><span class="nav-text">lambda</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小知识点"><span class="nav-text">小知识点</span></a></li></ol></div>
             
 
           </div>
