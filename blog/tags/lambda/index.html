@@ -94,19 +94,13 @@
 
 
 
-<meta name="description" content="自定义的view LetterIndex.java extends View ContactsListView.java extends RecyclerView#分析 联系人列表有两个要点 字母导航栏通过自定义View画出26个字母，设置滑动监听事件，根据上下滑动的距离判断当前选中的字母，并相应更新界面。 列表中的字母标题针对item中的联系人姓名首字母对应的tag作比较，若与前一个相同则不显示">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Android自定义View实现联系人列表">
-<meta property="og:url" content="http://jixiaoyong.github.io/blog/2017/09/Android自定义View实现联系人列表/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="季小勇的博客">
+<meta property="og:url" content="http://jixiaoyong.github.io/blog/tags/lambda/index.html">
 <meta property="og:site_name" content="季小勇的博客">
-<meta property="og:description" content="自定义的view LetterIndex.java extends View ContactsListView.java extends RecyclerView#分析 联系人列表有两个要点 字母导航栏通过自定义View画出26个字母，设置滑动监听事件，根据上下滑动的距离判断当前选中的字母，并相应更新界面。 列表中的字母标题针对item中的联系人姓名首字母对应的tag作比较，若与前一个相同则不显示">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/120748-183eea3cad2b42ac.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2018-01-08T16:06:09.094Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android自定义View实现联系人列表">
-<meta name="twitter:description" content="自定义的view LetterIndex.java extends View ContactsListView.java extends RecyclerView#分析 联系人列表有两个要点 字母导航栏通过自定义View画出26个字母，设置滑动监听事件，根据上下滑动的距离判断当前选中的字母，并相应更新界面。 列表中的字母标题针对item中的联系人姓名首字母对应的tag作比较，若与前一个相同则不显示">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/120748-183eea3cad2b42ac.gif?imageMogr2/auto-orient/strip">
+<meta name="twitter:title" content="季小勇的博客">
 
 
 
@@ -135,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://jixiaoyong.github.io/blog/2017/09/Android自定义View实现联系人列表/"/>
+  <link rel="canonical" href="http://jixiaoyong.github.io/blog/tags/lambda/"/>
 
 
 
 
 
-  <title>Android自定义View实现联系人列表 | 季小勇的博客</title>
+  <title>标签: lambda | 季小勇的博客</title>
   
 
 
@@ -176,7 +170,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -294,232 +288,54 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block tag">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>lambda<small>标签</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2017/09/Android自定义View实现联系人列表/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="季小勇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="季小勇的博客">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">Android自定义View实现联系人列表</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/blog/2018/02/lambda表达式在kotlin中的应用/" itemprop="url">
               
-                <span class="post-meta-item-text">发表于</span>
+                <span itemprop="name">lambda表达式在kotlin中的应用</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-03T23:25:05+08:00">
-                2017-09-03
-              </time>
-            
+            </a>
+        
+      </h2>
 
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-02-09T11:09:06+08:00"
+              content="2018-02-09" >
+          02-09
+        </time>
+      </div>
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h1 id="自定义的view"><a href="#自定义的view" class="headerlink" title="自定义的view"></a>自定义的view</h1><ul>
-<li>LetterIndex.java extends View</li>
-<li>ContactsListView.java extends RecyclerView<br>#分析</li>
-<li>联系人列表有两个要点<ul>
-<li>字母导航栏<br>通过自定义View画出26个字母，设置滑动监听事件，根据上下滑动的距离判断当前选中的字母，并相应更新界面。</li>
-<li>列表中的字母标题<br>针对item中的联系人姓名首字母对应的tag作比较，若与前一个相同则不显示title，否则显示。</li>
-</ul>
-</li>
-<li>事件联动<ul>
-<li>当滑动字母导航栏时，除了处理本身的变化外，还要留出接口，以便其他控件获取当前选中的字母。</li>
-<li>联系人列表滑动时，除了处理本身变化外，同样要留出接口以便获取当前置顶的item对应的字母</li>
-<li>字母导航栏要留出方法，以便其他控件指定选中的字母，并更新界面<br>#具体代码<br><strong>ContactsListView.java</strong><br>重写该类主要是为了实现ItemDecoration根据不同的item变化，同时可以从xml布局文件中获取ItemDecoration的自定义属性。<br>主要代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public ContactsListView(Context context) &#123;</span><br><span class="line">    this(context, null, 0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public ContactsListView(Context context, @Nullable AttributeSet attrs) &#123;</span><br><span class="line">    this(context, attrs, 0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public ContactsListView(Context context, @Nullable AttributeSet attrs, int defStyle) &#123;</span><br><span class="line">    super(context, attrs, defStyle);</span><br><span class="line">    mTypeArray = context.obtainStyledAttributes(attrs, R.styleable.MyRecyclerDecoration);</span><br><span class="line">    mContext = context;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<p>故而在其内部自定义了一个继承自ItemDecoratio得静态内部类Decorationn类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">public Decoration(List&lt;String&gt; data)&#123;</span><br><span class="line">//获取要显示的联系人数据对应的英文tag集合</span><br><span class="line">//初始化各种自定义属性</span><br><span class="line">//例如颜色：mColorLetterText = mTypeArray.getColor(R.styleable.MyRecyclerDecoration_color_letter_text, 0xff152648);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">        public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state)&#123;</span><br><span class="line">//画出各个导航title</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">        public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) &#123;</span><br><span class="line">//画出置顶的导航title</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> @Override</span><br><span class="line">        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State</span><br><span class="line">                state) &#123;</span><br><span class="line">//判断是否画出导航title</span><br><span class="line"> super.getItemOffsets(outRect, view, parent, state);</span><br><span class="line">            int position = ((RecyclerView.LayoutParams) (view.getLayoutParams())).getViewAdapterPosition();</span><br><span class="line"></span><br><span class="line">            if (position != -1) &#123;</span><br><span class="line">                String text = mDatas.get(position).substring(0, 1).toUpperCase();</span><br><span class="line">                if (position == 0) &#123;</span><br><span class="line">                    outRect.set(0, mTitleHeight, 0, 0);</span><br><span class="line">                &#125; else if (text != null &amp;&amp; !text.equals(mDatas.get(position - 1).substring(0, 1).toUpperCase())) &#123;</span><br><span class="line">                    outRect.set(0, mTitleHeight, 0, 0);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    outRect.set(0, 0, 0, 0);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private void drawText(Canvas canvas, float left, float right, View child, String text) &#123;</span><br><span class="line">//画出文字</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>LetterIndex.java</strong><br>该类用来画出字母导航栏，并且提供方法获取/设置当前选中的字母<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public interface onIndexClickListener &#123;</span><br><span class="line">       void onIndexClick(int chooseId);</span><br><span class="line">       void onActionUp();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public void setOnIndexClickListener(onIndexClickListener listener) &#123;</span><br><span class="line">       this.mClickListener = listener;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public void setChooseId(int chooseId) &#123;</span><br><span class="line">       if (chooseId &gt;= 0 &amp;&amp; chooseId &lt; mIndexTexts.length) &#123;</span><br><span class="line">           mChooseId = chooseId;</span><br><span class="line">           invalidate();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
-<p>然后重写<figure class="highlight plain"><figcaption><span>event)```方法，在ACTION_DOWN、ACTION_MOVE、ACTION_UP时调用对应的方法即可。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">重写onDraw()方法，画出对应的界面</span><br></pre></td></tr></table></figure></p>
-<p>   @Override<br>    protected void onDraw(Canvas canvas) {<br>        super.onDraw(canvas);<br>        int height = getHeight() - getPaddingTop() - getPaddingBottom();<br>        float width = getWidth();<br>        //childHeight 是每一个字母所在单元的高度<br>        float childHeight = (float) height / mIndexTexts.length;</p>
-<pre><code>    //如果被点击了，就画出背景
-    if (isClick) {
-        mPaint.setColor(mColorIndexBg);
-        canvas.drawRect(0, 0, width, height, mPaint);
-    }
-
-    Rect bounds = new Rect();
-    mPaint.setTextSize(mSizeText);
-    mPaint.setTextAlign(Paint.Align.CENTER);
-    for (int i = 0; i &lt; mIndexTexts.length; i++) {
-        String text = mIndexTexts[i];
-        mPaint.setColor(mColorText);
-        //在被选中的字后面画一个圆，并改变字的颜色
-        if (i == mChooseId) {
-            mPaint.setColor(mColorChooseTextBg);
-            canvas.drawCircle(width / 2, childHeight / 2 + i * childHeight,
-                    mSizeText / 2 + 2, mPaint);
-            mPaint.setColor(mColorChooseText);
-        }
-        mPaint.getTextBounds(text, 0, text.length(), bounds);
-        //bounds里面保存着要画的字的一些属性，如x，y，centerX，centerY等，
-        //要注意 canvas.drawText（text,x,y,mpaint）中y并不是text的最低端，而是baseline。
-        float x = width / 2;
-        float y = -bounds.centerY() + childHeight / 2 + i * childHeight;
-        canvas.drawText(text, x, y, mPaint);
-    }
-}
-</code></pre><p>```</p>
-<h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><p>源代码在我的Github，<a href="https://github.com/jixiaoyong/my_application_on_deepin/tree/master/contactsdemo/src/main" target="_blank" rel="noopener">点这里</a>可以找到。</p>
-<h1 id="预览如下"><a href="#预览如下" class="headerlink" title="预览如下"></a>预览如下</h1><p><img src="http://upload-images.jianshu.io/upload_images/120748-183eea3cad2b42ac.gif?imageMogr2/auto-orient/strip" alt="预览.gif"></p>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/blog/2017/08/Android-开发常用设置/" rel="next" title="Android开发常用设置">
-                <i class="fa fa-chevron-left"></i> Android开发常用设置
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2017/09/android常用知识/" rel="prev" title="Android常用知识">
-                Android常用知识 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
-      
-        
-  <div class="bdsharebuttonbox">
-    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
-    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
-    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
-    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
-    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
-    <a href="#" class="bds_more" data-cmd="more"></a>
-    <a class="bds_count" data-cmd="count"></a>
-  </div>
-  <script>
-    window._bd_share_config = {
-      "common": {
-        "bdText": "",
-        "bdMini": "2",
-        "bdMiniList": false,
-        "bdPic": ""
-      },
-      "share": {
-        "bdSize": "16",
-        "bdStyle": "0"
-      },
-      "image": {
-        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
-        "viewText": "分享到：",
-        "viewSize": "16"
-      }
-    }
-  </script>
-
-<script>
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
-
       
     </div>
+
   </div>
+  
+  
+  
+
+  
 
 
           </div>
@@ -527,10 +343,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -551,17 +363,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/blog/images/default_avatar.jpg"
@@ -614,22 +417,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义的view"><span class="nav-text">自定义的view</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#源码"><span class="nav-text">源码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#预览如下"><span class="nav-text">预览如下</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -743,10 +530,10 @@
   
 
   
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+    <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
 
-
+  
 
   
 

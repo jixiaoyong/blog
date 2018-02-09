@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[lambda表达式在kotlin中的应用]]></title>
+    <url>%2Fblog%2F2018%2F02%2Flambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%9C%A8kotlin%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[一个例子普通写法： 定义一个接口OnClickListener 123interface ClickListener&#123; fun onClick(view: View)&#125; 定义方法SetOnClickListener 1fun setOnCLickListener(listener: ClickListener)&#123;&#125; 定义的方法和Java中写法类似，在使用该方法时也类似： 1234567var testInterface = TestInterface()testInterface.setOnCLickListener(object : TestInterface.ClickListener&#123; override fun onClick(view: View) &#123; TODO("not implemented") //To change body of created functions use File | Settings | File Templates. &#125; &#125;) lambda写法： 定义只需要一步： 1fun setNewOnClickListener(listener :(uri :String)-&gt; Unit )&#123;&#125; 使用起来也更加简洁： 1testInterface.setNewOnClickListener &#123; uri: String -&gt; print(uri) &#125; 当方法只有一个参数时，可以省略参数，还用it代替： 1testInterface.setNewOnClickListener &#123; print(it) &#125; lambdalambda在Java8中引进，可以很好的替代匿名内部类，使代码更加简洁。 lambda表达式形式如下： 1val sum = &#123; x: Int, y: Int -&gt; x + y &#125; lambda 表达式总是被大括号括着， 完整语法形式的参数声明放在大括号内，并有可选的类型标注， 函数体跟在一个 -&gt; 符号之后。如果推断出的该 lambda 的返回类型不是 Unit，那么该 lambda 主体中的最后一个（或可能是单个）表达式会视为返回值。 kotlincn.net 高阶函数和lambda表达式 使用lambda的形式如下() -&gt; {},()内是参数，{}是函数具体的行为。 12//Java 8方式：new Thread( () -&gt; System.out.println("In Java8, Lambda expression rocks !!") ).start(); 这个例子来自importNew.com,Java8 lambda表达式10个示例]]></content>
+      <tags>
+        <tag>lambda</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Android中WebView使用的一些问题]]></title>
     <url>%2Fblog%2F2018%2F02%2FAndroid%E4%B8%ADWebView%E4%BD%BF%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[问题描述：WebView在fragment中不显示解决代码如下： 1234567//kotlin 代码webView.webViewClient = object : WebViewClient() &#123; override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean &#123; view!!.loadUrl(url) return true &#125; &#125; 此代码同样强制在webview中打开对应的网页]]></content>
