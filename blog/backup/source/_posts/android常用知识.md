@@ -46,7 +46,7 @@ date: 2017-9-20 23:25:05
   </resources>
   ```
 
-​	**MyView.java**
+		**MyView.java**
 
 ```java
 AttributeSet attrs = ***;
@@ -90,3 +90,30 @@ app:color_text = "#003903"
 * RecyclerView滑动事件
   `manager.scrollToPositionWithOffset(n, 0);`
   `n`为要滑到顶端的`position`
+
+# 创建菜单
+
+- 创建对应资源
+
+  menu/menu_main.xml
+
+- 对应activity中
+
+  ```java
+  override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+      menuInflater.inflate(R.menu.menu_main,menu)
+      return super.onCreateOptionsMenu(menu)
+  }
+  ```
+
+  ```java
+  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+      when(item!!.itemId) {
+          //do sth...
+      }
+      
+      return true
+  }
+  ```
+
