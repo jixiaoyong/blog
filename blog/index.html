@@ -304,6 +304,148 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2018/02/JVM内存知识整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="季小勇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="季小勇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2018/02/JVM内存知识整理/" itemprop="url">JVM内存知识整理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-24T23:39:19+08:00">
+                2018-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+本笔记基于《深入理解Java虚拟机：JVM高级特性与最佳实践》及部分在线博客整理。
+
+JVM：java virtual machine，一个java程序（进程）拥有一个jvm实例
+内存JVM区域总体分两类，heap区和非heap区:
+heap区：Eden Space（伊甸园）、Survivor Space(幸存者区)、Tenured Gen（老年代-养老区）。非heap区：Code Cache(代码缓存区)、Perm Gen（永久代）、Jvm Stack(Java虚拟机栈)、Local Method Statck(本地方 法栈)。
+内存划分1.head堆，所有线程共享，存放所有对象实例、数组，GC主要场所，会OOM
+分类
+1.新生代
+
+eden  刚刚创建的对象优先
+
+
+s1  经历几次GC
+
+
+s2  经历
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2018/02/JVM内存知识整理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2018/02/AndroidBootSketch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -323,7 +465,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2018/02/AndroidBootSketch/" itemprop="url">AndroidBootSketch</a></h1>
+                <a class="post-title-link" href="/blog/2018/02/AndroidBootSketch/" itemprop="url">Android系统架构简介</a></h1>
         
 
         <div class="post-meta">
@@ -375,8 +517,7 @@
       
         
           
-          Android系统架构简介
-
+          
 说明：本文基于Android系统开篇 - Gityuan博客 | 袁辉辉博客  的学习笔记整理
 
 Android系统大体分为4个模块，从底层开始依次是1.linux内核、2.系统库+Android运行时、3.框架层、4.应用层。
@@ -390,6 +531,8 @@ Boot ROM ：开机时，引导芯片从ROM读取读取初始化代码，加载�
 Boot Loader：是启动Android系统之前的引导程序，检查RAM、初始化硬件参数等。
 
 Kernel层（即Android内核层，进入Android系统）
+
+swapper进程（pi
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1489,148 +1632,6 @@ enum class 枚举类型
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2018/02/PythonPostHexoToGithub/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="季小勇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="季小勇的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2018/02/PythonPostHexoToGithub/" itemprop="url">python自动创建发布hexo文章并同步github</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T00:09:12+08:00">
-                2018-02-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          简介
-环境 linux(deepin)
-python 2.7
-
-这是一个Python脚本，用于实现hexo文章创建、生成网页并预览、发布到对应xxx.github.io博客的全过程。
-使用方法使用时需要根据自己的项目更新main.py的一下变量：
-hexo_url = ‘your_path/hexo/blog’
-【必需】本地hexo博客路径
-
-hexo_public_dir = ‘your_path/hexo/blog/public’
-【必需】本地hexo博客输出路径
-
-hexo_post_dir = ‘your_path/hexo/blog/source/_posts’
-【可选】本地hexo博客文章源文件路径
-
-git_dir = ‘your_path/xxx.github.io’
-【必需】博客要同步的git
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2018/02/PythonPostHexoToGithub/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1681,7 +1682,7 @@ git_dir = ‘your_path/xxx.github.io’
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives/">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1694,7 +1695,7 @@ git_dir = ‘your_path/xxx.github.io’
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

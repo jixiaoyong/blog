@@ -94,21 +94,21 @@
 
 
 
-<meta name="description" content="Android系统架构简介  说明：本文基于Android系统开篇 - Gityuan博客 | 袁辉辉博客  的学习笔记整理  Android系统大体分为4个模块，从底层开始依次是1.linux内核、2.系统库+Android运行时、3.框架层、4.应用层。  下图描述了Android系统从开机到Apk运行的整个流程。  流程如下：Loader -&amp;gt; Kernel -&amp;gt; Native-">
+<meta name="description" content="说明：本文基于Android系统开篇 - Gityuan博客 | 袁辉辉博客  的学习笔记整理  Android系统大体分为4个模块，从底层开始依次是1.linux内核、2.系统库+Android运行时、3.框架层、4.应用层。  下图描述了Android系统从开机到Apk运行的整个流程。  流程如下：Loader -&amp;gt; Kernel -&amp;gt; Native-&amp;gt; Framework">
 <meta name="keywords" content="android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AndroidBootSketch">
+<meta property="og:title" content="Android系统架构简介">
 <meta property="og:url" content="http://jixiaoyong.github.io/blog/2018/02/AndroidBootSketch/index.html">
 <meta property="og:site_name" content="季小勇的博客">
-<meta property="og:description" content="Android系统架构简介  说明：本文基于Android系统开篇 - Gityuan博客 | 袁辉辉博客  的学习笔记整理  Android系统大体分为4个模块，从底层开始依次是1.linux内核、2.系统库+Android运行时、3.框架层、4.应用层。  下图描述了Android系统从开机到Apk运行的整个流程。  流程如下：Loader -&amp;gt; Kernel -&amp;gt; Native-">
+<meta property="og:description" content="说明：本文基于Android系统开篇 - Gityuan博客 | 袁辉辉博客  的学习笔记整理  Android系统大体分为4个模块，从底层开始依次是1.linux内核、2.系统库+Android运行时、3.框架层、4.应用层。  下图描述了Android系统从开机到Apk运行的整个流程。  流程如下：Loader -&amp;gt; Kernel -&amp;gt; Native-&amp;gt; Framework">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/jixiaoyong/jixiaoyong.github.io/master/images/blog/2018-02/AndroidSystemArchitecture.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/jixiaoyong/jixiaoyong.github.io/master/images/blog/2018-02/androidBoot.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/jixiaoyong/jixiaoyong.github.io/master/images/blog/2018-02/AndroidBootImg.png">
-<meta property="og:updated_time" content="2018-02-23T14:35:39.794Z">
+<meta property="og:updated_time" content="2018-02-23T14:43:07.789Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AndroidBootSketch">
-<meta name="twitter:description" content="Android系统架构简介  说明：本文基于Android系统开篇 - Gityuan博客 | 袁辉辉博客  的学习笔记整理  Android系统大体分为4个模块，从底层开始依次是1.linux内核、2.系统库+Android运行时、3.框架层、4.应用层。  下图描述了Android系统从开机到Apk运行的整个流程。  流程如下：Loader -&amp;gt; Kernel -&amp;gt; Native-">
+<meta name="twitter:title" content="Android系统架构简介">
+<meta name="twitter:description" content="说明：本文基于Android系统开篇 - Gityuan博客 | 袁辉辉博客  的学习笔记整理  Android系统大体分为4个模块，从底层开始依次是1.linux内核、2.系统库+Android运行时、3.框架层、4.应用层。  下图描述了Android系统从开机到Apk运行的整个流程。  流程如下：Loader -&amp;gt; Kernel -&amp;gt; Native-&amp;gt; Framework">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/jixiaoyong/jixiaoyong.github.io/master/images/blog/2018-02/AndroidSystemArchitecture.png">
 
 
@@ -144,7 +144,7 @@
 
 
 
-  <title>AndroidBootSketch | 季小勇的博客</title>
+  <title>Android系统架构简介 | 季小勇的博客</title>
   
 
 
@@ -328,7 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">AndroidBootSketch</h1>
+          <h1 class="post-title" itemprop="name headline">Android系统架构简介</h1>
         
 
         <div class="post-meta">
@@ -378,8 +378,7 @@
       
 
       
-        <p>Android系统架构简介</p>
-<blockquote>
+        <blockquote>
 <p>说明：本文基于<a href="http://gityuan.com/android/" target="_blank" rel="noopener">Android系统开篇 - Gityuan博客 | 袁辉辉博客 </a> 的学习笔记整理</p>
 </blockquote>
 <p>Android系统大体分为4个模块，从底层开始依次是1.linux内核、2.系统库+Android运行时、3.框架层、4.应用层。</p>
@@ -473,6 +472,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2018/02/JVM内存知识整理/" rel="prev" title="JVM内存知识整理">
+                JVM内存知识整理 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -578,7 +581,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives/">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -591,7 +594,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
