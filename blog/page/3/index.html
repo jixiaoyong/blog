@@ -304,6 +304,138 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2018/01/Android通过Hook启动未注册Activity/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="季小勇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="季小勇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2018/01/Android通过Hook启动未注册Activity/" itemprop="url">Android通过Hook启动未注册Activity</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-16T00:10:41+08:00">
+                2018-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          简介hook是钩子的意思，hook的过程是通过反射、代理等改变系统原有的行为以达到自己的目的。
+本文主要是通过hook android 中的ActivityManagerService和Handler.CallBack，欺骗系统调起activity的过程，在调用startActivity时将targetIntent通过proxy伪装为proxyIntent，等到通过系统验证，正式启动activity时，再讲proxyIntent恢复为targetIntent，从而实现调用未在AndroidManifest.xml中注册的activity。
+
+需要注意，本方法只在Api&lt;26下有效。具体原因见后面。
+
+具体实现1.新建Activity等IndexActivity.java用于启动targetIntent
+1
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2018/01/Android通过Hook启动未注册Activity/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2018/01/AndroidService详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -572,6 +704,134 @@ i看知乎，我的第五个Android应用。
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2017/09/Android控件组/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="季小勇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="季小勇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2017/09/Android控件组/" itemprop="url">Android控件组</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T23:25:05+08:00">
+                2017-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          这几天的工作中用到了控件组来实现复杂布局，效果不错，记录下来备用。
+1. 定义控件组布局xxx_layout.xml在这里定义要使用的控件组布局，这里的布局决定了布局显示的样子。
+1234567891011121314151617&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"    xmlns:app="http://schemas.android.com/apk/res-auto"    android:layout_width="match_parent"    android:layout_height="wrap_
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2017/09/Android控件组/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2017/09/android常用知识/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -654,134 +914,6 @@ i看知乎，我的第五个Android应用。
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/blog/2017/09/android常用知识/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2017/09/Android控件组/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="季小勇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="季小勇的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2017/09/Android控件组/" itemprop="url">Android控件组</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T23:25:05+08:00">
-                2017-09-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          这几天的工作中用到了控件组来实现复杂布局，效果不错，记录下来备用。
-1. 定义控件组布局xxx_layout.xml在这里定义要使用的控件组布局，这里的布局决定了布局显示的样子。
-1234567891011121314151617&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"    xmlns:app="http://schemas.android.com/apk/res-auto"    android:layout_width="match_parent"    android:layout_height="wrap_
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2017/09/Android控件组/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1498,138 +1630,6 @@ Linux
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2016/04/AppWidget的使用之PendingIntent/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="季小勇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="季小勇的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2016/04/AppWidget的使用之PendingIntent/" itemprop="url">AppWidget的使用之PendingIntent</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-25T06:06:06+08:00">
-                2016-04-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          这几天学习 AppWidget ，很简单的组件却花费了不少功夫，今天对 PendingIntent 的用法做了一些简单的整理。
-PendingIntent
-
-PandingIntent 就像是一个设计好的处理预案，当达到某个特定条件时，便会调用该 Intent 所指定动作（打开服务，Activity或者发送广播）。
-这里使用该方法在 AppWidget 里面为按钮添加监听事件，当按钮被点击的时候触发相应的动作
-
-AppWidget 和应用程序不再同一个进程当中，而是在 HomeScreen 上面执行,所以不能直接为 AppWidget 中的 Button 添加监听事件，需要用 remoteViews.setPendingIntent(R.id.widget_button,pendingIntent);意思是当按
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2016/04/AppWidget的使用之PendingIntent/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1680,7 +1680,7 @@ AppWidget 和应用程序不再同一个进程当中，而是在 HomeScreen 上�
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives/">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
