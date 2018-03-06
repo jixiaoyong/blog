@@ -78,7 +78,7 @@
 <link href="/blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="python," />
+  <meta name="keywords" content="android," />
 
 
 
@@ -94,18 +94,20 @@
 
 
 
-<meta name="description" content="简介 本文基于Python2.7  这篇文章基于我在慕课网上面学习Python简单爬虫写的内容，教程内容是爬取1000条百度百科的数据，但是教程中爬虫截止2018-01-27已经失效，刚好看到大神gityuan.com的内容，于是用Python实现爬取其网页内容并生成json数据。 本文即上述过程整理。 本文涉及源代码已上传github（点这里查看）。 框架爬虫主要活动是：  爬取目标网页内容 对">
-<meta name="keywords" content="python">
+<meta name="description" content="简介 EventBus is a publish/subscribe event bus for Android and Java. 若无特殊说明，英文注释引自官方源码或文档，后同  EventBus在android中可以用于组件间，组件和后台线程间的通信，他基于订阅、发布的机制，将事件的收/发解耦，开销小。 其流程如下（示意图来自官方github库）：  要点EventBus的三个要素 Even">
+<meta name="keywords" content="android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python爬虫爬取gityuan.com数据并输出json">
-<meta property="og:url" content="http://jixiaoyong.github.io/blog/2018/01/Python爬虫爬取gityuan-com数据并输出json/index.html">
+<meta property="og:title" content="EventBus3简介">
+<meta property="og:url" content="http://jixiaoyong.github.io/blog/2018/03/TheUseOfEventBus/index.html">
 <meta property="og:site_name" content="季小勇的博客">
-<meta property="og:description" content="简介 本文基于Python2.7  这篇文章基于我在慕课网上面学习Python简单爬虫写的内容，教程内容是爬取1000条百度百科的数据，但是教程中爬虫截止2018-01-27已经失效，刚好看到大神gityuan.com的内容，于是用Python实现爬取其网页内容并生成json数据。 本文即上述过程整理。 本文涉及源代码已上传github（点这里查看）。 框架爬虫主要活动是：  爬取目标网页内容 对">
+<meta property="og:description" content="简介 EventBus is a publish/subscribe event bus for Android and Java. 若无特殊说明，英文注释引自官方源码或文档，后同  EventBus在android中可以用于组件间，组件和后台线程间的通信，他基于订阅、发布的机制，将事件的收/发解耦，开销小。 其流程如下（示意图来自官方github库）：  要点EventBus的三个要素 Even">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-27T15:16:36.075Z">
+<meta property="og:image" content="https://github.com/greenrobot/EventBus/raw/master/EventBus-Publish-Subscribe.png">
+<meta property="og:updated_time" content="2018-03-06T15:45:34.205Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python爬虫爬取gityuan.com数据并输出json">
-<meta name="twitter:description" content="简介 本文基于Python2.7  这篇文章基于我在慕课网上面学习Python简单爬虫写的内容，教程内容是爬取1000条百度百科的数据，但是教程中爬虫截止2018-01-27已经失效，刚好看到大神gityuan.com的内容，于是用Python实现爬取其网页内容并生成json数据。 本文即上述过程整理。 本文涉及源代码已上传github（点这里查看）。 框架爬虫主要活动是：  爬取目标网页内容 对">
+<meta name="twitter:title" content="EventBus3简介">
+<meta name="twitter:description" content="简介 EventBus is a publish/subscribe event bus for Android and Java. 若无特殊说明，英文注释引自官方源码或文档，后同  EventBus在android中可以用于组件间，组件和后台线程间的通信，他基于订阅、发布的机制，将事件的收/发解耦，开销小。 其流程如下（示意图来自官方github库）：  要点EventBus的三个要素 Even">
+<meta name="twitter:image" content="https://github.com/greenrobot/EventBus/raw/master/EventBus-Publish-Subscribe.png">
 
 
 
@@ -134,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://jixiaoyong.github.io/blog/2018/01/Python爬虫爬取gityuan-com数据并输出json/"/>
+  <link rel="canonical" href="http://jixiaoyong.github.io/blog/2018/03/TheUseOfEventBus/"/>
 
 
 
 
 
-  <title>Python爬虫爬取gityuan.com数据并输出json | 季小勇的博客</title>
+  <title>EventBus3简介 | 季小勇的博客</title>
   
 
 
@@ -307,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2018/01/Python爬虫爬取gityuan-com数据并输出json/">
+    <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2018/03/TheUseOfEventBus/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="季小勇">
@@ -324,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Python爬虫爬取gityuan.com数据并输出json</h1>
+          <h1 class="post-title" itemprop="name headline">EventBus3简介</h1>
         
 
         <div class="post-meta">
@@ -336,8 +338,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-27T22:25:34+08:00">
-                2018-01-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-06T22:46:31+08:00">
+                2018-03-06
               </time>
             
 
@@ -375,43 +377,80 @@
 
       
         <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><blockquote>
-<p>本文基于Python2.7</p>
+<p>EventBus is a publish/subscribe event bus for Android and Java.</p>
+<p>若无特殊说明，英文注释引自官方源码或文档，后同</p>
 </blockquote>
-<p>这篇文章基于我在<a href="www.imooc.com">慕课网</a>上面学习Python简单爬虫写的内容，教程内容是爬取1000条百度百科的数据，但是教程中爬虫截止2018-01-27已经失效，刚好看到大神gityuan.com的内容，于是用Python实现爬取其网页内容并生成json数据。</p>
-<p>本文即上述过程整理。</p>
-<p>本文涉及源代码已上传github（<a href="https://github.com/jixiaoyong/AndroidNote/tree/master/code/2018-1-26/gityuan_spider" target="_blank" rel="noopener">点这里查看</a>）。</p>
-<h1 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h1><p>爬虫主要活动是：</p>
-<ol>
-<li>爬取目标网页内容</li>
-<li>对获取到的内容进行分析，获取有用数据</li>
-<li>将处理好的数据按格式输出</li>
-</ol>
-<p>此外还需要有一个专门管理爬虫活动的主类，故而文件结构如下：</p>
-<ol>
-<li>spider_main.py             入口类</li>
-<li>url_manager.py             管理要下载的链接</li>
-<li>html_downloader.py    下载网页内容</li>
-<li>html_paeser.py              对获取到的数据进行解析、加工</li>
-<li>html_out.py                     输出格式化的数据</li>
-</ol>
-<p>目前只实现了爬取gityuan.com第一页内容并输出json，所以暂时不需要实现url_manager.py</p>
-<h1 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h1><p><strong>spider_main.py</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#导入用到的各个类</span></span><br><span class="line"><span class="keyword">import</span> html_downloader</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义入口类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SpiderMain</span><span class="params">(object)</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#初始化各个变量downloader、parser、output...</span></span><br><span class="line">    self.downloader = html_downloader.HtmlDownloader()</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#略</span></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">craw</span><span class="params">(self,root_url)</span>:</span></span><br><span class="line">    </span><br><span class="line">    html_cont = self.downloader.download(root_url)</span><br><span class="line">    </span><br><span class="line">    new_data = self.parser.parse(html_cont)</span><br><span class="line">    </span><br><span class="line">    self.output.collect_data(new_data)</span><br><span class="line">    </span><br><span class="line">    self.output.output_json()</span><br><span class="line">    </span><br><span class="line">root_url = <span class="string">'http://www.gityuan.com/'</span></span><br><span class="line">sp = SpiderMain()</span><br><span class="line">sp.craw(root_url)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在<code>__init__()</code> 方法初始化各个变量；</li>
-<li>在<code>craw()</code>中分别实现下载、解析网页内容、输出加工数据</li>
+<p>EventBus在android中可以用于组件间，组件和后台线程间的通信，他基于订阅、发布的机制，将事件的收/发解耦，开销小。</p>
+<p>其流程如下（示意图来自官方github库）：</p>
+<p><img src="https://github.com/greenrobot/EventBus/raw/master/EventBus-Publish-Subscribe.png" alt="EventBus-Publish-Subscribe"></p>
+<h1 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h1><h2 id="EventBus的三个要素"><a href="#EventBus的三个要素" class="headerlink" title="EventBus的三个要素"></a>EventBus的三个要素</h2><ul>
+<li><p>Event</p>
+<p>事件，要传递的事件（一个类），EventBus传递该事件的对象，要传递的信息包含在该对象的属性中</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Event</span></span>&#123; &#125;</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>Subscriber</p>
+<p>订阅者，当事件发生时要对事件执行的操作。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Subscribe(threadMode = ThreadMode.MAIN)</span>  <span class="function"><span class="keyword">fun</span> <span class="title">fun1</span><span class="params">()</span></span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Publisher</p>
+<p>发布者，在合适的时候发布事件</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EventBus.getDefault().post(Event())</span><br></pre></td></tr></table></figure>
+<p>此外还需要注册、注销EventBus以便订阅者能够正常接收消息</p>
+<p>​</p>
+</li>
 </ul>
-<p><strong>html_download.py</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HtmlDownLoader</span><span class="params">(object)</span>:</span></span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">download</span><span class="params">(self,url)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> url <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">    </span><br><span class="line">    respone = urllib2.urlopen(url,timeout=<span class="number">300</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> respone.getcode() != <span class="number">200</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> respone.read()</span><br></pre></td></tr></table></figure>
-<p>下载并返回网页内容，比较简单</p>
-<p><strong>html_parser.py</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urlparse</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup <span class="comment">#第三方包，需要单独下载</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HtmlParser</span><span class="params">(object)</span>:</span></span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self,html_cont)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> html_cont <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#用BeautifulSoup解析文档内容</span></span><br><span class="line">    soup = BeautifulSoup(html_cont,<span class="string">'html.parser'</span>)</span><br><span class="line">    </span><br><span class="line">    res_data = [] <span class="comment">#数组</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#获取所有的文章节点nodes</span></span><br><span class="line">    post_div_nodes = soup.find_all(<span class="string">'div'</span>,class_=<span class="string">'post-preview'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#遍历nodes，读取每一项内容并保存</span></span><br><span class="line">    <span class="keyword">for</span> post_div_node <span class="keyword">in</span> post_div_nodes:</span><br><span class="line">      post_div_soup = BeautifulSoup(str(post_div_node))</span><br><span class="line">      </span><br><span class="line">      post_info = &#123;&#125; <span class="comment">#字典dict</span></span><br><span class="line">      </span><br><span class="line">      <span class="comment">#判断URL是否是完整</span></span><br><span class="line">      url_ = post_div_soup.a[<span class="string">'href'</span>]</span><br><span class="line">      <span class="keyword">if</span> <span class="string">'http://'</span> <span class="keyword">not</span> <span class="keyword">in</span> url_:</span><br><span class="line">        url_ = <span class="string">"http://gityuan.com"</span> + url_</span><br><span class="line">       </span><br><span class="line">      <span class="comment">#保存数据</span></span><br><span class="line">      post_info[<span class="string">'url'</span>] = url_</span><br><span class="line">      post_info[<span class="string">'title'</span>] = post_div_soup.find(<span class="string">'h2'</span>).get_text()</span><br><span class="line">      post_info[<span class="string">'summary'</span>] = post_div_soup.find(<span class="string">'div'</span>,class_=<span class="string">'post-content-preview'</span>).get_text()</span><br><span class="line">       </span><br><span class="line">      res_data.append(post_info)</span><br><span class="line">      </span><br><span class="line">     <span class="keyword">return</span> res_data</span><br></pre></td></tr></table></figure>
-<p>这是爬虫功能的重点之一：对网页数据进行解析，由此数据才变为可用数据</p>
-<p>主要是通过第三方插件<code>BeautifulSoup</code>解析数据，并保存到数组<code>res_data</code>中，具体见代码中实现</p>
-<p><strong>html_output.py</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="comment">#下面两行代码解决编码问题，强制使用utf-8，而非默认的unicode编码</span></span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding(<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JsonOutput</span><span class="params">(object)</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">    self.datas = []</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">collect_data</span><span class="params">(self,new_data)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> new_data <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">      self.datas.append(new_data)</span><br><span class="line">    </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">output_json</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="comment">#打开文件，并以json格式输出</span></span><br><span class="line">    fout = open(<span class="string">'output.json'</span>,<span class="string">'w'</span>)</span><br><span class="line">    </span><br><span class="line">    fout.write(<span class="string">'&#123;'</span>)</span><br><span class="line">    fout.write(<span class="string">r'"data":['</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> data <span class="keyword">in</span> self.datas:</span><br><span class="line">      <span class="keyword">for</span> post_info <span class="keyword">in</span> data:</span><br><span class="line">        </span><br><span class="line">        fout.write(<span class="string">'&#123;'</span>)</span><br><span class="line">        fout.write(<span class="string">'"url":"%",'</span> % post_info[<span class="string">'url'</span>])</span><br><span class="line">        fout.write(<span class="string">'"title":"%",'</span> % post_info[<span class="string">'title'</span>])</span><br><span class="line">        fout.write(<span class="string">'"summary":"%",'</span> % post_info[<span class="string">'summary'</span>])</span><br><span class="line">        fout.write(<span class="string">'&#125;,'</span>)</span><br><span class="line">    <span class="comment">#为了符合json规范，最后一个输入空数据，无末尾逗号</span></span><br><span class="line">    fout.write(<span class="string">r'&#123;&#125;'</span>)</span><br><span class="line">    </span><br><span class="line">    fout.write(<span class="string">']&#125;'</span>)</span><br></pre></td></tr></table></figure>
-<p>本类也很重要，主要是数据存取，以及将解析好的数据格式化输出</p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>本文中代码经二次处理，不一定与源代码一致，但思路如此，以供参考。</p>
+<h2 id="Subscriber的5个线程模式（ThreadMode）"><a href="#Subscriber的5个线程模式（ThreadMode）" class="headerlink" title="Subscriber的5个线程模式（ThreadMode）"></a>Subscriber的5个线程模式（ThreadMode）</h2><ul>
+<li><p>POSTING</p>
+<p>默认的，订阅者和发布者在同一个线程（Subscriber will be called directly in the same thread, which is posting the event）。因为有可能是在主线程，所以不要耗时操作，以免ANR。</p>
+</li>
+<li><p>MAIN</p>
+<p>Android中，订阅者会在UI线程被唤起，同样不能耗时操作</p>
+<blockquote>
+<p>If the posting thread is the main thread, subscriber methods will be called directly, blocking the posting thread. Otherwise the event is queued for delivery (non-blocking). </p>
+</blockquote>
+</li>
+<li><p>MAIN_ORDERED</p>
+<p>Android，订阅者会在UI线程被唤起，不能耗时操作。</p>
+<blockquote>
+<p>Different from MAIN, the event will always be queued for delivery. This ensures that the post call is non-blocking.</p>
+</blockquote>
+</li>
+<li><p>BACKGROUND</p>
+<p>Android中，如果post在主线程，那么订阅者在新开的后台线程，否则在post的线程被唤起。</p>
+<p>在如果不是在Android中，则都在后台线程唤起。</p>
+</li>
+<li><p>ASYNC</p>
+<p>订阅者在新的子线程中运行，独立于UI线程和post线程</p>
+</li>
+</ul>
+<h1 id="使用举例"><a href="#使用举例" class="headerlink" title="使用举例"></a>使用举例</h1><h2 id="普通事件"><a href="#普通事件" class="headerlink" title="普通事件"></a>普通事件</h2><ol>
+<li><p>定义事件</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Event</span></span>(s: String)&#123;</span><br><span class="line">    <span class="keyword">var</span> string : String? = <span class="literal">null</span></span><br><span class="line">    init &#123;</span><br><span class="line">        string = s</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注册</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EventBus.getDefault().register(context)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置订阅者</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Subscribe(threadMode = ThreadMode.MAIN)</span></span><br><span class="line">  <span class="function"><span class="keyword">fun</span> <span class="title">fun1</span><span class="params">(event: <span class="type">Event</span>)</span></span> &#123;</span><br><span class="line">      Log.d(<span class="string">"tag"</span>,event.string)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>发布</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EventBus.getDefault().post(Event(<span class="string">"hello"</span>))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注销</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EventBus.getDefault().unregister(context)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="粘性事件"><a href="#粘性事件" class="headerlink" title="粘性事件"></a>粘性事件</h2><p>粘性事件即事件发生（<code>postSticky()</code>）之后，再订阅，也可对事件进行处理</p>
+<p>发布（<code>postSticky()</code>）：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EventBus.getDefault().postSticky(Event(<span class="string">"粘性事件"</span>))</span><br></pre></td></tr></table></figure>
+<p>订阅者（<code>sticky = true</code>）：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Subscribe(threadMode = ThreadMode.MAIN,sticky = true)</span><span class="comment">//sticky默认为false，可以不写</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">fun1</span><span class="params">(event: <span class="type">Event</span>)</span></span> &#123;</span><br><span class="line">    Log.d(<span class="string">"tag"</span>,event.string)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上修改<code>发布</code>和<code>订阅者</code> 之后，当<code>postSticky()</code>之后，只有下次<code>注册事件</code>时，<code>订阅者</code>才会对事件进行反应。</p>
+<p>如下代码就只会在点击事件之后，<code>订阅者</code>才会对<code>postSticky()</code>事件做反应</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">onClick</span><span class="params">(view: <span class="type">View</span>)</span></span>&#123;</span><br><span class="line">    EventBus.getDefault().register(context)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://github.com/greenrobot/EventBus" target="_blank" rel="noopener">greenrobot/EventBus: Event bus for Android and Java that simplifies communication between Activities, Fragments, Threads, Services, etc. Less code, better quality.</a></p>
+<p><a href="http://blog.csdn.net/itachi85/article/details/52205464" target="_blank" rel="noopener">Android事件总线（一）EventBus3.0用法全解析 - CSDN博客</a></p>
 
       
     </div>
@@ -429,7 +468,7 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/python/" rel="tag"># python</a>
+            <a href="/blog/tags/android/" rel="tag"># android</a>
           
         </div>
       
@@ -442,8 +481,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/01/Android自定义透明背景的Dialog/" rel="next" title="Android自定义透明背景的Dialog">
-                <i class="fa fa-chevron-left"></i> Android自定义透明背景的Dialog
+              <a href="/blog/2018/02/JVM类加载解析/" rel="next" title="JVM类加载机制解析">
+                <i class="fa fa-chevron-left"></i> JVM类加载机制解析
               </a>
             
           </div>
@@ -451,10 +490,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/01/update-Python爬取gityuan所有文章列表/" rel="prev" title="[update]Python爬取gityuan所有文章列表">
-                [update]Python爬取gityuan所有文章列表 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -617,7 +652,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#框架"><span class="nav-text">框架</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关键代码"><span class="nav-text">关键代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-text">说明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#要点"><span class="nav-text">要点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#EventBus的三个要素"><span class="nav-text">EventBus的三个要素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Subscriber的5个线程模式（ThreadMode）"><span class="nav-text">Subscriber的5个线程模式（ThreadMode）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用举例"><span class="nav-text">使用举例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#普通事件"><span class="nav-text">普通事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#粘性事件"><span class="nav-text">粘性事件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
