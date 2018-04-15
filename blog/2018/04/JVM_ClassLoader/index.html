@@ -78,7 +78,7 @@
 <link href="/blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="jixiaoyong, blog" />
+  <meta name="keywords" content="JVM_ClassLoader," />
 
 
 
@@ -94,19 +94,18 @@
 
 
 
-<meta name="description" content="自定义的view LetterIndex.java extends View ContactsListView.java extends RecyclerView#分析 联系人列表有两个要点 字母导航栏通过自定义View画出26个字母，设置滑动监听事件，根据上下滑动的距离判断当前选中的字母，并相应更新界面。 列表中的字母标题针对item中的联系人姓名首字母对应的tag作比较，若与前一个相同则不显示">
+<meta name="description" content="本文为《一看你就懂，超详细java中的ClassLoader详解 - CSDN博客》阅读笔记  简述JVM有三种类加载器：  BootStrap ClassLoader 加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。 Extention ClassLoader 扩展的类加载器，加载目录%JRE_H">
+<meta name="keywords" content="JVM_ClassLoader">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android自定义View实现联系人列表">
-<meta property="og:url" content="http://jixiaoyong.github.io/blog/2017/09/Android自定义View实现联系人列表/index.html">
+<meta property="og:title" content="JVM类加载机制之ClassLoader">
+<meta property="og:url" content="http://jixiaoyong.github.io/blog/2018/04/JVM_ClassLoader/index.html">
 <meta property="og:site_name" content="季小勇的博客">
-<meta property="og:description" content="自定义的view LetterIndex.java extends View ContactsListView.java extends RecyclerView#分析 联系人列表有两个要点 字母导航栏通过自定义View画出26个字母，设置滑动监听事件，根据上下滑动的距离判断当前选中的字母，并相应更新界面。 列表中的字母标题针对item中的联系人姓名首字母对应的tag作比较，若与前一个相同则不显示">
+<meta property="og:description" content="本文为《一看你就懂，超详细java中的ClassLoader详解 - CSDN博客》阅读笔记  简述JVM有三种类加载器：  BootStrap ClassLoader 加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。 Extention ClassLoader 扩展的类加载器，加载目录%JRE_H">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/120748-183eea3cad2b42ac.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2018-01-08T16:06:09.094Z">
+<meta property="og:updated_time" content="2018-04-15T14:25:55.009Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android自定义View实现联系人列表">
-<meta name="twitter:description" content="自定义的view LetterIndex.java extends View ContactsListView.java extends RecyclerView#分析 联系人列表有两个要点 字母导航栏通过自定义View画出26个字母，设置滑动监听事件，根据上下滑动的距离判断当前选中的字母，并相应更新界面。 列表中的字母标题针对item中的联系人姓名首字母对应的tag作比较，若与前一个相同则不显示">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/120748-183eea3cad2b42ac.gif?imageMogr2/auto-orient/strip">
+<meta name="twitter:title" content="JVM类加载机制之ClassLoader">
+<meta name="twitter:description" content="本文为《一看你就懂，超详细java中的ClassLoader详解 - CSDN博客》阅读笔记  简述JVM有三种类加载器：  BootStrap ClassLoader 加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。 Extention ClassLoader 扩展的类加载器，加载目录%JRE_H">
 
 
 
@@ -135,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://jixiaoyong.github.io/blog/2017/09/Android自定义View实现联系人列表/"/>
+  <link rel="canonical" href="http://jixiaoyong.github.io/blog/2018/04/JVM_ClassLoader/"/>
 
 
 
 
 
-  <title>Android自定义View实现联系人列表 | 季小勇的博客</title>
+  <title>JVM类加载机制之ClassLoader | 季小勇的博客</title>
   
 
 
@@ -308,7 +307,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2017/09/Android自定义View实现联系人列表/">
+    <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2018/04/JVM_ClassLoader/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="季小勇">
@@ -325,7 +324,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android自定义View实现联系人列表</h1>
+          <h1 class="post-title" itemprop="name headline">JVM类加载机制之ClassLoader</h1>
         
 
         <div class="post-meta">
@@ -337,8 +336,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-03T23:25:05+08:00">
-                2017-09-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T16:40:32+08:00">
+                2018-04-15
               </time>
             
 
@@ -375,57 +374,38 @@
       
 
       
-        <h1 id="自定义的view"><a href="#自定义的view" class="headerlink" title="自定义的view"></a>自定义的view</h1><ul>
-<li>LetterIndex.java extends View</li>
-<li>ContactsListView.java extends RecyclerView<br>#分析</li>
-<li>联系人列表有两个要点<ul>
-<li>字母导航栏<br>通过自定义View画出26个字母，设置滑动监听事件，根据上下滑动的距离判断当前选中的字母，并相应更新界面。</li>
-<li>列表中的字母标题<br>针对item中的联系人姓名首字母对应的tag作比较，若与前一个相同则不显示title，否则显示。</li>
-</ul>
-</li>
-<li>事件联动<ul>
-<li>当滑动字母导航栏时，除了处理本身的变化外，还要留出接口，以便其他控件获取当前选中的字母。</li>
-<li>联系人列表滑动时，除了处理本身变化外，同样要留出接口以便获取当前置顶的item对应的字母</li>
-<li>字母导航栏要留出方法，以便其他控件指定选中的字母，并更新界面<br>#具体代码<br><strong>ContactsListView.java</strong><br>重写该类主要是为了实现ItemDecoration根据不同的item变化，同时可以从xml布局文件中获取ItemDecoration的自定义属性。<br>主要代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public ContactsListView(Context context) &#123;</span><br><span class="line">    this(context, null, 0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public ContactsListView(Context context, @Nullable AttributeSet attrs) &#123;</span><br><span class="line">    this(context, attrs, 0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public ContactsListView(Context context, @Nullable AttributeSet attrs, int defStyle) &#123;</span><br><span class="line">    super(context, attrs, defStyle);</span><br><span class="line">    mTypeArray = context.obtainStyledAttributes(attrs, R.styleable.MyRecyclerDecoration);</span><br><span class="line">    mContext = context;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<p>故而在其内部自定义了一个继承自ItemDecoratio得静态内部类Decorationn类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">public Decoration(List&lt;String&gt; data)&#123;</span><br><span class="line">//获取要显示的联系人数据对应的英文tag集合</span><br><span class="line">//初始化各种自定义属性</span><br><span class="line">//例如颜色：mColorLetterText = mTypeArray.getColor(R.styleable.MyRecyclerDecoration_color_letter_text, 0xff152648);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">        public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state)&#123;</span><br><span class="line">//画出各个导航title</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">        public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) &#123;</span><br><span class="line">//画出置顶的导航title</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> @Override</span><br><span class="line">        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State</span><br><span class="line">                state) &#123;</span><br><span class="line">//判断是否画出导航title</span><br><span class="line"> super.getItemOffsets(outRect, view, parent, state);</span><br><span class="line">            int position = ((RecyclerView.LayoutParams) (view.getLayoutParams())).getViewAdapterPosition();</span><br><span class="line"></span><br><span class="line">            if (position != -1) &#123;</span><br><span class="line">                String text = mDatas.get(position).substring(0, 1).toUpperCase();</span><br><span class="line">                if (position == 0) &#123;</span><br><span class="line">                    outRect.set(0, mTitleHeight, 0, 0);</span><br><span class="line">                &#125; else if (text != null &amp;&amp; !text.equals(mDatas.get(position - 1).substring(0, 1).toUpperCase())) &#123;</span><br><span class="line">                    outRect.set(0, mTitleHeight, 0, 0);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    outRect.set(0, 0, 0, 0);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private void drawText(Canvas canvas, float left, float right, View child, String text) &#123;</span><br><span class="line">//画出文字</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>LetterIndex.java</strong><br>该类用来画出字母导航栏，并且提供方法获取/设置当前选中的字母<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public interface onIndexClickListener &#123;</span><br><span class="line">       void onIndexClick(int chooseId);</span><br><span class="line">       void onActionUp();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public void setOnIndexClickListener(onIndexClickListener listener) &#123;</span><br><span class="line">       this.mClickListener = listener;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public void setChooseId(int chooseId) &#123;</span><br><span class="line">       if (chooseId &gt;= 0 &amp;&amp; chooseId &lt; mIndexTexts.length) &#123;</span><br><span class="line">           mChooseId = chooseId;</span><br><span class="line">           invalidate();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
-<p>然后重写<figure class="highlight plain"><figcaption><span>event)```方法，在ACTION_DOWN、ACTION_MOVE、ACTION_UP时调用对应的方法即可。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">重写onDraw()方法，画出对应的界面</span><br></pre></td></tr></table></figure></p>
-<p>   @Override<br>    protected void onDraw(Canvas canvas) {<br>        super.onDraw(canvas);<br>        int height = getHeight() - getPaddingTop() - getPaddingBottom();<br>        float width = getWidth();<br>        //childHeight 是每一个字母所在单元的高度<br>        float childHeight = (float) height / mIndexTexts.length;</p>
-<pre><code>    //如果被点击了，就画出背景
-    if (isClick) {
-        mPaint.setColor(mColorIndexBg);
-        canvas.drawRect(0, 0, width, height, mPaint);
-    }
-
-    Rect bounds = new Rect();
-    mPaint.setTextSize(mSizeText);
-    mPaint.setTextAlign(Paint.Align.CENTER);
-    for (int i = 0; i &lt; mIndexTexts.length; i++) {
-        String text = mIndexTexts[i];
-        mPaint.setColor(mColorText);
-        //在被选中的字后面画一个圆，并改变字的颜色
-        if (i == mChooseId) {
-            mPaint.setColor(mColorChooseTextBg);
-            canvas.drawCircle(width / 2, childHeight / 2 + i * childHeight,
-                    mSizeText / 2 + 2, mPaint);
-            mPaint.setColor(mColorChooseText);
-        }
-        mPaint.getTextBounds(text, 0, text.length(), bounds);
-        //bounds里面保存着要画的字的一些属性，如x，y，centerX，centerY等，
-        //要注意 canvas.drawText（text,x,y,mpaint）中y并不是text的最低端，而是baseline。
-        float x = width / 2;
-        float y = -bounds.centerY() + childHeight / 2 + i * childHeight;
-        canvas.drawText(text, x, y, mPaint);
-    }
-}
-</code></pre><p>```</p>
-<h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><p>源代码在我的Github，<a href="https://github.com/jixiaoyong/my_application_on_deepin/tree/master/contactsdemo/src/main" target="_blank" rel="noopener">点这里</a>可以找到。</p>
-<h1 id="预览如下"><a href="#预览如下" class="headerlink" title="预览如下"></a>预览如下</h1><p><img src="http://upload-images.jianshu.io/upload_images/120748-183eea3cad2b42ac.gif?imageMogr2/auto-orient/strip" alt="预览.gif"></p>
-
+        <blockquote>
+<p>本文为<a href="https://blog.csdn.net/briblue/article/details/54973413" target="_blank" rel="noopener">《一看你就懂，超详细java中的ClassLoader详解 - CSDN博客》</a>阅读笔记</p>
+</blockquote>
+<h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>JVM有三种类加载器：</p>
+<ol>
+<li><strong>BootStrap ClassLoader</strong> 加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。</li>
+<li><strong>Extention ClassLoader</strong> 扩展的类加载器，加载目录%JRE_HOME%\lib\ext目录下的jar包和class文件。</li>
+<li><strong>App ClassLoader</strong> 加载当前应用的classpath的所有类。</li>
+</ol>
+<h1 id="加载过程"><a href="#加载过程" class="headerlink" title="加载过程"></a>加载过程</h1><p>在加载类时，通过<strong>“双亲委托”</strong>机制，依次从<strong>1</strong> -&gt; <strong>3</strong>向上查询，再从<strong>3</strong>-&gt;<strong>1</strong>依次返回结果：</p>
+<ol>
+<li>调用<code>findLoadedClass(className)</code>查询是否已经加载该类</li>
+<li>调用父加载器的<code>loadClass(className,false)</code>，若父加载器为空，则调用<code>BootStrap ClassLoader</code></li>
+<li>如果还是没有加载到该类，调用<code>findClass(className)</code></li>
+</ol>
+<p>这样子保证了每个类都是先经过最顶端的类加载器<code>BootStrap ClassLoader</code>，如果没有加载到再依次经过<code>Extention ClassLoader</code>、<code>App ClassLoader</code> 加载，确保如String等关键类不会被自定义的ClassLoader加载而导致异常。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> Class&lt;?&gt; loadClass(String name, <span class="keyword">boolean</span> resolve)</span><br><span class="line">        <span class="keyword">throws</span> ClassNotFoundException</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (getClassLoadingLock(name)) &#123;</span><br><span class="line">            <span class="comment">// 首先，检测是否已经加载</span></span><br><span class="line">            Class&lt;?&gt; c = findLoadedClass(name);</span><br><span class="line">            <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">long</span> t0 = System.nanoTime();</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (parent != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        <span class="comment">//父加载器不为空则调用父加载器的loadClass</span></span><br><span class="line">                        c = parent.loadClass(name, <span class="keyword">false</span>);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="comment">//父加载器为空则调用Bootstrap Classloader</span></span><br><span class="line">                        c = findBootstrapClassOrNull(name);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">                    <span class="comment">// ClassNotFoundException thrown if class not found</span></span><br><span class="line">                    <span class="comment">// from the non-null parent class loader</span></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="comment">// If still not found, then invoke findClass in order</span></span><br><span class="line">                    <span class="comment">// to find the class.</span></span><br><span class="line">                    <span class="keyword">long</span> t1 = System.nanoTime();</span><br><span class="line">                    <span class="comment">//父加载器没有找到，则调用findclass</span></span><br><span class="line">                    c = findClass(name);</span><br><span class="line"></span><br><span class="line">                    <span class="comment">// this is the defining class loader; record the stats</span></span><br><span class="line">                    sun.misc.PerfCounter.getParentDelegationTime().addTime(t1 - t0);</span><br><span class="line">                    sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);</span><br><span class="line">                    sun.misc.PerfCounter.getFindClasses().increment();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (resolve) &#123;</span><br><span class="line">                <span class="comment">//调用resolveClass()</span></span><br><span class="line">                resolveClass(c);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> c;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><code>AppClassLoader</code>和<code>ExtClassLoader</code>都继承自<code>URLClassLoader</code></p>
+<p><code>AppClassLoader</code>的父加载器是<code>ExtClassLoader</code>，<code>ExtClassLoader</code>的父加载器为<code>null</code>，故而会调用<code>BootStrap ClassLoader</code></p>
+<p>ClassLoader如果没有指定父加载器，则默认的父加载器为<code>AppClassLoader</code>，自定义ClassLoader也是如此。</p>
+<h1 id="自定义ClassLoader"><a href="#自定义ClassLoader" class="headerlink" title="自定义ClassLoader"></a>自定义ClassLoader</h1><p>自定义ClassLoader一般步骤：</p>
+<ol>
+<li>继承自<code>ClassLoader</code></li>
+<li>重写<code>findClass()</code></li>
+<li>在<code>findClass()</code>方法中调用并返回<code>defineClass()</code></li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MClasLoader</span>:<span class="type">ClassLoader</span></span>()&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">findClass</span><span class="params">(name: <span class="type">String</span>?)</span></span>: Class&lt;*&gt; &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> sysDir = System.getProperty(<span class="string">"user.dir"</span>)</span><br><span class="line">        <span class="keyword">var</span> classPath = <span class="string">"<span class="variable">$sysDir</span>/src/main/res/<span class="variable">$name</span>.class"</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> classFile = File(classPath)</span><br><span class="line">        <span class="comment">//【注意】这里一次只读取一个字节，否则会报错java.lang.ClassFormatError:</span></span><br><span class="line">        <span class="comment">// Extra bytes at the end of class file TestClass</span></span><br><span class="line">        <span class="keyword">var</span> bytes = ByteArray(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">var</span> fileInputStream = FileInputStream(classFile)</span><br><span class="line">        <span class="keyword">var</span> len = <span class="number">-1</span></span><br><span class="line">        <span class="keyword">var</span> byteBuffer = ByteOutputStream()</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line"></span><br><span class="line">            len = fileInputStream.read(bytes)</span><br><span class="line">            <span class="keyword">if</span> (len &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                byteBuffer.write(bytes)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> byteArr = byteBuffer.toByteArray()</span><br><span class="line">        <span class="keyword">return</span> defineClass(name,byteArr,<span class="number">0</span>,byteArr.size)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> clazz = MClasLoader().loadClass(<span class="string">"TestClass"</span>)</span><br><span class="line">    <span class="keyword">var</span> say = clazz.getDeclaredMethod(<span class="string">"say"</span>,String::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line">    say.invoke(clazz.newInstance(),<span class="string">"hello world"</span>)</span><br><span class="line"></span><br><span class="line">    print(MClasLoader().parent)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而<code>defineClass()</code>则将一个字节数组转化为一个类的实例（Converts an array of bytes into an instance of class with an optional ProtectionDomain）</p>
+<h1 id="contextClassLoader"><a href="#contextClassLoader" class="headerlink" title="contextClassLoader"></a>contextClassLoader</h1><p>每个线程都有一个ClassLoader：<code>contextClassLoader</code>，通过将其设置为自定义的ClassLoader可以在加载类的时候做一些特殊的事情。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Thread.currentThread().contextClassLoader = MClasLoader()</span><br><span class="line"><span class="keyword">var</span> clazz = Class.forName(<span class="string">"TestClass"</span>,</span><br><span class="line">        <span class="literal">true</span>, Thread.currentThread().contextClassLoader)</span><br><span class="line"><span class="keyword">var</span> say = clazz.getDeclaredMethod(<span class="string">"say"</span>,String::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line">say.invoke(clazz.newInstance(),<span class="string">"hello world"</span>)</span><br><span class="line"></span><br><span class="line">println(Thread.currentThread().contextClassLoader )</span><br><span class="line">println(Thread.currentThread().contextClassLoader.parent )</span><br></pre></td></tr></table></figure>
+<p>结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hello world</span><br><span class="line">MClasLoader@1d44bcfa</span><br><span class="line">sun.misc.Launcher$AppClassLoader@18b4aac2</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -440,6 +420,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/blog/tags/JVM-ClassLoader/" rel="tag"># JVM_ClassLoader</a>
+          
+        </div>
+      
 
       
       
@@ -449,8 +435,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2017/08/Android-开发常用设置/" rel="next" title="Android开发常用设置">
-                <i class="fa fa-chevron-left"></i> Android开发常用设置
+              <a href="/blog/2018/04/Android_Handler_Message_Looper/" rel="next" title="Android 异步消息机制 Handler、Message、Looper">
+                <i class="fa fa-chevron-left"></i> Android 异步消息机制 Handler、Message、Looper
               </a>
             
           </div>
@@ -459,8 +445,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2017/09/Android控件组/" rel="prev" title="Android控件组">
-                Android控件组 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2018/04/loadResourceFromOtherApk/" rel="prev" title="加载已安装应用、未安装apk中的资源">
+                加载已安装应用、未安装apk中的资源 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -638,7 +624,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义的view"><span class="nav-text">自定义的view</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#源码"><span class="nav-text">源码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#预览如下"><span class="nav-text">预览如下</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简述"><span class="nav-text">简述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加载过程"><span class="nav-text">加载过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义ClassLoader"><span class="nav-text">自定义ClassLoader</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#contextClassLoader"><span class="nav-text">contextClassLoader</span></a></li></ol></div>
             
 
           </div>
