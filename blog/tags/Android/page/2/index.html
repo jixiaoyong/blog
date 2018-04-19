@@ -78,7 +78,7 @@
 <link href="/blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="android," />
+  <meta name="keywords" content="jixiaoyong, blog" />
 
 
 
@@ -94,18 +94,13 @@
 
 
 
-<meta name="description" content="加载已安装应用、未安装apk中的资源，其思路主要是获取到对应的ClassLoader/Context，通过ClassLoader加载R.java等类，再通过反射获取对应的资源id及资源。 加载已安装应用资源sharedUserId在当前应用中加载已安装的其他应用资源，需要二者有相同的sharedUserId，这样Android系统为二者分配同一个Linux用户ID，两个App可以相互访问代码、资">
-<meta name="keywords" content="android">
-<meta property="og:type" content="article">
-<meta property="og:title" content="加载已安装应用、未安装apk中的资源">
-<meta property="og:url" content="http://jixiaoyong.github.io/blog/2018/04/loadResourceFromOtherApk/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="季小勇的博客">
+<meta property="og:url" content="http://jixiaoyong.github.io/blog/tags/android/page/2/index.html">
 <meta property="og:site_name" content="季小勇的博客">
-<meta property="og:description" content="加载已安装应用、未安装apk中的资源，其思路主要是获取到对应的ClassLoader/Context，通过ClassLoader加载R.java等类，再通过反射获取对应的资源id及资源。 加载已安装应用资源sharedUserId在当前应用中加载已安装的其他应用资源，需要二者有相同的sharedUserId，这样Android系统为二者分配同一个Linux用户ID，两个App可以相互访问代码、资">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-15T14:23:37.231Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="加载已安装应用、未安装apk中的资源">
-<meta name="twitter:description" content="加载已安装应用、未安装apk中的资源，其思路主要是获取到对应的ClassLoader/Context，通过ClassLoader加载R.java等类，再通过反射获取对应的资源id及资源。 加载已安装应用资源sharedUserId在当前应用中加载已安装的其他应用资源，需要二者有相同的sharedUserId，这样Android系统为二者分配同一个Linux用户ID，两个App可以相互访问代码、资">
+<meta name="twitter:title" content="季小勇的博客">
 
 
 
@@ -134,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://jixiaoyong.github.io/blog/2018/04/loadResourceFromOtherApk/"/>
+  <link rel="canonical" href="http://jixiaoyong.github.io/blog/tags/android/page/2/"/>
 
 
 
 
 
-  <title>加载已安装应用、未安装apk中的资源 | 季小勇的博客</title>
+  <title>标签: android | 季小勇的博客</title>
   
 
 
@@ -175,7 +170,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -293,210 +288,58 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block tag">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>android<small>标签</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2018/04/loadResourceFromOtherApk/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="季小勇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="季小勇的博客">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">加载已安装应用、未安装apk中的资源</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/blog/2018/01/Android自定义透明背景的Dialog/" itemprop="url">
               
-                <span class="post-meta-item-text">发表于</span>
+                <span itemprop="name">Android自定义透明背景的Dialog</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T21:40:32+08:00">
-                2018-04-15
-              </time>
-            
+            </a>
+        
+      </h2>
 
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-01-26T15:09:40+08:00"
+              content="2018-01-26" >
+          01-26
+        </time>
+      </div>
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p> 加载已安装应用、未安装apk中的资源，其思路主要是获取到对应的ClassLoader/Context，通过ClassLoader加载R.java等类，再通过反射获取对应的资源id及资源。</p>
-<h1 id="加载已安装应用资源"><a href="#加载已安装应用资源" class="headerlink" title="加载已安装应用资源"></a>加载已安装应用资源</h1><h2 id="sharedUserId"><a href="#sharedUserId" class="headerlink" title="sharedUserId"></a>sharedUserId</h2><p>在当前应用中加载已安装的其他应用资源，需要二者有相同的<code>sharedUserId</code>，这样Android系统为二者分配同一个Linux用户ID，两个App可以相互访问代码、资源等。</p>
-<blockquote>
-<p>通过Shared User id,拥有同一个User id的多个APK可以配置成运行在同一个进程中.所以默认就是可以互相访问任意数据. 也可以配置成运行成不同的进程, 同时可以访问其他APK的数据目录下的数据库和文件.就像访问本程序的数据一样。</p>
-<p><a href="https://blog.csdn.net/jiangwei0910410003/article/details/51316688" target="_blank" rel="noopener">Android逆向之旅—Android中的sharedUserId属性详解 - CSDN博客</a></p>
-</blockquote>
-<p>具体设置方法如下</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">package</span>=<span class="string">"cf.android666.dynamicloadapk"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:sharedUserId</span>=<span class="string">"cf.android666.dynamic"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="筛选所有已安装应用信息"><a href="#筛选所有已安装应用信息" class="headerlink" title="筛选所有已安装应用信息"></a>筛选所有已安装应用信息</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">var</span> packageBeanList: ArrayList&lt;PackageInfoBean&gt; = arrayListOf()</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">var</span> packageInfoList: ArrayList&lt;PackageInfo&gt; = arrayListOf()</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> packageInfoList = packageManager.getInstalledPackages(PackageManager.GET_UNINSTALLED_PACKAGES) <span class="keyword">as</span> ArrayList&lt;PackageInfo&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (packageInfoList.isNotEmpty()) &#123;</span><br><span class="line">    <span class="keyword">for</span> (x <span class="keyword">in</span> packageInfoList) &#123;</span><br><span class="line">        <span class="keyword">if</span> (x.sharedUserId != <span class="literal">null</span></span><br><span class="line">            &amp;&amp; x.sharedUserId.equals(sharedUid)</span><br><span class="line">            &amp;&amp; !x.packageName.equals(packageName)) &#123;</span><br><span class="line">            <span class="comment">//sharedUserId与当前App相同，且packageName和当前App不同的App信息，即插件App</span></span><br><span class="line">            packageBeanList.add(PackageInfoBean(packageManager</span><br><span class="line">                                                .getApplicationLabel(x.applicationInfo).toString(), x.packageName))</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="生成插件App的Context"><a href="#生成插件App的Context" class="headerlink" title="生成插件App的Context"></a>生成插件App的Context</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">activity.createPackageContext(<span class="string">"cf.android666.pluginapp"</span>,</span><br><span class="line">        Context.CONTEXT_INCLUDE_CODE | Context.CONTEXT_IGNORE_SECURITY)</span><br></pre></td></tr></table></figure>
-<h2 id="通过Context反射获取插件App中的资源"><a href="#通过Context反射获取插件App中的资源" class="headerlink" title="通过Context反射获取插件App中的资源"></a>通过Context反射获取插件App中的资源</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取ClassLoader</span></span><br><span class="line"><span class="keyword">var</span> pClassLoader = PathClassLoader(pluginContext.packageResourcePath</span><br><span class="line">                , ClassLoader.getSystemClassLoader())</span><br><span class="line"><span class="comment">//反射获取该类及其资源</span></span><br><span class="line"><span class="keyword">var</span> clazz = pluginContext.classLoader</span><br><span class="line">        .loadClass(pluginContext.packageName + <span class="string">".R\$mipmap"</span>)</span><br><span class="line"><span class="keyword">var</span> abc = clazz.getField(s)</span><br><span class="line"><span class="keyword">var</span> id = abc.getInt(R.mipmap::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line"><span class="comment">//调用插件App的Context获取其资源</span></span><br><span class="line"><span class="keyword">var</span> bg = pluginContext.resources.getDrawable(id)</span><br></pre></td></tr></table></figure>
-<h1 id="加载未安装Apk内资源"><a href="#加载未安装Apk内资源" class="headerlink" title="加载未安装Apk内资源"></a>加载未安装Apk内资源</h1><h2 id="获取apk信息"><a href="#获取apk信息" class="headerlink" title="获取apk信息"></a>获取apk信息</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sdPath = Environment.getExternalStorageDirectory().absolutePath</span><br><span class="line"><span class="keyword">val</span> apkPath = <span class="string">"<span class="variable">$sdPath</span>/plugin/plugin.apk"</span></span><br><span class="line"><span class="keyword">var</span> info = packageManager.getPackageArchiveInfo(apkPath, PackageManager.GET_ACTIVITIES)<span class="comment">//获取未安装apk的packageInfo</span></span><br></pre></td></tr></table></figure>
-<h2 id="获取ClassLoader"><a href="#获取ClassLoader" class="headerlink" title="获取ClassLoader"></a>获取ClassLoader</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> file = getDir(<span class="string">"dex"</span>, Context.MODE_PRIVATE)</span><br><span class="line"><span class="keyword">var</span> dexClassLoader = DexClassLoader(apkPath, file.absolutePath, <span class="literal">null</span>, ClassLoader.getSystemClassLoader())</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>getDir()调用了Context的getDir()</p>
-<p>Retrieve, creating if needed, a new directory in which the application can place its own custom data files.  You can use the returned File object to create and access files in this directory.  Note that files created through a File object will only be accessible by your own application; you can only set the mode of the entire directory, not of individual files.</p>
-</blockquote>
-<h2 id="通过反射加载类，获取资源"><a href="#通过反射加载类，获取资源" class="headerlink" title="通过反射加载类，获取资源"></a>通过反射加载类，获取资源</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> drawableClazz = dexClassLoader.loadClass(<span class="string">"cf.android666.pluginapp.R\$drawable"</span>)</span><br><span class="line"><span class="keyword">var</span> onePng = drawableClazz.getDeclaredField(<span class="string">"abc"</span>)</span><br><span class="line"><span class="keyword">var</span> onId = onePng.getInt(R.id::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)//反射获取资源<span class="title">id</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> resources = getUninstallApkResource()<span class="comment">//resource也是通过反射获取到</span></span><br><span class="line"><span class="keyword">var</span> drawable = resources.getDrawable(onId)</span><br></pre></td></tr></table></figure>
-<p><code>AssetManager.addAssetPath()</code>方法是用来将apk等中的资源添加到<code>AssetManager</code>中，再通过其获取到<code>Resources对象</code>，这样就获取到未安装apk中的资源了。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getUninstallApkResource</span><span class="params">()</span></span>: Resources &#123;</span><br><span class="line">    <span class="keyword">var</span> assetManager = AssetManager::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>.<span class="title">newInstance</span></span>()</span><br><span class="line">    <span class="keyword">var</span> addAssetPath = assetManager.javaClass.getMethod(<span class="string">"addAssetPath"</span>,String::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line">    addAssetPath.invoke(assetManager, apkPath)<span class="comment">//设置了apkPath</span></span><br><span class="line">    <span class="keyword">return</span> Resources(assetManager, resources.displayMetrics, resources.configuration)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="参考资源"><a href="#参考资源" class="headerlink" title="参考资源"></a>参考资源</h1><p><a href="https://www.cnblogs.com/lee0oo0/p/3665066.html" target="_blank" rel="noopener">Android之Android apk动态加载机制的研究（二）：资源加载和activity生命周期管理 - lee0oo0 - 博客园  </a></p>
-<p><a href="https://blog.csdn.net/jiangwei0910410003/article/details/51316688" target="_blank" rel="noopener">Android逆向之旅—Android中的sharedUserId属性详解 - CSDN博客</a></p>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/blog/tags/android/" rel="tag"># android</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/blog/2018/04/JVM_ClassLoader/" rel="next" title="JVM类加载机制之ClassLoader">
-                <i class="fa fa-chevron-left"></i> JVM类加载机制之ClassLoader
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/04/AsyncTaskSourceIndex/" rel="prev" title="AsyncTask源码解析">
-                AsyncTask源码解析 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
-      
-        
-  <div class="bdsharebuttonbox">
-    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
-    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
-    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
-    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
-    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
-    <a href="#" class="bds_more" data-cmd="more"></a>
-    <a class="bds_count" data-cmd="count"></a>
-  </div>
-  <script>
-    window._bd_share_config = {
-      "common": {
-        "bdText": "",
-        "bdMini": "2",
-        "bdMiniList": false,
-        "bdPic": ""
-      },
-      "share": {
-        "bdSize": "16",
-        "bdStyle": "0"
-      },
-      "image": {
-        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
-        "viewText": "分享到：",
-        "viewSize": "16"
-      }
-    }
-  </script>
-
-<script>
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
-
       
     </div>
+
   </div>
+  
+  
+  
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/blog/tags/android/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/blog/tags/android/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -504,10 +347,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -528,17 +367,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/blog/images/default_avatar.jpg"
@@ -605,22 +435,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#加载已安装应用资源"><span class="nav-text">加载已安装应用资源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sharedUserId"><span class="nav-text">sharedUserId</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#筛选所有已安装应用信息"><span class="nav-text">筛选所有已安装应用信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成插件App的Context"><span class="nav-text">生成插件App的Context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过Context反射获取插件App中的资源"><span class="nav-text">通过Context反射获取插件App中的资源</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加载未安装Apk内资源"><span class="nav-text">加载未安装Apk内资源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#获取apk信息"><span class="nav-text">获取apk信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取ClassLoader"><span class="nav-text">获取ClassLoader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过反射加载类，获取资源"><span class="nav-text">通过反射加载类，获取资源</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资源"><span class="nav-text">参考资源</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -734,10 +548,10 @@
   
 
   
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+    <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
 
-
+  
 
   
 
