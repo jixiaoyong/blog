@@ -304,6 +304,149 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2018/01/update-Python爬取gityuan所有文章列表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="季小勇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="季小勇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2018/01/update-Python爬取gityuan所有文章列表/" itemprop="url">[update]Python爬取gityuan所有文章列表</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-28T22:03:50+08:00">
+                2018-01-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          简介更新内容：
+
+爬取gityuan.com网站所有文章列表并输出json
+汇总信息输出config.json为后面的客户端做准备
+
+更新文件：
+
+spider_main.py
+html_output.py
+gityuan_urls.py
+html_downloader.py
+
+代码
+spider_main.py
+
+作为入口类，主要增加了初始化所有URL，以及便利这些URL的功能。
+12345678910sp = SpiderMain()gityuan = gityuan_urls.GitYuanUrls()gityuan_urls = gityuan.get_urls(17)file_name = 'gityuan_page_'sp.craw(gityuan_urls,file_name)
+其craw()方法
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2018/01/update-Python爬取gityuan所有文章列表/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2018/01/Python爬虫爬取gityuan-com数据并输出json/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1527,134 +1670,6 @@ i看知乎，我的第五个Android应用。
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/2017/09/Android控件组/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="季小勇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="季小勇的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2017/09/Android控件组/" itemprop="url">Android控件组</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T23:25:05+08:00">
-                2017-09-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          这几天的工作中用到了控件组来实现复杂布局，效果不错，记录下来备用。
-1. 定义控件组布局xxx_layout.xml在这里定义要使用的控件组布局，这里的布局决定了布局显示的样子。
-1234567891011121314151617&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"    xmlns:app="http://schemas.android.com/apk/res-auto"    android:layout_width="match_parent"    android:layout_height="wrap_
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/2017/09/Android控件组/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1705,7 +1720,7 @@ i看知乎，我的第五个Android应用。
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives/">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

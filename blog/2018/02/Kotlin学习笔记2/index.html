@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="季小勇的博客">
 <meta property="og:description" content="尾递归优化 把递归通过编译器转化为迭代，从而避免Stack Overflow “以时间换取空间” 普通递归： 调用函数之后，还需要使用其返回值供自己使用，即自身返回值依赖于下一级函数，一般是调用自身的代码后面，还有其他的代码要执行。   1234567fun fun1(n: Int): BigInteger &amp;#123;    if (n == 0) return BigInteger.valu">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-11T03:39:41.877Z">
+<meta property="og:updated_time" content="2018-04-22T04:25:32.003Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin学习笔记2">
 <meta name="twitter:description" content="尾递归优化 把递归通过编译器转化为迭代，从而避免Stack Overflow “以时间换取空间” 普通递归： 调用函数之后，还需要使用其返回值供自己使用，即自身返回值依赖于下一级函数，一般是调用自身的代码后面，还有其他的代码要执行。   1234567fun fun1(n: Int): BigInteger &amp;#123;    if (n == 0) return BigInteger.valu">
@@ -398,7 +398,10 @@
 </li>
 </ul>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sealed class</span></span><br><span class="line"><span class="keyword">sealed</span> <span class="class"><span class="keyword">class</span> <span class="title">Player</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Play</span></span>(<span class="keyword">var</span> arg:String) : Player()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">object</span> Stop : Player()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">p2</span></span>():Player()</span><br></pre></td></tr></table></figure>
-
+<ul>
+<li>kotlin抛出异常</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Throws(RemoteException::class)</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getBookList</span><span class="params">()</span></span>:List&lt;Book&gt;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -546,7 +549,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/blog/archives/">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

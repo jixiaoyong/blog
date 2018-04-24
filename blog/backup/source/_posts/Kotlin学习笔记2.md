@@ -67,3 +67,9 @@ sealed class Player{
 class p2():Player()
 ```
 
+* kotlin抛出异常
+
+```kotlin
+@Throws(RemoteException::class)
+fun getBookList():List<Book>
+```
