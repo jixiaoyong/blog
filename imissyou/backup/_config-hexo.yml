@@ -3,19 +3,26 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: I Miss YOU
+title: I Miss You
 subtitle:
 description:
+keywords:
 author: 季小勇
-language: zh-CN
+language: zh-Hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://jixiaoyong.github.io/imissyou/
 root: /imissyou/
-permalink: :year/:month/:title/
+# permalink: :year/:id/
+permalink: posts/:abbrlink/
 permalink_defaults:
+
+abbrlink:
+  alg: crc32  # 算法：crc16(default) and crc32
+  rep: hex    # 进制：dec(default) and hex
+
 
 # Directory
 source_dir: source
@@ -28,7 +35,7 @@ i18n_dir: :lang
 skip_render:
 
 # Writing
-new_post_name: :year-:month-:day-01.md # File name of new posts
+new_post_name: :title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
@@ -42,7 +49,16 @@ highlight:
   line_number: true
   auto_detect: false
   tab_replace:
-
+  
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
+  
 # Category & Tag
 default_category: uncategorized
 category_map:
@@ -70,8 +86,10 @@ theme: next
 deploy:
   type:
 
+#search by https://www.cnblogs.com/syd192/p/6074323.html
 search:
   path: search.xml
   field: post
+  content: true
   format: html
   limit: 10000

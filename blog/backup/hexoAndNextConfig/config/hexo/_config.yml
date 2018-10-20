@@ -6,18 +6,24 @@
 title: 季小勇的博客
 subtitle:
 description:
+keywords:
 author: 季小勇
-language: zh-CN
+language: zh-Hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://jixiaoyong.github.io/blog/
 root: /blog/
-permalink: :year/:month/:title/
+# permalink: :year/:id/
+permalink: posts/:abbrlink/
 permalink_defaults:
 
-# Directory，各个自定义链接
+abbrlink:
+  alg: crc32  # 算法：crc16(default) and crc32
+  rep: hex    # 进制：dec(default) and hex
+
+# Directory
 source_dir: source
 public_dir: public
 tag_dir: tags
@@ -42,7 +48,16 @@ highlight:
   line_number: true
   auto_detect: false
   tab_replace:
-
+  
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
+  
 # Category & Tag
 default_category: uncategorized
 category_map:
@@ -67,15 +82,13 @@ theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
-#下面这个并没有用
 deploy:
-  type: git
-  repo: https://github.com/jixiaoyong/jixiaoyong.github.io.git
-
+  type:
 
 #search by https://www.cnblogs.com/syd192/p/6074323.html
 search:
   path: search.xml
   field: post
+  content: true
   format: html
   limit: 10000
