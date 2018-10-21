@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT, jixiaoyong, blog">
+  <meta name="keywords" content="flutter,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="今天重新学习类三种排序方法，按照排序速度依次是冒泡排序，选择排序和插入排序。以下示例皆为从小到大的排序 1.冒泡排序每一次比较都可能要交换元素。冒泡排序的思想是：每一轮开始的时候，将第一个元素（a）开始与其后的元素（b）依次进行比较，将较大的元素（设为m）放到后面，并将m与其后的另外一个元素继续进行比较，直到最后一个没有排好序的元素。在接下来一轮的排序中，刚才以及之前选出来的、已经排好顺序的最大值">
+<meta name="description" content="Flutter是Google提出的跨平台开发框架，使用Dart语言，支持Android，IOS系统。Flutter一个重要的概念即是——“万物皆控件（Widget）”。 本文主要记录一下Flutter中两个重要的控件：StatelessWidget和StatefulWidget，以及Flutter开发的一些基础知识。 Flutter基础知识Flutter以Dart开发，其工程基本的结构如下：  a">
+<meta name="keywords" content="flutter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java中三种常用的排序方法">
-<meta property="og:url" content="http://jixiaoyong.github.io/blog/posts/1fd30f6e/index.html">
+<meta property="og:title" content="Flutter Widget简单入门">
+<meta property="og:url" content="http://jixiaoyong.github.io/blog/posts/e35c106d/index.html">
 <meta property="og:site_name" content="季小勇的博客">
-<meta property="og:description" content="今天重新学习类三种排序方法，按照排序速度依次是冒泡排序，选择排序和插入排序。以下示例皆为从小到大的排序 1.冒泡排序每一次比较都可能要交换元素。冒泡排序的思想是：每一轮开始的时候，将第一个元素（a）开始与其后的元素（b）依次进行比较，将较大的元素（设为m）放到后面，并将m与其后的另外一个元素继续进行比较，直到最后一个没有排好序的元素。在接下来一轮的排序中，刚才以及之前选出来的、已经排好顺序的最大值">
+<meta property="og:description" content="Flutter是Google提出的跨平台开发框架，使用Dart语言，支持Android，IOS系统。Flutter一个重要的概念即是——“万物皆控件（Widget）”。 本文主要记录一下Flutter中两个重要的控件：StatelessWidget和StatefulWidget，以及Flutter开发的一些基础知识。 Flutter基础知识Flutter以Dart开发，其工程基本的结构如下：  a">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-20T11:11:16.186Z">
+<meta property="og:updated_time" content="2018-10-21T15:08:08.547Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java中三种常用的排序方法">
-<meta name="twitter:description" content="今天重新学习类三种排序方法，按照排序速度依次是冒泡排序，选择排序和插入排序。以下示例皆为从小到大的排序 1.冒泡排序每一次比较都可能要交换元素。冒泡排序的思想是：每一轮开始的时候，将第一个元素（a）开始与其后的元素（b）依次进行比较，将较大的元素（设为m）放到后面，并将m与其后的另外一个元素继续进行比较，直到最后一个没有排好序的元素。在接下来一轮的排序中，刚才以及之前选出来的、已经排好顺序的最大值">
+<meta name="twitter:title" content="Flutter Widget简单入门">
+<meta name="twitter:description" content="Flutter是Google提出的跨平台开发框架，使用Dart语言，支持Android，IOS系统。Flutter一个重要的概念即是——“万物皆控件（Widget）”。 本文主要记录一下Flutter中两个重要的控件：StatelessWidget和StatefulWidget，以及Flutter开发的一些基础知识。 Flutter基础知识Flutter以Dart开发，其工程基本的结构如下：  a">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://jixiaoyong.github.io/blog/posts/1fd30f6e/">
+  <link rel="canonical" href="http://jixiaoyong.github.io/blog/posts/e35c106d/">
 
 
 
 
 
-  <title>java中三种常用的排序方法 | 季小勇的博客</title>
+  <title>Flutter Widget简单入门 | 季小勇的博客</title>
   
 
 
@@ -274,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/posts/1fd30f6e/">
+    <link itemprop="mainEntityOfPage" href="http://jixiaoyong.github.io/blog/blog/posts/e35c106d/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="季小勇">
@@ -291,7 +292,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">java中三种常用的排序方法</h1>
+          <h1 class="post-title" itemprop="name headline">Flutter Widget简单入门</h1>
         
 
         <div class="post-meta">
@@ -303,8 +304,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-20T23:25:05+08:00">
-                2016-12-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-21T22:26:41+08:00">
+                2018-10-21
               </time>
             
 
@@ -341,85 +342,31 @@
       
 
       
-        <p>今天重新学习类三种排序方法，按照排序速度依次是冒泡排序，选择排序和插入排序。<br>以下示例皆为从小到大的排序</p>
-<h1 id="1-冒泡排序"><a href="#1-冒泡排序" class="headerlink" title="1.冒泡排序"></a>1.冒泡排序</h1><p>每一次比较都可能要交换元素。<br>冒泡排序的思想是：<br>每一轮开始的时候，将第一个元素（a）开始与其后的元素（b）依次进行比较，将较大的元素（设为m）放到后面，并将m与其后的另外一个元素继续进行比较，直到最后一个没有排好序的元素。<br>在接下来一轮的排序中，刚才以及之前选出来的、已经排好顺序的最大值不用参与排序。<br>依次类推，总共遍历n-1轮，即可完成排序。<br>具体代码如下：</p>
-<pre><code> void bubble(int[] arr){
-    int temp;
-    for (int i = 0; i &lt; arr.length - 1; i++) {
-        for (int j = 0; j &lt; arr.length - i - 1; j++) {
-            if (arr[j] &gt; arr[j + 1]) {
-                temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
-        }
-    }
+        <p>Flutter是Google提出的跨平台开发框架，使用Dart语言，支持Android，IOS系统。Flutter一个重要的概念即是——<em>“万物皆控件（Widget）”</em>。</p>
+<p>本文主要记录一下Flutter中两个重要的控件：StatelessWidget和StatefulWidget，以及Flutter开发的一些基础知识。</p>
+<h1 id="Flutter基础知识"><a href="#Flutter基础知识" class="headerlink" title="Flutter基础知识"></a>Flutter基础知识</h1><p>Flutter以Dart开发，其工程基本的结构如下：</p>
+<ul>
+<li>android</li>
+<li>ios</li>
+<li>lib<ul>
+<li>main.dart</li>
+</ul>
+</li>
+<li>pubspec.yaml //Flutter工程的配置信息</li>
+</ul>
+<p>Flutter项目启动后会首先加载<code>/lib/main.dart</code>中的<code>main()</code>方法。<br>一个标准的material app的main.dart内容如下：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./product_manager.dart'</span>;</span><br><span class="line"></span><br><span class="line">main() =&gt; runApp(MyApp());<span class="comment">//在main()方法中调用了material的runApp()方法，里面传入了要展示的Widget——APP的界面，相当于Android的setContentView()</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> MaterialApp(</span><br><span class="line">      theme: ThemeData(</span><br><span class="line">        primarySwatch: Colors.deepOrange</span><br><span class="line">      ),</span><br><span class="line">      home: Scaffold(</span><br><span class="line">        appBar: AppBar(</span><br><span class="line">          title: Text(<span class="string">"EasyList"</span>),</span><br><span class="line">        ),</span><br><span class="line">        body: ProductManager(<span class="string">"Test"</span>),<span class="comment">//这里是自定义的控件，布局信息主要在这里展示</span></span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="StatelessWidget-amp-StatefulWidget"><a href="#StatelessWidget-amp-StatefulWidget" class="headerlink" title="StatelessWidget &amp; StatefulWidget"></a>StatelessWidget &amp; StatefulWidget</h1><p>StatelessWidget和StateFulWidget区别在于：前者一旦创建，状态便不会再更改，而后者在创建后仍可以通过动态改变State从而改变其状态。</p>
+<h2 id="StatelessWidget"><a href="#StatelessWidget" class="headerlink" title="StatelessWidget"></a>StatelessWidget</h2><p>下面是一个StatelessWidget示例，一般只需要重写其build()方法，返回要展示的控件即可：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyWidget</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> CustomerWidget();<span class="comment">//在这里构建一个页面并返回</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="StatefulWidget"><a href="#StatefulWidget" class="headerlink" title="StatefulWidget"></a>StatefulWidget</h2><p>下面是一个StatefulWidget的示例:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProductManager</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  State&lt;StatefulWidget&gt; createState() &#123;</span><br><span class="line">    <span class="keyword">return</span> ProductManagerState();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProductManagerState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">ProductManager</span>&gt; </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> CustomerWidget();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以注意到StatefulWidget重写了<code>createState()</code>，而该方法返回了自定义的ProductManagerState类对象，在该类中<code>build()</code>方法实现和StatelessWidget中的方法类似，返回要展示的页面控件。</p>
+<p>两者的不同之处在于，StatefulWidget中可以调用<code>setState()</code>，主动调用更新UI。</p>
+<p>可以通过对该方法就行包装，使得在StatelessWidget控件中调用StatefulWidget控件的<code>setState()</code>方法，达到刷新页面的效果：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// StatefulWidget</span></span><br><span class="line">  <span class="keyword">void</span> aFun()&#123;</span><br><span class="line">    setState(() &#123;</span><br><span class="line">      <span class="comment">// update UI</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">AStatelessWidget(aFun);<span class="comment">// 将该方法传入StatelessWidget中</span></span><br><span class="line"><span class="comment">// StatelessWidget</span></span><br><span class="line"><span class="keyword">final</span> <span class="built_in">Function</span> aFun</span><br><span class="line">AStatelessWidget(<span class="keyword">this</span>.aFun);<span class="comment">// 接收传入的方法</span></span><br><span class="line">aFun();<span class="comment">// 执行该方法，从而实现调用StatelessWidget中的方法也可以刷新UI</span></span><br></pre></td></tr></table></figure>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://www.youtube.com/watch?v=GLSG_Wh_YWc" target="_blank" rel="noopener">Flutter Tutorial for Beginners - Build iOS and Android Apps with Google’s Flutter &amp; Dart</a></p>
 
-    System.out.println(&quot;\n--bubble :&quot;);
-    for (int i = 0; i &lt; arr.length; i++) {
-        System.out.print(arr[i] + &quot; &quot;);
-    }
-}
-</code></pre><h1 id="2-选择排序"><a href="#2-选择排序" class="headerlink" title="2.选择排序"></a>2.选择排序</h1><p>每次比较的时候不交换<br>选择排序的思想：<br>每次比较的时候找到的两个数中的较大值并记下其位置，等到当前一轮的遍历完成之后，将最后一个未排序元素与这一轮遍历找到的最大值交换<br>最多交换n-1次<br>代码如下：</p>
-<pre><code>   void select(int[] arr){
-
-    for (int i = 0; i &lt; arr.length; i++) {
-        int maxIndex = 0;
-        int temp = 0;
-
-        for (int j = 1; j &lt; arr.length - i; j++) {
-            if (arr[maxIndex] &lt; arr[j]) {
-                maxIndex = j;
-            }
-        }
-
-        temp = arr[maxIndex];
-        arr[maxIndex] = arr[arr.length - i - 1];
-        arr[arr.length - i - 1] = temp;
-    }
-
-
-    System.out.println(&quot;\n--select :&quot;);
-
-    for (int i = 0; i &lt; arr.length; i++) {
-        System.out.print(arr[i] + &quot; &quot;);
-    }
-}
-</code></pre><h1 id="3-插入排序法"><a href="#3-插入排序法" class="headerlink" title="3.插入排序法"></a>3.插入排序法</h1><p>插入排序法思想：<br>将待排序的元素分为有序和无序两种，刚开始排序的时候假设只有第一个元素是有序的，其余n-1个元素都是无序的；<br>排序开始的时，将无序部分的一个元素（a）与有序部分的最后一个元素（b）进行比较，如果a&lt;b，则将a与b交换，再将a与下一个有序元素进行比较；否则，将a加到b后面，作为有序部分的最后一个元素。<br>接着再从无序部分取出一个元素与有序部分的元素依次比较，直达所有元素都为有序元素。<br>遍历n-1次<br>代码如下：</p>
-<pre><code>    void insertSort(int[] arr){
-
-    for (int i = 1; i &lt; arr.length; i++) {
-        int instertValue = arr[i];
-
-        for (int j = i - 1; j &gt;= 0; j--) {
-            if (instertValue &lt; arr[j]) {
-                arr[j+1] = arr[j];
-                arr[j] = instertValue;
-            }else {
-                break;
-            }
-        }
-    }
-
-    /* 第二种表示形式
-    for (int i = 1; i &lt; arr.length; i++) {
-        int instertVal = arr[i];
-        int index = i - 1;
-
-        while (index &gt;= 0 &amp;&amp; instertVal &lt; arr[index]) {
-            arr[index + 1] = arr[index];
-            index--;
-        }
-        arr[index + 1] = instertVal;
-    }        
-    */
-
-    System.out.println(&quot;\n--insertSort :&quot;);
-    for (int i = 0; i &lt; arr.length; i++) {
-        System.out.print(arr[i] + &quot; &quot;);
-    }
-}
-</code></pre>
       
     </div>
     
@@ -439,7 +386,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://jixiaoyong.github.io/blog/posts/1fd30f6e/" title="java中三种常用的排序方法">http://jixiaoyong.github.io/blog/posts/1fd30f6e/</a>
+    <a href="http://jixiaoyong.github.io/blog/posts/e35c106d/" title="Flutter Widget简单入门">http://jixiaoyong.github.io/blog/posts/e35c106d/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -452,6 +399,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/blog/tags/flutter/" rel="tag"># flutter</a>
+          
+        </div>
+      
 
       
       
@@ -461,8 +414,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/posts/25db0a11/" rel="next" title="Linux下配置Git，使用AndroidStudio同步工程到Github">
-                <i class="fa fa-chevron-left"></i> Linux下配置Git，使用AndroidStudio同步工程到Github
+              <a href="/blog/posts/f931e8ae/" rel="next" title="AIDL在Android中的使用">
+                <i class="fa fa-chevron-left"></i> AIDL在Android中的使用
               </a>
             
           </div>
@@ -470,10 +423,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/posts/1c56d6b9/" rel="prev" title="Android开发常用设置">
-                Android开发常用设置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -650,7 +599,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-冒泡排序"><span class="nav-number">1.</span> <span class="nav-text">1.冒泡排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-选择排序"><span class="nav-number">2.</span> <span class="nav-text">2.选择排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-插入排序法"><span class="nav-number">3.</span> <span class="nav-text">3.插入排序法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Flutter基础知识"><span class="nav-number">1.</span> <span class="nav-text">Flutter基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#StatelessWidget-amp-StatefulWidget"><span class="nav-number">2.</span> <span class="nav-text">StatelessWidget &amp; StatefulWidget</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#StatelessWidget"><span class="nav-number">2.1.</span> <span class="nav-text">StatelessWidget</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#StatefulWidget"><span class="nav-number">2.2.</span> <span class="nav-text">StatefulWidget</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
