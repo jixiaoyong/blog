@@ -1,7 +1,8 @@
 ---
 title: Android多渠道打包知识
-date: 2018-03-25 22:17:57
 tags: android
+abbrlink: a3a3dc4c
+date: 2018-03-25 22:17:57
 ---
 
 国内Android应用常常要分发到多个应用商店，使用Android Studio正确配置build.gradle与AndroidManifest.xml文件可以**一步打包多个渠道**。

@@ -1,5 +1,6 @@
 ---
 title: linux下配置JDK和AndroidStudio开发环境
+abbrlink: ca532ade
 date: 2016-04-28 06:06:06
 ---
 

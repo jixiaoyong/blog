@@ -1,7 +1,8 @@
 ---
 title: Java反射简单应用
-date: 2018-01-16 21:28:57
 tags: java
+abbrlink: 3e9e8cb1
+date: 2018-01-16 21:28:57
 ---
 
 # 简介

@@ -1,7 +1,8 @@
 ---
 title: 加载已安装应用、未安装apk中的资源
-date: 2018-04-15 21:40:32
 tags: android
+abbrlink: 8d60b485
+date: 2018-04-15 21:40:32
 ---
 
  加载已安装应用、未安装apk中的资源，其思路主要是获取到对应的ClassLoader/Context，通过ClassLoader加载R.java等类，再通过反射获取对应的资源id及资源。

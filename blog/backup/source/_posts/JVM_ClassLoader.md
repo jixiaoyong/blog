@@ -1,7 +1,8 @@
 ---
 title: JVM类加载机制之ClassLoader
-date: 2018-04-15 16:40:32
 tags: JVM_ClassLoader
+abbrlink: b3994218
+date: 2018-04-15 16:40:32
 ---
 
 > 本文为[《一看你就懂，超详细java中的ClassLoader详解 - CSDN博客》]( https://blog.csdn.net/briblue/article/details/54973413)阅读笔记

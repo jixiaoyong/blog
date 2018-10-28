@@ -1,6 +1,7 @@
 ---
-title: Android控件组	
-date: 2017-9-20 23:25:05
+title: Android控件组
+abbrlink: 3b69424a
+date: 2017-09-20 23:25:05
 ---
 
 

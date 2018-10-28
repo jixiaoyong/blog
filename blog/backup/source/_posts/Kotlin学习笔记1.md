@@ -1,7 +1,8 @@
 ---
 title: Kotlin学习笔记1
-date: 2018-02-09 16:18:01
 tags: kotlin
+abbrlink: 135b2780
+date: 2018-02-09 16:18:01
 ---
 
 这是我在学习Bennyhuo（ [github](https://github.com/enbandari/Kotlin-Tutorials) ）的kotlin入门视频时的一些笔记，比较偏基础，用于查缺补漏。

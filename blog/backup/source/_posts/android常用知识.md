@@ -1,6 +1,7 @@
 ---
-title: Android常用知识	
-date: 2017-9-20 23:25:05
+title: Android常用知识
+abbrlink: 9dc94196
+date: 2017-09-20 23:25:05
 ---
 
 # 自定义view

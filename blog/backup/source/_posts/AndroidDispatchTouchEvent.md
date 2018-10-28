@@ -1,7 +1,8 @@
 ---
 title: Android事件分发
-date: 2018-04-24 20:25:33
 tags: android
+abbrlink: c0fefed0
+date: 2018-04-24 20:25:33
 ---
 
 Android事件分发，指手指点击屏幕后，从Activity、ViewGroup到View的一系列过程。

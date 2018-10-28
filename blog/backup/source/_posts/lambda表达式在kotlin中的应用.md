@@ -1,7 +1,8 @@
 ---
 title: lambda表达式在kotlin中的应用
-date: 2018-02-09 11:09:06
 tags: lambda
+abbrlink: '53875104'
+date: 2018-02-09 11:09:06
 ---
 
 # 一个例子

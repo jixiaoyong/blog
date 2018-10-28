@@ -1,7 +1,8 @@
 ---
 title: Android实现可折叠toolbar
-date: 2018-02-22 15:01:10
 tags: android
+abbrlink: b4832cd1
+date: 2018-02-22 15:01:10
 ---
 
 

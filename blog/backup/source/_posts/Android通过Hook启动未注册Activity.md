@@ -1,7 +1,8 @@
 ---
 title: Android通过Hook启动未注册Activity
-date: 2018-01-16 00:10:41
 tags: Android hook
+abbrlink: 26eab50a
+date: 2018-01-16 00:10:41
 ---
 
 # 简介

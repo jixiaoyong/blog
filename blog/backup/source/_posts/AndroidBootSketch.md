@@ -1,7 +1,8 @@
 ---
 title: Android系统架构简介
-date: 2018-02-23 22:35:14
 tags: android
+abbrlink: e3bb9a54
+date: 2018-02-23 22:35:14
 ---
 
 

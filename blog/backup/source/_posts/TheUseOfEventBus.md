@@ -1,7 +1,8 @@
 ---
 title: EventBus3简介
-date: 2018-03-06 22:46:31
 tags: android
+abbrlink: c1d65822
+date: 2018-03-06 22:46:31
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 title: Android 异步消息机制 Handler、Message、Looper
-date: 2018-04-01 20:08:08
 tags: android
+abbrlink: 5962504e
+date: 2018-04-01 20:08:08
 ---
 
 

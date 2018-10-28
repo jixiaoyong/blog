@@ -1,6 +1,7 @@
 ---
 title: Android开发常用设置
-date: 2017-8-27 23:25:05
+abbrlink: 1c56d6b9
+date: 2017-08-27 23:25:05
 ---
 
 

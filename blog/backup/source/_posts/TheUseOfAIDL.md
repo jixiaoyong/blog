@@ -1,7 +1,8 @@
 ---
 title: AIDL在Android中的使用
-date: 2018-08-07 21:15:39
 tags: aidl
+abbrlink: f931e8ae
+date: 2018-08-07 21:15:39
 ---
 
 AIDL（Android Interface Definition Language ，Android接口定义语言）用于Android IPC，适用于大量并发请求。

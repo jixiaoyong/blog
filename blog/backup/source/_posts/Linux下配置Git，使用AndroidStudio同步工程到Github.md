@@ -1,6 +1,7 @@
 ---
 title: Linux下配置Git，使用AndroidStudio同步工程到Github
-date: 2016-04-29  06:06:06
+abbrlink: 25db0a11
+date: 2016-04-29 06:06:06
 ---
 
 这篇文章介绍了如何在 linux 环境下安装和配置 git 与 github ，并且使用 Android Studio 将本地的项目同步到 github 上面。

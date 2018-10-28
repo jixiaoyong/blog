@@ -1,7 +1,8 @@
 ---
 title: JVM内存知识整理
-date: 2018-02-24 23:39:19
 tags: jvm
+abbrlink: f31c11c5
+date: 2018-02-24 23:39:19
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 title: python自动创建发布hexo文章并同步github
-date: 2018-02-01 00:09:12
 tags: python
+abbrlink: d9a2e1ba
+date: 2018-02-01 00:09:12
 ---
 
 # 简介

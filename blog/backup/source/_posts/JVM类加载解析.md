@@ -1,7 +1,8 @@
 ---
 title: JVM类加载机制解析
-date: 2018-02-26 19:28:56
 tags: jvm
+abbrlink: cf83ef31
+date: 2018-02-26 19:28:56
 ---
 
 # 简述

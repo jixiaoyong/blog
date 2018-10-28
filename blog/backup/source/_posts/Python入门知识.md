@@ -1,7 +1,8 @@
 ---
 title: Python入门知识
-date: 2018-01-20 23:49:17
 tags: python
+abbrlink: a8f97c56
+date: 2018-01-20 23:49:17
 ---
 
 基于Python3.x

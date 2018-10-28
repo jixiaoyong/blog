@@ -1,7 +1,8 @@
 ---
 title: Kotlin学习笔记2
-date: 2018-02-11 11:38:43
 tags: kotlin
+abbrlink: 8a52763a
+date: 2018-02-11 11:38:43
 ---
 
 - 尾递归优化

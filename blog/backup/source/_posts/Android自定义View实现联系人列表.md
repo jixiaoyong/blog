@@ -1,6 +1,7 @@
 ---
 title: Android自定义View实现联系人列表
-date: 2017-9-03 23:25:05
+abbrlink: a2c96aac
+date: 2017-09-03 23:25:05
 ---
 
 

@@ -1,7 +1,8 @@
 ---
 title: Android自定义view的一些知识点
-date: 2018-02-19 21:59:28
 tags: android
+abbrlink: e41787ec
+date: 2018-02-19 21:59:28
 ---
 
 # 绘制两个图形重叠部分

@@ -1,5 +1,6 @@
 ---
 title: AppWidget的使用之PendingIntent
+abbrlink: fcfc830b
 date: 2016-04-25 06:06:06
 ---
 
