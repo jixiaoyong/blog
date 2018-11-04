@@ -72,24 +72,45 @@ objArr1[0] = objArr2[0];
 
 # 泛型容器
 
-泛型数组只能保存指定泛型类型的数据，而不能保存其子类。
+由于泛型的类型在运行时会被擦除，所以将类型检查放到了编译期。
+
+`List<Clazz>` 泛型列表只能保存指定泛型类型`T`的数据，而不能保存其子类。
 
 ```java
 class Fruit{}
 class Apple extends Fruit{}
+class Jonathan extends Apple{}
 //编译时报错，类型不兼容
 List<Fruit> fruits = new ArrayList<Apple>();
 ```
 
-可以用通配符*“在两个类型之间建立某种类型的**向上转型**关系”*。
+但是能保存Fruit的容器应该也要能安全的保存Apple，为了实现这一点，类似于数组中`Object[] arr = Apple[]`的向上转型，可以使用`?`引入协变。
 
-List<? extends Fruit>可以合法的指向一个List< Apple>，这个过程会完成自动**向上转型**，成为可以持有**某个诸如Fruit或者Apple的类**的List，但是编译器不知道这个**类**具体是什么，所以拒绝向其中传递任何类型对象，即使Object也不行。
+## 协变
+
+`List<? extends T>` 可以**合法的指向一个`List< SubT>`**，这个过程会完成自动**向上转型**，成为可以持有**某个诸如T或者T的子类**的List，但是编译器不知道这个**类**具体是什么，所以拒绝向其中传递任何类型对象，即使Object也不行。
+
+可以这么想，`<? extends T>`表示的是T的子类，那么`List<? extends T>` 保存的便是**T的某个子类**，所以不能保存Object或者T等类型，又由于列表不能保存不同的类型，所以也不能保存任何T的子类,即容器将数组在运行时才会有的类型检查放到了编译期（原因是运行时类型会被擦除）。
 
 ```java
-List<? extends Fruit> fruits = new ArrayList<Apple>();
+List<? extends Fruit> fruits = new ArrayList<Apple>();//可以安全的应用
 fruits2.add(new Apple());//编译时报错，类型转化错误
 fruits2.add(new Fruit());//编译时报错
 ```
+
+## 逆变
+
+`List<? super T>` **主动声明**通配符`?`的超类型为`T`,即List保存的是**T的某个父类**，那么List也可以安全的保存**T或者T的子类**。
+
+```java
+void fun(List<? super Apple> apples){
+    apples.add(new Apple());
+    apples.add(new Jonathan());
+    apples.add(new Fruit());//error 类型错误
+}
+```
+
+
 
 # 参考资料
 
@@ -98,5 +119,7 @@ fruits2.add(new Fruit());//编译时报错
 [Oracle Java 泛型原理](https://www.oracle.com/technetwork/cn/articles/java/juneau-generics-2255374-zhs.html)
 
 [Java 理论和实践-了解泛型-识别和避免学习使用泛型过程中的陷阱](https://www.ibm.com/developerworks/cn/java/j-jtp01255.html)
+
+[Java泛型（二） 协变与逆变](https://www.jianshu.com/p/2bf15c5265c5)
 
 《Java编程思想 第4版》
