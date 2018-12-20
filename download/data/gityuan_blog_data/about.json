@@ -1,5 +1,0 @@
-{
-  "title": "About",
-  "content": "这是一个关于gityuan.com的app。\n这个app是我第一次用Kotlin语言，其中主页所用到的文章列表数据全部使用python爬取自于gityuan.com，版权归原作者所有，向大神致敬。\n本app仅供学习使用，已经开源在github，如果你有兴趣可以点击文末按钮前往。\n如果你有任何问题，欢迎邮件交流，jixiaoyong1995@gmail.com",
-  "github": "https://github.com/jixiaoyong/AndroidNote/tree/master/projects/MyKotlin"
-}
