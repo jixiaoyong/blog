@@ -2,6 +2,10 @@
 
 # [我的博客](https://jixiaoyong.github.io) 
 
+hexo_blog 分支
+
+存放 https://jixiaoyong.github.io/blog 的hexo相关资源
+
 [![jixiaoyong.github.io](https://github.com/jixiaoyong/jixiaoyong.github.io/blob/master/images/blog/2018-03/bloglogo.png?raw=true)](https://jixiaoyong.github.io/blog/)
 
 
