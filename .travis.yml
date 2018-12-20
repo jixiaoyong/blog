@@ -44,8 +44,10 @@ after_script:
   - rm -rf ./jixiaoyong.github.io/blog/*
   - rm -rf ./jixiaoyong.github.io/imissyou/*
   - cd ..
-  - cp -rf blog/jixiaoyong.github.io/public/* publish/jixiaoyong.github.io/blog/
-  - cp -rf imissyou/jixiaoyong.github.io/public/* publish/jixiaoyong.github.io/imissyou/
+  - pwd
+  - ls
+  - cp -rf jixiaoyong.github.io/blog/public/* publish/jixiaoyong.github.io/blog/
+  - cp -rf jixiaoyong.github.io/imissyou/public/* publish/jixiaoyong.github.io/imissyou/
   - cd publish/jixiaoyong.github.io/
   - git add .
   - git commit -m "auto update by www.travis-ci.org"
