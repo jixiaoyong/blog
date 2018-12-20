@@ -17,20 +17,24 @@ before_install:
 # S: Build Lifecycle
 install:
   - npm install
-  - npm install hexo-deployer-git --save
+  # - npm install hexo-deployer-git --save
 
 before_script:
  # - npm install -g gulp
 
 script:
+  - cd blog
   - hexo clean
   - hexo generate
+  - cd ..
+  - cd imissyou
+  - hexo clean
+  - hexo generate
+  - cd ..
 
 after_script:
   - git config user.name "jixiaoyong"
   - git config user.email "jixiaoyong1995@gmail.com"
-  # - git config --global github.user jixiaoyong      
-  # - git config --global github.token ${GH_TOKEN}
   - pwd
   - ls
   - cd ..
@@ -38,8 +42,10 @@ after_script:
   - cd publish
   - git clone https://${GH_TOKEN}@github.com/jixiaoyong/jixiaoyong.github.io.git
   - rm -rf ./jixiaoyong.github.io/blog/*
+  - rm -rf ./jixiaoyong.github.io/imissyou/*
   - cd ..
-  - cp -rf jixiaoyong.github.io/public/* publish/jixiaoyong.github.io/blog/
+  - cp -rf blog/jixiaoyong.github.io/public/* publish/jixiaoyong.github.io/blog/
+  - cp -rf imissyou/jixiaoyong.github.io/public/* publish/jixiaoyong.github.io/imissyou/
   - cd publish/jixiaoyong.github.io/
   - git add .
   - git commit -m "auto update by www.travis-ci.org"
