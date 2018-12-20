@@ -40,7 +40,7 @@
 
   
   
-  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/imissyou/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,29 +48,27 @@
 
 
 
-<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/imissyou/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/default_avatar.jpg?v=5.1.4">
+<link href="/imissyou/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/default_avatar.jpg?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/imissyou/images/default_avatar.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/default_avatar.jpg?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/imissyou/images/default_avatar.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/blog/images/default_avatar.jpg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/imissyou/images/default_avatar.png?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/imissyou/images/default_avatar.png?v=5.1.4" color="#222">
 
 
 
-  <meta name="keywords" content="jvm,">
 
 
+  <meta name="keywords" content="Hexo, NexT, jixiaoyong">
 
 
 
@@ -79,30 +77,29 @@
 
 
 
-<meta name="description" content="简述本文介绍了java虚拟机类加载机制。 类加载机制JVM类加载一共7步，前五步是类加载机制，各个步骤按照顺序进行，但是并非固定的1,2,3步，在实际中有可能从其中间某一步开始。 类加载机制一般分为三部分：加载Loading -&amp;gt; 连接Linking -&amp;gt; 初始化Initializing  其中加载、验证、准备和初始化发生的顺序是确定的，但解析可以在初始化之后开始（java动态绑定）">
-<meta name="keywords" content="jvm">
+
+
+<meta name="description" content="这个是一个测试自动化构建的文件。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM类加载机制解析">
-<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/cf83ef31/index.html">
-<meta property="og:site_name" content="季小勇的博客">
-<meta property="og:description" content="简述本文介绍了java虚拟机类加载机制。 类加载机制JVM类加载一共7步，前五步是类加载机制，各个步骤按照顺序进行，但是并非固定的1,2,3步，在实际中有可能从其中间某一步开始。 类加载机制一般分为三部分：加载Loading -&amp;gt; 连接Linking -&amp;gt; 初始化Initializing  其中加载、验证、准备和初始化发生的顺序是确定的，但解析可以在初始化之后开始（java动态绑定）">
+<meta property="og:title" content="测试">
+<meta property="og:url" content="https://jixiaoyong.github.io/imissyou/posts/9daba997/index.html">
+<meta property="og:site_name" content="I Miss You">
+<meta property="og:description" content="这个是一个测试自动化构建的文件。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/jixiaoyong/Notes-Files/blob/master/draw-io/png/JVMClassLoader.png?raw=true">
-<meta property="og:updated_time" content="2018-12-20T14:16:12.347Z">
+<meta property="og:updated_time" content="2018-12-20T14:16:12.747Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JVM类加载机制解析">
-<meta name="twitter:description" content="简述本文介绍了java虚拟机类加载机制。 类加载机制JVM类加载一共7步，前五步是类加载机制，各个步骤按照顺序进行，但是并非固定的1,2,3步，在实际中有可能从其中间某一步开始。 类加载机制一般分为三部分：加载Loading -&amp;gt; 连接Linking -&amp;gt; 初始化Initializing  其中加载、验证、准备和初始化发生的顺序是确定的，但解析可以在初始化之后开始（java动态绑定）">
-<meta name="twitter:image" content="https://github.com/jixiaoyong/Notes-Files/blob/master/draw-io/png/JVMClassLoader.png?raw=true">
+<meta name="twitter:title" content="测试">
+<meta name="twitter:description" content="这个是一个测试自动化构建的文件。">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blog/',
+    root: '/imissyou/',
     scheme: 'Muse',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -122,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/cf83ef31/">
+  <link rel="canonical" href="https://jixiaoyong.github.io/imissyou/posts/9daba997/">
 
 
 
 
 
-  <title>JVM类加载机制解析 | 季小勇的博客</title>
+  <title>测试 | I Miss You</title>
   
 
 
@@ -156,9 +153,9 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blog/" class="brand" rel="start">
+      <a href="/imissyou/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">季小勇的博客</span>
+        <span class="site-title">I Miss You</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -184,7 +181,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/blog/" rel="section">
+          <a href="/imissyou/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
@@ -194,7 +191,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/blog/about/" rel="section">
+          <a href="/imissyou/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
@@ -204,7 +201,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/blog/archives/" rel="section">
+          <a href="/imissyou/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
@@ -277,16 +274,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/cf83ef31/">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/imissyou/imissyou/posts/9daba997/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="季小勇">
+      <meta itemprop="name" content="残桐落叶">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+      <meta itemprop="image" content="/imissyou/images/default_avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="季小勇的博客">
+      <meta itemprop="name" content="I Miss You">
     </span>
 
     
@@ -294,7 +291,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JVM类加载机制解析</h1>
+          <h1 class="post-title" itemprop="name headline">测试</h1>
         
 
         <div class="post-meta">
@@ -306,8 +303,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-26T19:28:56+00:00">
-                2018-02-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-20T22:07:23+00:00">
+                2018-12-20
               </time>
             
 
@@ -344,97 +341,7 @@
       
 
       
-        <h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>本文介绍了java虚拟机类加载机制。</p>
-<h1 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h1><p>JVM类加载一共7步，前五步是类加载机制，各个步骤按照顺序进行，但是并非固定的1,2,3步，在实际中有可能从其中间某一步开始。</p>
-<p>类加载机制一般分为三部分：<strong>加载Loading -&gt; 连接Linking -&gt; 初始化Initializing</strong></p>
-<p><img src="https://github.com/jixiaoyong/Notes-Files/blob/master/draw-io/png/JVMClassLoader.png?raw=true" alt="JVM Class Loader"></p>
-<p>其中<strong>加载、验证、准备和初始化</strong>发生的顺序是确定的，但<strong>解析</strong>可以在初始化之后开始（java动态绑定）</p>
-<blockquote>
-<p>java绑定分为静态绑定和动态绑定：</p>
-<ul>
-<li><strong>静态绑定</strong>：即前期绑定。在程序执行前方法已经被绑定，此时由编译器或其它连接程序实现。针对java，简单的可以理解为程序编译期的绑定。java当中的方法只有final，static，private和构造方法是前期绑定的。</li>
-<li><strong>动态绑定</strong>：即晚期绑定，也叫运行时绑定。在运行时根据具体对象的类型进行绑定。在java中，几乎所有的方法都是后期绑定的。</li>
-</ul>
-<p><a href="http://blog.csdn.net/ns_code/article/details/17881581" target="_blank" rel="noopener">http://blog.csdn.net/ns_code/article/details/17881581</a></p>
-</blockquote>
-<h1 id="类加载机制具体过程"><a href="#类加载机制具体过程" class="headerlink" title="类加载机制具体过程"></a>类加载机制具体过程</h1><h2 id="I-Loading"><a href="#I-Loading" class="headerlink" title="I.Loading "></a><strong>I.Loading </strong></h2><p><strong>加载</strong>，JVM将文件（class，jar，zip，网络等）中的二进制字节流保存到虚拟机方法区和堆中,并用该二进制表示形式创建类或者接口的过程。</p>
-<blockquote>
-<p>Loading is the process of finding the binary representation of a class or interface type with a particular name and <em>creating</em> a class or interface from that binary representation</p>
-<p><a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-5.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-5.html</a> (<em>英文文档若无特殊说明都是引用官方文档，下同</em>)</p>
-</blockquote>
-<ol>
-<li>用<strong>类全限定名</strong>获取类的二进制字节流</li>
-<li>将字节流中<strong>静态存储结构</strong>转化为<strong>方法区</strong>的运行时数据结构</li>
-<li><u><em>在<strong>堆</strong>中生成一个代表该类的java.lang.Class对象，作为方法区数据的访问入口。</em></u>（<strong>这句话存疑</strong> ，有人说<a href="http://blog.csdn.net/ns_code/article/details/17881581" target="_blank" rel="noopener">在堆中</a> ,也有人说在<a href="http://gityuan.com/2015/10/25/jvm-class-loading/" target="_blank" rel="noopener">方法区</a> ,官方文档未相关描述）</li>
-</ol>
-<p>类加载的地方是开发人员可控性最强的地方。除了可以使用系统的ClassLoader外还可以自定义ClassLoader（后文详述）。</p>
-<hr>
-<h2 id="II-Linking"><a href="#II-Linking" class="headerlink" title="II.Linking "></a><strong>II.Linking </strong></h2><p><strong>连接</strong>，是将类或者接口组合到java虚拟机运行状态的过程，这样他就可以被运行。</p>
-<blockquote>
-<p>Linking is the process of taking a class or interface and combining(组合) it into the run-time state of the Java Virtual Machine so that it can be executed(运行)</p>
-</blockquote>
-<p>连接一般分为3部分：验证Verification 、准备Preparation 、解析Resolution 。</p>
-<blockquote>
-<p>Linking a class or interface involves(包括) verifying and preparing(验证和准备) that class or interface, its direct(直接) superclass, its direct superinterfaces, and its element type (if it is an array type), if necessary. Resolution of symbolic references in the class or interface is an optional part of linking.</p>
-</blockquote>
-<h3 id="Verification"><a href="#Verification" class="headerlink" title="Verification"></a><strong>Verification</strong></h3><p><strong>验证</strong>，保证class文件中的字节流信息符合虚拟机的要求。</p>
-<blockquote>
-<p>Verification(<a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-4.html#jvms-4.10" target="_blank" rel="noopener">§4.10</a>) ensures that the binary representation(二进制格式) of a class or interface is structurally correct(结构正确) (<a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-4.html#jvms-4.9" target="_blank" rel="noopener">§4.9</a>). Verification may cause additional classes and interfaces to be loaded (<a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-5.html#jvms-5.3" target="_blank" rel="noopener">§5.3</a>) but need not cause them to be verified or prepared.</p>
-</blockquote>
-<p>验证内容包括：</p>
-<ol>
-<li>文件格式验证，验证字节流符合class文件格式规范；</li>
-<li>元数据验证</li>
-<li>字节码验证</li>
-<li>符号引用验证</li>
-</ol>
-<h3 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation "></a><strong>Preparation </strong></h3><p><strong>准备</strong>，在方法区对类变量分配内存，<strong>初始化为默认值</strong></p>
-<p>比如：<code>static int i = 5；</code>在这一步只会进行到<code>i = 0</code> ，而<code>i = 5</code>要在初始化那一步才进行。</p>
-<blockquote>
-<p><em>Preparation</em> involves creating the static fields for a class or interface and initializing such fields to their default values (<a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-2.html#jvms-2.3" target="_blank" rel="noopener">§2.3</a>, <a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-2.html#jvms-2.4" target="_blank" rel="noopener">§2.4</a>). This does not require the execution of any Java Virtual Machine code; explicit initializers for static fields are executed as part of initialization (<a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-5.html#jvms-5.5" target="_blank" rel="noopener">§5.5</a>), not preparation.</p>
-</blockquote>
-<p>准备工作可能在创建之后的任何时候发生，但是必须在初始化之前完成。</p>
-<h3 id="Resolution"><a href="#Resolution" class="headerlink" title="Resolution"></a><strong>Resolution</strong></h3><p><strong>解析</strong>，是在运行时常量池中动态确定符号引用的具体值的过程。</p>
-<p>每个栈帧frame都有一个<code>当前方法</code>到<code>运行时常量池</code> 的引用，用来支持方法代码(method code)的<strong>动态链接（dynamic linking）</strong>。</p>
-<p>method code：要被执行的方法以及通过符号引用的变量。</p>
-<blockquote>
-<p>Each frame (<a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-2.html#jvms-2.6" target="_blank" rel="noopener">§2.6</a>) contains a reference to the run-time constant pool (<a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-2.html#jvms-2.5.5" target="_blank" rel="noopener">§2.5.5</a>) for the type of the current method to support <em>dynamic linking</em> of the method code.</p>
-</blockquote>
-<p>动态链接将符号引用（symbolic references）转化为具体方法的调用（concrete method references），根据需要加载类来解析未定义的符号，将变量访问转化为运行时内存（runtime location）。</p>
-<blockquote>
-<p>This late binding of the methods and variables makes changes in other classes that a method uses less likely to break this code.</p>
-<p><em>方法和变量的这种后期绑定,使得方法使用的其他类的更改不太可能破坏这个代码。</em></p>
-</blockquote>
-<p>解析分为：</p>
-<ol>
-<li>类，接口解析</li>
-<li>字段解析</li>
-<li>类方法解析</li>
-<li>接口方法解析</li>
-</ol>
-<hr>
-<h2 id="III-Initialization"><a href="#III-Initialization" class="headerlink" title="III.Initialization"></a><strong>III.Initialization</strong></h2><p><strong>初始化</strong> ，<em>Initialization</em> of a class or interface consists of executing its class or interface initialization method（执行类，接口的构造方法<code>clinit()</code>）</p>
-<p>类或接口在被初始化之前，必须先被连接linked（ verified, prepared, and optionally（可选） resolved.）。</p>
-<p><code>clinit()</code> ,有<strong>类变量赋值，静态语句块</strong>会由编译器合并为<code>clinit()</code>方法,分为两种：</p>
-<ol>
-<li>类 父类的<code>clinit()</code>方法会先于子类执行</li>
-<li>接口  接口<code>clinit()</code>方法无需调用父类接口的<code>clinit()</code>方法；接口的实现类也无需执行接口的<code>clinit()</code>方法</li>
-</ol>
-<p><code>clinit()</code>和<code>init()</code>不同如下：</p>
-<blockquote>
-<p><strong>init</strong>是对象构造器方法，也就是说在程序执行 new 一个对象调用该对象类的 constructor 方法时才会执行init方法<u>（是在<strong>new对象</strong>的时候<strong>初始化非静态变量</strong>）</u>；</p>
-<p>而clinit是类构造器方法，也就是在jvm进行类<strong>加载—–验证—-解析—–初始化</strong>，中的初始化阶段jvm会调用clinit方法<u>（是在<strong>JVM初始化类</strong>的时候<strong>初始化静态变量</strong>）</u>。</p>
-<p><a href="http://blog.csdn.net/u013309870/article/details/72975536" target="_blank" rel="noopener">http://blog.csdn.net/u013309870/article/details/72975536</a></p>
-</blockquote>
-<p><code>clinit()</code>先于<code>init()</code>执行。</p>
-<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-5.html" target="_blank" rel="noopener">Java Virtual Machine Specification Chapter 5. Loading, Linking, and Initializing</a></p>
-<p><a href="https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-2.html#jvms-2.5.2" target="_blank" rel="noopener">Chapter 2. The Structure of the Java Virtual Machine</a></p>
-<p><a href="http://blog.csdn.net/ns_code/article/details/17881581" target="_blank" rel="noopener">【深入Java虚拟机】之四：类加载机制</a></p>
-<p><a href="http://blog.csdn.net/zhangliangzi/article/details/51319033" target="_blank" rel="noopener">JVM类加载机制详解（一）JVM类加载过程</a></p>
-<p><a href="http://gityuan.com/2015/10/25/jvm-class-loading/" target="_blank" rel="noopener">Jvm系列3—类的加载 - Gityuan博客 | 袁辉辉博客  </a></p>
-<p><a href="http://wiki.jikexueyuan.com/project/java-vm/class-loading-mechanism.html" target="_blank" rel="noopener">类加载机制 - 深入理解 Java 虚拟机 - 极客学院Wiki </a></p>
-<p><a href="http://blog.csdn.net/javazejian/article/details/70768369" target="_blank" rel="noopener">深入理解Java类型信息(Class对象)与反射机制 - CSDN博客</a></p>
-<p><a href="http://blog.csdn.net/u013309870/article/details/72975536" target="_blank" rel="noopener">深入理解jvm–Java中init和clinit区别完全解析 - CSDN博客</a></p>
+        <p>这个是一个测试自动化构建的文件。</p>
 
       
     </div>
@@ -451,11 +358,11 @@
         <ul class="post-copyright">
   <li class="post-copyright-author">
     <strong>本文作者：</strong>
-    季小勇
+    残桐落叶
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jixiaoyong.github.io/blog/posts/cf83ef31/" title="JVM类加载机制解析">https://jixiaoyong.github.io/blog/posts/cf83ef31/</a>
+    <a href="https://jixiaoyong.github.io/imissyou/posts/9daba997/" title="测试">https://jixiaoyong.github.io/imissyou/posts/9daba997/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -468,12 +375,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/blog/tags/jvm/" rel="tag"># jvm</a>
-          
-        </div>
-      
 
       
       
@@ -483,8 +384,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/posts/f31c11c5/" rel="next" title="JVM内存知识整理">
-                <i class="fa fa-chevron-left"></i> JVM内存知识整理
+              <a href="/imissyou/posts/448da09f/" rel="next" title="人间·穿梭">
+                <i class="fa fa-chevron-left"></i> 人间·穿梭
               </a>
             
           </div>
@@ -492,10 +393,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/posts/cf83ef31/" rel="prev" title="JVM类加载机制解析">
-                JVM类加载机制解析 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -585,23 +482,14 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/blog/images/default_avatar.jpg" alt="季小勇">
+              <img class="site-author-image" itemprop="image" src="/imissyou/images/default_avatar.png" alt="残桐落叶">
             
-              <p class="site-author-name" itemprop="name">季小勇</p>
+              <p class="site-author-name" itemprop="name">残桐落叶</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -610,9 +498,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/blog/archives/">
+                <a href="/imissyou/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -620,15 +508,6 @@
 
             
 
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">13</span>
-                  <span class="site-state-item-name">标签</span>
-                
-              </div>
             
 
           </nav>
@@ -642,42 +521,12 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.wanandroid.com/" title="WanAndroid" target="_blank">WanAndroid</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
 
           
 
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简述"><span class="nav-number">1.</span> <span class="nav-text">简述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类加载机制"><span class="nav-number">2.</span> <span class="nav-text">类加载机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类加载机制具体过程"><span class="nav-number">3.</span> <span class="nav-text">类加载机制具体过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-Loading"><span class="nav-number">3.1.</span> <span class="nav-text">I.Loading </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-Linking"><span class="nav-number">3.2.</span> <span class="nav-text">II.Linking </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Verification"><span class="nav-number">3.2.1.</span> <span class="nav-text">Verification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Preparation"><span class="nav-number">3.2.2.</span> <span class="nav-text">Preparation </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resolution"><span class="nav-number">3.2.3.</span> <span class="nav-text">Resolution</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III-Initialization"><span class="nav-number">3.3.</span> <span class="nav-text">III.Initialization</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -696,13 +545,11 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">季小勇</span>
+  <span class="author" itemprop="copyrightHolder">残桐落叶</span>
 
   
 </div>
 
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -765,57 +612,57 @@
 
   
   
-    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+    <script type="text/javascript" src="/imissyou/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+    <script type="text/javascript" src="/imissyou/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+    <script type="text/javascript" src="/imissyou/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/imissyou/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/imissyou/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+    <script type="text/javascript" src="/imissyou/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
-
 
 
   
 
 
-  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/imissyou/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/imissyou/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/imissyou/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/imissyou/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/imissyou/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -865,7 +712,7 @@
     } else if (/json$/i.test(search_path)) {
       isXml = false;
     }
-    var path = "/blog/" + search_path;
+    var path = "/imissyou/" + search_path;
     // monitor main search box;
 
     var onPopupClose = function (e) {
