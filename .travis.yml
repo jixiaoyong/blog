@@ -29,7 +29,20 @@ script:
 after_script:
   - git config user.name "jixiaoyong"
   - git config user.email "jixiaoyong1995@gmail.com"
-  # - sed -i "s/gh_token/${GH_TOKEN}/g" ./_config.yml
-  # - cat ./_config.yml
-  # - hexo deploy
+  # - git config --global github.user jixiaoyong      
+  # - git config --global github.token ${GH_TOKEN}
+  - pwd
+  - ls
+  - cd ..
+  - mkdir publish
+  - cd publish
+  - git clone https://${GH_TOKEN}@github.com/jixiaoyong/jixiaoyong.github.io.git
+  - rm -rf ./jixiaoyong.github.io/blog/*
+  - cd ..
+  - cp -rf jixiaoyong.github.io/public/* publish/jixiaoyong.github.io/blog/
+  - cd publish/jixiaoyong.github.io/
+  - git add .
+  - git commit -m "auto update by www.travis-ci.org"
+  - git push
+
 # E: Build LifeCycle
