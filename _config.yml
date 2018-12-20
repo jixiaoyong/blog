@@ -83,7 +83,10 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: https://github.com/jixiaoyong/jixiaoyong.github.io
+  branch: master
+  message: deploy by hexo {{ now('YYYY-MM-DD HH:mm:ss') }}
 
 #search by https://www.cnblogs.com/syd192/p/6074323.html
 search:
