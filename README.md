@@ -1,6 +1,6 @@
 
 
-# [我的博客](https://jixiaoyong.github.io)  [![Build Status](https://www.travis-ci.org/jixiaoyong/jixiaoyong.github.io.svg?branch=master)](https://www.travis-ci.org/jixiaoyong/jixiaoyong.github.io)
+# [我的博客](https://jixiaoyong.github.io)  [![Build Status](https://www.travis-ci.org/jixiaoyong/jixiaoyong.github.io.svg?branch=hexo_blog)](https://www.travis-ci.org/jixiaoyong/jixiaoyong.github.io)
 
 [![jixiaoyong.github.io](https://github.com/jixiaoyong/jixiaoyong.github.io/blob/master/images/blog/2018-03/bloglogo.png?raw=true)](https://jixiaoyong.github.io/blog/)
 
