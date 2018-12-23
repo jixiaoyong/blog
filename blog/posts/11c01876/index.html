@@ -79,13 +79,24 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="季小勇的博客">
-<meta property="og:url" content="https://jixiaoyong.github.io/blog/archives/page/3/index.html">
+<meta name="description" content="前言红黑树是一种特殊的二叉搜索树，查找，插入和删除的时间复杂度均为$$O(log_2N)$$。 红黑树必须满足以下条件：  必须有颜色（黑/红）  根节点颜色为黑  若节点是红色，则子节点必须是黑色（反之则不然） 到叶节点或空子节点的每一条边上的黑色节点数量必须相同（空子节点指本应该有叶节点却没有的节点，默认为黑色）  如果不满足可以通过以下方式修正：  改变节点颜色 旋转（左、右）  旋转以某个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构_红黑树">
+<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/11c01876/index.html">
 <meta property="og:site_name" content="季小勇的博客">
+<meta property="og:description" content="前言红黑树是一种特殊的二叉搜索树，查找，插入和删除的时间复杂度均为$$O(log_2N)$$。 红黑树必须满足以下条件：  必须有颜色（黑/红）  根节点颜色为黑  若节点是红色，则子节点必须是黑色（反之则不然） 到叶节点或空子节点的每一条边上的黑色节点数量必须相同（空子节点指本应该有叶节点却没有的节点，默认为黑色）  如果不满足可以通过以下方式修正：  改变节点颜色 旋转（左、右）  旋转以某个">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20181223175956.png">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20181223180637.png">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20181223182532.jpg">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20181223210305.png">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20181223210800.png">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20181223211217.png">
+<meta property="og:updated_time" content="2018-12-23T13:35:42.408Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="季小勇的博客">
+<meta name="twitter:title" content="数据结构_红黑树">
+<meta name="twitter:description" content="前言红黑树是一种特殊的二叉搜索树，查找，插入和删除的时间复杂度均为$$O(log_2N)$$。 红黑树必须满足以下条件：  必须有颜色（黑/红）  根节点颜色为黑  若节点是红色，则子节点必须是黑色（反之则不然） 到叶节点或空子节点的每一条边上的黑色节点数量必须相同（空子节点指本应该有叶节点却没有的节点，默认为黑色）  如果不满足可以通过以下方式修正：  改变节点颜色 旋转（左、右）  旋转以某个">
+<meta name="twitter:image" content="https://jixiaoyong.github.io/images/20181223175956.png">
 
 
 
@@ -115,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://jixiaoyong.github.io/blog/archives/page/3/">
+  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/11c01876/">
 
 
 
 
 
-  <title>归档 | 季小勇的博客</title>
+  <title>数据结构_红黑树 | 季小勇的博客</title>
   
 
 
@@ -140,7 +151,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -256,390 +267,256 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        OK! 目前共计 48 篇日志。 继续努力。
-      </span>
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/11c01876/">
 
-      
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="季小勇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="季小勇的博客">
+    </span>
+
+    
+      <header class="post-header">
 
         
         
+          <h1 class="post-title" itemprop="name headline">数据结构_红黑树</h1>
         
 
-        
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-23T17:25:36+00:00">
+                2018-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/posts/e41787ec/" itemprop="url">
-              
-                <span itemprop="name">Android自定义view的一些知识点</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-02-19T21:59:28+00:00" content="2018-02-19">
-          02-19
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/posts/36721083/" itemprop="url">
-              
-                <span itemprop="name">java创建线程安全的单例Singleton</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-02-14T18:34:16+00:00" content="2018-02-14">
-          02-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/posts/8a52763a/" itemprop="url">
-              
-                <span itemprop="name">Kotlin学习笔记2</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-02-11T11:38:43+00:00" content="2018-02-11">
-          02-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>红黑树是一种特殊的二叉搜索树，查找，插入和删除的时间复杂度均为$$O(log_2N)$$。</p>
+<p>红黑树必须满足以下条件：</p>
+<ol>
+<li><p>必须有颜色（黑/红）</p>
+</li>
+<li><p>根节点颜色为黑</p>
+</li>
+<li>若节点是红色，则子节点必须是黑色（反之则不然）</li>
+<li>到叶节点或空子节点的每一条边上的黑色节点数量必须相同（空子节点指本应该有叶节点却没有的节点，默认为黑色）</li>
+</ol>
+<p>如果不满足可以通过以下方式修正：</p>
+<ul>
+<li>改变节点颜色</li>
+<li>旋转（左、右）</li>
+</ul>
+<h1 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h1><p>以某个支点旋转（右旋为例，旋转时注意更新各个节点的父节点）：</p>
+<p>本质是将该<code>节点a</code>向下进一位插入到其<code>右节点b</code>原先的位置，将其<code>左节点c</code>向上进一位插入到该<code>节点a</code>原先的位置，并将<code>左节点c的右节点</code>赋值给该<code>节点a</code>。</p>
+<p>步骤：</p>
+<ol>
+<li><p>将该<code>节点a</code>放到<code>右节点b</code>的位置，将该<code></code>左节点c<code>放到</code>节点a`原先的位置，依次类推</p>
+</li>
+<li><p>特殊的，将该<code>点a的内侧孙子</code>（<code>a的左子节点c</code>的<code>右子节点d</code>）断开与其<code>父节点c</code>的连接，转而连接到<code>a</code>上，成为<code>a的左子节点</code></p>
+</li>
+</ol>
+<p>如图，依次插入<code>6,34,23</code>，<strong>以<code>34</code>为支点右旋</strong>：</p>
+<p><img src="https://jixiaoyong.github.io/images/20181223175956.png" width="50%" height="50%"></p>
+<p>对获得的结果，由于<font color="#ff0000">23</font>，<font color="#ff0000">34</font>都是红色违反了<code>规则3</code>，将<code>34的父节点23</code>设置黑，<code>祖父节点6</code>设为红，<strong>以<code>祖父节6</code>点为支点左旋</strong>：</p>
+<p><img src="https://jixiaoyong.github.io/images/20181223180637.png" alt="最终结果"></p>
+<h1 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h1><p>每次插入红色节点，能够避免规则4。</p>
+<p>一般先以二叉搜索树的规则将数据插入表中，然后再对照规则检查是否需要调整红黑树。</p>
+<p>红黑树插入情况分类如下：</p>
+<ol>
+<li>插入位置为根节点，将节点颜色更改为黑色</li>
+<li>插入位置的父节点为根节点或父节点颜色为黑色，直接插入</li>
+<li>父节点为红色。</li>
+</ol>
+<p>只有父节点为红色这种情况需要进行修正，这时又可以细分为以下三种情况：</p>
+<p><img src="https://jixiaoyong.github.io/images/20181223182532.jpg" alt="表格来自 http://www.cnblogs.com/skywang12345/p/3245399.html#a1"></p>
+<p>【注意】对于<code>Case 3</code>当祖父节点没有<strong>左节点</strong>无法右旋时的特殊处理：</p>
+<p>需要对先对当前节点的父节点进行右旋，再以父节点作为<strong>新插入的点N</strong>，将N的父节点设置为黑色，祖父节点设置为红色，以祖父节点为支点左旋。</p>
+<p>如依次插入如下值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">32,3,53,13,983,[137],237,83,483,43,183</span><br></pre></td></tr></table></figure>
+<p>当插入<code>137</code>后红黑树如图：</p>
+<p><img src="https://jixiaoyong.github.io/images/20181223210305.png" alt="插入137后的树"></p>
+<p>本来按照<code>Case 3 父红 叔黑 是左节点</code> 应该要以祖节点右旋，但是组节点53没有左子节点，无法右旋，所以先对父节点983进行右旋：</p>
+<p><img src="https://jixiaoyong.github.io/images/20181223210800.png" alt=""></p>
+<p>再以<code>983</code>为新节点，<code>父红 叔黑 是右节点</code>，将<code>父节点137</code>设置为黑色，<code>祖节点53</code>设置为红色，以<code>组节点53</code>为支点左旋：</p>
+<p><img src="https://jixiaoyong.github.io/images/20181223211217.png" alt=""></p>
+<h1 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h1><p>删除比较复杂，可以有两种操作：</p>
+<ol>
+<li>在节点中保存一个标志位，标记该节点是否被删除，并不针真的删除该点。</li>
+<li>在执行删除操作时真正删除该点。</li>
+</ol>
+<h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><p><a href="https://github.com/jixiaoyong/Notes-Files/blob/master/AndroidLearningResource/java_note/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/tree/RedBlackTree.kt" target="_blank" rel="noopener">👉点这里</a>查看源码</p>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p><a href="https://sandbox.runjs.cn/show/2nngvn8w" target="_blank" rel="noopener">在线操作红黑树</a></p>
+<p><a href="http://www.cnblogs.com/skywang12345/p/3245399.html#a1" target="_blank" rel="noopener">红黑树(一)之 原理和算法详细介绍</a></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/posts/135b2780/" itemprop="url">
-              
-                <span itemprop="name">Kotlin学习笔记1</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-02-09T16:18:01+00:00" content="2018-02-09">
-          02-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/posts/53875104/" itemprop="url">
-              
-                <span itemprop="name">lambda表达式在kotlin中的应用</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-02-09T11:09:06+00:00" content="2018-02-09">
-          02-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/posts/b35fe0f7/" itemprop="url">
-              
-                <span itemprop="name">Android中WebView使用的一些问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-02-08T00:11:13+00:00" content="2018-02-08">
-          02-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/posts/d9a2e1ba/" itemprop="url">
-              
-                <span itemprop="name">python自动创建发布hexo文章并同步github</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-02-01T00:09:12+00:00" content="2018-02-01">
-          02-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/posts/af2aa19e/" itemprop="url">
-              
-                <span itemprop="name">python自动化部署文章</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-01-31T01:40:48+00:00" content="2018-01-31">
-          01-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/posts/6e070881/" itemprop="url">
-              
-                <span itemprop="name">[update]Python爬取gityuan所有文章列表</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-01-28T22:03:50+00:00" content="2018-01-28">
-          01-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/posts/9c0ccf0d/" itemprop="url">
-              
-                <span itemprop="name">Python爬虫爬取gityuan.com数据并输出json</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-01-27T22:25:34+00:00" content="2018-01-27">
-          01-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    季小勇
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://jixiaoyong.github.io/blog/posts/11c01876/" title="数据结构_红黑树">https://jixiaoyong.github.io/blog/posts/11c01876/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/posts/b00ac86a/" rel="next" title="利用travis通过Hexo在Github上自动部署Markdown文档">
+                <i class="fa fa-chevron-left"></i> 利用travis通过Hexo在Github上自动部署Markdown文档
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/posts/1f6681a0/" rel="prev" title="数据结构_Hash表">
+                数据结构_Hash表 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/blog/archives/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/blog/archives/">1</a><a class="page-number" href="/blog/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/blog/archives/page/4/">4</a><a class="page-number" href="/blog/archives/page/5/">5</a><a class="extend next" rel="next" href="/blog/archives/page/4/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -647,6 +524,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -667,8 +548,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -735,6 +625,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#旋转"><span class="nav-number">2.</span> <span class="nav-text">旋转</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#插入"><span class="nav-number">3.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除"><span class="nav-number">4.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#源码"><span class="nav-number">5.</span> <span class="nav-text">源码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文档"><span class="nav-number">6.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -864,6 +770,10 @@
   
 
   
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
