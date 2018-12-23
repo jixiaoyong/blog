@@ -17,6 +17,7 @@ before_install:
 # S: Build Lifecycle
 install:
   - npm install
+  - pm install hexo-math --save
   # - npm install hexo-deployer-git --save
 
 before_script:
