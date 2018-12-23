@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="前言红黑树是一种特殊的二叉搜索树，查找，插入和删除的时间复杂度均为$$O(log_2N)$$。 红黑树必须满足以下条件：  必须有颜色（黑/红）  根节点颜色为黑  若节点是红色，则子节点必须是黑色（反之则不然） 到叶节点或空子节点的每一条边上的黑色节点数量必须相同（空子节点指本应该有叶节点却没有的节点，默认为黑色）  如果不满足可以通过以下方式修正：  改变节点颜色 旋转（左、右）  旋转以某个">
+<meta name="description" content="前言红黑树是一种特殊的二叉搜索树，查找，插入和删除的时间复杂度均为$O(log_2N)$。 红黑树必须满足以下条件：  必须有颜色（黑/红）  根节点颜色为黑  若节点是红色，则子节点必须是黑色（反之则不然） 到叶节点或空子节点的每一条边上的黑色节点数量必须相同（空子节点指本应该有叶节点却没有的节点，默认为黑色）  如果不满足可以通过以下方式修正：  改变节点颜色 旋转（左、右）  旋转以某个支点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构_红黑树">
 <meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/11c01876/index.html">
 <meta property="og:site_name" content="季小勇的博客">
-<meta property="og:description" content="前言红黑树是一种特殊的二叉搜索树，查找，插入和删除的时间复杂度均为$$O(log_2N)$$。 红黑树必须满足以下条件：  必须有颜色（黑/红）  根节点颜色为黑  若节点是红色，则子节点必须是黑色（反之则不然） 到叶节点或空子节点的每一条边上的黑色节点数量必须相同（空子节点指本应该有叶节点却没有的节点，默认为黑色）  如果不满足可以通过以下方式修正：  改变节点颜色 旋转（左、右）  旋转以某个">
+<meta property="og:description" content="前言红黑树是一种特殊的二叉搜索树，查找，插入和删除的时间复杂度均为$O(log_2N)$。 红黑树必须满足以下条件：  必须有颜色（黑/红）  根节点颜色为黑  若节点是红色，则子节点必须是黑色（反之则不然） 到叶节点或空子节点的每一条边上的黑色节点数量必须相同（空子节点指本应该有叶节点却没有的节点，默认为黑色）  如果不满足可以通过以下方式修正：  改变节点颜色 旋转（左、右）  旋转以某个支点">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://jixiaoyong.github.io/images/20181223175956.png">
 <meta property="og:image" content="https://jixiaoyong.github.io/images/20181223180637.png">
@@ -92,10 +92,10 @@
 <meta property="og:image" content="https://jixiaoyong.github.io/images/20181223210305.png">
 <meta property="og:image" content="https://jixiaoyong.github.io/images/20181223210800.png">
 <meta property="og:image" content="https://jixiaoyong.github.io/images/20181223211217.png">
-<meta property="og:updated_time" content="2018-12-23T13:35:42.408Z">
+<meta property="og:updated_time" content="2018-12-23T13:56:34.131Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构_红黑树">
-<meta name="twitter:description" content="前言红黑树是一种特殊的二叉搜索树，查找，插入和删除的时间复杂度均为$$O(log_2N)$$。 红黑树必须满足以下条件：  必须有颜色（黑/红）  根节点颜色为黑  若节点是红色，则子节点必须是黑色（反之则不然） 到叶节点或空子节点的每一条边上的黑色节点数量必须相同（空子节点指本应该有叶节点却没有的节点，默认为黑色）  如果不满足可以通过以下方式修正：  改变节点颜色 旋转（左、右）  旋转以某个">
+<meta name="twitter:description" content="前言红黑树是一种特殊的二叉搜索树，查找，插入和删除的时间复杂度均为$O(log_2N)$。 红黑树必须满足以下条件：  必须有颜色（黑/红）  根节点颜色为黑  若节点是红色，则子节点必须是黑色（反之则不然） 到叶节点或空子节点的每一条边上的黑色节点数量必须相同（空子节点指本应该有叶节点却没有的节点，默认为黑色）  如果不满足可以通过以下方式修正：  改变节点颜色 旋转（左、右）  旋转以某个支点">
 <meta name="twitter:image" content="https://jixiaoyong.github.io/images/20181223175956.png">
 
 
@@ -348,7 +348,7 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>红黑树是一种特殊的二叉搜索树，查找，插入和删除的时间复杂度均为$$O(log_2N)$$。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>红黑树是一种特殊的二叉搜索树，查找，插入和删除的时间复杂度均为$O(log_2N)$。</p>
 <p>红黑树必须满足以下条件：</p>
 <ol>
 <li><p>必须有颜色（黑/红）</p>
@@ -1148,6 +1148,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 

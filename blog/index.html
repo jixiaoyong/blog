@@ -478,7 +478,7 @@
       
         
           
-          前言红黑树是一种特殊的二叉搜索树，查找，插入和删除的时间复杂度均为$$O(log_2N)$$。
+          前言红黑树是一种特殊的二叉搜索树，查找，插入和删除的时间复杂度均为$O(log_2N)$。
 红黑树必须满足以下条件：
 
 必须有颜色（黑/红）
@@ -494,7 +494,7 @@
 旋转（左、右）
 
 旋转以某个支点旋转（右旋为例，旋转时注意更新各个节点的父节点）：
-本质是将该节点a向下进一位插入到其右节点b原
+本质是将该节点a向下进一位插入到其右节点b原先的
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -2191,6 +2191,28 @@ onProgressUpdat
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
