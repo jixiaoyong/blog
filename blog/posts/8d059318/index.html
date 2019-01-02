@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="android,">
+  <meta name="keywords" content="数据结构,">
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="Android事件分发，指手指点击屏幕后，从Activity、ViewGroup到View的一系列过程。 简介Android系统的窗口机制如下图： Activity内有一个Window对象，其实现类是PhoneWindow； DecorView为顶层View，DecorView是一个FrameLayout，其中有TitleView和ContentView；  TitleView为标题栏，Conte">
-<meta name="keywords" content="android">
+<meta name="description" content="前言本文介绍栈、队列两种抽象数据类型。 栈栈stack，又称堆栈，是一种抽象数据类型，每次只能访问栈顶元素top，可以进行压入push和推出pop操作。其元素先进后出(FILO)。 队列队列queue,是和栈相对的一种抽象数据类型，每次从后端rear插入，从前端front删除。其元素先进先出(FIFO)。 用链表实现的队列可以自由扩充，不存在伪溢出问题，但是插入和读取比较耗时； 用数组实现的队列大">
+<meta name="keywords" content="数据结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android事件分发">
-<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/c0fefed0/index.html">
+<meta property="og:title" content="数据结构_栈和队列">
+<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/8d059318/index.html">
 <meta property="og:site_name" content="季小勇的博客">
-<meta property="og:description" content="Android事件分发，指手指点击屏幕后，从Activity、ViewGroup到View的一系列过程。 简介Android系统的窗口机制如下图： Activity内有一个Window对象，其实现类是PhoneWindow； DecorView为顶层View，DecorView是一个FrameLayout，其中有TitleView和ContentView；  TitleView为标题栏，Conte">
+<meta property="og:description" content="前言本文介绍栈、队列两种抽象数据类型。 栈栈stack，又称堆栈，是一种抽象数据类型，每次只能访问栈顶元素top，可以进行压入push和推出pop操作。其元素先进后出(FILO)。 队列队列queue,是和栈相对的一种抽象数据类型，每次从后端rear插入，从前端front删除。其元素先进先出(FIFO)。 用链表实现的队列可以自由扩充，不存在伪溢出问题，但是插入和读取比较耗时； 用数组实现的队列大">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/jixiaoyong/jixiaoyong.github.io/blob/master/images/blog/2018-04/AndroidDispatchTouchEvent.png?raw=true">
-<meta property="og:updated_time" content="2019-01-02T14:02:45.927Z">
+<meta property="og:updated_time" content="2019-01-02T14:02:45.931Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android事件分发">
-<meta name="twitter:description" content="Android事件分发，指手指点击屏幕后，从Activity、ViewGroup到View的一系列过程。 简介Android系统的窗口机制如下图： Activity内有一个Window对象，其实现类是PhoneWindow； DecorView为顶层View，DecorView是一个FrameLayout，其中有TitleView和ContentView；  TitleView为标题栏，Conte">
-<meta name="twitter:image" content="https://github.com/jixiaoyong/jixiaoyong.github.io/blob/master/images/blog/2018-04/AndroidDispatchTouchEvent.png?raw=true">
+<meta name="twitter:title" content="数据结构_栈和队列">
+<meta name="twitter:description" content="前言本文介绍栈、队列两种抽象数据类型。 栈栈stack，又称堆栈，是一种抽象数据类型，每次只能访问栈顶元素top，可以进行压入push和推出pop操作。其元素先进后出(FILO)。 队列队列queue,是和栈相对的一种抽象数据类型，每次从后端rear插入，从前端front删除。其元素先进先出(FIFO)。 用链表实现的队列可以自由扩充，不存在伪溢出问题，但是插入和读取比较耗时； 用数组实现的队列大">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/c0fefed0/">
+  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/8d059318/">
 
 
 
 
 
-  <title>Android事件分发 | 季小勇的博客</title>
+  <title>数据结构_栈和队列 | 季小勇的博客</title>
   
 
 
@@ -277,7 +275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/c0fefed0/">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/8d059318/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="季小勇">
@@ -294,7 +292,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android事件分发</h1>
+          <h1 class="post-title" itemprop="name headline">数据结构_栈和队列</h1>
         
 
         <div class="post-meta">
@@ -306,8 +304,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-24T20:25:33+00:00">
-                2018-04-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-02T19:54:53+00:00">
+                2019-01-02
               </time>
             
 
@@ -344,59 +342,34 @@
       
 
       
-        <p>Android事件分发，指手指点击屏幕后，从Activity、ViewGroup到View的一系列过程。</p>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Android系统的窗口机制如下图：</p>
-<p>Activity内有一个Window对象，其实现类是PhoneWindow；</p>
-<p>DecorView为顶层View，DecorView是一个FrameLayout，其中有TitleView和ContentView；</p>
-<p><img src="https://github.com/jixiaoyong/jixiaoyong.github.io/blob/master/images/blog/2018-04/AndroidDispatchTouchEvent.png?raw=true" alt="Android系统窗口管理机制"></p>
-<p>TitleView为标题栏，ContentView就是平时在Activity的onCreate()方法中设置的视图，TitleView可以用<code>this.requestWindowFeature(Window.FEATURE_NO_TITLE);</code>隐藏掉，但是必须注意要在setContentView()之前，原因如下所示：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setContentView</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">    getWindow().setContentView(view);</span><br><span class="line">    initWindowDecorActionBar();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="点击事件-Activity-–-gt-ViewGroup"><a href="#点击事件-Activity-–-gt-ViewGroup" class="headerlink" title="点击事件 Activity –&gt; ViewGroup"></a>点击事件 Activity –&gt; ViewGroup</h1><p>点击事件发生后，首先被调用的是<code>Activity.dispatchTouchEvent()</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ev.getAction() == MotionEvent.ACTION_DOWN) &#123;</span><br><span class="line">        onUserInteraction();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (getWindow().superDispatchTouchEvent(ev)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> onTouchEvent(ev);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以看到，其内部先调用了<code>getWindow().superDispatchTouchEvent(ev)</code>这个方法，getWindow()返回的mWindow是PhoneWindow的对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mWindow = <span class="keyword">new</span> PhoneWindow(<span class="keyword">this</span>, window, activityConfigCallback);</span><br></pre></td></tr></table></figure>
-<p>再看看PhoneWindow.superDispatchTouchEvent()方法，显然又调用了DecorView的superDispatchTouchEvent()方法,在该方法中，调用了FrameLayout.dispatchKeyEvent(event)，此时<strong>点击事件从Activity转到了ViewGroup中</strong>。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//PhoneWindow</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">superDispatchKeyEvent</span><span class="params">(KeyEvent event)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> mDecor.superDispatchKeyEvent(event);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//DecorView extends FrameLayout</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">superDispatchKeyEvent</span><span class="params">(KeyEvent event)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Give priority to closing action modes if applicable.</span></span><br><span class="line">    <span class="keyword">if</span> (event.getKeyCode() == KeyEvent.KEYCODE_BACK) &#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> action = event.getAction();</span><br><span class="line">        <span class="comment">// Back cancels action modes first.</span></span><br><span class="line">        <span class="keyword">if</span> (mPrimaryActionMode != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (action == KeyEvent.ACTION_UP) &#123;</span><br><span class="line">                mPrimaryActionMode.finish();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.dispatchKeyEvent(event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="点击事件-ViewGroup-–-gt-View"><a href="#点击事件-ViewGroup-–-gt-View" class="headerlink" title="点击事件 ViewGroup –&gt; View"></a>点击事件 ViewGroup –&gt; View</h1><p>ViewGroup与事件分发的方法有三个：</p>
-<ul>
-<li><code>dispatchTouchEvent()</code>  分发事件</li>
-<li><code>onInterceptTouchEvent()</code>  拦截事件</li>
-<li><code>onTouchEvent()</code>  处理点击事件</li>
-</ul>
-<p>当ViewGroup.dispatchTouchEvent()被调用后，会通过一系列条件判断是由ViewGroup拦截该事件，还是由子View消耗该事件。</p>
-<p>主要流程分为两部分</p>
-<p><strong>1.检查是否需要拦截</strong></p>
-<ul>
-<li>每次ACTION_DOWN事件都需要调用<code>onInterceptTouchEvent()</code>方法判断是否需要拦截</li>
-<li>其他MotionEvent事件，如果有能处理点击事件的子View（<code>mFirstTouchTarget != null</code>）且<code>disallowIntercept</code>为false也需要调用<code>onInterceptTouchEvent()</code>方法判断是否需要拦截，否则不需要拦截</li>
-<li>其余情况都需要拦截（没有可以处理点击事件的子View，并且不是ACTION_DOWN事件）</li>
-</ul>
-<p><strong>2.遍历ViewGroup的所有子View，寻找一个可以处理点击事件的子View</strong></p>
-<ul>
-<li><code>dispatchTransformedTouchEvent()</code>   调用了子View的<code>dispatchTouchEvent()</code></li>
-<li><code>addTouchTarget()</code>   对<code>mFirstTouchTarget</code>进行更新</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">        <span class="comment">// 1. Check for interception.判断是否需要拦截</span></span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">boolean</span> intercepted;</span><br><span class="line">        <span class="keyword">if</span> (actionMasked == MotionEvent.ACTION_DOWN</span><br><span class="line">                || mFirstTouchTarget != <span class="keyword">null</span>) &#123;<span class="comment">//mFirstTouchTarget表示能处理点击事件的子View</span></span><br><span class="line">            <span class="comment">//FLAG_DISALLOW_INTERCEPT每次ACTION_DOWN都会被重置</span></span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">boolean</span> disallowIntercept = (mGroupFlags &amp; FLAG_DISALLOW_INTERCEPT) != <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> (!disallowIntercept) &#123;</span><br><span class="line">                intercepted = onInterceptTouchEvent(ev);<span class="comment">//调用拦截方法</span></span><br><span class="line">                ev.setAction(action); <span class="comment">// restore action in case it was changed</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                intercepted = <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// There are no touch targets and this action is not an initial down</span></span><br><span class="line">            <span class="comment">// so this view group continues to intercept touches.</span></span><br><span class="line">            intercepted = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    	<span class="comment">//2.遍历子View，寻找可以处理点击事件的子View</span></span><br><span class="line">    	<span class="keyword">if</span> (!canceled &amp;&amp; !intercepted) &#123;</span><br><span class="line">       		 <span class="keyword">for</span> (<span class="keyword">int</span> i = childrenCount - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">                 <span class="keyword">if</span> (dispatchTransformedTouchEvent(ev, <span class="keyword">false</span>, child, idBitsToAssign)) &#123;</span><br><span class="line">                     <span class="comment">// Child wants to receive touch within its bounds.</span></span><br><span class="line">                     ...</span><br><span class="line">                     newTouchTarget = addTouchTarget(child, idBitsToAssign);</span><br><span class="line">                     alreadyDispatchedToNewTouchTarget = <span class="keyword">true</span>;</span><br><span class="line">                     <span class="keyword">break</span>;</span><br><span class="line">                  &#125;</span><br><span class="line">        	 &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>dispatchTransformedTouchEvent()方法如下，由于<code>child != null</code>其内部调用<code>child.dispatchTouchEvent(event)</code>方法，如此循环直到子View是一个View（单就ViewGroup和View而论）即<strong>将点击事件从ViewGroup分发到了View</strong>。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">dispatchTransformedTouchEvent</span><span class="params">(MotionEvent event, <span class="keyword">boolean</span> cancel,</span></span></span><br><span class="line"><span class="function"><span class="params">            View child, <span class="keyword">int</span> desiredPointerIdBits)</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">if</span> (child == <span class="keyword">null</span>) &#123;</span><br><span class="line">        handled = <span class="keyword">super</span>.dispatchTouchEvent(event);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        handled = child.dispatchTouchEvent(event);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果有子View可以处理点击事件，在<code>addTouchTarget()</code>方法内部对<code>mFirstTouchTarget</code>进行更新</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> TouchTarget <span class="title">addTouchTarget</span><span class="params">(@NonNull View child, <span class="keyword">int</span> pointerIdBits)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> TouchTarget target = TouchTarget.obtain(child, pointerIdBits);</span><br><span class="line">    target.next = mFirstTouchTarget;</span><br><span class="line">    mFirstTouchTarget = target;</span><br><span class="line">    <span class="keyword">return</span> target;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="点击事件-View内部"><a href="#点击事件-View内部" class="headerlink" title="点击事件 View内部"></a>点击事件 View内部</h1><p>View的点击事件分发主要涉及到两个方法：</p>
-<ul>
-<li><code>dispatchTouchEvent()</code></li>
-<li><code>onTouchEvent()</code></li>
-</ul>
-<p>其点击事件分发用伪代码表示如下:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(mListenerInfo.mOnTouchListener.onTouch(<span class="keyword">this</span>, event))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> onTouchEvent(event);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可见View的dispatchTouchEvent()方法中，如果View注册了OnTouchListener则会先执行<code>mOnTouchListener.onTouch()</code>方法,如果该方法返回false才会执行<code>onTouchEvent()</code>。</p>
-<p>在看onTouchEvent()方法：</p>
-<ul>
-<li>如果View处于<strong>不可用状态</strong>下，也会消耗点击事件，只不过没有反应</li>
-<li>如果注册了OnClickListener会在ACTION_UP的时候调用<code>mOnClickListener.onClick(this)</code></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">if</span>(CLICKABLE&amp;&amp;LONG_CLICKABLE)&#123;<span class="comment">//LONG_CLICKABLE默认为false，CLICKABLE、LONG_CLICKABLE会在设置点击事件时被设置为true</span></span><br><span class="line">        <span class="keyword">switch</span> (action) &#123;</span><br><span class="line">            <span class="keyword">case</span> MotionEvent.ACTION_UP:&#123;</span><br><span class="line">                ...</span><br><span class="line">                performClick();<span class="comment">//如果注册了OnClickListener则会调用其onClick()方法</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">performClick</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    mListenerInfo.mOnClickListener.onClick(<span class="keyword">this</span>);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>整个Android的时间分发始于Activity,经过PhoneWindow、DecorView到达ViewGroup，再逐层分发到View中。</p>
-<p>如果底层没有处理点击事件，则又一层层向上返回，直到最顶层消耗掉点击事件。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍栈、队列两种抽象数据类型。</p>
+<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p>栈<code>stack</code>，又称堆栈，是一种抽象数据类型，每次只能访问栈顶元素<code>top</code>，可以进行压入<code>push</code>和推出<code>pop</code>操作。其元素<strong>先进后出(FILO)</strong>。</p>
+<h1 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h1><p>队列<code>queue</code>,是和栈相对的一种抽象数据类型，每次从后端<code>rear</code>插入，从前端<code>front</code>删除。其元素<strong>先进先出(FIFO)</strong>。</p>
+<p>用链表实现的队列可以自由扩充，不存在伪溢出问题，但是插入和读取比较耗时；</p>
+<p>用数组实现的队列大小固定，可以使用<strong>循环队列</strong>解决伪溢出问题，即当尾端（前端也类似）指针指向超出数组大小时，可以指向数组开始位置，因为此时大小不超过数组的队列前端已经指向0之后的位置了，所以不会冲突。</p>
+<h2 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h2><p>和队列定义一致，只是在每次插入的时候都进行排序，以满足排序规则（如<code>尾端→前端</code> <code>小→大</code>）。</p>
+<h1 id="中缀表达式与后缀表达式"><a href="#中缀表达式与后缀表达式" class="headerlink" title="中缀表达式与后缀表达式"></a>中缀表达式与后缀表达式</h1><p>中缀表达式，指运算符在操作数中间的，如<code>1 + 2</code>。</p>
+<p>后缀表达式，指运算符在操作数后面的，如<code>1 2 +</code>。</p>
+<p>中缀表达式 ↔ 后缀表达式：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">中缀表达式：<span class="number">1</span> + <span class="number">2</span> * ( <span class="number">3</span> + <span class="number">5</span> ) - <span class="number">2</span> * <span class="number">3</span> - <span class="number">9</span> / <span class="number">2</span></span><br><span class="line">后缀表达式：<span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">5</span> + * + <span class="number">2</span> <span class="number">3</span> * - <span class="number">9</span> <span class="number">2</span> / -</span><br></pre></td></tr></table></figure>
+<p>转换规则：</p>
+<p>设一个栈用于保存运算符，从左到右依次遍历中缀表达式，假设读取到的是<code>x</code></p>
+<ol>
+<li><p>如果是操作数，则直接打印</p>
+</li>
+<li><p>如果是运算符<code>(</code>，则压入栈中</p>
+</li>
+<li><p>如果是运算符<code>)</code>，则推出栈中的元素，直到遇到<code>(</code>,推出<code>(</code>，继续读取下一个</p>
+</li>
+<li><p>否则，读取栈顶元素<code>top</code>，如果是<code>(</code>，将<code>x</code>压入栈中；</p>
+<p>如果<code>x</code>优先于<code>top</code>，将<code>x</code>压入栈中；</p>
+<p>否则，将<code>top</code>推出，在此和新的<code>top</code>比较，直到遇到<code>top</code>是<code>(</code>或者优先级比<code>x</code>高，或者栈已经空了，将<code>x</code>插入栈中。</p>
+</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 中缀表达式转化为后缀表达式</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> infix 中缀表达式 1+2</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 后缀表达式 1 2 +</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> static String[] covertInfixToPostfix(String <span class="keyword">infix</span>) &#123;</span><br><span class="line">    StringBuilder stringBuilder = new StringBuilder();</span><br><span class="line">    OperatorStack operatorStack = new OperatorStack();</span><br><span class="line">    <span class="keyword">for</span> (char item : <span class="keyword">infix</span>.toCharArray()) &#123;</span><br><span class="line">        <span class="comment">// 数字</span></span><br><span class="line">        <span class="keyword">if</span> (item &gt;= <span class="string">'0'</span> &amp;&amp; item &lt;= <span class="string">'9'</span>) &#123;</span><br><span class="line">            stringBuilder.append(item + <span class="string">","</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (item == <span class="string">'('</span>) &#123;</span><br><span class="line">            operatorStack.insert(item);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (item == <span class="string">')'</span>) &#123;</span><br><span class="line">            int size = operatorStack.size();</span><br><span class="line">            <span class="keyword">for</span> (int i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    char pop = operatorStack.pop();</span><br><span class="line">                    <span class="keyword">if</span> (pop == <span class="string">'('</span>) &#123;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        stringBuilder.append(pop + <span class="string">","</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    System.<span class="keyword">out</span>.println(<span class="string">"栈为空"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                char peek = operatorStack.peek();</span><br><span class="line">                <span class="keyword">if</span> (peek == <span class="string">'('</span>) &#123;</span><br><span class="line">                    operatorStack.insert(item);</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (isPre(item, peek) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    operatorStack.insert(item);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    int size = operatorStack.size();</span><br><span class="line">                    <span class="keyword">for</span> (int i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">                        <span class="keyword">try</span> &#123;</span><br><span class="line">                            char pop = operatorStack.peek();</span><br><span class="line">                            <span class="keyword">if</span> (pop == <span class="string">'('</span>) &#123;</span><br><span class="line">                                <span class="keyword">break</span>;</span><br><span class="line">                            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (isPre(item, peek) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                                <span class="keyword">break</span>;</span><br><span class="line">                            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                                stringBuilder.append(pop + <span class="string">","</span>);</span><br><span class="line">                                operatorStack.pop();</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    operatorStack.insert(item);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                System.err.println(<span class="string">"栈为空"</span>);</span><br><span class="line">                operatorStack.insert(item);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int size = operatorStack.size();</span><br><span class="line">    <span class="keyword">for</span> (int i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            stringBuilder.append(operatorStack.pop() + <span class="string">","</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.<span class="keyword">out</span>.println(<span class="string">"栈为空"</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    String result = stringBuilder.toString();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result.split(<span class="string">","</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><p>👉<a href="https://github.com/jixiaoyong/Notes-Files/blob/master/AndroidLearningResource/java_note/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/InfixAndPostfix/CovertInfixToPostfix.java" target="_blank" rel="noopener">点这里</a>查看<code>中缀表达式 → 后缀表达式</code>源码</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://zh.wikipedia.org/wiki/%E5%A0%86%E6%A0%88" target="_blank" rel="noopener">堆栈——维基百科</a></p>
+<p><a href="https://zh.wikipedia.org/wiki/%E9%98%9F%E5%88%97" target="_blank" rel="noopener">队列——维基百科</a></p>
 
       
     </div>
@@ -417,7 +390,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jixiaoyong.github.io/blog/posts/c0fefed0/" title="Android事件分发">https://jixiaoyong.github.io/blog/posts/c0fefed0/</a>
+    <a href="https://jixiaoyong.github.io/blog/posts/8d059318/" title="数据结构_栈和队列">https://jixiaoyong.github.io/blog/posts/8d059318/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -432,7 +405,7 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/android/" rel="tag"># android</a>
+            <a href="/blog/tags/数据结构/" rel="tag"># 数据结构</a>
           
         </div>
       
@@ -445,8 +418,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/posts/7ee9086b/" rel="next" title="AsyncTask源码解析">
-                <i class="fa fa-chevron-left"></i> AsyncTask源码解析
+              <a href="/blog/posts/9a784fe0/" rel="next" title="数据结构_数组，链表">
+                <i class="fa fa-chevron-left"></i> 数据结构_数组，链表
               </a>
             
           </div>
@@ -455,8 +428,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/posts/f931e8ae/" rel="prev" title="AIDL在Android中的使用">
-                AIDL在Android中的使用 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/posts/466fbe25/" rel="prev" title="数据结构_递归和汉诺塔问题">
+                数据结构_递归和汉诺塔问题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -634,7 +607,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#点击事件-Activity-–-gt-ViewGroup"><span class="nav-number">2.</span> <span class="nav-text">点击事件 Activity –&gt; ViewGroup</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#点击事件-ViewGroup-–-gt-View"><span class="nav-number">3.</span> <span class="nav-text">点击事件 ViewGroup –&gt; View</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#点击事件-View内部"><span class="nav-number">4.</span> <span class="nav-text">点击事件 View内部</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#栈"><span class="nav-number">2.</span> <span class="nav-text">栈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#队列"><span class="nav-number">3.</span> <span class="nav-text">队列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#优先级队列"><span class="nav-number">3.1.</span> <span class="nav-text">优先级队列</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#中缀表达式与后缀表达式"><span class="nav-number">4.</span> <span class="nav-text">中缀表达式与后缀表达式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#源码"><span class="nav-number">5.</span> <span class="nav-text">源码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
