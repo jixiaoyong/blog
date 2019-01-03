@@ -79,25 +79,21 @@
 
 
 
-<meta name="description" content="前言红黑树是一种特殊的二叉搜索树，查找，插入和删除的时间复杂度均为$O(log_2N)$。 红黑树必须满足以下条件：  必须有颜色（黑/红）  根节点颜色为黑  若节点是红色，则子节点必须是黑色（反之则不然） 到叶节点或空子节点的每一条边上的黑色节点数量必须相同（空子节点指本应该有叶节点却没有的节点，默认为黑色）  如果不满足可以通过以下方式修正：  改变节点颜色 旋转（左、右）  旋转以某个支点">
+<meta name="description" content="前言本文介绍了二叉树，及其应用。 树，既能像链表那样快速插入和删除，又可以像数组那样快速查找。  每棵树有且只有一个根，从根到任何一个节点有且只有一条路径；每个节点都可以有0个或者多个子节点，没有子节点的节点叫做叶子节点。 层是指从根节点到该节点的“代”树，根节点的在0层。 二叉搜索树一个节点只能有0~2个子节点的树叫做二叉树； 如果二叉树的左子节点的关键字小于该节点，右子节点的关键字大于该节点，">
 <meta name="keywords" content="数据结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构_红黑树">
-<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/11c01876/index.html">
+<meta property="og:title" content="数据结构_二叉树">
+<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/101c73f/index.html">
 <meta property="og:site_name" content="季小勇的博客">
-<meta property="og:description" content="前言红黑树是一种特殊的二叉搜索树，查找，插入和删除的时间复杂度均为$O(log_2N)$。 红黑树必须满足以下条件：  必须有颜色（黑/红）  根节点颜色为黑  若节点是红色，则子节点必须是黑色（反之则不然） 到叶节点或空子节点的每一条边上的黑色节点数量必须相同（空子节点指本应该有叶节点却没有的节点，默认为黑色）  如果不满足可以通过以下方式修正：  改变节点颜色 旋转（左、右）  旋转以某个支点">
+<meta property="og:description" content="前言本文介绍了二叉树，及其应用。 树，既能像链表那样快速插入和删除，又可以像数组那样快速查找。  每棵树有且只有一个根，从根到任何一个节点有且只有一条路径；每个节点都可以有0个或者多个子节点，没有子节点的节点叫做叶子节点。 层是指从根节点到该节点的“代”树，根节点的在0层。 二叉搜索树一个节点只能有0~2个子节点的树叫做二叉树； 如果二叉树的左子节点的关键字小于该节点，右子节点的关键字大于该节点，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://jixiaoyong.github.io/images/20181223175956.png">
-<meta property="og:image" content="https://jixiaoyong.github.io/images/20181223180637.png">
-<meta property="og:image" content="https://jixiaoyong.github.io/images/20181223182532.jpg">
-<meta property="og:image" content="https://jixiaoyong.github.io/images/20181223210305.png">
-<meta property="og:image" content="https://jixiaoyong.github.io/images/20181223210800.png">
-<meta property="og:image" content="https://jixiaoyong.github.io/images/20181223211217.png">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20190103200423.png">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20190103203447.png">
 <meta property="og:updated_time" content="2019-01-03T14:12:29.622Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据结构_红黑树">
-<meta name="twitter:description" content="前言红黑树是一种特殊的二叉搜索树，查找，插入和删除的时间复杂度均为$O(log_2N)$。 红黑树必须满足以下条件：  必须有颜色（黑/红）  根节点颜色为黑  若节点是红色，则子节点必须是黑色（反之则不然） 到叶节点或空子节点的每一条边上的黑色节点数量必须相同（空子节点指本应该有叶节点却没有的节点，默认为黑色）  如果不满足可以通过以下方式修正：  改变节点颜色 旋转（左、右）  旋转以某个支点">
-<meta name="twitter:image" content="https://jixiaoyong.github.io/images/20181223175956.png">
+<meta name="twitter:title" content="数据结构_二叉树">
+<meta name="twitter:description" content="前言本文介绍了二叉树，及其应用。 树，既能像链表那样快速插入和删除，又可以像数组那样快速查找。  每棵树有且只有一个根，从根到任何一个节点有且只有一条路径；每个节点都可以有0个或者多个子节点，没有子节点的节点叫做叶子节点。 层是指从根节点到该节点的“代”树，根节点的在0层。 二叉搜索树一个节点只能有0~2个子节点的树叫做二叉树； 如果二叉树的左子节点的关键字小于该节点，右子节点的关键字大于该节点，">
+<meta name="twitter:image" content="https://jixiaoyong.github.io/images/20190103200423.png">
 
 
 
@@ -127,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/11c01876/">
+  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/101c73f/">
 
 
 
 
 
-  <title>数据结构_红黑树 | 季小勇的博客</title>
+  <title>数据结构_二叉树 | 季小勇的博客</title>
   
 
 
@@ -282,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/11c01876/">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/101c73f/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="季小勇">
@@ -299,7 +295,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">数据结构_红黑树</h1>
+          <h1 class="post-title" itemprop="name headline">数据结构_二叉树</h1>
         
 
         <div class="post-meta">
@@ -311,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-23T17:25:36+00:00">
-                2018-12-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-03T22:09:40+00:00">
+                2019-01-03
               </time>
             
 
@@ -349,62 +345,59 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>红黑树是一种特殊的二叉搜索树，查找，插入和删除的时间复杂度均为$O(log_2N)$。</p>
-<p>红黑树必须满足以下条件：</p>
-<ol>
-<li><p>必须有颜色（黑/红）</p>
-</li>
-<li><p>根节点颜色为黑</p>
-</li>
-<li>若节点是红色，则子节点必须是黑色（反之则不然）</li>
-<li>到叶节点或空子节点的每一条边上的黑色节点数量必须相同（空子节点指本应该有叶节点却没有的节点，默认为黑色）</li>
-</ol>
-<p>如果不满足可以通过以下方式修正：</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍了二叉树，及其应用。</p>
+<p>树，既能像链表那样快速插入和删除，又可以像数组那样快速查找。</p>
+<p><img src="https://jixiaoyong.github.io/images/20190103200423.png" alt="树"></p>
+<p>每棵树有且只有一个<strong>根</strong>，从根到任何一个节点<strong>有且只有一条路径</strong>；每个节点都可以有0个或者多个<strong>子节点</strong>，没有子节点的节点叫做<strong>叶子节点</strong>。</p>
+<p><strong>层</strong>是指从根节点到该节点的“代”树，根节点的在<strong>0层</strong>。</p>
+<h1 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h1><p>一个节点只能有0~2个子节点的树叫做<strong>二叉树</strong>；</p>
+<p>如果二叉树的左子节点的关键字小于该节点，右子节点的关键字大于该节点，则该二叉树称为<strong>二叉搜索树</strong>。</p>
+<p>如下，是一个二叉树的节点：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BinaryNode</span></span>(<span class="keyword">val</span> iId: <span class="built_in">Int</span>, <span class="keyword">val</span> dData: <span class="built_in">Double</span>, <span class="keyword">var</span> left: BinaryNode? = <span class="literal">null</span>, <span class="keyword">var</span> right: BinaryNode? = <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">toString</span><span class="params">()</span></span>: String &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"&#123;<span class="variable">$iId</span>,<span class="variable">$dData</span>&#125;"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><p>遍历树指安装一定的顺序访问数的每个节点，按照访问节点的顺序不同，可以分为三种：</p>
 <ul>
-<li>改变节点颜色</li>
-<li>旋转（左、右）</li>
+<li>前序遍历</li>
+<li>中序遍历</li>
+<li>后序遍历</li>
 </ul>
-<h1 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h1><p>以某个支点旋转（右旋为例，旋转时注意更新各个节点的父节点）：</p>
-<p>本质是将该<code>节点a</code>向下进一位插入到其<code>右节点b</code>原先的位置，将其<code>左节点c</code>向上进一位插入到该<code>节点a</code>原先的位置，并将<code>左节点c的右节点</code>赋值给该<code>节点a</code>。</p>
-<p>步骤：</p>
+<p>以中序遍历为例，其访问节点的顺序如下：</p>
 <ol>
-<li><p>将该<code>节点a</code>放到<code>右节点b</code>的位置，将该<code></code>左节点c<code>放到</code>节点a`原先的位置，依次类推</p>
+<li>调用自身遍历该节点的左子树；</li>
+<li>访问这个节点；</li>
+<li>调用自身遍历该节点的右子树。</li>
+</ol>
+<p>实现如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 中序遍历法</span></span><br><span class="line"><span class="comment"> * 使所有节点的关键值按照升序被访问</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">inTraversing</span><span class="params">(node: <span class="type">BinaryNode</span>?)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (node == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    inTraversing(node.left)</span><br><span class="line">    print(<span class="string">"<span class="variable">$node</span>,"</span>)</span><br><span class="line">    inTraversing(node.right)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="最大值和最小值"><a href="#最大值和最小值" class="headerlink" title="最大值和最小值"></a>最大值和最小值</h2><p>二叉搜索树的最大值是右子树中最右端没有子节点的右子节点；</p>
+<p>二叉搜索树的最小值是左子树中最左端没有子节点的左子节点。</p>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>二叉搜索树因为节点要满足<code>左子节点 &lt; 节点 &lt; 右子节点</code>这个条件，所以删除需要分以下几种情况：</p>
+<p>按照要删除的节点子节点数目的不同，分为3种情况</p>
+<ul>
+<li><p>要删除的节点是叶节点 将其父节点的指向设为null即可</p>
 </li>
-<li><p>特殊的，将该<code>点a的内侧孙子</code>（<code>a的左子节点c</code>的<code>右子节点d</code>）断开与其<code>父节点c</code>的连接，转而连接到<code>a</code>上，成为<code>a的左子节点</code></p>
+<li><p>要删除的节点有且只有一个节点 将其父节点指向其子节点</p>
 </li>
-</ol>
-<p>如图，依次插入<code>6,34,23</code>，<strong>以<code>34</code>为支点右旋</strong>：</p>
-<p><img src="https://jixiaoyong.github.io/images/20181223175956.png" width="50%" height="50%"></p>
-<p>对获得的结果，由于<font color="#ff0000">23</font>，<font color="#ff0000">34</font>都是红色违反了<code>规则3</code>，将<code>34的父节点23</code>设置黑，<code>祖父节点6</code>设为红，<strong>以<code>祖父节6</code>点为支点左旋</strong>：</p>
-<p><img src="https://jixiaoyong.github.io/images/20181223180637.png" alt="最终结果"></p>
-<h1 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h1><p>每次插入红色节点，能够避免规则4。</p>
-<p>一般先以二叉搜索树的规则将数据插入表中，然后再对照规则检查是否需要调整红黑树。</p>
-<p>红黑树插入情况分类如下：</p>
-<ol>
-<li>插入位置为根节点，将节点颜色更改为黑色</li>
-<li>插入位置的父节点为根节点或父节点颜色为黑色，直接插入</li>
-<li>父节点为红色。</li>
-</ol>
-<p>只有父节点为红色这种情况需要进行修正，这时又可以细分为以下三种情况：</p>
-<p><img src="https://jixiaoyong.github.io/images/20181223182532.jpg" alt="表格来自 http://www.cnblogs.com/skywang12345/p/3245399.html#a1"></p>
-<p>【注意】对于<code>Case 3</code>当祖父节点没有<strong>左节点</strong>无法右旋时的特殊处理：</p>
-<p>需要对先对当前节点的父节点进行右旋，再以父节点作为<strong>新插入的点N</strong>，将N的父节点设置为黑色，祖父节点设置为红色，以祖父节点为支点左旋。</p>
-<p>如依次插入如下值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">32,3,53,13,983,[137],237,83,483,43,183</span><br></pre></td></tr></table></figure>
-<p>当插入<code>137</code>后红黑树如图：</p>
-<p><img src="https://jixiaoyong.github.io/images/20181223210305.png" alt="插入137后的树"></p>
-<p>本来按照<code>Case 3 父红 叔黑 是左节点</code> 应该要以祖节点右旋，但是组节点53没有左子节点，无法右旋，所以先对父节点983进行右旋：</p>
-<p><img src="https://jixiaoyong.github.io/images/20181223210800.png" alt=""></p>
-<p>再以<code>983</code>为新节点，<code>父红 叔黑 是右节点</code>，将<code>父节点137</code>设置为黑色，<code>祖节点53</code>设置为红色，以<code>组节点53</code>为支点左旋：</p>
-<p><img src="https://jixiaoyong.github.io/images/20181223211217.png" alt=""></p>
-<h1 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h1><p>删除比较复杂，可以有两种操作：</p>
-<ol>
-<li>在节点中保存一个标志位，标记该节点是否被删除，并不针真的删除该点。</li>
-<li>在执行删除操作时真正删除该点。</li>
-</ol>
-<h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><p><a href="https://github.com/jixiaoyong/Notes-Files/blob/master/AndroidLearningResource/java_note/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/tree/RedBlackTree.kt" target="_blank" rel="noopener">👉点这里</a>查看源码</p>
-<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p><a href="https://sandbox.runjs.cn/show/2nngvn8w" target="_blank" rel="noopener">在线操作红黑树</a></p>
-<p><a href="http://www.cnblogs.com/skywang12345/p/3245399.html#a1" target="_blank" rel="noopener">红黑树(一)之 原理和算法详细介绍</a></p>
+<li><p>要删除的节点有两个子节点 这时候可以找该子节点的右子树中最小的（或者左子树中最大的）节点并替换掉要删除的节点，</p>
+<p>与此同时如果这个节点有右子节点（或对应的左子节点）则按照2/3的规则处理，这样就能保证这个树的结构不会出错</p>
+</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">delete</span><span class="params">(iId: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">        <span class="comment">//查找iId对应的节点</span></span><br><span class="line">        <span class="keyword">var</span> current = root</span><br><span class="line">        <span class="keyword">var</span> parent = root</span><br><span class="line">        <span class="keyword">while</span> (current?.iId != iId) &#123;</span><br><span class="line">            <span class="keyword">if</span> (current == <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            &#125;</span><br><span class="line">            parent = current</span><br><span class="line">            current = <span class="keyword">if</span> (iId &gt; current.iId) &#123;</span><br><span class="line">                current.right</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                current.left</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (parent == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 按照要删除的节点子节点数目的不同，分为3种情况</span></span><br><span class="line"><span class="comment">         * 1/3 要删除的节点是叶节点 将其父节点的指向设为null即可</span></span><br><span class="line"><span class="comment">         * 2/3 要删除的节点有且只有一个节点 将其父节点指向其子节点</span></span><br><span class="line"><span class="comment">         * 3/3 要删除的节点有两个子节点 这时候可以找该子节点的右子树中最小的（或者左子树中最大的）节点并替换掉要删除的节点，</span></span><br><span class="line"><span class="comment">         *     与此同时如果这个节点有右子节点（或对应的左子节点）则按照2/3的规则处理，这样就能保证这个树的结构不会出错</span></span><br><span class="line"><span class="comment">         *     下面采用的是找该节点的右子树最小值，即右子节点或者右子节点的最后一个左子节点</span></span><br><span class="line"><span class="comment">         *     找到后用该子节点的值替换掉要删除的节点值，如果该子节点还有右子节点，将该子节点的父节点指向其右子节点</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">if</span> (current.left != <span class="literal">null</span> &amp;&amp; current.right != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="comment">//双子节点</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">// 当前点右子节点的左子节点为null</span></span><br><span class="line">            <span class="keyword">if</span> (current.right!!.left == <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (current.iId &gt; parent.iId) &#123;</span><br><span class="line">                    parent.right = current.right</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    parent.left = current.right</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//TODO 是否需要将右节点的左子节点指向当前点的左子节点</span></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> cChildNode = current.right</span><br><span class="line">            <span class="keyword">var</span> cParentNode = current!!</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (cChildNode?.left != <span class="literal">null</span>) &#123;</span><br><span class="line">                cParentNode = cChildNode</span><br><span class="line">                cChildNode = cChildNode.left</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//后继节点</span></span><br><span class="line">            cParentNode.left = cChildNode!!.right</span><br><span class="line">            cChildNode!!.right = current.right</span><br><span class="line">            cChildNode!!.left = current.left</span><br><span class="line">            <span class="keyword">if</span> (current.iId &gt; parent.iId) &#123;</span><br><span class="line">                parent.right = cChildNode</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                parent.left = cChildNode</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (current.left == <span class="literal">null</span> &amp;&amp; current.right == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="comment">//叶子节点</span></span><br><span class="line">            <span class="keyword">if</span> (current.iId &gt; parent.iId) &#123;</span><br><span class="line">                parent.right = <span class="literal">null</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                parent.left = <span class="literal">null</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (current.left == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (current.iId &gt; parent.iId) &#123;</span><br><span class="line">                parent.right = current.right</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                parent.left = current.right</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (current.right == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (current.iId &gt; parent.iId) &#123;</span><br><span class="line">                parent.right = current.left</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                parent.left = current.left</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="哈夫曼编码"><a href="#哈夫曼编码" class="headerlink" title="哈夫曼编码"></a>哈夫曼编码</h1><p>哈夫曼编码用来对一段文本进行压缩，解压。</p>
+<blockquote>
+<p>压缩：用字符的编码替代字符</p>
+<p>解压：用字符代替对应的编码</p>
+</blockquote>
+<p>实现思路如下：</p>
+<ul>
+<li>将字符按照出现的频次生成优先级队列；</li>
+<li>依次<strong>取出</strong>两个最小的字符，为他们生成一个父节点（父节点频次为两个子节点之和）；</li>
+<li>并将插入优先级队列中，依次循环直到优先级队列中只有一个节点——哈夫曼树的根节点；</li>
+<li>从哈夫曼树的根开始，以向左为0，向右为1对其叶子节点上的字符赋予编码。</li>
+</ul>
+<p>其过程如下图所示：</p>
+<p><img src="https://jixiaoyong.github.io/images/20190103203447.png" alt="哈夫曼编码示意图"></p>
+<h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><p><a href="https://github.com/jixiaoyong/Notes-Files/blob/master/AndroidLearningResource/java_note/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/tree/BinaryTree.kt" target="_blank" rel="noopener">👉点这里</a> 查看<code>二叉树</code>源码</p>
+<p><a href="https://github.com/jixiaoyong/Notes-Files/blob/master/AndroidLearningResource/java_note/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/tree/HuffmanCodeUtils.kt" target="_blank" rel="noopener">👉点这里</a> 查看<code>哈夫曼编码</code>源码</p>
 
       
     </div>
@@ -425,7 +418,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jixiaoyong.github.io/blog/posts/11c01876/" title="数据结构_红黑树">https://jixiaoyong.github.io/blog/posts/11c01876/</a>
+    <a href="https://jixiaoyong.github.io/blog/posts/101c73f/" title="数据结构_二叉树">https://jixiaoyong.github.io/blog/posts/101c73f/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -453,8 +446,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/posts/b00ac86a/" rel="next" title="利用travis通过Hexo在Github上自动部署Markdown文档">
-                <i class="fa fa-chevron-left"></i> 利用travis通过Hexo在Github上自动部署Markdown文档
+              <a href="/blog/posts/2041f2cb/" rel="next" title="数据结构_高级排序">
+                <i class="fa fa-chevron-left"></i> 数据结构_高级排序
               </a>
             
           </div>
@@ -462,10 +455,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/posts/1f6681a0/" rel="prev" title="数据结构_Hash表">
-                数据结构_Hash表 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -642,7 +631,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#旋转"><span class="nav-number">2.</span> <span class="nav-text">旋转</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#插入"><span class="nav-number">3.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除"><span class="nav-number">4.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#源码"><span class="nav-number">5.</span> <span class="nav-text">源码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文档"><span class="nav-number">6.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二叉搜索树"><span class="nav-number">2.</span> <span class="nav-text">二叉搜索树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历"><span class="nav-number">2.1.</span> <span class="nav-text">遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大值和最小值"><span class="nav-number">2.2.</span> <span class="nav-text">最大值和最小值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除"><span class="nav-number">2.3.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#哈夫曼编码"><span class="nav-number">3.</span> <span class="nav-text">哈夫曼编码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#源码"><span class="nav-number">4.</span> <span class="nav-text">源码</span></a></li></ol></div>
             
 
           </div>
