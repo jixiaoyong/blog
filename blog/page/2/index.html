@@ -271,6 +271,148 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/11c01876/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="季小勇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="季小勇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/posts/11c01876/" itemprop="url">数据结构_红黑树</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-23T17:25:36+00:00">
+                2018-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          前言红黑树是一种特殊的二叉搜索树，查找，插入和删除的时间复杂度均为$O(log_2N)$。
+红黑树必须满足以下条件：
+
+必须有颜色（黑/红）
+
+根节点颜色为黑
+
+若节点是红色，则子节点必须是黑色（反之则不然）
+到叶节点或空子节点的每一条边上的黑色节点数量必须相同（空子节点指本应该有叶节点却没有的节点，默认为黑色）
+
+如果不满足可以通过以下方式修正：
+
+改变节点颜色
+旋转（左、右）
+
+旋转以某个支点旋转（右旋为例，旋转时注意更新各个节点的父节点）：
+本质是将该节点a向下进一位插入到其右节点b原先的
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/posts/11c01876/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/b00ac86a/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1439,139 +1581,6 @@ onProgressUpdat
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/b3994218/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="季小勇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="季小勇的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/posts/b3994218/" itemprop="url">JVM类加载机制之ClassLoader</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T16:40:32+00:00">
-                2018-04-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-本文为《一看你就懂，超详细java中的ClassLoader详解 - CSDN博客》阅读笔记
-
-简述JVM有三种类加载器：
-
-BootStrap ClassLoader 加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。
-Extention ClassLoader 扩展的类加载器，加载目录%JRE_HOME%\lib\ext目录下的jar包和class文件。
-App ClassLoader 加载当前
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/posts/b3994218/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1624,7 +1633,7 @@ App ClassLoader 加载当前
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

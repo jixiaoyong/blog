@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>数据结构_总结</title>
+      <link href="/blog/posts/851be5ef/"/>
+      <url>/blog/posts/851be5ef/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文汇总了数据结构的优缺点及应用场景。</p><p>通用数据结构：数组、链表、树、哈希表</p><p>专用数据结构：栈、队列、优先级队列</p><p>排序：冒泡排序、选择排序、插入排序，希尔排序、快速排序、归并排序、堆排序</p><p>图：邻接矩阵、邻接表</p><h1 id="通用数据结构"><a href="#通用数据结构" class="headerlink" title="通用数据结构"></a>通用数据结构</h1><p>这些数据结构使用关键字的值存储、查找数据</p><p>其速度如下：</p><p><code>哈希表 &gt; 树 &gt; 链表 &gt; 数组</code></p><p>数组：数据量小，大小可以预测时使用</p><p>链表：数据大小不可预知，或需要频繁插入删除元素时使用</p><p>二叉搜索树：如果数组和链表都很慢时，优先考虑二叉树</p><p>平衡树：二叉搜索树很快，但是如果遇到数据是逆序的时候，就会很耗性能，而平衡树则不会</p><p>哈希表：在数据存储结构中最快，但是需要有额外的空间</p><p>下面是以上数据结构的速度：</p><p><img src="https://jixiaoyong.github.io/images/20190105140704.png" alt="通用数据结构速度统计"></p><h1 id="专用数据结构"><a href="#专用数据结构" class="headerlink" title="专用数据结构"></a>专用数据结构</h1><p>包括栈、队列、优先级队列（堆），都是抽象数据结构(ADT)，由更加基础的<code>通用数据结构</code>组成。</p><p>不能查找或者遍历，只能访问指定元素（头部，队列也可以访问尾部）。</p><h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>先进后出(FILO)，最后插入的数据在栈顶，每次只能访问栈顶元素。</p><h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>先进先出(FIFO)，最后插入的数据在队尾，最先插入的在队首，每次先弹出队首的元素。</p><h2 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h2><p>是一种特殊的队列，不同的是优先级高的在队首，优先级低的在队尾，每次弹出优先级最高的元素（这意味着每次插入或弹出时要进行排序）。</p><h2 id="效率"><a href="#效率" class="headerlink" title="效率"></a>效率</h2><p><img src="https://jixiaoyong.github.io/images/20190105141727.png" alt="专用数据结构效率比较"></p><h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><p>排序包括冒泡排序、选择排序、插入排序，希尔排序、快速排序、归并排序、堆排序。</p><p>一般使用排序优先级：</p><p><code>插入排序 &gt; 希尔排序 &gt; 快速排序 &gt; 归并排序 &gt; 堆排序</code></p><p>归并排序：需要辅助存储空间</p><p>堆排序：需要一个堆的数据结构，比快速排序更适于非随机数据</p><p>快速排序：处理非随机数据时会慢到$O(N^2)​$</p><p>下面是排序算法比较：</p><p><img src="https://jixiaoyong.github.io/images/20190105142406.png" alt="排序算法比较"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 数据结构 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>数据结构_二叉树</title>
       <link href="/blog/posts/101c73f/"/>
       <url>/blog/posts/101c73f/</url>
