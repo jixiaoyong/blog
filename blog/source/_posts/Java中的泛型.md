@@ -1,5 +1,5 @@
 ---
-title: java中的泛型
+title: Java中的泛型
 tags: java
 abbrlink: b2cdb69e
 date: 2018-11-03 11:01:34
