@@ -1,5 +1,5 @@
 ---
-title: lambda表达式在kotlin中的应用
+title: Lambda表达式在kotlin中的应用
 tags: lambda
 abbrlink: '53875104'
 date: 2018-02-09 11:09:06
