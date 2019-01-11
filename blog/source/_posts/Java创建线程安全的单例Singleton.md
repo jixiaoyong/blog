@@ -1,5 +1,5 @@
 ---
-title: java创建线程安全的单例Singleton
+title: Java创建线程安全的单例Singleton
 tags: java
 abbrlink: '36721083'
 date: 2018-02-14 18:34:16
