@@ -1,5 +1,5 @@
 ---
-title: hexo+github=blog
+title: Hexo+Github=Blog
 abbrlink: f7965978
 date: 2016-03-25 06:06:06
 ---
