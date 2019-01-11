@@ -1,5 +1,5 @@
 ---
-title: '[update]Python爬取gityuan所有文章列表'
+title: 'Python爬取gityuan所有文章列表'
 tags: python
 abbrlink: '6e070881'
 date: 2018-01-28 22:03:50
