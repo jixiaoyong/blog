@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="本文为《一看你就懂，超详细java中的ClassLoader详解 - CSDN博客》阅读笔记  简述JVM有三种类加载器：  BootStrap ClassLoader 加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。 Extention ClassLoader 扩展的类加载器，加载目录%JRE_H">
+<meta name="description" content="本文为《一看你就懂，超详细java中的ClassLoader详解 - CSDN博客》阅读笔记  简述JVM有三种类加载器：  BootStrap ClassLoader 启动类加载器，加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。 Extention ClassLoader 扩展类加载器，加载目录">
 <meta name="keywords" content="JVM_ClassLoader">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM类加载机制之ClassLoader">
 <meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/b3994218/index.html">
 <meta property="og:site_name" content="季小勇的博客">
-<meta property="og:description" content="本文为《一看你就懂，超详细java中的ClassLoader详解 - CSDN博客》阅读笔记  简述JVM有三种类加载器：  BootStrap ClassLoader 加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。 Extention ClassLoader 扩展的类加载器，加载目录%JRE_H">
+<meta property="og:description" content="本文为《一看你就懂，超详细java中的ClassLoader详解 - CSDN博客》阅读笔记  简述JVM有三种类加载器：  BootStrap ClassLoader 启动类加载器，加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。 Extention ClassLoader 扩展类加载器，加载目录">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-11T12:48:08.582Z">
+<meta property="og:updated_time" content="2019-01-12T10:51:51.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM类加载机制之ClassLoader">
-<meta name="twitter:description" content="本文为《一看你就懂，超详细java中的ClassLoader详解 - CSDN博客》阅读笔记  简述JVM有三种类加载器：  BootStrap ClassLoader 加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。 Extention ClassLoader 扩展的类加载器，加载目录%JRE_H">
+<meta name="twitter:description" content="本文为《一看你就懂，超详细java中的ClassLoader详解 - CSDN博客》阅读笔记  简述JVM有三种类加载器：  BootStrap ClassLoader 启动类加载器，加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。 Extention ClassLoader 扩展类加载器，加载目录">
 
 
 
@@ -347,10 +347,12 @@
 </blockquote>
 <h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>JVM有三种类加载器：</p>
 <ol>
-<li><strong>BootStrap ClassLoader</strong> 加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。</li>
-<li><strong>Extention ClassLoader</strong> 扩展的类加载器，加载目录%JRE_HOME%\lib\ext目录下的jar包和class文件。</li>
-<li><strong>App ClassLoader</strong> 加载当前应用的classpath的所有类。</li>
+<li><strong>BootStrap ClassLoader</strong> 启动类加载器，加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。</li>
+<li><strong>Extention ClassLoader</strong> 扩展类加载器，加载目录%JRE_HOME%\lib\ext目录下的jar包和class文件。</li>
+<li><strong>App ClassLoader</strong> 应用程序加载器，加载当前应用的classpath的所有类。</li>
 </ol>
+<p>除以上三种外，还有用户自定义的类加载器。</p>
+<p>每个类由加载它的类加载器和类本身确定其唯一性。也就是说，类加载器不同，类肯定不同。</p>
 <h1 id="加载过程"><a href="#加载过程" class="headerlink" title="加载过程"></a>加载过程</h1><p>在加载类时，通过<strong>“双亲委托”</strong>机制，依次从<strong>1</strong> -&gt; <strong>3</strong>向上查询，再从<strong>3</strong>-&gt;<strong>1</strong>依次返回结果：</p>
 <ol>
 <li>调用<code>findLoadedClass(className)</code>查询是否已经加载该类</li>

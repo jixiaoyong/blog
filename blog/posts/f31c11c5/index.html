@@ -82,15 +82,15 @@
 <meta name="description" content="本笔记基于《深入理解Java虚拟机：JVM高级特性与最佳实践》及部分在线博客整理。  JVM：java virtual machine，一个java程序（进程）拥有一个jvm实例 内存JVM区域总体分两类，heap区和非heap区: heap区：Eden Space（伊甸园）、Survivor Space(幸存者区)、Tenured Gen（老年代-养老区）。非heap区：Code Cache(">
 <meta name="keywords" content="jvm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM内存知识整理">
+<meta property="og:title" content="JVM内存分配">
 <meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/f31c11c5/index.html">
 <meta property="og:site_name" content="季小勇的博客">
 <meta property="og:description" content="本笔记基于《深入理解Java虚拟机：JVM高级特性与最佳实践》及部分在线博客整理。  JVM：java virtual machine，一个java程序（进程）拥有一个jvm实例 内存JVM区域总体分两类，heap区和非heap区: heap区：Eden Space（伊甸园）、Survivor Space(幸存者区)、Tenured Gen（老年代-养老区）。非heap区：Code Cache(">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/jixiaoyong/jixiaoyong.github.io/master/images/blog/2018-02/JVMMemory.png">
-<meta property="og:updated_time" content="2019-01-11T12:48:08.582Z">
+<meta property="og:updated_time" content="2019-01-12T10:51:51.338Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JVM内存知识整理">
+<meta name="twitter:title" content="JVM内存分配">
 <meta name="twitter:description" content="本笔记基于《深入理解Java虚拟机：JVM高级特性与最佳实践》及部分在线博客整理。  JVM：java virtual machine，一个java程序（进程）拥有一个jvm实例 内存JVM区域总体分两类，heap区和非heap区: heap区：Eden Space（伊甸园）、Survivor Space(幸存者区)、Tenured Gen（老年代-养老区）。非heap区：Code Cache(">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/jixiaoyong/jixiaoyong.github.io/master/images/blog/2018-02/JVMMemory.png">
 
@@ -128,7 +128,7 @@
 
 
 
-  <title>JVM内存知识整理 | 季小勇的博客</title>
+  <title>JVM内存分配 | 季小勇的博客</title>
   
 
 
@@ -294,7 +294,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JVM内存知识整理</h1>
+          <h1 class="post-title" itemprop="name headline">JVM内存分配</h1>
         
 
         <div class="post-meta">
@@ -370,7 +370,7 @@
 <li>大对象，如数组，大String…</li>
 </ul>
 <h2 id="2-stack"><a href="#2-stack" class="headerlink" title="2.stack"></a>2.stack</h2><p>栈，线程私有，存放基本数据和对象的引用，LIFO，会OOM，StackOverflow</p>
-<h3 id="java-virtual-machine-stack"><a href="#java-virtual-machine-stack" class="headerlink" title="java virtual machine stack"></a>java virtual machine stack</h3><p>线程请求的栈深度大于JVM允许的深度会导致Stack Overflow<br>如果虚拟机栈可以动态扩展，但是当拓展时无法申请到足够内存时会导致OutOfMemory</p>
+<h3 id="java-virtual-machine-stack"><a href="#java-virtual-machine-stack" class="headerlink" title="java virtual machine stack"></a>java virtual machine stack</h3><p>线程请求的栈深度大于JVM允许的深度会导致Stack Overflow<br>在编译期完成内存分配，如果虚拟机栈可以动态扩展，但是当拓展时无法申请到足够内存时会导致OutOfMemory</p>
 <p><strong>stack  frame</strong></p>
 <p>stack frame：栈帧，每执行一个方法就会产生一个栈帧并压入栈中</p>
 <ul>
@@ -381,15 +381,30 @@
 <li>returnAddress 类型,指向了一条字节码指令的位置</li>
 </ul>
 </li>
-<li><p>操作栈</p>
+<li><p>操作数栈</p>
 </li>
 <li>动态链接</li>
-<li>方法出口等…</li>
+<li>方法出口等</li>
 </ul>
 <h3 id="native-method-stack"><a href="#native-method-stack" class="headerlink" title="native method stack"></a>native method stack</h3><p>与java虚拟机栈作用类似，不过native method stack是为native方法服务。<br>jvm可以自由实现它，甚至在sun HotSpot VM中将他与虚拟机栈合并<br>会OOM，stackOverflow</p>
 <h2 id="3-method-area"><a href="#3-method-area" class="headerlink" title="3.method area"></a>3.method area</h2><p>方法区，线程共享，存放类信息，常量，静态变量，即时编译器编译后的代码，会OOM</p>
 <p><strong>运行时常量池</strong></p>
-<p>类加载后，编译器生成的各种字面量和符号引用会放到方法区的运行时常量池中<br>String.intern()，有该string对象则返回，无则创建并返回<br>会OOM</p>
+<p>类加载后，编译器生成的各种字面量和符号引用会放到方法区的运行时常量池中，会OOM<br><code>String.intern()</code>，有该string对象则返回，无则创建并返回</p>
+<blockquote>
+<p><code>String.intern()</code>方法的注意事项：</p>
+<p>JDK1.6及以下：将首次出现的对象实例<strong>复制</strong>到永久代，返回其引用</p>
+<p>JDK1.7及以上：只会<strong>记录</strong>下首次出现的实例的引用，返回其引用</p>
+<p>所以：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; String s2 = <span class="string">"java"</span>;</span><br><span class="line">&gt; System.out.println(s2.intern() == s2);</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>在JDK1.6及以下输出<code>false</code>，在JDK1.7及以上输出<code>true</code></p>
+<p>此外，由于<code>String</code>类是<code>final</code>的，每次<code>new String(&quot;str&quot;)</code>会产生两个对象：一个是字符串<code>str</code>本身，一个是值为<code>str</code>的字符串。</p>
+</blockquote>
+<p>以<code>String s = &quot;Hello&quot;;</code>为例，解释几个概念：</p>
+<p><strong>字面量</strong> 源码中表示具体的值，如<code>Hello</code></p>
+<p><strong>符号引用</strong> 用来指代某种值得符号，如<code>s</code></p>
+<p><strong>直接引用</strong> 可以定位到内存中的（类、对象、方法、变量）等的具体地址</p>
 <h2 id="4-program-count"><a href="#4-program-count" class="headerlink" title="4.program count"></a>4.program count</h2><p><strong>程序计数器</strong>，线程私有，占用内存小，当做当前线程执行字节码的行号指示器。</p>
 <p>若执行java方法，计数器记录的是正在执行的虚拟机字节码指令的位置</p>
 <p>若执行的是native方法，则计数器为空undefined。</p>
@@ -464,7 +479,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jixiaoyong.github.io/blog/posts/f31c11c5/" title="JVM内存知识整理">https://jixiaoyong.github.io/blog/posts/f31c11c5/</a>
+    <a href="https://jixiaoyong.github.io/blog/posts/f31c11c5/" title="JVM内存分配">https://jixiaoyong.github.io/blog/posts/f31c11c5/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
