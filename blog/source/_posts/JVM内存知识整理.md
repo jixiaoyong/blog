@@ -1,5 +1,5 @@
 ---
-title: JVM内存知识整理
+title: JVM内存分配
 tags: jvm
 abbrlink: f31c11c5
 date: 2018-02-24 23:39:19
@@ -50,7 +50,7 @@ JVM区域总体分两类，heap区和非heap区:
 ### java virtual machine stack
 
 线程请求的栈深度大于JVM允许的深度会导致Stack Overflow
-如果虚拟机栈可以动态扩展，但是当拓展时无法申请到足够内存时会导致OutOfMemory
+在编译期完成内存分配，如果虚拟机栈可以动态扩展，但是当拓展时无法申请到足够内存时会导致OutOfMemory
 
 **stack  frame**
 
@@ -61,9 +61,9 @@ stack frame：栈帧，每执行一个方法就会产生一个栈帧并压入栈
    * 对象引用
    * returnAddress 类型,指向了一条字节码指令的位置
 
-* 操作栈
+* 操作数栈
 * 动态链接
-* 方法出口等...
+* 方法出口等
 
 ### native method stack
 
@@ -77,9 +77,35 @@ jvm可以自由实现它，甚至在sun HotSpot VM中将他与虚拟机栈合并
 
 **运行时常量池**
 
-类加载后，编译器生成的各种字面量和符号引用会放到方法区的运行时常量池中
-String.intern()，有该string对象则返回，无则创建并返回
-会OOM
+类加载后，编译器生成的各种字面量和符号引用会放到方法区的运行时常量池中，会OOM
+`String.intern()`，有该string对象则返回，无则创建并返回
+
+> `String.intern()`方法的注意事项：
+>
+> JDK1.6及以下：将首次出现的对象实例**复制**到永久代，返回其引用
+>
+> JDK1.7及以上：只会**记录**下首次出现的实例的引用，返回其引用
+>
+> 所以：
+>
+> ```java
+> String s2 = "java";
+> System.out.println(s2.intern() == s2);
+> ```
+>
+> 在JDK1.6及以下输出`false`，在JDK1.7及以上输出`true`
+>
+> 此外，由于`String`类是`final`的，每次`new String("str")`会产生两个对象：一个是字符串`str`本身，一个是值为`str`的字符串。
+
+
+
+以`String s = "Hello";`为例，解释几个概念：
+
+**字面量** 源码中表示具体的值，如`Hello`
+
+**符号引用** 用来指代某种值得符号，如`s`
+
+**直接引用** 可以定位到内存中的（类、对象、方法、变量）等的具体地址
 
 ## 4.program count
 

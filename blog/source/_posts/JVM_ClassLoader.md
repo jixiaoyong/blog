@@ -13,9 +13,13 @@ date: 2018-04-15 16:40:32
 
 JVM有三种类加载器：
 
-1. **BootStrap ClassLoader** 加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。
-2. **Extention ClassLoader** 扩展的类加载器，加载目录%JRE_HOME%\lib\ext目录下的jar包和class文件。
-3. **App ClassLoader** 加载当前应用的classpath的所有类。
+1. **BootStrap ClassLoader** 启动类加载器，加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。
+2. **Extention ClassLoader** 扩展类加载器，加载目录%JRE_HOME%\lib\ext目录下的jar包和class文件。
+3. **App ClassLoader** 应用程序加载器，加载当前应用的classpath的所有类。
+
+除以上三种外，还有用户自定义的类加载器。
+
+每个类由加载它的类加载器和类本身确定其唯一性。也就是说，类加载器不同，类肯定不同。
 
 # 加载过程
 

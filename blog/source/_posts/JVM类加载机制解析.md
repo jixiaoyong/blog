@@ -41,10 +41,28 @@ JVM类加载一共7步，前五步是类加载机制，各个步骤按照顺序�
 > https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-5.html (*英文文档若无特殊说明都是引用官方文档，下同*)
 
 1. 用**类全限定名**获取类的二进制字节流
+
 2. 将字节流中**静态存储结构**转化为**方法区**的运行时数据结构
-3. <u>*在**堆**中生成一个代表该类的java.lang.Class对象，作为方法区数据的访问入口。*</u>（**这句话存疑** ，有人说[在堆中](http://blog.csdn.net/ns_code/article/details/17881581) ,也有人说在[方法区](http://gityuan.com/2015/10/25/jvm-class-loading/) ,官方文档未相关描述）
+
+3. <u>*在**堆**中生成一个代表该类的java.lang.Class对象，作为方法区数据的访问入口。*</u>
+
+   （~~**这句话存疑** ，有人说[在堆中](http://blog.csdn.net/ns_code/article/details/17881581) ,也有人说在[方法区](http://gityuan.com/2015/10/25/jvm-class-loading/) ,官方文档未相关描述~~ 
+
+   `2019/01/12 更新` Class对象没有明确规定实在**JAVA堆**中，对应HotSpot虚拟机来说，该对象在**方法区**中）
 
 类加载的地方是开发人员可控性最强的地方。除了可以使用系统的ClassLoader外还可以自定义ClassLoader（后文详述）。
+
+类加载根据加载的类不同分为两种：
+
+* 非数组类 使用系统/自定义的类加载器完成加载
+* 数组类 数组类不通过类加载器创建，而是通过JVM直接创建，但是数组类的元素类型要通过类加载器创建
+
+数组类的元素加载，根据数组元素的类型不同，分为两类：
+
+* 引用类 通过普通类加载器加载，并将数组用该类加载器标识
+* 非引用类 将数组与引导类加载器标识
+
+数组类的可见性与其元素类的可见性一致。
 
 
 
@@ -77,9 +95,11 @@ JVM类加载一共7步，前五步是类加载机制，各个步骤按照顺序�
 
 ### **Preparation **
 
-**准备**，在方法区对类变量分配内存，**初始化为默认值**
+**准备**，在方法区对类变量分配内存，**初始化为默认值**（“零值”）。
 
-比如：`static int i = 5；`在这一步只会进行到`i = 0` ，而`i = 5`要在初始化那一步才进行。
+比如：`static int i = 5；`在这一步只会进行到`i = 0` ，而`i = 5`要在初始化那一步才进行；
+
+但是如果是final修饰的**常量**，则在此分配具体值。
 
 > *Preparation* involves creating the static fields for a class or interface and initializing such fields to their default values ([§2.3](https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-2.html#jvms-2.3), [§2.4](https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-2.html#jvms-2.4)). This does not require the execution of any Java Virtual Machine code; explicit initializers for static fields are executed as part of initialization ([§5.5](https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-5.html#jvms-5.5)), not preparation.
 
@@ -95,11 +115,13 @@ method code：要被执行的方法以及通过符号引用的变量。
 
 > Each frame ([§2.6](https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-2.html#jvms-2.6)) contains a reference to the run-time constant pool ([§2.5.5](https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-2.html#jvms-2.5.5)) for the type of the current method to support *dynamic linking* of the method code.
 
-动态链接将符号引用（symbolic references）转化为具体方法的调用（concrete method references），根据需要加载类来解析未定义的符号，将变量访问转化为运行时内存（runtime location）。
+动态链接将符号引用（symbolic references）转化为具体方法的调用（concrete method references）即直接引用，根据需要加载类来解析未定义的符号，将变量访问转化为运行时内存（runtime location）。
 
 > This late binding of the methods and variables makes changes in other classes that a method uses less likely to break this code.
 >
 > *方法和变量的这种后期绑定,使得方法使用的其他类的更改不太可能破坏这个代码。*
+>
+> 直接引用可以直接定位到内存中某一段地址；符号引用则与JVM内存无管
 
 解析分为：
 
@@ -118,6 +140,16 @@ method code：要被执行的方法以及通过符号引用的变量。
 
 类或接口在被初始化之前，必须先被连接linked（ verified, prepared, and optionally（可选） resolved.）。
 
+初始化有且只有以下五种情况：
+
+* `new`、读取/设置类（只有直接定义其的类才会，子类等不受影响）的静态变量（final修饰的常量除外）、执行静态方法
+* `java.lang.reflect`反射调用类
+* 初始化时，如果父类未初始化，先触发父类的初始化（接口类除外）
+* 虚拟机等启动时执行主类的`main()`方法时，需要先初始化主类
+* JDK1.7 动态支持时，如果`java.lang.invoke.MethodHandle`实例最后解析结果`REF_get/put/invokeStatic的方法句柄对应的类未被初始化时，需要先初始化对应的类`
+
+以上5种称为对一个类的**主动引用**，其余不会触发初始化，称为**被动引用**
+
 
 
 `clinit()` ,有**类变量赋值，静态语句块**会由编译器合并为`clinit()`方法,分为两种：
@@ -125,7 +157,7 @@ method code：要被执行的方法以及通过符号引用的变量。
 1. 类 父类的`clinit()`方法会先于子类执行
 2. 接口  接口`clinit()`方法无需调用父类接口的`clinit()`方法；接口的实现类也无需执行接口的`clinit()`方法
 
-
+`clinit()` 是线程安全的，在同一个类加载器中，多个线程的中只会有**一个线程执行一次`clinit()`**，其余线程阻塞等待
 
 `clinit()`和`init()`不同如下：
 
@@ -135,7 +167,7 @@ method code：要被执行的方法以及通过符号引用的变量。
 >
 > http://blog.csdn.net/u013309870/article/details/72975536
 
-
+如果类没有静态赋值、静态语句块等则不会有`clinit()`方法。
 
 `clinit()`先于`init()`执行。
 
