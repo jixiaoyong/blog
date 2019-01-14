@@ -217,7 +217,7 @@ bash是用户和内容交互的桥梁 `用户 ↔ bash ↔ Unix内核`
 
 **bash shell 设置**
 
-## 1.自定义变量
+## 自定义变量
 
 `key=value` 增加一个值为`value`的变量`key`
 
@@ -237,7 +237,7 @@ set | grep HIST 查看shell命令历史
 set | grep PSI 提示符前面的内容，username-MBP:dirpath username$ 
 ```
 
-## 2.别名配置
+## 别名配置
 
 `alias` 查看所有别名
 
@@ -247,7 +247,7 @@ set | grep PSI 提示符前面的内容，username-MBP:dirpath username$
 
 如:`alias cls=clear`,执行`cls`就等于执行`clear`
 
-## 3.环境变量
+## 环境变量
 
 `export KEY=VALUE` 将值为`VALUE`的`KEY`添加到环境变量（本次shell有效）
 
