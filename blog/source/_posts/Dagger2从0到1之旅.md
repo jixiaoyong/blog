@@ -48,6 +48,10 @@ class Client{
 
 那么这一切`Dagger 2`到底是如何实现的呢？
 
+# Dagger 2 具体实现
+
+## @Inject
+
 首先需要请出第一个主角——**`@Inject`**。
 
 在`Dagger 2`中，`@Inject`主要做两件事❶标记依赖类的构造方法；❷标记需要框架自动实例化的对象：
@@ -64,6 +68,8 @@ class Client{
 ```
 
 这样`Dagger 2 `就知道了有个对象需要它来帮助我们注入，同时也知道了有一个构造方法来实例化`Service`对象。但这时如何将二者联系起来呢？
+
+## @Component
 
 这就要提到第二个主角——**`@Component`**。
 
@@ -86,7 +92,7 @@ interface ClientComponent{
     }
 ```
 
-以上完整的代码可以参考这里：
+以上完整的代码可以参考这里,[若无法显示可点击这里查看](https://gist.github.com/jixiaoyong/8abd44901a2816e2b6722566bb8f08d8#file-dagger2_basic_guide_line_part1-kt)：
 
 <script src="https://gist.github.com/jixiaoyong/8abd44901a2816e2b6722566bb8f08d8.js"></script>
 
@@ -95,6 +101,8 @@ interface ClientComponent{
 <center> <img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://jixiaoyong.github.io/images/20190126184230.png"> <br> <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">@Component自动实现依赖注入的示意图</div> </center>
 
 但是很显然实际开发中，不是所有的`Service`类都可以被我们随意修改，如果`Service`类是第三方提供的类，显然我们是无法用`@Inject`修饰其构造函数的。
+
+##@Module和@Provides
 
 为了解决第三方依赖的问题，我们要引入另外两个主角——**`@Module`**和**`@Provides`**。
 
@@ -120,7 +128,7 @@ interface ClientComponent{
 
 `@Component`在产生依赖的时候会先到`@Module`类中的`@Provides`方法中查找；如果找不到才会再到`@Inject`中查找。（也就是说，此时`Service`类的`@Inject`构造方法其实是失效了的，完全可以没有`@Inject`注解——第三方类即是如此）。
 
-上述完整代码如下：
+上述完整代码如下,[若无法显示可点击这里查看](https://gist.github.com/jixiaoyong/35714a6287617260d8578c1b716427cb)：
 
 <script src="https://gist.github.com/jixiaoyong/35714a6287617260d8578c1b716427cb.js"></script>
 
@@ -153,6 +161,8 @@ class ClientModule{
 ```
 
 运行时发现会出错，因为有两个方法都可以提供`Service`，`@Component`产生了迷失，不知道用哪一个好，导致错误。
+
+## @Named和@Qualifier
 
 为了解决多个构造函数导致的问题，这时就需要第五个主角**`@Named`**以及幕后英雄**`@Qualifier`**
 
@@ -199,7 +209,7 @@ annotation class YourQualifierName(//YourQualifierName可以是任意你喜欢�
 
 之后我们就可以使用`@YourQualifierName`替代`@Named`实现标识不同注解的作用，从而支持有多个构造函数的`Service`类的初始化。
 
-上述完整代码如下：
+上述完整代码如下,[若无法显示可点击这里查看](https://gist.github.com/jixiaoyong/fec4426183328346b955f62eb6e9c91a)：：
 
 <script src="https://gist.github.com/jixiaoyong/fec4426183328346b955f62eb6e9c91a.js"></script>
 
