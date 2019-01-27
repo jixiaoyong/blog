@@ -256,13 +256,19 @@ class ClientModule{
 
 此外两个关系为**`dependencies`**的`@Component`可以分别拥有相同名称的`@Inject`、`@Module`、`@Provides`而不会被*merge*，两者可以相互访问。
 
-而**`subcomponents`**会被合并到`@Component`中，所以不能有以上相同的项。
+而**`subcomponents`**则不能和`@Component`有以上相同的项。
 
 > `Subcomponent`从它的父类访问所有依赖
 >
 > `@Component`只能访问在基类`@Component`接口暴露的公共性的依赖
 >
-> [Subcomponents和Component Dependencies——Sinyuk Blog](https://sinyuk.me/2016/04/11/Subcomponents%E5%92%8CComponent-Dependencies/)
+> ——[Subcomponents和Component Dependencies——Sinyuk Blog](https://sinyuk.me/2016/04/11/Subcomponents%E5%92%8CComponent-Dependencies/)
+
+他们之间的关系可以表示为下图：
+
+<center> <img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://jixiaoyong.github.io/images/20190127204658.png"> <br> <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">@Subcomponent,@Component之间的关系</div> </center>
+
+
 
 # 参考资料
 
