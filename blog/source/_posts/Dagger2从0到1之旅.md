@@ -1,5 +1,5 @@
 ---
-title: Dagger 2从0到1之旅
+title: Dagger 2 从0到1之旅
 date: 2019-01-26 15:16:17
 tag: dagger2
 ---
@@ -102,7 +102,7 @@ interface ClientComponent{
 
 但是很显然实际开发中，不是所有的`Service`类都可以被我们随意修改，如果`Service`类是第三方提供的类，显然我们是无法用`@Inject`修饰其构造函数的。
 
-##@Module和@Provides
+## @Module和@Provides
 
 为了解决第三方依赖的问题，我们要引入另外两个主角——**`@Module`**和**`@Provides`**。
 
@@ -216,6 +216,8 @@ annotation class YourQualifierName(//YourQualifierName可以是任意你喜欢�
 `@Component`可以有多个`@Module`，他们之间的关系可以用下图表示：
 
 <center> <img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://jixiaoyong.github.io/images/20190126201436.png"> <br> <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">@Component 会先到他拥有的多个@Module中去查找Service类</div> </center>
+
+## @Singleton和@Scope
 
 在实际开发中，我们需要有的类只能有一个实例，从而在不同的地方共享一些数据——即单例，这种情况就需要另外一个角色`@Singleton`和他的幕后英雄`@Scope`。
 
