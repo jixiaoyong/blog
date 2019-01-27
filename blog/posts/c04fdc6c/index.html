@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/default_avatar.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/default_avatar.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/default_avatar.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/default_avatar.jpg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="dagger2,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言上篇文章介绍了Dagger 2 的基本使用，本文跟随官方文档实践一下Dagger 2 在Android中的使用，可以看做是官方文档的不完全翻译。 分为Activity和Fragment两部分，二者的使用几乎没有差别，最后介绍一下在Google官方Demo中学到的一个小技巧，可以将几乎所有的和Dagger 2的逻辑放到一份代码里面，对Android工程的影响极小。 首先要添加相关依赖（kotli">
+<meta name="keywords" content="dagger2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dagger 2 ❤️ Android">
+<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/c04fdc6c/index.html">
+<meta property="og:site_name" content="季小勇的博客">
+<meta property="og:description" content="前言上篇文章介绍了Dagger 2 的基本使用，本文跟随官方文档实践一下Dagger 2 在Android中的使用，可以看做是官方文档的不完全翻译。 分为Activity和Fragment两部分，二者的使用几乎没有差别，最后介绍一下在Google官方Demo中学到的一个小技巧，可以将几乎所有的和Dagger 2的逻辑放到一份代码里面，对Android工程的影响极小。 首先要添加相关依赖（kotli">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-27T16:05:57.201Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dagger 2 ❤️ Android">
+<meta name="twitter:description" content="前言上篇文章介绍了Dagger 2 的基本使用，本文跟随官方文档实践一下Dagger 2 在Android中的使用，可以看做是官方文档的不完全翻译。 分为Activity和Fragment两部分，二者的使用几乎没有差别，最后介绍一下在Google官方Demo中学到的一个小技巧，可以将几乎所有的和Dagger 2的逻辑放到一份代码里面，对Android工程的影响极小。 首先要添加相关依赖（kotli">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/c04fdc6c/">
+
+
+
+
+
+  <title>Dagger 2 ❤️ Android | 季小勇的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">季小勇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/c04fdc6c/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="季小勇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="季小勇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Dagger 2 ❤️ Android</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-27T21:23:50+00:00">
+                2019-01-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="http://jixiaoyong.github.io/blog/posts/2822c354/">上篇文章</a>介绍了Dagger 2 的基本使用，本文跟随<a href="https://google.github.io/dagger/android" target="_blank" rel="noopener">官方文档</a>实践一下Dagger 2 在Android中的使用，可以看做是官方文档的不完全翻译。</p>
+<p>分为Activity和Fragment两部分，二者的使用几乎没有差别，最后介绍一下在Google官方Demo中学到的一个小技巧，可以将几乎所有的和Dagger 2的逻辑放到一份代码里面，对Android工程的影响极小。</p>
+<p>首先要添加相关依赖（kotlin环境）：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'kotlin-kapt'</span><span class="comment">//引用该插件</span></span><br><span class="line">implementation <span class="string">"com.google.dagger:dagger:$rootProject.dagger2Version"</span></span><br><span class="line">implementation <span class="string">"com.google.dagger:dagger-android-support:$rootProject.dagger2Version"</span><span class="comment">//Android特需</span></span><br><span class="line">kapt <span class="string">"com.google.dagger:dagger-compiler:$rootProject.dagger2Version"</span><span class="comment">//注意如果是kotlin语言，这里需要时#kapt#</span></span><br></pre></td></tr></table></figure>
+<h1 id="在Activity中的使用"><a href="#在Activity中的使用" class="headerlink" title="在Activity中的使用"></a>在Activity中的使用</h1><h2 id="Application范围内的-Component"><a href="#Application范围内的-Component" class="headerlink" title="Application范围内的@Component"></a>Application范围内的@Component</h2><p>首先创建整个应用程序使用的@Component，并将AndroidInjectionModule加入其中，实现Inject注入入口：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component(modules = [AndroidInjectionModule::class, MainActivityModule::class])</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">AppComponent</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">inject</span><span class="params">(application: <span class="type">MainApplication</span>)</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>AppComponent的范围是整个应用程序都有效。</p>
+<h2 id="创建单个Activity的-Subcomponent"><a href="#创建单个Activity的-Subcomponent" class="headerlink" title="创建单个Activity的@Subcomponent"></a>创建单个Activity的@Subcomponent</h2><p>创建某个Activity专属的@Subcomponent，用于提供AndroidInjector.Builder。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Subcomponent</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">MainActivitySubComponent</span> : <span class="type">AndroidInjector</span>&lt;<span class="type">MainActivity</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Subcomponent</span>.Builder</span><br><span class="line">    <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> : <span class="type">AndroidInjector.Builder</span>&lt;<span class="type">MainActivity</span>&gt;</span>()</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="创建单个Activity的-Module"><a href="#创建单个Activity的-Module" class="headerlink" title="创建单个Activity的@Module"></a>创建单个Activity的@Module</h2><p>创建属于整个Activity的@Module，注意这里要指明@subcomponents为刚刚创建的MainActivitySubComponent。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Module(includes = [MainActivityModule.InnerModule::class], subcomponents = [MainActivitySubComponent::class])</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainActivityModule</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Provides</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">bindWaitForInjectClass</span><span class="params">()</span></span> = WaitForInjectClass()</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Module</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerModule</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Binds</span></span><br><span class="line">        <span class="meta">@IntoMap</span></span><br><span class="line">        <span class="meta">@ClassKey(MainActivity::class)</span></span><br><span class="line">        <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">bindInjectorFactory</span><span class="params">(builder: <span class="type">MainActivitySubComponent</span>.<span class="type">Builder</span>)</span></span>: AndroidInjector.Factory&lt;*&gt;<span class="comment">//注意这里是 Factory&lt;*&gt;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WaitForInjectClass</span> //一个供依赖注入的类</span></span><br></pre></td></tr></table></figure>
+<p>可以看到在MainActivityModule中提供了一个方法利用刚刚MainActivitySubComponent中提供的MainActivitySubComponent.Builder实例生成了一个AndroidInjector.Factory，而这个Factory就是我们后面要将MainActivityModule中的依赖实例通过AppComponent传递给MainActivity实例的关键。</p>
+<blockquote>
+<p>此外还可以看到提供该Factory的方法是放到了另外一个抽象类里面然后再导入MainActivityModule中的，这是因为该方法的注解@Binds要求方法是抽象的，而MainActivityModule要是需要给Activity提供依赖实例所必须的@Provides又要求类不能是抽象的，否则就要求该方法是静态的。权衡之下我觉得这种方式是比较能接受的，当然也不排除有其他更优雅的解决方案，欢迎提<a href="https://github.com/jixiaoyong/jixiaoyong.github.io/issues" target="_blank" rel="noopener">Issue</a>告知。</p>
+</blockquote>
+<p>然后，将MainActivityModule加入到应用程序的@Component——AppComponent中。</p>
+<h2 id="使Application继承自-HasActivityInjector"><a href="#使Application继承自-HasActivityInjector" class="headerlink" title="使Application继承自 HasActivityInjector"></a>使Application继承自 <a href="https://google.github.io/dagger/api/latest/dagger/android/HasActivityInjector.html" target="_blank" rel="noopener"><code>HasActivityInjector</code></a></h2><p>使当前MainApplication继承自HasActivityInjector，该接口只有一个方法：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Returns an &#123;<span class="doctag">@link</span> AndroidInjector&#125; of &#123;<span class="doctag">@link</span> Activity&#125;s. */</span></span><br><span class="line">AndroidInjector&lt;Activity&gt; activityInjector();</span><br></pre></td></tr></table></figure>
+<p>这个类是用来为相应的Activity提供一个AndroidInjector。由于我们已经在AppComponent中包括了AndroidInjectionModule，所以Dagger 2已经可以自动为我们注入DispatchingAndroidInjector依赖，所以接下来的代码如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainApplication</span> : <span class="type">HasActivityInjector</span>, <span class="type">Application</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate()</span><br><span class="line">        DaggerAppComponent.create().inject(<span class="keyword">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> dispatchActivityInjector: DispatchingAndroidInjector&lt;Activity&gt;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">activityInjector</span><span class="params">()</span></span> = dispatchActivityInjector<span class="comment">//返回Dagger 2为我们注入的dispatchActivityInjector对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在onCreate()方法中传入当前Application的依赖。</p>
+<h2 id="在Activity中使用自动注入依赖"><a href="#在Activity中使用自动注入依赖" class="headerlink" title="在Activity中使用自动注入依赖"></a>在Activity中使用自动注入依赖</h2><p>做完了以上所有内容，我们只需要在Activity中添加如下代码就可以实现自动注入：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> : <span class="type">AppCompatActivity</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> waitForInjectClass: WaitForInjectClass</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        AndroidInjection.inject(<span class="keyword">this</span>)<span class="comment">//注意这里，在super()之前调用</span></span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_dagger2_x_android_main)</span><br><span class="line"></span><br><span class="line">        Log.d(<span class="string">"TAG"</span>, <span class="string">"The Class is <span class="variable">$waitForInjectClass</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上所有代码如下，或者也可以<a href="https://gist.github.com/jixiaoyong/db7e5f18b7106ce9cb36b61bf7134340" target="_blank" rel="noopener">在这里找到</a>：</p>
+<script src="https://gist.github.com/jixiaoyong/db7e5f18b7106ce9cb36b61bf7134340.js"></script>
+
+<h2 id="这一切是怎么实现的呢？"><a href="#这一切是怎么实现的呢？" class="headerlink" title="这一切是怎么实现的呢？"></a>这一切是怎么实现的呢？</h2><p>在Android程序运行时，<code>AndroidInjection.inject()</code>从Application中的activityInjector()方法获取到 <code>DispatchingAndroidInjector&lt;Activity&gt;</code> ，然后将Activity传入<code>inject(Activity)</code>。</p>
+<p><code>DispatchingAndroidInjector</code> 通过AppComponent找到我们在MainActivityModule提供的对应的<code>AndroidInjector.Factory</code>，然后创建了 <code>AndroidInjector</code> ——这就是我们当前Activity对应的MainActivitySubComponent。</p>
+<p>接下来便按照之前的逻辑，从MainActivitySubComponent中查找提供waitForInjectClass的实例方法完成注入。</p>
+<h1 id="在Fragment中的使用"><a href="#在Fragment中的使用" class="headerlink" title="在Fragment中的使用"></a>在Fragment中的使用</h1><p>Dagger 2在Fragment的使用和在Activity中的使用十分相似。</p>
+<p>通过之前的代码我们可以知道，其基本的原理依旧是利用@Component和@subcomponent，@Module之间的关联关系将Application和Activity等的依赖注入通过AndroidInjector关联起来的：</p>
+<p>MainActivitySubComponent通过将MainActivityModule加入到AppComponent之中，然后当MainActivity之中需要使用到MainActivitySubComponent时，又通过AndroidInjector从AppComponent中拿到MainActivityModule中的<code>AndroidInjector.Factory</code>，通过该Factory和MainActivitySubComponent中的Builder产生关联，从而获取到了MainActivitySubComponent的实例供Activity使用。</p>
+<p>在Fragment中我们也可以这样处理，只不过由于Fragment的特性，他的@Module不仅可以交给Application的@Component，也可以交给其他Fragment或者Activity的@Component，让其实现HasFragmentInjector即可，这取决于我们想要给Fragment绑定的依赖。</p>
+<p>具体的实现一般分为下面几步：</p>
+<ul>
+<li><p>创建Application的@Component并添加AndroidInjectionModule</p>
+</li>
+<li><p>创建实现了<code>AndroidInjector&lt;MainFragment&gt;</code>的MainFragmentSubComponent，其内部有方法提供<code>AndroidInjector.Builder&lt;MainFragment&gt;</code></p>
+</li>
+<li><p>创建包含了提供<code>AndroidInjector.Factory&lt;*&gt;</code>的抽象方法的MainFragmentModule，指定其subcomponents为MainFragmentSubComponent；</p>
+</li>
+<li><p>将MainFragmentSubComponent加入到想要加入的类的@Component中，比如AppComponent类</p>
+</li>
+<li><p>在Application（如果上一步是Activity，则本步也是Activity等）中参照在Activity实现的步骤实现HasFragmentInjector</p>
+<p>上述完整的代码如下，或者也可以<a href="https://gist.github.com/jixiaoyong/a24e76ca29f4c8062bf5c6a98529d252" target="_blank" rel="noopener">在这里找到</a>：</p>
+<script src="https://gist.github.com/jixiaoyong/a24e76ca29f4c8062bf5c6a98529d252.js"></script>
+
+</li>
+</ul>
+<p>关于Fragment加入到Activity的Demo在官方文档有，这里就不再赘述了，其实只要掌握原理，其他用法的完全可以触类旁通。</p>
+<h1 id="一个小技巧"><a href="#一个小技巧" class="headerlink" title="一个小技巧"></a>一个小技巧</h1><p>通过观察上面的两份代码，我们发现虽然这Dagger 2已经替我们做了好多事情，我们只需要在需要使用依赖注入的类中使用诸如<code>AndroidInjection.inject(this)</code>这样的代码就可以了，但是如果Activity、Fragment类过多的时候，这样的重复性工作仍然是个不小的工作量，万一有某处遗忘了便会导致出错。</p>
+<p>这时就可以用到我在<a href="https://github.com/googlesamples/android-architecture-components/tree/master/GithubBrowserSample" target="_blank" rel="noopener">Google官方示例代码</a>中学到的一个小技巧了(针对本文中的例子做了一些修改)，或者你也可以<a href="https://gist.github.com/jixiaoyong/9260c3ae2a70555e14f40c4b95364715" target="_blank" rel="noopener">到这里查看源码</a>：</p>
+<script src="https://gist.github.com/jixiaoyong/9260c3ae2a70555e14f40c4b95364715.js"></script>
+
+
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://google.github.io/dagger/android" target="_blank" rel="noopener">Dagger 2 官方文档 Android篇</a></p>
+<p><a href="https://github.com/googlesamples/android-architecture-components/tree/master/GithubBrowserSample" target="_blank" rel="noopener">Google官方示例代码——GithubBrowserSample</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    季小勇
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://jixiaoyong.github.io/blog/posts/c04fdc6c/" title="Dagger 2 ❤️ Android">https://jixiaoyong.github.io/blog/posts/c04fdc6c/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/dagger2/" rel="tag"># dagger2</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/posts/2822c354/" rel="next" title="Dagger 2 从0到1之旅">
+                <i class="fa fa-chevron-left"></i> Dagger 2 从0到1之旅
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/blog/images/default_avatar.jpg" alt="季小勇">
+            
+              <p class="site-author-name" itemprop="name">季小勇</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.wanandroid.com/" title="WanAndroid" target="_blank">WanAndroid</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在Activity中的使用"><span class="nav-number">2.</span> <span class="nav-text">在Activity中的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Application范围内的-Component"><span class="nav-number">2.1.</span> <span class="nav-text">Application范围内的@Component</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建单个Activity的-Subcomponent"><span class="nav-number">2.2.</span> <span class="nav-text">创建单个Activity的@Subcomponent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建单个Activity的-Module"><span class="nav-number">2.3.</span> <span class="nav-text">创建单个Activity的@Module</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使Application继承自-HasActivityInjector"><span class="nav-number">2.4.</span> <span class="nav-text">使Application继承自 HasActivityInjector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Activity中使用自动注入依赖"><span class="nav-number">2.5.</span> <span class="nav-text">在Activity中使用自动注入依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这一切是怎么实现的呢？"><span class="nav-number">2.6.</span> <span class="nav-text">这一切是怎么实现的呢？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在Fragment中的使用"><span class="nav-number">3.</span> <span class="nav-text">在Fragment中的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一个小技巧"><span class="nav-number">4.</span> <span class="nav-text">一个小技巧</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">季小勇</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/blog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
