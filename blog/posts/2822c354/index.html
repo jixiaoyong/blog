@@ -82,16 +82,16 @@
 <meta name="description" content="前言Dagger 2是Google维护的一款可用于Java和Android的依赖注入框架。 本文主要是简单梳理Dagger 2中各个注解的作用，以及其简单用法，不涉及具体项目应用。 先解释几个概念：  依赖注入：是一个对象（或静态方法）给另一个对象提供依赖的技术。  依赖是可以使用的对象（Service），而把依赖提供给使用该依赖的对象（Client）的过程叫做注入。   例如，下面这段代码中Se">
 <meta name="keywords" content="dagger2">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Dagger 2从0到1之旅">
-<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/6a678776/index.html">
+<meta property="og:title" content="Dagger 2 从0到1之旅">
+<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/2822c354/index.html">
 <meta property="og:site_name" content="季小勇的博客">
 <meta property="og:description" content="前言Dagger 2是Google维护的一款可用于Java和Android的依赖注入框架。 本文主要是简单梳理Dagger 2中各个注解的作用，以及其简单用法，不涉及具体项目应用。 先解释几个概念：  依赖注入：是一个对象（或静态方法）给另一个对象提供依赖的技术。  依赖是可以使用的对象（Service），而把依赖提供给使用该依赖的对象（Client）的过程叫做注入。   例如，下面这段代码中Se">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://jixiaoyong.github.io/images/20190126184230.png">
 <meta property="og:image" content="https://jixiaoyong.github.io/images/20190126201436.png">
-<meta property="og:updated_time" content="2019-01-26T16:35:10.426Z">
+<meta property="og:updated_time" content="2019-01-27T01:11:22.019Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Dagger 2从0到1之旅">
+<meta name="twitter:title" content="Dagger 2 从0到1之旅">
 <meta name="twitter:description" content="前言Dagger 2是Google维护的一款可用于Java和Android的依赖注入框架。 本文主要是简单梳理Dagger 2中各个注解的作用，以及其简单用法，不涉及具体项目应用。 先解释几个概念：  依赖注入：是一个对象（或静态方法）给另一个对象提供依赖的技术。  依赖是可以使用的对象（Service），而把依赖提供给使用该依赖的对象（Client）的过程叫做注入。   例如，下面这段代码中Se">
 <meta name="twitter:image" content="https://jixiaoyong.github.io/images/20190126184230.png">
 
@@ -123,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/6a678776/">
+  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/2822c354/">
 
 
 
 
 
-  <title>Dagger 2从0到1之旅 | 季小勇的博客</title>
+  <title>Dagger 2 从0到1之旅 | 季小勇的博客</title>
   
 
 
@@ -278,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/6a678776/">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/2822c354/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="季小勇">
@@ -295,7 +295,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Dagger 2从0到1之旅</h1>
+          <h1 class="post-title" itemprop="name headline">Dagger 2 从0到1之旅</h1>
         
 
         <div class="post-meta">
@@ -377,8 +377,7 @@
 <center> <img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://jixiaoyong.github.io/images/20190126184230.png"> <br> <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">@Component自动实现依赖注入的示意图</div> </center>
 
 <p>但是很显然实际开发中，不是所有的<code>Service</code>类都可以被我们随意修改，如果<code>Service</code>类是第三方提供的类，显然我们是无法用<code>@Inject</code>修饰其构造函数的。</p>
-<p>##@Module和@Provides</p>
-<p>为了解决第三方依赖的问题，我们要引入另外两个主角——<strong><code>@Module</code></strong>和<strong><code>@Provides</code></strong>。</p>
+<h2 id="Module和-Provides"><a href="#Module和-Provides" class="headerlink" title="@Module和@Provides"></a>@Module和@Provides</h2><p>为了解决第三方依赖的问题，我们要引入另外两个主角——<strong><code>@Module</code></strong>和<strong><code>@Provides</code></strong>。</p>
 <p><code>@Provides</code>用来提供一个方法，我们可以在其内部实例化并返回<code>Service</code>类，这样子当用到<code>Service</code>的时候，<code>@Component</code>类只需要找到<code>@Provides</code>提供的这个方法，并获取到他实例化好的<code>Service</code>对象注入到<code>Client</code>中就可以了。</p>
 <p><code>@Module</code>则是提供一个<strong>类</strong>（注意是类，而非接口），像一个袋子一样把<code>@Provides</code>提供的方法“装”到一起，打包提供给<code>@Component</code>类。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClientModule</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Provides</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">getService</span><span class="params">()</span></span> = Service()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component(modules = [ClientModule::class])</span><span class="comment">//Component可以有多个Module类</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ClientComponent</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">inject</span><span class="params">(client: <span class="type">Client</span>)</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -411,7 +410,7 @@
 <p><code>@Component</code>可以有多个<code>@Module</code>，他们之间的关系可以用下图表示：</p>
 <center> <img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://jixiaoyong.github.io/images/20190126201436.png"> <br> <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">@Component 会先到他拥有的多个@Module中去查找Service类</div> </center>
 
-<p>在实际开发中，我们需要有的类只能有一个实例，从而在不同的地方共享一些数据——即单例，这种情况就需要另外一个角色<code>@Singleton</code>和他的幕后英雄<code>@Scope</code>。</p>
+<h2 id="Singleton和-Scope"><a href="#Singleton和-Scope" class="headerlink" title="@Singleton和@Scope"></a>@Singleton和@Scope</h2><p>在实际开发中，我们需要有的类只能有一个实例，从而在不同的地方共享一些数据——即单例，这种情况就需要另外一个角色<code>@Singleton</code>和他的幕后英雄<code>@Scope</code>。</p>
 <p>@Singleton是用来标记类在其范围内只能被实例化一次。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Scope</span></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Retention(RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Singleton &#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>通过查看其源码可以知道其背后是<code>@Scope</code>在起作用，<code>@Scope</code>的作用是限定其修饰的类的范围，适用于有可注入的构造函数并且包含控制类型实例如何重用的类。没有<code>@Scope</code>修饰的实例在构造完毕后就会失去控制，不再关心后续的发展（<em>then forgets it</em>），而<code>@Scope</code>修饰的类会在实例构造完毕后，继续保留一遍下一次可能的复用，当有多个线程可以访问该实例时，他的实现应该是线程安全的（<em>it‘s implementation should be thread safe</em>）。</p>
@@ -450,7 +449,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jixiaoyong.github.io/blog/posts/6a678776/" title="Dagger 2从0到1之旅">https://jixiaoyong.github.io/blog/posts/6a678776/</a>
+    <a href="https://jixiaoyong.github.io/blog/posts/2822c354/" title="Dagger 2 从0到1之旅">https://jixiaoyong.github.io/blog/posts/2822c354/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -663,7 +662,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dagger-2-具体实现"><span class="nav-number">2.</span> <span class="nav-text">Dagger 2 具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Inject"><span class="nav-number">2.1.</span> <span class="nav-text">@Inject</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Component"><span class="nav-number">2.2.</span> <span class="nav-text">@Component</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Named和-Qualifier"><span class="nav-number">2.3.</span> <span class="nav-text">@Named和@Qualifier</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dagger-2-具体实现"><span class="nav-number">2.</span> <span class="nav-text">Dagger 2 具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Inject"><span class="nav-number">2.1.</span> <span class="nav-text">@Inject</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Component"><span class="nav-number">2.2.</span> <span class="nav-text">@Component</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Module和-Provides"><span class="nav-number">2.3.</span> <span class="nav-text">@Module和@Provides</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Named和-Qualifier"><span class="nav-number">2.4.</span> <span class="nav-text">@Named和@Qualifier</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Singleton和-Scope"><span class="nav-number">2.5.</span> <span class="nav-text">@Singleton和@Scope</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
