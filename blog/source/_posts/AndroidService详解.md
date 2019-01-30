@@ -1,6 +1,6 @@
 ---
 title: AndroidService详解
-tags: Android
+tags: android
 abbrlink: ad4c562c
 date: 2018-01-14 01:10:01
 ---
