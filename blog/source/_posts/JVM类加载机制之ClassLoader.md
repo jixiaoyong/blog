@@ -1,6 +1,6 @@
 ---
 title: JVM类加载机制之ClassLoader
-tags: JVM_ClassLoader
+tags: jvm
 abbrlink: b3994218
 date: 2018-04-15 16:40:32
 ---
