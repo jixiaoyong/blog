@@ -1,6 +1,6 @@
 ---
 title: Android通过Hook启动未注册Activity
-tags: Android hook
+tags: android,hook
 abbrlink: 26eab50a
 date: 2018-01-16 00:10:41
 ---
