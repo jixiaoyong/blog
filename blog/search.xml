@@ -421,7 +421,7 @@
       
         <tags>
             
-            <tag> JVM_ClassLoader </tag>
+            <tag> jvm </tag>
             
         </tags>
       
@@ -829,7 +829,7 @@
       
         <tags>
             
-            <tag> android,hook </tag>
+            <tag> android </tag>
             
         </tags>
       
