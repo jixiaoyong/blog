@@ -4,7 +4,7 @@ date: 2019-01-24 19:48:31
 tag: android
 ---
 
-> Google大法NB！！！
+> Google大法NB！！！(破音)
 
 # 前言
 
@@ -12,9 +12,13 @@ tag: android
 
 [Sunflower](https://github.com/googlesamples/android-sunflower)则是Google用来演示如何使用Jetpack进行Android开发的Demo，有着非常优雅的架构与十分简洁的代码，可以帮助我们很好地学习Jetpack以及MVVM思想。
 
-本文主要是结合Sunflower中的示例代码，分析Jetpack架构中各部分的作用，方便指导日后对Jetpack的使用。
+本文主要是结合Sunflower中的示例代码，分析Jetpack架构中各部分的作用，以及他们如何巧妙的搭配使用，方便指导日后对Jetpack的使用。
 
-<center>     <img style="border-radius: 0.3125em;     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"      src="https://jixiaoyong.github.io/images/jetpack_donut.png">     <br>     <div style="color:orange; border-bottom: 1px solid #d9d9d9;     display: inline-block;     color: #999;     padding: 2px;">Jetpack示意图</div> </center>
+> 本文中的大部分代码、示意图除非特殊注明外，皆来自Google的[Sunflower工程](https://github.com/googlesamples/android-sunflower)或其他互联网资源，根据篇幅需要做了部分精简，所有权益归原作者所有。
+
+下图是[Google Jetpack官网](https://developer.android.google.cn/jetpack/)对Jetpack的介绍图：
+
+<center>     <img style="border-radius: 0.3125em;     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"      src="https://jixiaoyong.github.io/images/jetpack_donut.png">     <br>     <div style="color:orange; border-bottom: 1px solid #d9d9d9;     display: inline-block;     color: #999;     padding: 2px;">Jetpack示意图 <font style="color: #BEBEBE">来自GoogleJetpack官网</font></div> </center>
 
 # 对Sunflower的整体分析
 
@@ -24,7 +28,7 @@ tag: android
 
 可以看到，APP的界面有`我的花园`、`植物目录`和`植物介绍`三部分，这三者的切换逻辑通过<font color=#0288d1 size=4>**`Navigation`**</font>实现。
 
-每个界面的**`XML`**中的布局信息（包括`数据、事件（clickListener等），RecycleView的LayoutManager，Adapter等等`）通过<font color=#0288d1 size=4>**`DataBinding`**</font>与<font color=#0288d1 size=4>**`ViewModel`**</font>中的可观察数据<font color=#0288d1 size=4>**`LiveData`**</font>绑定在一起，只要数据库中的`数据`有更新，就会主动通知布局更新界面；同时`DataBinding`还通过与`Adapter`（这些继承自**`ListAdapter`**的Adapter实现了<font color=#0288d1 size=4>**`Paging`**</font>的作用）将`ItemView`的`ViewModel`与布局`XML`中绑定在一起，通过`BindingAdapter`对`XML`中的数据做预处理（加载imgUrl中的图片到ImageView等等）。
+每个界面的**`XML`**中的布局信息（包括`数据、事件（clickListener等），RecycleView的LayoutManager，Adapter等等`）通过<font color=#0288d1 size=4>**`DataBinding`**</font>与<font color=#0288d1 size=4>**`ViewModel`**</font>中的可观察数据<font color=#0288d1 size=4>**`LiveData`**</font>绑定在一起，只要数据库中的`数据`有更新，就会通过`LiveData`主动通知布局更新界面；同时`DataBinding`还通过与`Adapter`（这些继承自**`ListAdapter`**的Adapter实现了<font color=#0288d1 size=4>**`Paging`**</font>的作用）将`ItemView`的`ViewModel`与布局`XML`中绑定在一起，通过`BindingAdapter`对`XML`中的数据做预处理（加载imgUrl中的图片到ImageView等等）。
 
 在<font color=black size=5>**`View`**</font>中指定这些`DataBinding`与<font color=black size=5>**`ViewModel`**</font>之间以及`ViewModel`与<font color=black size=5>**`Model`**</font>`数据库`之间的逻辑关系，这些数据与操作都受着<font color=#0288d1 size=4>**`Lifecycle`**</font>的影响。
 
@@ -54,7 +58,15 @@ tag: android
 
 ## Navigation控制界面切换
 
-那么`Navigation`是怎么控制界面切换的呢？
+先看一下[Navigation](https://developer.android.google.cn/topic/libraries/architecture/navigation/)的定义：
+
+> Navigation是APP设计中的关键部分，可以用来定义用户从不同的界面切换、进入和推出的交互逻辑。
+
+和布局文件一样，我们可以在编译器的可视化界面中，直接预览、设计不同界面切换效果。他可以负责`Fragment`、`Activity`、`Navigation graphs` 与 `subgraphs` 以及`Custom destination types`，他们之间通过不同的`action`连接起来。
+
+通过官方文档可知，`Navigation`可以和`AppBar`，`ToolBar`等组合起来控制Fragment显示，此外可以通过`ViewModel`在绑定到同一个`Activity`的`Fragment`之间共享数据，或者也可以通过[`Bundle`或`Safe Args`](https://developer.android.google.cn/topic/libraries/architecture/navigation/navigation-pass-data)在两个`Fragment`之间传递数据。
+
+那么，在`Sunflower`中`Navigation`是怎么控制界面切换的呢？
 
 首先，在`res/navigation/`目录下面新建一个`嵌套导航图(Nested navigation graphs)`,定义各个界面之前的切换关系：
 
@@ -63,7 +75,7 @@ tag: android
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@+id/garden_fragment">
-//startDestination定义了在这个导航图中首次启动展示的界面
+//app:startDestination定义了在这个导航图中首次启动展示的界面
     <fragment
         android:id="@+id/garden_fragment"
         android:name="com.google.samples.apps.sunflower.GardenFragment"
@@ -82,7 +94,7 @@ tag: android
 //argument定义了在切换界面时需要带的参数，需要androidx.navigation.safeargs的支持,具体见参考资料-Android Jetpack-Navigation 使用中参数的传递
         <argument
             android:name="plantId"
-            app:argType="string" />
+            app:argType="string" />//参数类型小写
     </fragment>
 </navigation>
 ```
@@ -113,13 +125,104 @@ val direction = GardenFragmentDirections//嵌套导航图中Fragment自动生成
 it.findNavController().navigate(direction)
 ```
 
+## DataBinding绑定布局和数据
 
+Navigation解决了不同的布局间交互的逻辑，DataBinding则充当布局View和数据（ViewModel、LiveData）之间的桥梁，将二者联系起来。
 
+从[官网](https://developer.android.google.cn/topic/libraries/data-binding/)的表述中我们知道，DataBinding使用在XML中声明的方式（而非编程的方式），将布局中的组件捆绑到APP中使用到的数据上，这样当数据更新时，布局也会随之自动更新。
 
+DataBinding在XML中的形式如下：
 
+```xml
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.myapp.data.ViewModel" />
+    </data>
+    <ConstraintLayout... /> <!-- UI layout's root element -->
+</layout>
+```
 
+需要注意的是原先的页面布局信息`<ConstraintLayout... />`包裹在`<layout... />`中，同时多了一个数据域`<data... />`，我们可以在其中定义一些变量`<variable... />`，并在布局中使用：
 
+```xml
+<TextView
+    android:text="@{viewmodel.userName}" />
+```
 
+除了常见的`android:text`，`android:onClick`等通用的属性可以直接绑定外，我们还可以通过自定义[**Binding adapters**](https://developer.android.google.cn/topic/libraries/data-binding/binding-adapters.html)支持更多形式的属性绑定：
+
+```kotlin
+@BindingAdapter("app:goneUnless")
+fun goneUnless(view: View, visible: Boolean) {
+    view.visibility = if (visible) View.VISIBLE else View.GONE
+}
+```
+
+上面的代码就支持了`app:goneUnless`的解析，我们只要在XML中为组件加上这个属性就可以实现相应的效果：
+
+```xml
+<TextView
+          android:text="@{viewmodel.userName}"
+          app:goneUnless="@{viewmodel.isGone}"/>
+```
+
+最后，我们需要在对应的Activity或Fragment中，用如下代码将布局与页面绑定到一起：
+
+```kotlin
+//setContentView(R.layout.activity_main)
+val binding: ActivityMainBinding = DataBindingUtil.setContentView(
+            this, R.layout.activity_main)
+binding.viewmodel = ...
+```
+
+这里的`ActivityMainBinding`类是`DataBinding`根据XML文件的名字自动替我们生成的，规律是`XML文件名+Binding`的驼峰命名。
+
+在Sunflower中有类似的应用有很多处：
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2018 Google LLC ...
+  -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+                name="hasPlantings"
+                type="boolean" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/garden_list"
+                app:isGone="@{!hasPlantings}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/list_item_garden_planting"/>
+
+    </FrameLayout>
+
+</layout>
+```
+
+## ViewModel管理数据与页面的交互
+
+`DataBinding`通过标记的形式将数据和组件绑定，在这个过程中他使用的数据则是来自于`ViewModel`的。在页面`Activity`(或`Fragment`)中，我们可以处理这两者之间的关系。
+
+`ViewModel`是设计用来以一种可以感知生命周期（`lifecycle`）的方式存储和管理与UI相关的数据，它可以允许数据在诸如屏幕旋转的变化中存活下来，也就是说`VideModule`的数据生命周期可能要比他附着的`Activity`或`Fragment`的生命周期长。
+
+同时，`UI controller`可以在`Activity`等不再需要数据时，自动调用`ViewModel`的`onCleared()`方法清除这些数据以避免内存泄漏。
+
+下图是ViewModel和Activity的生命周期对比：
+
+<center>     <img style="border-radius: 0.3125em;     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"      src="https://jixiaoyong.github.io/images/20190202161443.png">     <br>     <div style="color:orange; border-bottom: 1px solid #d9d9d9;     display: inline-block;     color: #999;     padding: 2px;">ViewModel和Activity的生命周期对比图：左图Activity先经历了一次旋转，然后finish，右边是与此相关的ViewModel的生命周期<br/><font style="color: #BEBEBE">来自GoogleJetpack官网</font></div> </center>
 
 
 
