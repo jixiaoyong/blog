@@ -220,7 +220,7 @@ binding.viewmodel = ...
 
 同时，`UI controller`可以在`Activity`等不再需要数据时，自动调用`ViewModel`的`onCleared()`方法清除这些数据以避免内存泄漏。
 
-下图是ViewModel和Activity的生命周期对比：
+下图是`ViewModel`和`Activity`的生命周期对比：
 
 <center>     <img style="border-radius: 0.3125em;     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"      src="https://jixiaoyong.github.io/images/20190202161443.png">     <br>     <div style="color:orange; border-bottom: 1px solid #d9d9d9;     display: inline-block;     color: #999;     padding: 2px;">ViewModel和Activity的生命周期对比图：左图Activity先经历了一次旋转，然后finish，右边是与此相关的ViewModel的生命周期<br/><font style="color: #BEBEBE">来自GoogleJetpack官网</font></div> </center>
 
