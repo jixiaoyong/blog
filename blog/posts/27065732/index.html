@@ -88,7 +88,7 @@
 <meta property="og:image" content="https://jixiaoyong.github.io/images/jetpack_donut.png">
 <meta property="og:image" content="https://jixiaoyong.github.io/images/20190124212220.png">
 <meta property="og:image" content="https://jixiaoyong.github.io/images/20190202161443.png">
-<meta property="og:updated_time" content="2019-02-02T08:23:44.112Z">
+<meta property="og:updated_time" content="2019-02-09T15:50:12.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从Sunflower开始学习优雅的Jetpack架构">
 <meta name="twitter:description" content="Google大法NB！！！(破音)  前言Jetpack是Google推出的一系列Android软件集合，“使您可以更轻松地开发出色的 Android 应用。这些组件可帮助您遵循最佳做法、让您摆脱编写样板代码的工作并简化复杂任务，以便您将精力集中放在所需的代码上”。 Sunflower则是Google用来演示如何使用Jetpack进行Android开发的Demo，有着非常优雅的架构与十分简洁的代">
@@ -322,8 +322,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-02-02T08:23:44+00:00">
-                2019-02-02
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-09T15:50:12+00:00">
+                2019-02-09
               </time>
             
           </span>
@@ -416,7 +416,7 @@
 <h2 id="ViewModel管理数据与页面的交互"><a href="#ViewModel管理数据与页面的交互" class="headerlink" title="ViewModel管理数据与页面的交互"></a>ViewModel管理数据与页面的交互</h2><p><code>DataBinding</code>通过标记的形式将数据和组件绑定，在这个过程中他使用的数据则是来自于<code>ViewModel</code>的。在页面<code>Activity</code>(或<code>Fragment</code>)中，我们可以处理这两者之间的关系。</p>
 <p><code>ViewModel</code>是设计用来以一种可以感知生命周期（<code>lifecycle</code>）的方式存储和管理与UI相关的数据，它可以允许数据在诸如屏幕旋转的变化中存活下来，也就是说<code>VideModule</code>的数据生命周期可能要比他附着的<code>Activity</code>或<code>Fragment</code>的生命周期长。</p>
 <p>同时，<code>UI controller</code>可以在<code>Activity</code>等不再需要数据时，自动调用<code>ViewModel</code>的<code>onCleared()</code>方法清除这些数据以避免内存泄漏。</p>
-<p>下图是ViewModel和Activity的生命周期对比：</p>
+<p>下图是<code>ViewModel</code>和<code>Activity</code>的生命周期对比：</p>
 <center>     <img style="border-radius: 0.3125em;     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://jixiaoyong.github.io/images/20190202161443.png">     <br>     <div style="color:orange; border-bottom: 1px solid #d9d9d9;     display: inline-block;     color: #999;     padding: 2px;">ViewModel和Activity的生命周期对比图：左图Activity先经历了一次旋转，然后finish，右边是与此相关的ViewModel的生命周期<br><font style="color: #BEBEBE">来自GoogleJetpack官网</font></div> </center>
 
 
