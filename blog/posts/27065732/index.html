@@ -88,7 +88,7 @@
 <meta property="og:image" content="https://jixiaoyong.github.io/images/jetpack_donut.png">
 <meta property="og:image" content="https://jixiaoyong.github.io/images/20190124212220.png">
 <meta property="og:image" content="https://jixiaoyong.github.io/images/20190202161443.png">
-<meta property="og:updated_time" content="2019-02-09T16:07:18.808Z">
+<meta property="og:updated_time" content="2019-02-16T10:28:48.030Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从Sunflower开始学习优雅的Jetpack架构">
 <meta name="twitter:description" content="Google大法NB！！！(破音)  前言Jetpack是Google推出的一系列Android软件集合，“使您可以更轻松地开发出色的 Android 应用。这些组件可帮助您遵循最佳做法、让您摆脱编写样板代码的工作并简化复杂任务，以便您将精力集中放在所需的代码上”。 Sunflower则是Google用来演示如何使用Jetpack进行Android开发的Demo，有着非常优雅的架构与十分简洁的代">
@@ -322,8 +322,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-02-09T16:07:18+00:00">
-                2019-02-09
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-16T10:28:48+00:00">
+                2019-02-16
               </time>
             
           </span>
@@ -419,8 +419,27 @@
 <p>下图是<code>ViewModel</code>和<code>Activity</code>的生命周期对比：</p>
 <center>     <img style="border-radius: 0.3125em;     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://jixiaoyong.github.io/images/20190202161443.png">     <br>     <div style="color:orange; border-bottom: 1px solid #d9d9d9;     display: inline-block;     color: #999;     padding: 2px;">ViewModel和Activity的生命周期对比图：左图Activity先经历了一次旋转，然后finish，右边是与此相关的ViewModel的生命周期<br><font style="color: #BEBEBE">来自GoogleJetpack官网</font></div> </center>
 
-
-
+<p>此外，由于默认的获取ViewModel的方法只能调取无参构造函数，当需要向ViewModel传递参数时，就需要用到Factory工厂模式来创建ViewModel：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> viewModel = ViewModelProviders.of(<span class="keyword">this</span>, factory).<span class="keyword">get</span>(GardenPlantingListViewModel::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PlantDetailViewModelFactory</span></span>(args:Any) : ViewModelProvider.NewInstanceFactory() &#123;...&#125;</span><br></pre></td></tr></table></figure>
+<p>还可以将<code>ViewModel</code>于<code>LiveData</code>结合，这样在<code>Activity</code>等地方对<code>LiveData</code>进行订阅后，当<code>LiveData</code>的值发生变化时<code>Activity</code>等可以及时得到通知，而做出相应变化。此外<code>ViewModel</code>与<code>lifecycle</code>的结合可以保证在<code>Activity</code>等生命周期结束后数据得到及时的清理。</p>
+<h2 id="Room保存数据"><a href="#Room保存数据" class="headerlink" title="Room保存数据"></a>Room保存数据</h2><blockquote>
+<p>Room持久性库在SQLite上提供了一个抽象层，以便在充分利用SQLite强大功能的同时，能够流畅的访问数据库。——Android Developers</p>
+</blockquote>
+<p><code>Room</code>需要3个元素：</p>
+<ul>
+<li><code>Database</code> 数据库，可以提供对表格的操作方法<code>@DAO</code>。是一个继承自<code>RoomDatabase</code>的抽象类。</li>
+<li><code>Entity</code> 表格，规定了每个表格可以保存的数据格式。是一个普通类。</li>
+<li><code>Dao</code> 数据访问结构（<code>Data Access Object</code>），定义了对表格<code>@Entity</code>中的数据的操作。是一个接口或者抽象类。</li>
+</ul>
+<p>此外，还可以对<code>@DAO</code>进行进一步的封装得到一个<code>XXXRepository</code>类，<code>ViewModel</code>通过这个<code>XXXRepository</code>类来操作数据，从而将其与数据的具体实现解耦。</p>
+<h2 id="WorkManager管理任务"><a href="#WorkManager管理任务" class="headerlink" title="WorkManager管理任务"></a>WorkManager管理任务</h2><p><code>WorkManager</code>用来管理即时或定时任务。</p>
+<p>和他相关的有下面几个关键类：</p>
+<ul>
+<li><code>Worker</code> 定义要执行的任务内容</li>
+<li><code>WorkRequest</code> 代表一项单独的任务，明确具体要执行的任务内容（Worker）、任务的类型（WorkRequest.Builder的子类，决定任务一次性还是重复的）以及任务执行的条件（Constraints，如联网、电池电量等等）</li>
+<li>WorkManager 执行管理WorkRequest</li>
+<li>WorkInfo 包含一个指定任务的信息</li>
+</ul>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://developer.android.google.cn/jetpack/" target="_blank" rel="noopener">Android Jetpack官网</a></p>
 <p><a href="https://blog.csdn.net/weixin_42215792/article/details/80395379" target="_blank" rel="noopener">Android Jetpack-Navigation 使用中参数的传递</a></p>
 
@@ -660,7 +679,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对Sunflower的整体分析"><span class="nav-number">2.</span> <span class="nav-text">对Sunflower的整体分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体实现分析"><span class="nav-number">3.</span> <span class="nav-text">具体实现分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Navigation控制界面切换"><span class="nav-number">3.1.</span> <span class="nav-text">Navigation控制界面切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DataBinding绑定布局和数据"><span class="nav-number">3.2.</span> <span class="nav-text">DataBinding绑定布局和数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ViewModel管理数据与页面的交互"><span class="nav-number">3.3.</span> <span class="nav-text">ViewModel管理数据与页面的交互</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对Sunflower的整体分析"><span class="nav-number">2.</span> <span class="nav-text">对Sunflower的整体分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体实现分析"><span class="nav-number">3.</span> <span class="nav-text">具体实现分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Navigation控制界面切换"><span class="nav-number">3.1.</span> <span class="nav-text">Navigation控制界面切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DataBinding绑定布局和数据"><span class="nav-number">3.2.</span> <span class="nav-text">DataBinding绑定布局和数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ViewModel管理数据与页面的交互"><span class="nav-number">3.3.</span> <span class="nav-text">ViewModel管理数据与页面的交互</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Room保存数据"><span class="nav-number">3.4.</span> <span class="nav-text">Room保存数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WorkManager管理任务"><span class="nav-number">3.5.</span> <span class="nav-text">WorkManager管理任务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
