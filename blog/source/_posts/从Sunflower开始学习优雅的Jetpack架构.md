@@ -224,7 +224,38 @@ binding.viewmodel = ...
 
 <center>     <img style="border-radius: 0.3125em;     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"      src="https://jixiaoyong.github.io/images/20190202161443.png">     <br>     <div style="color:orange; border-bottom: 1px solid #d9d9d9;     display: inline-block;     color: #999;     padding: 2px;">ViewModel和Activity的生命周期对比图：左图Activity先经历了一次旋转，然后finish，右边是与此相关的ViewModel的生命周期<br/><font style="color: #BEBEBE">来自GoogleJetpack官网</font></div> </center>
 
+此外，由于默认的获取ViewModel的方法只能调取无参构造函数，当需要向ViewModel传递参数时，就需要用到Factory工厂模式来创建ViewModel：
 
+```kotlin
+val viewModel = ViewModelProviders.of(this, factory).get(GardenPlantingListViewModel::class.java)
+
+class PlantDetailViewModelFactory(args:Any) : ViewModelProvider.NewInstanceFactory() {...}
+```
+
+还可以将`ViewModel`于`LiveData`结合，这样在`Activity`等地方对`LiveData`进行订阅后，当`LiveData`的值发生变化时`Activity`等可以及时得到通知，而做出相应变化。此外`ViewModel`与`lifecycle`的结合可以保证在`Activity`等生命周期结束后数据得到及时的清理。
+
+## Room保存数据
+
+> Room持久性库在SQLite上提供了一个抽象层，以便在充分利用SQLite强大功能的同时，能够流畅的访问数据库。——Android Developers
+
+`Room`需要3个元素：
+
+* `Database` 数据库，可以提供对表格的操作方法`@DAO`。是一个继承自`RoomDatabase`的抽象类。
+* `Entity` 表格，规定了每个表格可以保存的数据格式。是一个普通类。
+* `Dao` 数据访问结构（`Data Access Object`），定义了对表格`@Entity`中的数据的操作。是一个接口或者抽象类。
+
+此外，还可以对`@DAO`进行进一步的封装得到一个`XXXRepository`类，`ViewModel`通过这个`XXXRepository`类来操作数据，从而将其与数据的具体实现解耦。
+
+## WorkManager管理任务
+
+`WorkManager`用来管理即时或定时任务。
+
+和他相关的有下面几个关键类：
+
+* `Worker` 定义要执行的任务内容
+* `WorkRequest` 代表一项单独的任务，明确具体要执行的任务内容（Worker）、任务的类型（WorkRequest.Builder的子类，决定任务一次性还是重复的）以及任务执行的条件（Constraints，如联网、电池电量等等）
+* WorkManager 执行管理WorkRequest
+* WorkInfo 包含一个指定任务的信息
 
 # 参考资料
 
