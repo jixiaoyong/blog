@@ -74,3 +74,26 @@ class p2():Player()
 @Throws(RemoteException::class)
 fun getBookList():List<Book>
 ```
+
+* kotlin中的泛型
+
+  `out` 协变，使用子类泛型的对象可以赋值给使用父类泛型的对象，相当于`extend`，用于方法的返回值（生产者）时使用
+
+  `in` 逆变，使用父类泛型的对象可以赋值给使用子类泛型的对象，相当于`super`，用于方法的参数（消费者）时使用
+
+  不变，当泛型即当消费者，又当生产者时，不同`in`或者`out`
+
+```kotlin
+fun main(args: Array<String>) {
+    val from = arrayOf(1,2,4)
+    val to = arrayOf(Any())
+
+    copyArray(from,to)
+}
+
+fun copyArray(from: Array<out Any>, to: Array<in Int>) {
+    //这里的from被out修饰，只能作为生产者调用get之类的方法，不能作为消费者调用set之类的方法
+    //...
+}
+```
+
