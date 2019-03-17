@@ -81,7 +81,7 @@ fun getBookList():List<Book>
 
   `in` 逆变，使用父类泛型的对象可以赋值给使用子类泛型的对象，相当于`super`，用于方法的参数（消费者）时使用
 
-  不变，当泛型即当消费者，又当生产者时，不同`in`或者`out`
+  不变，当泛型即当消费者，又当生产者时，不用`in`或者`out`
 
 ```kotlin
 fun main(args: Array<String>) {
