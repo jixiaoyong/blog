@@ -6,7 +6,7 @@ tag: android
 
 # 前言
 
-本文是对张鸿洋的OKHttp辅助类[**okhttputils**](https://github.com/hongyangAndroid/okhttputils)简要分析，以便学习如何封装常见工具的思想。
+本文是对张鸿洋的OKHttp辅助类[**okhttputils**](https://github.com/hongyangAndroid/okhttputils)简要分析，以便学习如何封装常见工具的思想，建议配合源码食用。
 
 主要涉及类：
 
@@ -18,7 +18,7 @@ tag: android
 
 # 基础
 
-[OkHttp](https://github.com/square/okhttp)是可以用于Android和Java的Http工具，经典的使用分为3步：
+[OkHttp](https://github.com/square/okhttp)是可以用于Android和Java的Http框架，经典的使用分为3步：
 
 ```java
 //1. 创建一个OkHttpClient客户端，在这里配置网络超时等全局配置
@@ -30,7 +30,7 @@ Request request = new Request
         .url("https://www.baidu.com")
         .build();
 
-//3. 使用OkHttpClient客户端执行该网络请求，分为阻塞和异步两种方式，异步会有对应回调
+//3. 使用OkHttpClient客户端创建Call并执行该网络请求，分为阻塞和异步两种方式，异步会有对应回调
 okHttpClient.newCall(request)
         .enqueue(new Callback() {
             @Override
@@ -107,7 +107,7 @@ public static OkHttpUtils initClient(OkHttpClient okHttpClient)
 
 这样我们在第一次使用`OkHttpUtils`的时候初始化的`OkHttpClient`便会被保存到这里，之后的使用中就不需要再去反复创建了。
 
-此外在`OkHttpUtils`的结构中可以注意到有一个`mPlatform`的变量，他会根据Android还是其他平台的不同被初始化为Android主线程或者普通线程池，这个我们在后面回调网络请求状态的时候会用到。
+此外在`OkHttpUtils`的结构中可以注意到有一个`mPlatform`的变量，他会根据当前是Android还是其他平台的不同被初始化为Android主线程或者普通线程池，这个我们在后面回调网络请求状态的时候会用到。
 
 ```java
 private Platform mPlatform = findPlatform();
@@ -150,7 +150,7 @@ protected int id;
 public abstract RequestCall build();
 ```
 
-这个方法的实现一般是调用`OkHttpRequest`子类的`build`方法，可以看到`OkHttpRequestBuilder`也只是将网络请求的相关参数传递到`OkHttpRequest`中。
+这个方法在其子类中的实现一般是调用`OkHttpRequest`子类的`build`方法，可以看到`OkHttpRequestBuilder`只是将网络请求的相关参数传递到`OkHttpRequest`中。
 
 ```java
 //com.zhy.http.okhttp.builder.GetBuilder
@@ -170,18 +170,37 @@ public RequestCall build()
 
 ```java
 //com.zhy.http.okhttp.request.OkHttpRequest
+protected OkHttpRequest(String url, Object tag,
+                   Map<String, String> params, Map<String, String> headers,int id)
+{
+        this.url = url;
+        this.tag = tag;
+        this.params = params;
+        this.headers = headers;
+        this.id = id ;
+
+        if (url == null)
+        {
+            Exceptions.illegalArgument("url can not be null.");
+        }
+
+        initBuilder();//初始化okhttp3.Request.Builder用于生成Request
+}
+
 public Request generateRequest(Callback callback)
 {
     RequestBody requestBody = buildRequestBody();
     RequestBody wrappedRequestBody = wrapRequestBody(requestBody, callback);//用于更新下载进度等，为okhttp3.Callback增加更多功能
-    Request request = buildRequest(wrappedRequestBody);
+    Request request = buildRequest(wrappedRequestBody);//在子类中使用okhttp3.Request.Builder对象生成对应的Request
     return request;
 }
 ```
 
+这里的抽象方法`wrapRequestBody()`，`buildRequest()`的实现，也是`OkHttpRequest`各个子类主要的不同点。
+
 > `Callback`是在`okhttp3.Callback`的基础上增加了before，progress和对请求结果的处理等的回调。
 
-`OkHttpRequest`类的`build`方法则只是将其自身传递给`okhttp3.Call`的封装类`RequestCall`：
+`OkHttpRequest`类的`build`方法则只是将其自身传递给`okhttp3.Call`的封装类`RequestCall`，创建并返回该类的对象：
 
 ```java
 //com.zhy.http.okhttp.request.OkHttpRequest
@@ -192,6 +211,8 @@ public RequestCall build()
 ```
 
 ## 执行网络请求
+
+`RequestCall`类则是对`okhttp3.Call`类的进一步封装，对外提供更多的接口：开始、取消网络请求`cancel()`,`readTimeOut()`…等接口。
 
 当执行`RequestCall`的`execute`方法时：
 
@@ -210,7 +231,7 @@ public void execute(Callback callback)
 }
 ```
 
-可以看其最后只是将`RequestCall`和`callback`传递给了`OkHttpUtils`类的`execute`方法，在这里执行了真正的网络请求：
+可以看其最后只是将`RequestCall`和`callback`传递给了`OkHttpUtils`类的`execute`方法，也就是说，最终还是调用了`okhttp3.Call`的`enqueue()`方法，在这里执行了真正的网络请求：
 
 ```java
 //com.zhy.http.okhttp.OkHttpUtils
@@ -279,3 +300,11 @@ public void sendSuccessResultCallback(final Object object, final Callback callba
     });
 }
 ```
+
+# 总结
+
+在本文中，`okhttputils`将初始化`OkHttpClient`的动作提取出来，这样同一个应用只需要在最开始的时候配置一下诸如网络超时、cookie等既可。
+
+在具体的实现中，通过`OkHttpRequestBuilder`收集网络请求的属性并传递给`OkHttpRequest`，在其子类中按照不同的需要实现生成`Request`的方法。
+
+`OkHttpRequestBuilder`的`build()`方法会生成`RequestCall`对象，`RequestCall`对象的`execute()`方法会调用`OkHttpRequestBuilder`对象的`generateRequest()`方法产生`Request`，并据此产生`Call`对象，最后通过该`Call`对象的enqueue方法执行网络请求。
