@@ -18,6 +18,7 @@ before_install:
 install:
   - npm install
   - npm install hexo-math --save
+  - npm install hexo-abbrlink --save
   # - npm install hexo-deployer-git --save
 
 before_script:
