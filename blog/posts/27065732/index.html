@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/default_avatar.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/default_avatar.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/default_avatar.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/default_avatar.jpg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="android,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Google大法NB！！！(破音)  前言Jetpack是Google推出的一系列Android软件集合，“使您可以更轻松地开发出色的 Android 应用。这些组件可帮助您遵循最佳做法、让您摆脱编写样板代码的工作并简化复杂任务，以便您将精力集中放在所需的代码上”。 Sunflower则是Google用来演示如何使用Jetpack进行Android开发的Demo，有着非常优雅的架构与十分简洁的代">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从Sunflower开始学习优雅的Jetpack架构">
+<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/27065732/index.html">
+<meta property="og:site_name" content="季小勇的博客">
+<meta property="og:description" content="Google大法NB！！！(破音)  前言Jetpack是Google推出的一系列Android软件集合，“使您可以更轻松地开发出色的 Android 应用。这些组件可帮助您遵循最佳做法、让您摆脱编写样板代码的工作并简化复杂任务，以便您将精力集中放在所需的代码上”。 Sunflower则是Google用来演示如何使用Jetpack进行Android开发的Demo，有着非常优雅的架构与十分简洁的代">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/jetpack_donut.png">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20190124212220.png">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20190202161443.png">
+<meta property="og:updated_time" content="2019-03-17T13:02:51.111Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从Sunflower开始学习优雅的Jetpack架构">
+<meta name="twitter:description" content="Google大法NB！！！(破音)  前言Jetpack是Google推出的一系列Android软件集合，“使您可以更轻松地开发出色的 Android 应用。这些组件可帮助您遵循最佳做法、让您摆脱编写样板代码的工作并简化复杂任务，以便您将精力集中放在所需的代码上”。 Sunflower则是Google用来演示如何使用Jetpack进行Android开发的Demo，有着非常优雅的架构与十分简洁的代">
+<meta name="twitter:image" content="https://jixiaoyong.github.io/images/jetpack_donut.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/27065732/">
+
+
+
+
+
+  <title>从Sunflower开始学习优雅的Jetpack架构 | 季小勇的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">季小勇的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/27065732/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="季小勇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="季小勇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">从Sunflower开始学习优雅的Jetpack架构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-24T19:48:31+00:00">
+                2019-01-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-17T13:02:51+00:00">
+                2019-03-17
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Google大法NB！！！(破音)</p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="https://developer.android.google.cn/jetpack/" target="_blank" rel="noopener">Jetpack</a>是Google推出的一系列Android软件集合，<em>“使您可以更轻松地开发出色的 Android 应用。这些组件可帮助您遵循最佳做法、让您摆脱编写样板代码的工作并简化复杂任务，以便您将精力集中放在所需的代码上”</em>。</p>
+<p><a href="https://github.com/googlesamples/android-sunflower" target="_blank" rel="noopener">Sunflower</a>则是Google用来演示如何使用Jetpack进行Android开发的Demo，有着非常优雅的架构与十分简洁的代码，可以帮助我们很好地学习Jetpack以及MVVM思想。</p>
+<p>本文主要是结合Sunflower中的示例代码，分析Jetpack架构中各部分的作用，以及他们如何巧妙的搭配使用，方便指导日后对Jetpack的使用。</p>
+<blockquote>
+<p>本文中的大部分代码、示意图除非特殊注明外，皆来自Google的<a href="https://github.com/googlesamples/android-sunflower" target="_blank" rel="noopener">Sunflower工程</a>或其他互联网资源，根据篇幅需要做了部分精简，所有权益归原作者所有。</p>
+</blockquote>
+<p>下图是<a href="https://developer.android.google.cn/jetpack/" target="_blank" rel="noopener">Google Jetpack官网</a>对Jetpack的介绍图：</p>
+<center>     <img style="border-radius: 0.3125em;     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://jixiaoyong.github.io/images/jetpack_donut.png">     <br>     <div style="color:orange; border-bottom: 1px solid #d9d9d9;     display: inline-block;     color: #999;     padding: 2px;">Jetpack示意图 <font style="color: #BEBEBE">来自GoogleJetpack官网</font></div> </center>
+
+<h1 id="对Sunflower的整体分析"><a href="#对Sunflower的整体分析" class="headerlink" title="对Sunflower的整体分析"></a>对Sunflower的整体分析</h1><p>下图是Sunflower架构的简单示意图：</p>
+<p><img src="https://jixiaoyong.github.io/images/20190124212220.png" alt=""></p>
+<p>可以看到，APP的界面有<code>我的花园</code>、<code>植物目录</code>和<code>植物介绍</code>三部分，这三者的切换逻辑通过<font color="#0288d1" size="4"><strong><code>Navigation</code></strong></font>实现。</p>
+<p>每个界面的<strong><code>XML</code></strong>中的布局信息（包括<code>数据、事件（clickListener等），RecycleView的LayoutManager，Adapter等等</code>）通过<font color="#0288d1" size="4"><strong><code>DataBinding</code></strong></font>与<font color="#0288d1" size="4"><strong><code>ViewModel</code></strong></font>中的可观察数据<font color="#0288d1" size="4"><strong><code>LiveData</code></strong></font>绑定在一起，只要数据库中的<code>数据</code>有更新，就会通过<code>LiveData</code>主动通知布局更新界面；同时<code>DataBinding</code>还通过与<code>Adapter</code>（这些继承自<strong><code>ListAdapter</code></strong>的Adapter实现了<font color="#0288d1" size="4"><strong><code>Paging</code></strong></font>的作用）将<code>ItemView</code>的<code>ViewModel</code>与布局<code>XML</code>中绑定在一起，通过<code>BindingAdapter</code>对<code>XML</code>中的数据做预处理（加载imgUrl中的图片到ImageView等等）。</p>
+<p>在<font color="black" size="5"><strong><code>View</code></strong></font>中指定这些<code>DataBinding</code>与<font color="black" size="5"><strong><code>ViewModel</code></strong></font>之间以及<code>ViewModel</code>与<font color="black" size="5"><strong><code>Model</code></strong></font><code>数据库</code>之间的逻辑关系，这些数据与操作都受着<font color="#0288d1" size="4"><strong><code>Lifecycle</code></strong></font>的影响。</p>
+<p><code>ViewModel</code>的数据来源——<code>Model</code>在这里的实现是一个<code>数据库</code>。每个<code>ViewModel</code>有一个<code>XXXViewModelFactory</code>类，用来使用数据类<code>XXXRepository</code>类的实例创建对应的<code>ViewModel</code>。<code>XXXViewModelFactory</code>向<code>Activity</code>等屏蔽了<code>ViewModel</code>的具体实现。</p>
+<p><code>XXXRepository</code>类的出现时为了将<code>ViewModel</code>与数据的具体实现解耦合，这样<code>ViewModel</code>只需要关心他要的操作而不必关系数据来源的具体实现。在本例中，<code>XXXRepository</code>类对应封装了这数据库<code>AppDatabase</code>中对两个表的操作。</p>
+<p>数据库使用<font color="#0288d1" size="4"><strong><code>Room</code></strong></font>实现，从底层开始依次分为<code>表Entity</code>，<code>数据访问对象DAO</code>和<code>数据库DataBase</code>三个层次。每个DAO对应一个包装类<code>XXXRepository</code>类供<code>ViewModel</code>使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Entity    GardenPlanting    //表，定义了存储的数据项及其格式</span><br><span class="line">@Dao    GardenPlantingDao    //数据访问对象，定义了例如插入数据、查询数据等操作</span><br><span class="line"> GardenPlantingRepository    //对DAO的封装，将数据的的具体实现与ViewModel对数据的操作解耦</span><br><span class="line">@Database     AppDatabase    //数据库，包括表和对表的操作</span><br></pre></td></tr></table></figure>
+<p><font color="#0288d1" size="4"><strong><code>WorkManager</code></strong></font>则管理着一个从Json读取数据并加载到数据库中的后台任务<code>SeedDatabaseWorker</code>。</p>
+<h1 id="具体实现分析"><a href="#具体实现分析" class="headerlink" title="具体实现分析"></a>具体实现分析</h1><p>首先看一下<strong><code>View</code></strong>部分，Sunflower只有简单的3个页面，全都是用<code>Fragment</code>实现，由<code>Activity</code>通过<code>Navigation</code>控制切换：</p>
+<ul>
+<li><code>GardenActivity</code> 主页面，唯一的一个Activity</li>
+<li><code>GardenFragment</code> 我的花园 界面，会显示用户在植物目录中选择并种植的植物信息</li>
+<li><code>PlantListFragment</code> 植物目录 界面，所有的植物信息列表</li>
+<li><code>PlantDetailFragment</code> 植物介绍 界面，当在“我的花园”或“植物列表”选择了某个植物后，会进入该界面显示植物详细介绍</li>
+</ul>
+<h2 id="Navigation控制界面切换"><a href="#Navigation控制界面切换" class="headerlink" title="Navigation控制界面切换"></a>Navigation控制界面切换</h2><p>先看一下<a href="https://developer.android.google.cn/topic/libraries/architecture/navigation/" target="_blank" rel="noopener">Navigation</a>的定义：</p>
+<blockquote>
+<p>Navigation是APP设计中的关键部分，可以用来定义用户从不同的界面切换、进入和推出的交互逻辑。</p>
+</blockquote>
+<p>和布局文件一样，我们可以在编译器的可视化界面中，直接预览、设计不同界面切换效果。他可以负责<code>Fragment</code>、<code>Activity</code>、<code>Navigation graphs</code> 与 <code>subgraphs</code> 以及<code>Custom destination types</code>，他们之间通过不同的<code>action</code>连接起来。</p>
+<p>通过官方文档可知，<code>Navigation</code>可以和<code>AppBar</code>，<code>ToolBar</code>等组合起来控制Fragment显示，此外可以通过<code>ViewModel</code>在绑定到同一个<code>Activity</code>的<code>Fragment</code>之间共享数据，或者也可以通过<a href="https://developer.android.google.cn/topic/libraries/architecture/navigation/navigation-pass-data" target="_blank" rel="noopener"><code>Bundle</code>或<code>Safe Args</code></a>在两个<code>Fragment</code>之间传递数据。</p>
+<p>那么，在<code>Sunflower</code>中<code>Navigation</code>是怎么控制界面切换的呢？</p>
+<p>首先，在<code>res/navigation/</code>目录下面新建一个<code>嵌套导航图(Nested navigation graphs)</code>,定义各个界面之前的切换关系：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">navigation</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:startDestination</span>=<span class="string">"@+id/garden_fragment"</span>&gt;</span></span><br><span class="line">//app:startDestination定义了在这个导航图中首次启动展示的界面</span><br><span class="line">    <span class="tag">&lt;<span class="name">fragment</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/garden_fragment"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:name</span>=<span class="string">"com.google.samples.apps.sunflower.GardenFragment"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:label</span>=<span class="string">"@string/my_garden_title"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">tools:layout</span>=<span class="string">"@layout/fragment_garden"</span>&gt;</span></span><br><span class="line">//action定义了在各个界面的切换关系</span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/action_garden_fragment_to_plant_detail_fragment"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:destination</span>=<span class="string">"@id/plant_detail_fragment"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:enterAnim</span>=<span class="string">"@anim/slide_in_right"</span>//<span class="attr">enterAnim</span>等指定执行<span class="attr">action</span>时的动画</span></span><br><span class="line"><span class="tag">          <span class="attr">...</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fragment</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">fragment</span></span></span><br><span class="line"><span class="tag">        <span class="attr">...</span>&gt;</span></span><br><span class="line">//argument定义了在切换界面时需要带的参数，需要androidx.navigation.safeargs的支持,具体见参考资料-Android Jetpack-Navigation 使用中参数的传递</span><br><span class="line">        <span class="tag">&lt;<span class="name">argument</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">"plantId"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:argType</span>=<span class="string">"string"</span> /&gt;</span>//参数类型小写</span><br><span class="line">    <span class="tag">&lt;/<span class="name">fragment</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">navigation</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后在Activity对应的XML中插入该导航：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">...</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">fragment</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/garden_nav_fragment"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:name</span>=<span class="string">"androidx.navigation.fragment.NavHostFragment"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:defaultNavHost</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:navGraph</span>=<span class="string">"@navigation/nav_garden"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>之后就可以在Activity或者Fragment中获取该导航的实力，用来切换界面了：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//activity</span></span><br><span class="line"><span class="keyword">val</span> navController = Navigation.findNavController(<span class="keyword">this</span>, R.id.garden_nav_fragment)</span><br><span class="line"><span class="comment">//fragment或其他地方</span></span><br><span class="line"><span class="keyword">val</span> direction = GardenFragmentDirections<span class="comment">//嵌套导航图中Fragment自动生成的类</span></span><br><span class="line">.ActionGardenFragmentToPlantDetailFragment(plantId)</span><br><span class="line">it.findNavController().navigate(direction)</span><br></pre></td></tr></table></figure>
+<h2 id="DataBinding绑定布局和数据"><a href="#DataBinding绑定布局和数据" class="headerlink" title="DataBinding绑定布局和数据"></a>DataBinding绑定布局和数据</h2><p>Navigation解决了不同的布局间交互的逻辑，DataBinding则充当布局View和数据（ViewModel、LiveData）之间的桥梁，将二者联系起来。</p>
+<p>从<a href="https://developer.android.google.cn/topic/libraries/data-binding/" target="_blank" rel="noopener">官网</a>的表述中我们知道，DataBinding使用在XML中声明的方式（而非编程的方式），将布局中的组件捆绑到APP中使用到的数据上，这样当数据更新时，布局也会随之自动更新。</p>
+<p>DataBinding在XML中的形式如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">layout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">data</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">variable</span></span></span><br><span class="line"><span class="tag">            <span class="attr">name</span>=<span class="string">"viewmodel"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">type</span>=<span class="string">"com.myapp.data.ViewModel"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">data</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ConstraintLayout...</span> /&gt;</span> <span class="comment">&lt;!-- UI layout's root element --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>需要注意的是原先的页面布局信息<code>&lt;ConstraintLayout... /&gt;</code>包裹在<code>&lt;layout... /&gt;</code>中，同时多了一个数据域<code>&lt;data... /&gt;</code>，我们可以在其中定义一些变量<code>&lt;variable... /&gt;</code>，并在布局中使用：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"@&#123;viewmodel.userName&#125;"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>除了常见的<code>android:text</code>，<code>android:onClick</code>等通用的属性可以直接绑定外，我们还可以通过自定义<a href="https://developer.android.google.cn/topic/libraries/data-binding/binding-adapters.html" target="_blank" rel="noopener"><strong>Binding adapters</strong></a>支持更多形式的属性绑定：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@BindingAdapter(<span class="meta-string">"app:goneUnless"</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">goneUnless</span><span class="params">(view: <span class="type">View</span>, visible: <span class="type">Boolean</span>)</span></span> &#123;</span><br><span class="line">    view.visibility = <span class="keyword">if</span> (visible) View.VISIBLE <span class="keyword">else</span> View.GONE</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码就支持了<code>app:goneUnless</code>的解析，我们只要在XML中为组件加上这个属性就可以实现相应的效果：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:text</span>=<span class="string">"@&#123;viewmodel.userName&#125;"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">app:goneUnless</span>=<span class="string">"@&#123;viewmodel.isGone&#125;"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>最后，我们需要在对应的Activity或Fragment中，用如下代码将布局与页面绑定到一起：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//setContentView(R.layout.activity_main)</span></span><br><span class="line"><span class="keyword">val</span> binding: ActivityMainBinding = DataBindingUtil.setContentView(</span><br><span class="line">            <span class="keyword">this</span>, R.layout.activity_main)</span><br><span class="line">binding.viewmodel = ...</span><br></pre></td></tr></table></figure>
+<p>这里的<code>ActivityMainBinding</code>类是<code>DataBinding</code>根据XML文件的名字自动替我们生成的，规律是<code>XML文件名+Binding</code>的驼峰命名。</p>
+<p>在Sunflower中有类似的应用有很多处：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">  ~ Copyright 2018 Google LLC ...</span></span><br><span class="line"><span class="comment">  --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">layout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">data</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">variable</span></span></span><br><span class="line"><span class="tag">                <span class="attr">name</span>=<span class="string">"hasPlantings"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">type</span>=<span class="string">"boolean"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">data</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">FrameLayout</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">androidx.recyclerview.widget.RecyclerView</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:id</span>=<span class="string">"@+id/garden_list"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">app:isGone</span>=<span class="string">"@&#123;!hasPlantings&#125;"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">app:layoutManager</span>=<span class="string">"androidx.recyclerview.widget.LinearLayoutManager"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">tools:listitem</span>=<span class="string">"@layout/list_item_garden_planting"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">FrameLayout</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="ViewModel管理数据与页面的交互"><a href="#ViewModel管理数据与页面的交互" class="headerlink" title="ViewModel管理数据与页面的交互"></a>ViewModel管理数据与页面的交互</h2><p><code>DataBinding</code>通过标记的形式将数据和组件绑定，在这个过程中他使用的数据则是来自于<code>ViewModel</code>的。在页面<code>Activity</code>(或<code>Fragment</code>)中，我们可以处理这两者之间的关系。</p>
+<p><code>ViewModel</code>是设计用来以一种可以感知生命周期（<code>lifecycle</code>）的方式存储和管理与UI相关的数据，它可以允许数据在诸如屏幕旋转的变化中存活下来，也就是说<code>VideModule</code>的数据生命周期可能要比他附着的<code>Activity</code>或<code>Fragment</code>的生命周期长。</p>
+<p>同时，<code>UI controller</code>可以在<code>Activity</code>等不再需要数据时，自动调用<code>ViewModel</code>的<code>onCleared()</code>方法清除这些数据以避免内存泄漏。</p>
+<p>下图是<code>ViewModel</code>和<code>Activity</code>的生命周期对比：</p>
+<center>     <img style="border-radius: 0.3125em;     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://jixiaoyong.github.io/images/20190202161443.png">     <br>     <div style="color:orange; border-bottom: 1px solid #d9d9d9;     display: inline-block;     color: #999;     padding: 2px;">ViewModel和Activity的生命周期对比图：左图Activity先经历了一次旋转，然后finish，右边是与此相关的ViewModel的生命周期<br><font style="color: #BEBEBE">来自GoogleJetpack官网</font></div> </center>
+
+<p>此外，由于默认的获取ViewModel的方法只能调取无参构造函数，当需要向ViewModel传递参数时，就需要用到Factory工厂模式来创建ViewModel：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> viewModel = ViewModelProviders.of(<span class="keyword">this</span>, factory).<span class="keyword">get</span>(GardenPlantingListViewModel::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PlantDetailViewModelFactory</span></span>(args:Any) : ViewModelProvider.NewInstanceFactory() &#123;...&#125;</span><br></pre></td></tr></table></figure>
+<p>还可以将<code>ViewModel</code>于<code>LiveData</code>结合，这样在<code>Activity</code>等地方对<code>LiveData</code>进行订阅后，当<code>LiveData</code>的值发生变化时<code>Activity</code>等可以及时得到通知，而做出相应变化。此外<code>ViewModel</code>与<code>lifecycle</code>的结合可以保证在<code>Activity</code>等生命周期结束后数据得到及时的清理。</p>
+<h2 id="Room保存数据"><a href="#Room保存数据" class="headerlink" title="Room保存数据"></a>Room保存数据</h2><blockquote>
+<p>Room持久性库在SQLite上提供了一个抽象层，以便在充分利用SQLite强大功能的同时，能够流畅的访问数据库。——Android Developers</p>
+</blockquote>
+<p><code>Room</code>需要3个元素：</p>
+<ul>
+<li><code>Database</code> 数据库，可以提供对表格的操作方法<code>@DAO</code>。是一个继承自<code>RoomDatabase</code>的抽象类。</li>
+<li><code>Entity</code> 表格，规定了每个表格可以保存的数据格式。是一个普通类。</li>
+<li><code>Dao</code> 数据访问结构（<code>Data Access Object</code>），定义了对表格<code>@Entity</code>中的数据的操作。是一个接口或者抽象类。</li>
+</ul>
+<p>此外，还可以对<code>@DAO</code>进行进一步的封装得到一个<code>XXXRepository</code>类，<code>ViewModel</code>通过这个<code>XXXRepository</code>类来操作数据，从而将其与数据的具体实现解耦。</p>
+<h2 id="WorkManager管理任务"><a href="#WorkManager管理任务" class="headerlink" title="WorkManager管理任务"></a>WorkManager管理任务</h2><p><code>WorkManager</code>用来管理即时或定时任务。</p>
+<p>和他相关的有下面几个关键类：</p>
+<ul>
+<li><code>Worker</code> 定义要执行的任务内容</li>
+<li><code>WorkRequest</code> 代表一项单独的任务，明确具体要执行的任务内容（Worker）、任务的类型（WorkRequest.Builder的子类，决定任务一次性还是重复的）以及任务执行的条件（Constraints，如联网、电池电量等等）</li>
+<li>WorkManager 执行管理WorkRequest</li>
+<li>WorkInfo 包含一个指定任务的信息</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://developer.android.google.cn/jetpack/" target="_blank" rel="noopener">Android Jetpack官网</a></p>
+<p><a href="https://blog.csdn.net/weixin_42215792/article/details/80395379" target="_blank" rel="noopener">Android Jetpack-Navigation 使用中参数的传递</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    季小勇
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://jixiaoyong.github.io/blog/posts/27065732/" title="从Sunflower开始学习优雅的Jetpack架构">https://jixiaoyong.github.io/blog/posts/27065732/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/android/" rel="tag"># android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/posts/d0edc1ed/" rel="next" title="Linux常用命令">
+                <i class="fa fa-chevron-left"></i> Linux常用命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/posts/2822c354/" rel="prev" title="Dagger 2 从0到1之旅">
+                Dagger 2 从0到1之旅 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/blog/images/default_avatar.jpg" alt="季小勇">
+            
+              <p class="site-author-name" itemprop="name">季小勇</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.wanandroid.com/" title="WanAndroid" target="_blank">WanAndroid</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对Sunflower的整体分析"><span class="nav-number">2.</span> <span class="nav-text">对Sunflower的整体分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体实现分析"><span class="nav-number">3.</span> <span class="nav-text">具体实现分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Navigation控制界面切换"><span class="nav-number">3.1.</span> <span class="nav-text">Navigation控制界面切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DataBinding绑定布局和数据"><span class="nav-number">3.2.</span> <span class="nav-text">DataBinding绑定布局和数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ViewModel管理数据与页面的交互"><span class="nav-number">3.3.</span> <span class="nav-text">ViewModel管理数据与页面的交互</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Room保存数据"><span class="nav-number">3.4.</span> <span class="nav-text">Room保存数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WorkManager管理任务"><span class="nav-number">3.5.</span> <span class="nav-text">WorkManager管理任务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">季小勇</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/blog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
