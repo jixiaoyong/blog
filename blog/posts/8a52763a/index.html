@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="季小勇的博客">
 <meta property="og:description" content="尾递归优化 把递归通过编译器转化为迭代，从而避免Stack Overflow “以时间换取空间” 普通递归： 调用函数之后，还需要使用其返回值供自己使用，即自身返回值依赖于下一级函数，一般是调用自身的代码后面，还有其他的代码要执行。   1234567fun fun1(n: Int): BigInteger &amp;#123;    if (n == 0) return BigInteger.valu">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-17T13:31:11.264Z">
+<meta property="og:updated_time" content="2019-03-17T05:31:37.987Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin学习笔记2">
 <meta name="twitter:description" content="尾递归优化 把递归通过编译器转化为迭代，从而避免Stack Overflow “以时间换取空间” 普通递归： 调用函数之后，还需要使用其返回值供自己使用，即自身返回值依赖于下一级函数，一般是调用自身的代码后面，还有其他的代码要执行。   1234567fun fun1(n: Int): BigInteger &amp;#123;    if (n == 0) return BigInteger.valu">
@@ -318,8 +318,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-02-17T13:31:11+00:00">
-                2019-02-17
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-17T05:31:37+00:00">
+                2019-03-17
               </time>
             
           </span>
@@ -384,7 +384,7 @@
 <li><p>kotlin中的泛型</p>
 <p><code>out</code> 协变，使用子类泛型的对象可以赋值给使用父类泛型的对象，相当于<code>extend</code>，用于方法的返回值（生产者）时使用</p>
 <p><code>in</code> 逆变，使用父类泛型的对象可以赋值给使用子类泛型的对象，相当于<code>super</code>，用于方法的参数（消费者）时使用</p>
-<p>不变，当泛型即当消费者，又当生产者时，不同<code>in</code>或者<code>out</code></p>
+<p>不变，当泛型即当消费者，又当生产者时，不用<code>in</code>或者<code>out</code></p>
 </li>
 </ul>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> from = arrayOf(<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>)</span><br><span class="line">    <span class="keyword">val</span> to = arrayOf(Any())</span><br><span class="line"></span><br><span class="line">    copyArray(from,to)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">copyArray</span><span class="params">(from: <span class="type">Array</span>&lt;<span class="type">out</span> <span class="type">Any</span>&gt;, to: <span class="type">Array</span>&lt;<span class="type">in</span> <span class="type">Int</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="comment">//这里的from被out修饰，只能作为生产者调用get之类的方法，不能作为消费者调用set之类的方法</span></span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
