@@ -37,8 +37,8 @@ script:
   - cd ..
 
 after_script:
-  - git config user.name "jixiaoyong"
-  - git config user.email "jixiaoyong1995@gmail.com"
+  - git config --global user.name "jixiaoyong"
+  - git config --global user.email jixiaoyong1995@gmail.com
   - git config --list
   - pwd
   - ls
