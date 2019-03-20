@@ -1,5 +1,5 @@
 ---
-title: AIDL在Android中的使用
+title: Android中AIDL的使用
 tags: aidl
 abbrlink: f931e8ae
 date: 2018-08-07 21:15:39
@@ -12,19 +12,19 @@ AIDL（Android Interface Definition Language ，Android接口定义语言）用�
 1. 服务端 创建Service监听Client的请求，通过创建AIDL将接口暴露给客户端
 2. 客户端 绑定到服务端获取BInder对象，将其转化为对应AIDL，并调用接口对应方法。
 
-> 两者的连线就是AIDL，因此两个APP的AIDL必须一致，可以将AIDL文件放到一个Android Library中，或者打成aar文件供二者依赖。
->
-> 也可以将AIDL涉及到的AIDL文件、java都放到AIDL文件夹下，然后在build.gradle的android{...}中添加
->
-> ```
->    sourceSets{
->         main{
->             java.srcDirs = ['src/main/java','src/main/adil']
->         }
->     }
-> ```
->
-> 即添加一个java路径
+ 两者的连线就是AIDL，因此两个APP的AIDL必须一致，可以将AIDL文件放到一个Android Library中，或者打成aar文件供二者依赖。
+
+ 也可以将AIDL涉及到的AIDL文件、java都放到AIDL文件夹下，然后在build.gradle的android{...}中添加
+
+```
+    sourceSets{
+         main{
+             java.srcDirs = ['src/main/java','src/main/adil']
+         }
+     }
+ ```
+
+ 即添加一个java路径
 
 # AIDL 文件特点
 
