@@ -19,6 +19,7 @@ install:
   - npm install
   - npm install hexo-math --save
   - npm install hexo-abbrlink --save
+  - npm install hexo-generator-search --save
   - npm install hexo-generator-searchdb --save
   # - npm install hexo-deployer-git --save
 
@@ -38,6 +39,7 @@ script:
 after_script:
   - git config user.name "jixiaoyong"
   - git config user.email "jixiaoyong1995@gmail.com"
+  - git config --list
   - pwd
   - ls
   - cd ..
