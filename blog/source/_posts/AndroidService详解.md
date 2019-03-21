@@ -190,7 +190,7 @@ public class BindActivity extends Activity{
 
 
 
-### 2.Message
+### 2.Messenger
 
 **service与不同进程通信（IPC）** 。
 
@@ -281,7 +281,7 @@ msg.replyTo = mRecevierReplyMsg;
 
 ### 3.AIDL
 
-一般不会使用
+一般不会使用，具体使用可以参考[这篇文章](https://jixiaoyong.github.io/blog/posts/f931e8ae/)
 
 
 
