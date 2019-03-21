@@ -316,7 +316,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:40:27+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:50:08+00:00">
                 2019-03-21
               </time>
             
@@ -353,157 +353,11 @@
         
           
           
-https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android-%E5%BC%80%E5%8F%91%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE.md
-    ">
-
-
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/posts/721b1bad/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/88d0bcd1/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="季小勇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="季小勇的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/posts/88d0bcd1/" itemprop="url">Android中AIDL详解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-21T12:40:27+00:00">
-                2019-03-21
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:40:27+00:00">
-                2019-03-21
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          前言AIDL是Android中用于IPC的语言，具体使用可以参见这篇文章，这篇文章主要想总结一下AIDL具体为我们做了什么工作，主要参考书目《Android开发艺术探索》。
-在Android中，除了Socket、Intent中使用Bundle、本地文件共享，ContentProvider等等之外，还有一个独有的IPC方式即Binder。在日常编程中使用Binder的主要有AIDL和Messenger两种方式，而Messenger也是用AIDL来实现的。
-准备
-新建一个AIDL文件
-
-123456
+&lt;iframe id=”iframeid”scrolling=false  height=”30” frameborder=”no” border=”0”marginwidth=”0” marginheight=”0” onload=”Javascript:editOnGithub()” srcdoc=”https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/%E6%A8%A
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/blog/posts/88d0bcd1/#more" rel="contents">
+            <a class="btn" href="/blog/posts/721b1bad/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -585,7 +439,7 @@ https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_p
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-21T12:40:27+00:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-21T12:50:08+00:00">
                 2019-03-21
               </time>
             
@@ -601,7 +455,7 @@ https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_p
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:40:27+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:50:08+00:00">
                 2019-03-21
               </time>
             
@@ -702,6 +556,149 @@ Callback
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/88d0bcd1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="季小勇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="季小勇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/posts/88d0bcd1/" itemprop="url">Android中AIDL详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-21T12:50:08+00:00">
+                2019-03-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:50:08+00:00">
+                2019-03-21
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          前言AIDL是Android中用于IPC的语言，具体使用可以参见这篇文章，这篇文章主要想总结一下AIDL具体为我们做了什么工作，主要参考书目《Android开发艺术探索》。
+在Android中，除了Socket、Intent中使用Bundle、本地文件共享，ContentProvider等等之外，还有一个独有的IPC方式即Binder。在日常编程中使用Binder的主要有AIDL和Messenger两种方式，而Messenger也是用AIDL来实现的。
+准备
+新建一个AIDL文件
+
+123456
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/posts/88d0bcd1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/b0dc2559/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -749,7 +746,7 @@ Callback
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:40:27+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:50:08+00:00">
                 2019-03-21
               </time>
             
@@ -894,7 +891,7 @@ Handler.java
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:40:27+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:50:08+00:00">
                 2019-03-21
               </time>
             
@@ -1035,7 +1032,7 @@ Handler.java
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:40:27+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:50:08+00:00">
                 2019-03-21
               </time>
             
@@ -1183,7 +1180,7 @@ Handler.java
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:40:27+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:50:08+00:00">
                 2019-03-21
               </time>
             
@@ -1326,7 +1323,7 @@ Sunflower则是Google用来演示如何使用Jetpack进行Android开发的Demo�
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:40:27+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:50:08+00:00">
                 2019-03-21
               </time>
             
@@ -1468,7 +1465,7 @@ Sunflower则是Google用来演示如何使用Jetpack进行Android开发的Demo�
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:40:27+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:50:08+00:00">
                 2019-03-21
               </time>
             
@@ -1609,7 +1606,7 @@ volatile和synchroni
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:40:27+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T12:50:08+00:00">
                 2019-03-21
               </time>
             
