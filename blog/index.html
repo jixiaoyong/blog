@@ -269,6 +269,151 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/b0dc2559/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="季小勇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="季小勇的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/posts/b0dc2559/" itemprop="url">Android中的Messenger源码详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-21T10:26:32+00:00">
+                2019-03-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T10:17:24+00:00">
+                2019-03-21
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          前言Messenger是Android中用于IPC的方式之一，使用Handler发送有序消息队列，底层是通过AIDL调用Binder实现。
+Messenger只用于服务端和客户端串行的传递消息，如果大量并发或者跨进程调用服务端的方法，就需要考虑AIDL而非Messenger。
+Messenger的使用可以参考这篇文章,本文主要探索一下Messenger源码实现。
+主要使用到的文件：
+IMessenger.aidl
+Messenger.java
+Handler.java
+解析一个典型的Messen
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/posts/b0dc2559/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/88d0bcd1/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -300,7 +445,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-21T02:35:49+00:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-21T10:17:24+00:00">
                 2019-03-21
               </time>
             
@@ -316,7 +461,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T02:35:49+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T10:17:24+00:00">
                 2019-03-21
               </time>
             
@@ -443,7 +588,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-21T02:35:49+00:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-21T10:17:24+00:00">
                 2019-03-21
               </time>
             
@@ -459,7 +604,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T02:35:49+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T10:17:24+00:00">
                 2019-03-21
               </time>
             
@@ -607,7 +752,7 @@ Callback
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T02:35:49+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T10:17:24+00:00">
                 2019-03-21
               </time>
             
@@ -748,7 +893,7 @@ Callback
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T02:35:49+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T10:17:24+00:00">
                 2019-03-21
               </time>
             
@@ -896,7 +1041,7 @@ Callback
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T02:35:49+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T10:17:24+00:00">
                 2019-03-21
               </time>
             
@@ -1039,7 +1184,7 @@ Sunflower则是Google用来演示如何使用Jetpack进行Android开发的Demo�
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T02:35:49+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T10:17:24+00:00">
                 2019-03-21
               </time>
             
@@ -1181,7 +1326,7 @@ Sunflower则是Google用来演示如何使用Jetpack进行Android开发的Demo�
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T02:35:49+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T10:17:24+00:00">
                 2019-03-21
               </time>
             
@@ -1322,7 +1467,7 @@ volatile和synchroni
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T02:35:49+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T10:17:24+00:00">
                 2019-03-21
               </time>
             
@@ -1471,7 +1616,7 @@ volatile和synchroni
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T02:35:49+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T10:17:24+00:00">
                 2019-03-21
               </time>
             
@@ -1520,151 +1665,6 @@ volatile和synchroni
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/blog/posts/101c73f/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/2041f2cb/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="季小勇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="季小勇的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/posts/2041f2cb/" itemprop="url">数据结构_高级排序</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-03T19:59:13+00:00">
-                2019-01-03
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-21T02:35:49+00:00">
-                2019-03-21
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          前言本文介绍两种高级排序：希尔排序和快速排序。
-希尔排序的时间复杂度是$O(N*(LogN)^2)$，简单易实现，在所有排序中可以优先使用。
-快速排序的时间复杂度是$O(N*LogN)$，是所有通用排序中最快的。
-排序方向：小 → 大。
-希尔排序希尔排序基于插入排序（将左边无须的元素依次插入到右边有序数组中），不同的是希尔排序的增量逐渐减小到1，而插入排序的增量一直是1。
-
-增量 排序的时候进行比较的两个元素之间的间隔：
-12&gt; int[] arr = &#123;1,2,3,4,5&#1
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/posts/2041f2cb/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1754,7 +1754,7 @@ volatile和synchroni
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
