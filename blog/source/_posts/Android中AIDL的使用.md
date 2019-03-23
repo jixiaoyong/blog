@@ -5,16 +5,16 @@ abbrlink: f931e8ae
 date: 2018-08-07 21:15:39
 ---
 
-AIDL（Android Interface Definition Language ，Android接口定义语言）用于Android IPC，适用于大量并发请求。
+AIDL（Android Interface Definition Language ，Android接口定义语言）用于Android IPC，适用于**大量并发**请求。
 
 主要分为两部分：
 
 1. 服务端 创建Service监听Client的请求，通过创建AIDL将接口暴露给客户端
 2. 客户端 绑定到服务端获取BInder对象，将其转化为对应AIDL，并调用接口对应方法。
 
- 两者的连线就是AIDL，因此两个APP的AIDL必须一致，可以将AIDL文件放到一个Android Library中，或者打成aar文件供二者依赖。
+两者的连线就是AIDL，因此两个APP的AIDL必须一致，可以将AIDL文件放到一个Android Library中，或者打成aar文件供二者依赖。
 
- 也可以将AIDL涉及到的AIDL文件、java都放到AIDL文件夹下，然后在build.gradle的android{...}中添加
+也可以将AIDL涉及到的AIDL文件、java都放到AIDL文件夹下，然后在build.gradle的`android{...}`中添加
 
 ```
     sourceSets{
@@ -22,17 +22,17 @@ AIDL（Android Interface Definition Language ，Android接口定义语言）用�
              java.srcDirs = ['src/main/java','src/main/adil']
          }
      }
- ```
+```
 
  即添加一个java路径
 
 # AIDL 文件特点
 
-## 1.支持数据格式
+## 支持的数据格式
 
 基本数据类型、List（ArrayList）、Map（HashMap）以及实现了Parcelable接口的对象、AIDL接口。
 
-## 2.注意事项
+## 注意事项
 
 * 自定义的Parcelable对象、AIDL对象必须显示import。
 * AIDL中用到的Parcelable对象必须新建一个同名AIDL接口，声明其为Parcelable类型。
@@ -51,7 +51,7 @@ parcelable People;
 
 # AIDL用法
 
-## 1.AIDL
+## AIDL
 
 ```java
 // ManagerAidl.aidl
@@ -125,6 +125,7 @@ public class PeopleManager {
 
     //实现该回调方法，用于调用客户端的具体方法
     //注意这里是new TaskCallBack.Stub()，而非new TaskCallBack(),否则服务器无法接收到callback
+    //TaskCallBack.Stub()是TaskCallBack的子类，当跨进程通信时传递的是proxy类
     private TaskCallBack callBack = new TaskCallBack.Stub() {
         @Override
         public void callBack(int size) throws RemoteException {
@@ -199,7 +200,7 @@ public class PeopleManager {
 }
 ```
 
-## 2.服务端
+## 服务端
 
 注意MService在AndroidManife.xml中配置:
 
@@ -308,7 +309,59 @@ public class MService extends Service implements ManagerAidl.Stub.DeathRecipient
 }
 ```
 
-## 3.客户端
+注意：
+
+1. 这里用来注册监听的类是RemoteCallbackList
+
+   我们知道跨进程的两个listener是两个不同的对象，那他是怎么保证跨进程注册、注销的是指定的listener呢？
+
+   这是因为虽然两个listener对象不同，但是他们底层的Binder对象是同一个，在RemoteCallbackList中有一个以Binder对象为KEY的map来存放这些listener对象，当要注销时，只需要按当前待注销的listener的Binder对象找到已经注册了的listener并删除掉即可。
+
+   ```java
+   ArrayMap<IBinder, Callback> mCallbacks
+           = new ArrayMap<IBinder, Callback>()
+   ```
+
+   此外，RemoteCallbackList可以在客户端死亡的时候自动注销掉对应的listener，这是因为他在注册的同时也对Binder的死亡就行了监听。
+
+   ```java
+   public boolean register(E callback, Object cookie) {
+       synchronized (mCallbacks) {
+           if (mKilled) {
+               return false;
+           }
+           // Flag unusual case that could be caused by a leak. b/36778087
+           logExcessiveCallbacks();
+           IBinder binder = callback.asBinder();
+           try {
+               Callback cb = new Callback(callback, cookie);
+               binder.linkToDeath(cb, 0);//监听binder的死亡事件
+               mCallbacks.put(binder, cb);
+               return true;
+           } catch (RemoteException e) {
+               return false;
+           }
+       }
+   }
+   ...
+   //当binder死亡时，会主动移除其注册的listener
+   public void binderDied() {
+               synchronized (mCallbacks) {
+                   mCallbacks.remove(mCallback.asBinder());
+               }
+               onCallbackDied(mCallback, mCookie);
+           }
+   ```
+
+2. 方法运行的线程
+
+   **如果客户端和服务端运行在同一进程**：客户端调用服务端和服务端回调客户端方法（RemoteCallbackList，下同）都会运行在同一线程，即客户端调用服务端时所在的线程，默认为主线程
+
+   **如果客户端和服务端运行在不同进程**：客户端调用服务端方法，客户端会被挂起，直到服务端方法在Binder线程池中运行完毕,这种情况下服务端可以执行耗时操作而无需另建线程；服务端回调客户端方法运行在客户端主线程(与客户端调用服务端方法在同一线程)
+
+   通过上述分析，可以注意到一个细节：**虽然在服务端中回调客户端的方法是在服务端的Binder线程，但是在客户端中被回调的方法却是和客户端中主动调用服务端方法的线程一致**。
+
+## 客户端
 
 ```java
 PeopleManager.init(this, this);
@@ -332,3 +385,20 @@ public void onPeopleListChange(List<People> peoples) {
     Log.d("TAG", "demo2 people变化了" + peoples.size());
 }
 ```
+
+## 监听并处理Binder死亡事件
+
+当服务端进程意外死亡时，我们可以选择重新连接服务，一般有两种方式：
+
+1. binderDied 在客户端的Binder线程池中
+2. onServiceDisconnected 在客户端UI线程
+
+## AIDL的权限验证
+
+可以在服务的onBind(Intent intent)或者onTransact()方法中做验证
+
+做验证的手段有：1.permission验证；2.Uid，Pid等做验证
+
+# 参考资料
+
+《Android开发艺术探索》
