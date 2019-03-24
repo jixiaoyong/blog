@@ -86,7 +86,7 @@
 <meta property="og:description" content="Android事件分发，指手指点击屏幕后，从Activity、ViewGroup到View的一系列过程。 简介Android系统的窗口机制如下图： Activity内有一个Window对象，其实现类是PhoneWindow； DecorView为顶层View，DecorView是一个FrameLayout，其中有TitleView和ContentView；  TitleView为标题栏，Conte">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/jixiaoyong/jixiaoyong.github.io/blob/master/images/blog/2018-04/AndroidDispatchTouchEvent.png?raw=true">
-<meta property="og:updated_time" content="2019-03-23T06:24:19.055Z">
+<meta property="og:updated_time" content="2019-03-24T12:10:04.801Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android事件分发">
 <meta name="twitter:description" content="Android事件分发，指手指点击屏幕后，从Activity、ViewGroup到View的一系列过程。 简介Android系统的窗口机制如下图： Activity内有一个Window对象，其实现类是PhoneWindow； DecorView为顶层View，DecorView是一个FrameLayout，其中有TitleView和ContentView；  TitleView为标题栏，Conte">
@@ -320,8 +320,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-23T06:24:19+00:00">
-                2019-03-23
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-24T12:10:04+00:00">
+                2019-03-24
               </time>
             
           </span>
@@ -369,10 +369,12 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//PhoneWindow</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">superDispatchKeyEvent</span><span class="params">(KeyEvent event)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> mDecor.superDispatchKeyEvent(event);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//DecorView extends FrameLayout</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">superDispatchKeyEvent</span><span class="params">(KeyEvent event)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Give priority to closing action modes if applicable.</span></span><br><span class="line">    <span class="keyword">if</span> (event.getKeyCode() == KeyEvent.KEYCODE_BACK) &#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> action = event.getAction();</span><br><span class="line">        <span class="comment">// Back cancels action modes first.</span></span><br><span class="line">        <span class="keyword">if</span> (mPrimaryActionMode != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (action == KeyEvent.ACTION_UP) &#123;</span><br><span class="line">                mPrimaryActionMode.finish();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.dispatchKeyEvent(event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="点击事件-ViewGroup-–-gt-View"><a href="#点击事件-ViewGroup-–-gt-View" class="headerlink" title="点击事件 ViewGroup –&gt; View"></a>点击事件 ViewGroup –&gt; View</h1><p>ViewGroup与事件分发的方法有三个：</p>
 <ul>
-<li><code>dispatchTouchEvent()</code>  分发事件</li>
-<li><code>onInterceptTouchEvent()</code>  拦截事件</li>
-<li><code>onTouchEvent()</code>  处理点击事件</li>
+<li><code>dispatchTouchEvent()</code>  分发事件，每次都会被调用</li>
+<li><code>onInterceptTouchEvent()</code>  拦截事件，如果当前ViewGroup已经决定拦截事件，那么不会再调用</li>
+<li><code>onTouchEvent()</code>  处理点击事件,如果设置了<code>mOnTouchListener</code>的话，则不会回调本方法</li>
 </ul>
+<p>这三个主要方法关系如下（伪代码，来自《Android开发艺术探索》）：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//每次点击事件回调该方法</span></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">dispatchTouchEvent</span><span class="params">(event: <span class="type">MotionEvent</span>)</span></span>: <span class="built_in">Boolean</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">if</span> (onInterceptTouchEvent(event)) &#123;<span class="comment">//viewGroup会回调该方法，确认是否拦截点击事件</span></span><br><span class="line">        result = onTouchEvent(event)<span class="comment">//对点击事件进行处理</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        result = child.dispatchTouchEvent(event)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>当ViewGroup.dispatchTouchEvent()被调用后，会通过一系列条件判断是由ViewGroup拦截该事件，还是由子View消耗该事件。</p>
 <p>主要流程分为两部分</p>
 <p><strong>1.检查是否需要拦截</strong></p>
@@ -407,6 +409,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">if</span>(CLICKABLE&amp;&amp;LONG_CLICKABLE)&#123;<span class="comment">//LONG_CLICKABLE默认为false，CLICKABLE、LONG_CLICKABLE会在设置点击事件时被设置为true</span></span><br><span class="line">        <span class="keyword">switch</span> (action) &#123;</span><br><span class="line">            <span class="keyword">case</span> MotionEvent.ACTION_UP:&#123;</span><br><span class="line">                ...</span><br><span class="line">                performClick();<span class="comment">//如果注册了OnClickListener则会调用其onClick()方法</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">performClick</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    mListenerInfo.mOnClickListener.onClick(<span class="keyword">this</span>);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>整个Android的时间分发始于Activity,经过PhoneWindow、DecorView到达ViewGroup，再逐层分发到View中。</p>
 <p>如果底层没有处理点击事件，则又一层层向上返回，直到最顶层消耗掉点击事件。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>《Android开发艺术探索》</p>
 
       
     </div>
@@ -584,7 +587,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -644,7 +647,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#点击事件-Activity-–-gt-ViewGroup"><span class="nav-number">2.</span> <span class="nav-text">点击事件 Activity –&gt; ViewGroup</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#点击事件-ViewGroup-–-gt-View"><span class="nav-number">3.</span> <span class="nav-text">点击事件 ViewGroup –&gt; View</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#点击事件-View内部"><span class="nav-number">4.</span> <span class="nav-text">点击事件 View内部</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#点击事件-Activity-–-gt-ViewGroup"><span class="nav-number">2.</span> <span class="nav-text">点击事件 Activity –&gt; ViewGroup</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#点击事件-ViewGroup-–-gt-View"><span class="nav-number">3.</span> <span class="nav-text">点击事件 ViewGroup –&gt; View</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#点击事件-View内部"><span class="nav-number">4.</span> <span class="nav-text">点击事件 View内部</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>

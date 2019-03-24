@@ -77,13 +77,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="季小勇的博客">
-<meta property="og:url" content="https://jixiaoyong.github.io/blog/page/7/index.html">
+<meta name="description" content="&amp;lt;iframe id=”iframeid”scrolling=false  height=”30” frameborder=”no” border=”0”marginwidth=”0” marginheight=”0” onload=”Javascript:editOnGithub()” srcdoc=”https://github.com/jixiaoyong/jixiaoyong.gi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android中View相关知识">
+<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/1b0362b/index.html">
 <meta property="og:site_name" content="季小勇的博客">
+<meta property="og:description" content="&amp;lt;iframe id=”iframeid”scrolling=false  height=”30” frameborder=”no” border=”0”marginwidth=”0” marginheight=”0” onload=”Javascript:editOnGithub()” srcdoc=”https://github.com/jixiaoyong/jixiaoyong.gi">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-24T12:10:04.801Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="季小勇的博客">
+<meta name="twitter:title" content="Android中View相关知识">
+<meta name="twitter:description" content="&amp;lt;iframe id=”iframeid”scrolling=false  height=”30” frameborder=”no” border=”0”marginwidth=”0” marginheight=”0” onload=”Javascript:editOnGithub()” srcdoc=”https://github.com/jixiaoyong/jixiaoyong.gi">
 
 
 
@@ -113,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="https://jixiaoyong.github.io/blog/page/7/">
+  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/1b0362b/">
 
 
 
 
 
-  <title>季小勇的博客</title>
+  <title>Android中View相关知识 | 季小勇的博客</title>
   
 
 
@@ -138,8 +142,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -254,9 +257,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -269,7 +272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/ca532ade/">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/1b0362b/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="季小勇">
@@ -286,9 +289,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/posts/ca532ade/" itemprop="url">Linux下配置JDK和AndroidStudio开发环境</a></h1>
+          <h1 class="post-title" itemprop="name headline">Android中View相关知识</h1>
         
 
         <div class="post-meta">
@@ -300,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-28T06:06:06+00:00">
-                2016-04-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-24T12:43:21+00:00">
+                2019-03-24
               </time>
             
 
@@ -350,25 +351,44 @@
       
 
       
-        
-          
-          下载 JDK 并解压
-到官网下载 jdk
-下载到的 JDK 文件解压
+        <p><script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script></p>
+&lt;iframe id=”iframeid”<br>scrolling=false  height=”30” frameborder=”no” border=”0”marginwidth=”0” marginheight=”0”<br> onload=”Javascript:editOnGithub()”<br> srcdoc=”<div id="&quot;url&quot;"><a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/Android中View相关知识.md" target="_blank" rel="noopener">https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/Android中View相关知识.md</a><br>    </div>“&gt;<br>
 
-设置环境变量管理员权限进入 etc/environment 写入以下代码
-1JAVA_HOME=&quot;JDK主目录的绝对路径&quot;
-配置 alternatives打开终端执行以下命令：
-123sudo update-alternatives --install  /usr/bin/java java  JDK主目录的绝对路径/bin/java 300sudo update-alternatives --insta
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/posts/ca532ade/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+<h1 id="View的坐标"><a href="#View的坐标" class="headerlink" title="View的坐标"></a>View的坐标</h1><p>Android中的坐标，以屏幕左上角顶点为原点(0,0)，以横轴为x轴，竖轴为y轴，数值依次递增。</p>
+<p>View的坐标信息有以下几种，其坐标都是以父View的左上角顶点为原点：</p>
+<ul>
+<li><p>x，y 是View的左上角坐标。</p>
+</li>
+<li><p>translationX，translationY是View左上角顶点与父容器左上角顶点的偏移量，默认为0。</p>
+</li>
+<li><p>left，top 是分别是View左上角顶点的x轴，y轴坐标。</p>
+</li>
+<li><p>right，bottom分别是View右下角顶点的x轴，y轴坐标。</p>
+</li>
+</ul>
+<blockquote>
+<p>注意</p>
+</blockquote>
+<p>x = translationX + left；</p>
+<p>y = translationY + top；</p>
+<p>改变translationX/Y的值便可以更改View的位置。当View平移的时候，代表原始位置信息的left，right，top，bottom的值并不会变化。</p>
+<p>在OnTouch事件中，我们可以从event得到两种值：</p>
+<p>event.rawX,event.rawY 代表 相对于手机屏幕原点的坐标</p>
+<p>event.X,event.Y 代表 相对于当前View左上角的坐标</p>
+<p>TouchSlop则代表认为滑动开始的最小距离</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ViewConfiguration.<span class="keyword">get</span>(<span class="keyword">this</span>).scaledTouchSlop</span><br></pre></td></tr></table></figure>
+<h1 id="滑动"><a href="#滑动" class="headerlink" title="滑动"></a>滑动</h1><p>mScroller.startScroll()方法可以实现平滑的滑动</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> mScroller = Scroller(context)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">smoothScrollBy</span><span class="params">(destX: <span class="type">Int</span>, destY: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    mScroller.startScroll(scrollX, scrollY, destX, destY, <span class="number">1000</span>)<span class="comment">//destX, destY的值如果是正的话，会向左，上方移动</span></span><br><span class="line">    invalidate()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">computeScroll</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (mScroller.computeScrollOffset()) &#123;</span><br><span class="line">        scrollTo(mScroller.currX, mScroller.currY)</span><br><span class="line">        postInvalidate()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Scroller不能使View滑动，而只能配合View的computeScroll()方法实现是View的内容滑动的效果。</p>
+<ul>
+<li><p>mScroller.startScroll()记录下要滑动的数据，而invalidate()通知View重绘；</p>
+</li>
+<li><p>每次重绘都会调用computeScroll()方法，利用mScroller计算出接下来要scrollTo()的具体值并执行，再次postInvalidate()通知View重绘；</p>
+</li>
+<li><p>如此反复直到绘制滑动完毕。</p>
+</li>
+</ul>
+
       
     </div>
     
@@ -380,161 +400,51 @@
     
 
     
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    季小勇
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://jixiaoyong.github.io/blog/posts/1b0362b/" title="Android中View相关知识">https://jixiaoyong.github.io/blog/posts/1b0362b/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
 
     <footer class="post-footer">
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/fcfc830b/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="季小勇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="季小勇的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/posts/fcfc830b/" itemprop="url">AppWidget的使用之PendingIntent</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-25T06:06:06+00:00">
-                2016-04-25
-              </time>
+              <a href="/blog/posts/6ff87ae7/" rel="next" title="OKHttpUtils分析">
+                <i class="fa fa-chevron-left"></i> OKHttpUtils分析
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-24T12:10:04+00:00">
-                2019-03-24
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          这几天学习 AppWidget ，很简单的组件却花费了不少功夫，今天对 PendingIntent 的用法做了一些简单的整理。
-PendingIntent
-
-PandingIntent 就像是一个设计好的处理预案，当达到某个特定条件时，便会调用该 Intent 所指定动作（打开服务，Activity或者发送广播）。
-这里使用该方法在 AppWidget 里面为按钮添加监听事件，当按钮被点击的时候触发相应的动作
-
-AppWidget 和应用程序不再同一个进程当中，而是在 HomeScreen 上面
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/posts/fcfc830b/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -544,294 +454,49 @@ AppWidget 和应用程序不再同一个进程当中，而是在 HomeScreen 上�
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/f7965978/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="季小勇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="季小勇的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/posts/f7965978/" itemprop="url">Hexo+Github=Blog</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-25T06:06:06+00:00">
-                2016-03-25
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-24T12:10:04+00:00">
-                2019-03-24
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
+    <div class="post-spread">
       
         
-          
-          Hello World！
-一直以来，为了有一个合适的在线写字的地方，我尝试过许多种工具，从最初的 QQ 空间开始，到各种门户网站的博客，再到自己开始尝试搭建博客，一路奔忙，门户网站的限制太多，自己搭建的博客又时常由于空间提供商的各种问题而无法访问。许多时候一个平台只能使用一段时间，这样子颠颠撞撞大概也有五六年的时间了。
-一直听说 github 这个平台的各种优点，尤其是可以作为稳定而免费的空间托管博客最令我心动，但是之前多次尝试不得其道，终以失败告终。最近在学习 Android 语言的时候，又再
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/posts/f7965978/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/4a17b156/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="季小勇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="季小勇的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/posts/4a17b156/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-21T06:06:06+00:00">
-                2016-03-21
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-24T12:10:04+00:00">
-                2019-03-24
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new "My New Post"
-M
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/posts/4a17b156/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/blog/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/blog/">1</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/6/">6</a><span class="page-number current">7</span>
-  </nav>
-
 
 
           </div>
@@ -839,6 +504,10 @@ M
 
 
           
+
+  
+
+
 
         </div>
         
@@ -859,8 +528,17 @@ M
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -927,6 +605,22 @@ M
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#View的坐标"><span class="nav-number">1.</span> <span class="nav-text">View的坐标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#滑动"><span class="nav-number">2.</span> <span class="nav-text">滑动</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1056,6 +750,10 @@ M
   
 
   
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
