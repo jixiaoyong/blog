@@ -80,9 +80,25 @@ public boolean superDispatchKeyEvent(KeyEvent event) {
 
 ViewGroup与事件分发的方法有三个：
 
-* `dispatchTouchEvent()`  分发事件
-* `onInterceptTouchEvent()`  拦截事件
-* `onTouchEvent()`  处理点击事件
+* `dispatchTouchEvent()`  分发事件，每次都会被调用
+* `onInterceptTouchEvent()`  拦截事件，如果当前ViewGroup已经决定拦截事件，那么不会再调用
+* `onTouchEvent()`  处理点击事件,如果设置了`mOnTouchListener`的话，则不会回调本方法
+
+这三个主要方法关系如下（伪代码，来自《Android开发艺术探索》）：
+
+```kotlin
+//每次点击事件回调该方法
+override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+    var result = false
+    if (onInterceptTouchEvent(event)) {//viewGroup会回调该方法，确认是否拦截点击事件
+        result = onTouchEvent(event)//对点击事件进行处理
+    } else {
+        result = child.dispatchTouchEvent(event)
+        }
+    }
+    return result
+}
+```
 
 当ViewGroup.dispatchTouchEvent()被调用后，会通过一系列条件判断是由ViewGroup拦截该事件，还是由子View消耗该事件。
 
@@ -210,3 +226,7 @@ public boolean performClick() {
 整个Android的时间分发始于Activity,经过PhoneWindow、DecorView到达ViewGroup，再逐层分发到View中。
 
 如果底层没有处理点击事件，则又一层层向上返回，直到最顶层消耗掉点击事件。
+
+# 参考资料
+
+《Android开发艺术探索》
