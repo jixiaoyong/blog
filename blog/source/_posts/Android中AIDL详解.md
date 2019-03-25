@@ -3,8 +3,7 @@ title: Android中AIDL详解
 date: 2019年03月20日19:37:40
 tag: 
 ---
-<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
-<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android中AIDL详解.md</div>"></iframe>
+
 
 # 前言
 
@@ -161,3 +160,7 @@ public interface IBookManager extends
 [Android 深入浅出AIDL（二）](https://blog.csdn.net/qian520ao/article/details/78074983)
 
 [Android Binder之应用层总结与分析](https://blog.csdn.net/qian520ao/article/details/78089877)
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android中AIDL详解.md</div>"></iframe>
