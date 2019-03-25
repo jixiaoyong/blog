@@ -77,19 +77,19 @@
 
 
 
-<meta name="description" content="Android事件分发，指手指点击屏幕后，从Activity、ViewGroup到View的一系列过程。 简介Android系统的窗口机制如下图： Activity内有一个Window对象，其实现类是PhoneWindow； DecorView为顶层View，DecorView是一个FrameLayout，其中有TitleView和ContentView；  TitleView为标题栏，Conte">
+<meta name="description" content="Android事件分发，指手指点击屏幕后，从Activity、ViewGroup到View的一系列过程。 简介Android系统的窗口机制如下图： Activity内有一个Window对象，其实现类是PhoneWindow； DecorView为顶层View，DecorView是一个FrameLayout，其中有TitleView和ContentView；  TitleView为标题栏，C">
 <meta name="keywords" content="android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android事件分发">
 <meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/c0fefed0/index.html">
 <meta property="og:site_name" content="季小勇的博客">
-<meta property="og:description" content="Android事件分发，指手指点击屏幕后，从Activity、ViewGroup到View的一系列过程。 简介Android系统的窗口机制如下图： Activity内有一个Window对象，其实现类是PhoneWindow； DecorView为顶层View，DecorView是一个FrameLayout，其中有TitleView和ContentView；  TitleView为标题栏，Conte">
+<meta property="og:description" content="Android事件分发，指手指点击屏幕后，从Activity、ViewGroup到View的一系列过程。 简介Android系统的窗口机制如下图： Activity内有一个Window对象，其实现类是PhoneWindow； DecorView为顶层View，DecorView是一个FrameLayout，其中有TitleView和ContentView；  TitleView为标题栏，C">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/jixiaoyong/jixiaoyong.github.io/blob/master/images/blog/2018-04/AndroidDispatchTouchEvent.png?raw=true">
-<meta property="og:updated_time" content="2019-03-25T02:35:49.593Z">
+<meta property="og:updated_time" content="2019-03-25T03:57:32.860Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android事件分发">
-<meta name="twitter:description" content="Android事件分发，指手指点击屏幕后，从Activity、ViewGroup到View的一系列过程。 简介Android系统的窗口机制如下图： Activity内有一个Window对象，其实现类是PhoneWindow； DecorView为顶层View，DecorView是一个FrameLayout，其中有TitleView和ContentView；  TitleView为标题栏，Conte">
+<meta name="twitter:description" content="Android事件分发，指手指点击屏幕后，从Activity、ViewGroup到View的一系列过程。 简介Android系统的窗口机制如下图： Activity内有一个Window对象，其实现类是PhoneWindow； DecorView为顶层View，DecorView是一个FrameLayout，其中有TitleView和ContentView；  TitleView为标题栏，C">
 <meta name="twitter:image" content="https://github.com/jixiaoyong/jixiaoyong.github.io/blob/master/images/blog/2018-04/AndroidDispatchTouchEvent.png?raw=true">
 
 
@@ -320,7 +320,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T02:35:49+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T03:57:32+00:00">
                 2019-03-25
               </time>
             
@@ -354,7 +354,11 @@
       
 
       
-        <p>Android事件分发，指手指点击屏幕后，从Activity、ViewGroup到View的一系列过程。</p>
+        <p><script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script></p>
+<iframe id="iframeid" scrolling="false" height="39" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/AndroidDispatchTouchEvent.md</div>"></iframe>
+
+
+<p>Android事件分发，指手指点击屏幕后，从Activity、ViewGroup到View的一系列过程。</p>
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Android系统的窗口机制如下图：</p>
 <p>Activity内有一个Window对象，其实现类是PhoneWindow；</p>
 <p>DecorView为顶层View，DecorView是一个FrameLayout，其中有TitleView和ContentView；</p>
@@ -378,11 +382,14 @@
 <p>当ViewGroup.dispatchTouchEvent()被调用后，会通过一系列条件判断是由ViewGroup拦截该事件，还是由子View消耗该事件。</p>
 <p>主要流程分为两部分</p>
 <p><strong>1.检查是否需要拦截</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// http://androidxref.com/9.0.0_r3/xref/frameworks/base/core/java/android/view/ViewGroup.java line2567-2582</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">            <span class="comment">// Check for interception.</span></span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">boolean</span> intercepted;</span><br><span class="line">            <span class="keyword">if</span> (actionMasked == MotionEvent.ACTION_DOWN</span><br><span class="line">                    || mFirstTouchTarget != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">final</span> <span class="keyword">boolean</span> disallowIntercept = (mGroupFlags &amp; FLAG_DISALLOW_INTERCEPT) != <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">if</span> (!disallowIntercept) &#123;</span><br><span class="line">                    intercepted = onInterceptTouchEvent(ev);<span class="comment">//在这里调用了onInterceptTouchEvent()方法，如果已经拦截了</span></span><br><span class="line">                    ev.setAction(action); <span class="comment">// restore action in case it was changed</span></span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    intercepted = <span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// There are no touch targets and this action is not an initial down</span></span><br><span class="line">                <span class="comment">// so this view group continues to intercept touches.</span></span><br><span class="line">                intercepted = <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">     ...</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onInterceptTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (ev.isFromSource(InputDevice.SOURCE_MOUSE)</span><br><span class="line">                &amp;&amp; ev.getAction() == MotionEvent.ACTION_DOWN</span><br><span class="line">                &amp;&amp; ev.isButtonPressed(MotionEvent.BUTTON_PRIMARY)</span><br><span class="line">                &amp;&amp; isOnScrollbarThumb(ev.getX(), ev.getY())) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>每次ACTION_DOWN事件都需要调用<code>onInterceptTouchEvent()</code>方法判断是否需要拦截</li>
 <li>其他MotionEvent事件，如果有能处理点击事件的子View（<code>mFirstTouchTarget != null</code>）且<code>disallowIntercept</code>为false也需要调用<code>onInterceptTouchEvent()</code>方法判断是否需要拦截，否则不需要拦截</li>
 <li>其余情况都需要拦截（没有可以处理点击事件的子View，并且不是ACTION_DOWN事件）</li>
 </ul>
+<p>如果ViewGroup判断要拦截该事件，则会调用<code>dispatchTransformedTouchEvent()</code>（后面会再讲到）通过他调用继承自View的<code>dispatchTouchEvent(MotionEvent event)</code>方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Dispatch to touch targets.</span></span><br><span class="line">           <span class="keyword">if</span> (mFirstTouchTarget == <span class="keyword">null</span>) &#123;</span><br><span class="line">               <span class="comment">// No touch targets so treat this as an ordinary view.</span></span><br><span class="line">               handled = dispatchTransformedTouchEvent(ev, canceled, <span class="keyword">null</span>,</span><br><span class="line">                       TouchTarget.ALL_POINTER_IDS);</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           ...</span><br><span class="line">           &#125;</span><br></pre></td></tr></table></figure></p>
+<p>否则就需要遍历其子View</p>
 <p><strong>2.遍历ViewGroup的所有子View，寻找一个可以处理点击事件的子View</strong></p>
 <ul>
 <li><code>dispatchTransformedTouchEvent()</code>   调用了子View的<code>dispatchTouchEvent()</code></li>
@@ -410,6 +417,7 @@
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>整个Android的时间分发始于Activity,经过PhoneWindow、DecorView到达ViewGroup，再逐层分发到View中。</p>
 <p>如果底层没有处理点击事件，则又一层层向上返回，直到最顶层消耗掉点击事件。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>《Android开发艺术探索》</p>
+<p><a href="http://androidxref.com" target="_blank" rel="noopener">Android源代码</a></p>
 
       
     </div>
