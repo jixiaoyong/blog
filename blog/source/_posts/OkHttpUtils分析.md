@@ -1,6 +1,6 @@
 ---
 title: OKHttpUtils分析
-date: 2019年03月17日13:32:21
+date: 2019-03-17 13:32:21
 tag: android
 ---
 
@@ -308,3 +308,6 @@ public void sendSuccessResultCallback(final Object object, final Callback callba
 在具体的实现中，通过`OkHttpRequestBuilder`收集网络请求的属性并传递给`OkHttpRequest`，在其子类中按照不同的需要实现生成`Request`的方法。
 
 `OkHttpRequestBuilder`的`build()`方法会生成`RequestCall`对象，`RequestCall`对象的`execute()`方法会调用`OkHttpRequestBuilder`对象的`generateRequest()`方法产生`Request`，并据此产生`Call`对象，最后通过该`Call`对象的enqueue方法执行网络请求。
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/OkHttpUtils分析.md</div>"></iframe>
