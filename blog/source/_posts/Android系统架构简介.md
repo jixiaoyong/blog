@@ -5,9 +5,6 @@ abbrlink: e3bb9a54
 date: 2018-02-23 22:35:14
 ---
 
-<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
-<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android系统架构简介.md</div>"></iframe>
-
 > 说明：本文基于[Android系统开篇 - Gityuan博客 | 袁辉辉博客 ](http://gityuan.com/android/) 的学习笔记整理
 
 Android系统大体分为4个模块，从底层开始依次是1.linux内核、2.系统库+Android运行时、3.框架层、4.应用层。
@@ -79,3 +76,7 @@ Android常用的通信方式
 - Zygote进程  -->  Socket机制
 - SystemServer、MediaServer、App之间  -->  Binder IPC
 - 同一进程不同线程间 -->  Handler
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android系统架构简介.md</div>"></iframe>
