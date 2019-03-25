@@ -5,9 +5,6 @@ abbrlink: c0fefed0
 date: 2018-04-24 20:25:33
 ---
 
-<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
-<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/AndroidDispatchTouchEvent.md</div>"></iframe>
-
 
 Android事件分发，指手指点击屏幕后，从Activity、ViewGroup到View的一系列过程。
 
@@ -282,3 +279,7 @@ public boolean performClick() {
 《Android开发艺术探索》
 
 [Android源代码](http://androidxref.com)
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/AndroidDispatchTouchEvent.md</div>"></iframe>
