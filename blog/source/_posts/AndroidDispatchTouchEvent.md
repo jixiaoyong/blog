@@ -5,6 +5,10 @@ abbrlink: c0fefed0
 date: 2018-04-24 20:25:33
 ---
 
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="39" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/AndroidDispatchTouchEvent.md</div>"></iframe>
+
+
 Android事件分发，指手指点击屏幕后，从Activity、ViewGroup到View的一系列过程。
 
 # 简介
@@ -106,9 +110,55 @@ override fun dispatchTouchEvent(event: MotionEvent): Boolean {
 
 **1.检查是否需要拦截**
 
+```java
+// http://androidxref.com/9.0.0_r3/xref/frameworks/base/core/java/android/view/ViewGroup.java line2567-2582
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+    ...
+            // Check for interception.
+            final boolean intercepted;
+            if (actionMasked == MotionEvent.ACTION_DOWN
+                    || mFirstTouchTarget != null) {
+                final boolean disallowIntercept = (mGroupFlags & FLAG_DISALLOW_INTERCEPT) != 0;
+                if (!disallowIntercept) {
+                    intercepted = onInterceptTouchEvent(ev);//在这里调用了onInterceptTouchEvent()方法，如果已经拦截了
+                    ev.setAction(action); // restore action in case it was changed
+                } else {
+                    intercepted = false;
+                }
+            } else {
+                // There are no touch targets and this action is not an initial down
+                // so this view group continues to intercept touches.
+                intercepted = true;
+            }
+     ...
+     }
+     
+     public boolean onInterceptTouchEvent(MotionEvent ev) {
+        if (ev.isFromSource(InputDevice.SOURCE_MOUSE)
+                && ev.getAction() == MotionEvent.ACTION_DOWN
+                && ev.isButtonPressed(MotionEvent.BUTTON_PRIMARY)
+                && isOnScrollbarThumb(ev.getX(), ev.getY())) {
+            return true;
+        }
+        return false;
+    }
+```
 * 每次ACTION_DOWN事件都需要调用`onInterceptTouchEvent()`方法判断是否需要拦截
 * 其他MotionEvent事件，如果有能处理点击事件的子View（`mFirstTouchTarget != null`）且`disallowIntercept`为false也需要调用`onInterceptTouchEvent()`方法判断是否需要拦截，否则不需要拦截
 * 其余情况都需要拦截（没有可以处理点击事件的子View，并且不是ACTION_DOWN事件）
+
+如果ViewGroup判断要拦截该事件，则会调用`dispatchTransformedTouchEvent()`（后面会再讲到）通过他调用继承自View的`dispatchTouchEvent(MotionEvent event)`方法：
+```java
+ // Dispatch to touch targets.
+            if (mFirstTouchTarget == null) {
+                // No touch targets so treat this as an ordinary view.
+                handled = dispatchTransformedTouchEvent(ev, canceled, null,
+                        TouchTarget.ALL_POINTER_IDS);
+            } else {
+            ...
+            }
+```
+否则就需要遍历其子View
 
 **2.遍历ViewGroup的所有子View，寻找一个可以处理点击事件的子View**
 
@@ -230,3 +280,5 @@ public boolean performClick() {
 # 参考资料
 
 《Android开发艺术探索》
+
+[Android源代码](http://androidxref.com)
