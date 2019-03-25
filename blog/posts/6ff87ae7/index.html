@@ -86,7 +86,7 @@
 <meta property="og:description" content="前言本文是对张鸿洋的OKHttp辅助类okhttputils简要分析，以便学习如何封装常见工具的思想，建议配合源码食用。 主要涉及类：  OkHttpUtils OkHttpRequestBuilder OkHttpRequest RequestCall Callback  基础OkHttp是可以用于Android和Java的Http框架，经典的使用分为3步： 123456789101112131">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://jixiaoyong.github.io/images/20190317141417.png">
-<meta property="og:updated_time" content="2019-03-25T07:23:16.021Z">
+<meta property="og:updated_time" content="2019-03-25T07:23:53.982Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OKHttpUtils分析">
 <meta name="twitter:description" content="前言本文是对张鸿洋的OKHttp辅助类okhttputils简要分析，以便学习如何封装常见工具的思想，建议配合源码食用。 主要涉及类：  OkHttpUtils OkHttpRequestBuilder OkHttpRequest RequestCall Callback  基础OkHttp是可以用于Android和Java的Http框架，经典的使用分为3步： 123456789101112131">
@@ -304,8 +304,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-25T07:23:16+00:00">
-                2019-03-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-17T13:32:21+00:00">
+                2019-03-17
               </time>
             
 
@@ -320,7 +320,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T07:23:16+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T07:23:53+00:00">
                 2019-03-25
               </time>
             
@@ -410,6 +410,8 @@
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>在本文中，<code>okhttputils</code>将初始化<code>OkHttpClient</code>的动作提取出来，这样同一个应用只需要在最开始的时候配置一下诸如网络超时、cookie等既可。</p>
 <p>在具体的实现中，通过<code>OkHttpRequestBuilder</code>收集网络请求的属性并传递给<code>OkHttpRequest</code>，在其子类中按照不同的需要实现生成<code>Request</code>的方法。</p>
 <p><code>OkHttpRequestBuilder</code>的<code>build()</code>方法会生成<code>RequestCall</code>对象，<code>RequestCall</code>对象的<code>execute()</code>方法会调用<code>OkHttpRequestBuilder</code>对象的<code>generateRequest()</code>方法产生<code>Request</code>，并据此产生<code>Call</code>对象，最后通过该<code>Call</code>对象的enqueue方法执行网络请求。</p>
+<p><script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script></p>
+<iframe id="iframeid" scrolling="false" height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/OkHttpUtils分析.md</div>"></iframe>
 
       
     </div>
@@ -458,8 +460,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/posts/1b0362b/" rel="next" title="Android中View相关知识">
-                <i class="fa fa-chevron-left"></i> Android中View相关知识
+              <a href="/blog/posts/c04fdc6c/" rel="next" title="Dagger 2 ❤️ Android">
+                <i class="fa fa-chevron-left"></i> Dagger 2 ❤️ Android
               </a>
             
           </div>
@@ -467,6 +469,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/posts/88d0bcd1/" rel="prev" title="Android中AIDL详解">
+                Android中AIDL详解 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
