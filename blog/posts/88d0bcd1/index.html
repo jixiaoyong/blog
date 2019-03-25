@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="前言AIDL是Android中用于IPC的语言，具体使用可以参见这篇文章，这篇文章主要想总结一下AIDL具体为我们做了什么工作，主要参考书目《Android开发艺术探索》。 在Android中，除了Socket、Intent中使用Bundle、本地文件共享，ContentProvider等等之外，还有一个独有的IPC方式即Binder。在日常编程中使用Binder的主要有AIDL和Messenge">
+<meta name="description" content="前言AIDL是Android中用于IPC的语言，具体使用可以参见这篇文章，这篇文章主要想总结一下AIDL具体为我们做了什么工作，主要参考书目《Android开发艺术探索》。 在Android中，除了Socket、Intent中使用Bundle、本地文件共享，ContentProvider等等之外，还有一个独有的IPC方式即Binder。在日常编程中使用Binder的主要有AIDL和Messe">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android中AIDL详解">
 <meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/88d0bcd1/index.html">
 <meta property="og:site_name" content="季小勇的博客">
-<meta property="og:description" content="前言AIDL是Android中用于IPC的语言，具体使用可以参见这篇文章，这篇文章主要想总结一下AIDL具体为我们做了什么工作，主要参考书目《Android开发艺术探索》。 在Android中，除了Socket、Intent中使用Bundle、本地文件共享，ContentProvider等等之外，还有一个独有的IPC方式即Binder。在日常编程中使用Binder的主要有AIDL和Messenge">
+<meta property="og:description" content="前言AIDL是Android中用于IPC的语言，具体使用可以参见这篇文章，这篇文章主要想总结一下AIDL具体为我们做了什么工作，主要参考书目《Android开发艺术探索》。 在Android中，除了Socket、Intent中使用Bundle、本地文件共享，ContentProvider等等之外，还有一个独有的IPC方式即Binder。在日常编程中使用Binder的主要有AIDL和Messe">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://jixiaoyong.github.io/images/20190320205619.png">
-<meta property="og:updated_time" content="2019-03-25T06:47:44.609Z">
+<meta property="og:updated_time" content="2019-03-25T06:55:04.779Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android中AIDL详解">
-<meta name="twitter:description" content="前言AIDL是Android中用于IPC的语言，具体使用可以参见这篇文章，这篇文章主要想总结一下AIDL具体为我们做了什么工作，主要参考书目《Android开发艺术探索》。 在Android中，除了Socket、Intent中使用Bundle、本地文件共享，ContentProvider等等之外，还有一个独有的IPC方式即Binder。在日常编程中使用Binder的主要有AIDL和Messenge">
+<meta name="twitter:description" content="前言AIDL是Android中用于IPC的语言，具体使用可以参见这篇文章，这篇文章主要想总结一下AIDL具体为我们做了什么工作，主要参考书目《Android开发艺术探索》。 在Android中，除了Socket、Intent中使用Bundle、本地文件共享，ContentProvider等等之外，还有一个独有的IPC方式即Binder。在日常编程中使用Binder的主要有AIDL和Messe">
 <meta name="twitter:image" content="https://jixiaoyong.github.io/images/20190320205619.png">
 
 
@@ -303,7 +303,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-25T06:47:44+00:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-25T06:55:04+00:00">
                 2019-03-25
               </time>
             
@@ -319,7 +319,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T06:47:44+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T06:55:04+00:00">
                 2019-03-25
               </time>
             
@@ -353,7 +353,10 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>AIDL</code>是Android中用于IPC的语言，具体使用可以参见<a href="https://jixiaoyong.github.io/blog/posts/f931e8ae/">这篇文章</a>，这篇文章主要想总结一下<code>AIDL</code>具体为我们做了什么工作，主要参考书目《Android开发艺术探索》。</p>
+        <p><script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script></p>
+<iframe id="iframeid" scrolling="false" height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android中AIDL详解.md</div>"></iframe>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>AIDL</code>是Android中用于IPC的语言，具体使用可以参见<a href="https://jixiaoyong.github.io/blog/posts/f931e8ae/">这篇文章</a>，这篇文章主要想总结一下<code>AIDL</code>具体为我们做了什么工作，主要参考书目《Android开发艺术探索》。</p>
 <p>在Android中，除了<code>Socket</code>、<code>Intent</code>中使用<code>Bundle</code>、本地文件共享，<code>ContentProvider</code>等等之外，还有一个独有的IPC方式即<code>Binder</code>。在日常编程中使用<code>Binder</code>的主要有<code>AIDL</code>和<code>Messenger</code>两种方式，而<code>Messenger</code>也是用<code>AIDL</code>来实现的。</p>
 <h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><ol>
 <li>新建一个AIDL文件</li>
@@ -411,8 +414,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/posts/1b0362b/" rel="next" title="Android中View相关知识">
-                <i class="fa fa-chevron-left"></i> Android中View相关知识
+              <a href="/blog/posts/6ff87ae7/" rel="next" title="OKHttpUtils分析">
+                <i class="fa fa-chevron-left"></i> OKHttpUtils分析
               </a>
             
           </div>
@@ -420,10 +423,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/posts/6ff87ae7/" rel="prev" title="OKHttpUtils分析">
-                OKHttpUtils分析 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
