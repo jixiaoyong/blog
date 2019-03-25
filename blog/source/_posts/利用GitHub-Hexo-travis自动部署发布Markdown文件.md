@@ -81,3 +81,8 @@ after_script:
 # 参考文档
 
 [Hexo遇上Travis-CI：可能是最通俗易懂的自动发布博客图文教程](https://juejin.im/post/5a1fa30c6fb9a045263b5d2a) （完全在该文档指导下完成，部分步骤有差异，感谢作者[MichaelX](https://juejin.im/user/56efe6461ea493005565dafd) ）
+
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/利用GitHub-Hexo-travis自动部署发布Markdown文件.md</div>"></iframe>

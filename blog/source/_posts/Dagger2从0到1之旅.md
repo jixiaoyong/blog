@@ -283,3 +283,8 @@ class ClientModule{
 [Android - Dagger2使用详解——简书](https://www.jianshu.com/p/2cd491f0da01)
 
 [Subcomponents和Component Dependencies——Sinyuk Blog](https://sinyuk.me/2016/04/11/Subcomponents%E5%92%8CComponent-Dependencies/)
+
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Dagger2从0到1之旅.md</div>"></iframe>

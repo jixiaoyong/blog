@@ -161,3 +161,8 @@ enum SingletonEnum{
 但是，android开发者要注意，枚举占用的内存是普通单例的两倍多，所以，并不推荐在android中使用。
 
 关于枚举的更详细资料，参阅(深入理解Java枚举类型(enum))[http://blog.csdn.net/javazejian/article/details/71333103#t7]
+
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Java创建线程安全的单例Singleton.md</div>"></iframe>

@@ -238,3 +238,8 @@ c.go('home') #go ro home
 子类继承父类，则需要在子类定义时传入父类
 
 子类如果有与父类同名方法，则优先调用子类方法，除非子类特别调用父类的方法
+
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Python入门知识.md</div>"></iframe>

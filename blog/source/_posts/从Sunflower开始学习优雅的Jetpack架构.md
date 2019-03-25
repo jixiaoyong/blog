@@ -262,3 +262,9 @@ class PlantDetailViewModelFactory(args:Any) : ViewModelProvider.NewInstanceFacto
 [Android Jetpack官网](https://developer.android.google.cn/jetpack/)
 
 [Android Jetpack-Navigation 使用中参数的传递](https://blog.csdn.net/weixin_42215792/article/details/80395379)
+
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/从Sunflower开始学习优雅的Jetpack架构.md</div>"></iframe>
+

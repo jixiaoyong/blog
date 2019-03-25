@@ -45,25 +45,25 @@ date: 2016-12-20 23:25:05
 代码如下：
 
        void select(int[] arr){
-
-		for (int i = 0; i < arr.length; i++) {
-			int maxIndex = 0;
-			int temp = 0;
-		
-			for (int j = 1; j < arr.length - i; j++) {
-				if (arr[maxIndex] < arr[j]) {
-					maxIndex = j;
-				}
-			}
-			
-			temp = arr[maxIndex];
-			arr[maxIndex] = arr[arr.length - i - 1];
-			arr[arr.length - i - 1] = temp;
-		}
+    
+    	for (int i = 0; i < arr.length; i++) {
+    		int maxIndex = 0;
+    		int temp = 0;
+    	
+    		for (int j = 1; j < arr.length - i; j++) {
+    			if (arr[maxIndex] < arr[j]) {
+    				maxIndex = j;
+    			}
+    		}
+    		
+    		temp = arr[maxIndex];
+    		arr[maxIndex] = arr[arr.length - i - 1];
+    		arr[arr.length - i - 1] = temp;
+    	}
 
 
 		System.out.println("\n--select :");
-
+	
 		for (int i = 0; i < arr.length; i++) {
 			System.out.print(arr[i] + " ");
 		}
@@ -77,36 +77,41 @@ date: 2016-12-20 23:25:05
 遍历n-1次
 代码如下：
 
-	    void insertSort(int[] arr){
+```java
+    void insertSort(int[] arr){
 
-		for (int i = 1; i < arr.length; i++) {
-			int instertValue = arr[i];
-			
-			for (int j = i - 1; j >= 0; j--) {
-				if (instertValue < arr[j]) {
-					arr[j+1] = arr[j];
-					arr[j] = instertValue;
-				}else {
-					break;
-				}
-			}
-		}
+	for (int i = 1; i < arr.length; i++) {
+		int instertValue = arr[i];
 		
-		/* 第二种表示形式
-		for (int i = 1; i < arr.length; i++) {
-			int instertVal = arr[i];
-			int index = i - 1;
-			
-			while (index >= 0 && instertVal < arr[index]) {
-				arr[index + 1] = arr[index];
-				index--;
+		for (int j = i - 1; j >= 0; j--) {
+			if (instertValue < arr[j]) {
+				arr[j+1] = arr[j];
+				arr[j] = instertValue;
+			}else {
+				break;
 			}
-			arr[index + 1] = instertVal;
-		}		
-		*/
-	
-		System.out.println("\n--insertSort :");
-		for (int i = 0; i < arr.length; i++) {
-			System.out.print(arr[i] + " ");
 		}
 	}
+	
+	/* 第二种表示形式
+	for (int i = 1; i < arr.length; i++) {
+		int instertVal = arr[i];
+		int index = i - 1;
+		
+		while (index >= 0 && instertVal < arr[index]) {
+			arr[index + 1] = arr[index];
+			index--;
+		}
+		arr[index + 1] = instertVal;
+	}		
+	*/
+
+	System.out.println("\n--insertSort :");
+	for (int i = 0; i < arr.length; i++) {
+		System.out.print(arr[i] + " ");
+	}
+}
+```
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Java中三种常用的排序方法.md</div>"></iframe>

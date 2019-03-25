@@ -118,3 +118,8 @@ fun getUninstallApkResource(): Resources {
 [Android之Android apk动态加载机制的研究（二）：资源加载和activity生命周期管理 - lee0oo0 - 博客园  ](https://www.cnblogs.com/lee0oo0/p/3665066.html)
 
 [Android逆向之旅---Android中的sharedUserId属性详解 - CSDN博客]( https://blog.csdn.net/jiangwei0910410003/article/details/51316688)
+
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/加载已安装应用、未安装apk中的资源.md</div>"></iframe>

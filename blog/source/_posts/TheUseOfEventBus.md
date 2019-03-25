@@ -33,7 +33,7 @@ EventBus在android中可以用于组件间，组件和后台线程间的通信�
   class Event{ }
   ```
 
-  ​
+  
 
 * Subscriber
 
@@ -53,7 +53,7 @@ EventBus在android中可以用于组件间，组件和后台线程间的通信�
 
   此外还需要注册、注销EventBus以便订阅者能够正常接收消息
 
-  ​
+  
 
 ## Subscriber的5个线程模式（ThreadMode）
 
@@ -163,3 +163,8 @@ fun onClick(view: View){
 [greenrobot/EventBus: Event bus for Android and Java that simplifies communication between Activities, Fragments, Threads, Services, etc. Less code, better quality.](https://github.com/greenrobot/EventBus)
 
 [Android事件总线（一）EventBus3.0用法全解析 - CSDN博客](http://blog.csdn.net/itachi85/article/details/52205464)
+
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/TheUseOfEventBus.md</div>"></iframe>

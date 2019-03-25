@@ -122,3 +122,8 @@ git remote add origin git@github.com:yourName/yourRepo.git
 > Linux下Git和GitHub使用方法总结
 > [日期：2014-03-07] 来源：Linux社区 作者：chenguolin
 > <http://www.linuxidc.com/Linux/2014-03/97821.htm>
+
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Linux下配置Git，使用AndroidStudio同步工程到Github.md</div>"></iframe>

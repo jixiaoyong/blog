@@ -122,3 +122,9 @@ private fun doRequestCameraPermission() {
 # 附录
 
 样例代码: [Github](https://github.com/jixiaoyong/Notes-Files/commit/f41afa99c24cde1dab619462754435f2a2afc64e#diff-67ccb5e5c6c34760486a1071b23338a2)
+
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android运行时权限.md</div>"></iframe>
+

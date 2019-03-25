@@ -100,3 +100,8 @@ animationDrawable.run();
 # 源码
 
 [github源码路径](https://github.com/jixiaoyong/AndroidNote/tree/master/code/2018-1-26/DIY_Dialog)
+
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android自定义透明背景的Dialog.md</div>"></iframe>

@@ -171,3 +171,8 @@ public class ActivityThreadHandlerCallBack implements Handler.Callback{
 参考了几篇文章，其中较为完整的一篇如下：
 
 [Android插件化系列第（一）篇---Hook技术之Activity的启动过程拦截](https://www.jianshu.com/p/69bfbda302df)
+
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android通过Hook启动未注册Activity.md</div>"></iframe>

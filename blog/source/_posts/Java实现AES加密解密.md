@@ -108,3 +108,8 @@ String dStr = decrypt(parseHexStr2Byte(estr));
 [JAVA实现AES加密 - CSDN博客](http://blog.csdn.net/hbcui1984/article/details/5201247)
 
 [源码github链接](https://github.com/jixiaoyong/AndroidNote/tree/master/code/2018-1-22/encryption)
+
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Java实现AES加密解密.md</div>"></iframe>

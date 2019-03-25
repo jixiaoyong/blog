@@ -179,3 +179,8 @@ class JsonOutput(object):
 # 说明
 
 本文中代码经二次处理，不一定与源代码一致，但思路如此，以供参考。
+
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Python爬虫爬取gityuan-com数据并输出json.md</div>"></iframe>

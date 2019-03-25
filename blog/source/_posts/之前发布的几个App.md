@@ -45,3 +45,8 @@ i看知乎，我的第五个Android应用。
 
 
 学习的过程需要不断的重复，更需要有条理的总结，我会把平时学习的心得体会，经验，以及无聊时瞎琢磨得出来的稀奇古怪的想法放到这里，主要是为了自己能够在学习的过程中有计划的总结学习到的知识，同时也方便之后查阅。
+
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/之前发布的几个App.md</div>"></iframe>

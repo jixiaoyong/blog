@@ -192,3 +192,8 @@ deploy: type: git repo:https://github.com/yourname/yourname.github.io.git
 
 这样一个简单的利用 github 托管的 hexo 博客就搭建好了。
 注：本文内容是根据我建立博客时的做法整理而成，其中有部分内容是参考网上的教程，文中引用的文字全部来自[http://blog.fens.me/hexo-bootstarp-github/](http://blog.fens.me/hexo-bootstarp-github/) ，此文对我帮助很大，感谢作者张丹(Conan)的分享。
+
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/利用Hexo和Github建立个人博客.md</div>"></iframe>

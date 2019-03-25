@@ -120,3 +120,8 @@ JDK1.6以后，在HotSpot虚拟机上实现了许多锁优化技术：
 《深入理解Java虚拟机——JVM高级特性与最佳实践》 周志明
 
 [this引用逃逸——蜡笔小勋](https://blog.csdn.net/u010571316/article/details/77993309)
+
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Java线程安全之volatile和synchronize.md</div>"></iframe>
