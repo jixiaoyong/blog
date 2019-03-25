@@ -4,8 +4,7 @@ date: 2019-03-24 12:43:21
 tag: 
 ---
 
-<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
-<iframe id="iframeid" scrolling=false height="39" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android%E4%B8%ADView%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86.md</div>"></iframe>
+
 
 # View的坐标
 
@@ -70,3 +69,6 @@ Scroller不能使View滑动，而只能配合View的computeScroll()方法实现�
 
 * 如此反复直到绘制滑动完毕。
 
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="39" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android中View相关知识.md</div>"></iframe>
