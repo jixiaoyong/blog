@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="季小勇的博客">
 <meta property="og:description" content="问题描述：WebView在fragment中不显示解决代码如下： 1234567//kotlin 代码webView.webViewClient = object : WebViewClient() &amp;#123;            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean &amp;#123">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-25T07:18:13.209Z">
+<meta property="og:updated_time" content="2019-03-25T07:19:06.046Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android中WebView使用的一些问题">
 <meta name="twitter:description" content="问题描述：WebView在fragment中不显示解决代码如下： 1234567//kotlin 代码webView.webViewClient = object : WebViewClient() &amp;#123;            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean &amp;#123">
@@ -318,7 +318,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T07:18:13+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T07:19:06+00:00">
                 2019-03-25
               </time>
             
@@ -355,6 +355,8 @@
         <h1 id="问题描述：WebView在fragment中不显示"><a href="#问题描述：WebView在fragment中不显示" class="headerlink" title="问题描述：WebView在fragment中不显示"></a>问题描述：WebView在fragment中不显示</h1><p>解决代码如下：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//kotlin 代码</span></span><br><span class="line">webView.webViewClient = <span class="keyword">object</span> : WebViewClient() &#123;</span><br><span class="line">            <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">shouldOverrideUrlLoading</span><span class="params">(view: <span class="type">WebView</span>?, url: <span class="type">String</span>?)</span></span>: <span class="built_in">Boolean</span> &#123;</span><br><span class="line">                view!!.loadUrl(url)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 <p>此代码同样强制在webview中打开对应的网页</p>
+<p><script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script></p>
+<iframe id="iframeid" scrolling="false" height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android中WebView使用的一些问题.md</div>"></iframe>
 
       
     </div>
