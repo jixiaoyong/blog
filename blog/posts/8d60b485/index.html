@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="季小勇的博客">
 <meta property="og:description" content="加载已安装应用、未安装apk中的资源，其思路主要是获取到对应的ClassLoader/Context，通过ClassLoader加载R.java等类，再通过反射获取对应的资源id及资源。 加载已安装应用资源sharedUserId在当前应用中加载已安装的其他应用资源，需要二者有相同的sharedUserId，这样Android系统为二者分配同一个Linux用户ID，两个App可以相互访问代码、资">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-25T08:11:32.868Z">
+<meta property="og:updated_time" content="2019-03-25T14:34:49.794Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="加载已安装应用、未安装apk中的资源">
 <meta name="twitter:description" content="加载已安装应用、未安装apk中的资源，其思路主要是获取到对应的ClassLoader/Context，通过ClassLoader加载R.java等类，再通过反射获取对应的资源id及资源。 加载已安装应用资源sharedUserId在当前应用中加载已安装的其他应用资源，需要二者有相同的sharedUserId，这样Android系统为二者分配同一个Linux用户ID，两个App可以相互访问代码、资">
@@ -318,7 +318,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T08:11:32+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T14:34:49+00:00">
                 2019-03-25
               </time>
             
@@ -374,7 +374,8 @@
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getUninstallApkResource</span><span class="params">()</span></span>: Resources &#123;</span><br><span class="line">    <span class="keyword">var</span> assetManager = AssetManager::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>.<span class="title">newInstance</span></span>()</span><br><span class="line">    <span class="keyword">var</span> addAssetPath = assetManager.javaClass.getMethod(<span class="string">"addAssetPath"</span>,String::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line">    addAssetPath.invoke(assetManager, apkPath)<span class="comment">//设置了apkPath</span></span><br><span class="line">    <span class="keyword">return</span> Resources(assetManager, resources.displayMetrics, resources.configuration)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="参考资源"><a href="#参考资源" class="headerlink" title="参考资源"></a>参考资源</h1><p><a href="https://www.cnblogs.com/lee0oo0/p/3665066.html" target="_blank" rel="noopener">Android之Android apk动态加载机制的研究（二）：资源加载和activity生命周期管理 - lee0oo0 - 博客园  </a></p>
 <p><a href="https://blog.csdn.net/jiangwei0910410003/article/details/51316688" target="_blank" rel="noopener">Android逆向之旅—Android中的sharedUserId属性详解 - CSDN博客</a></p>
-
+<p><script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script></p>
+<iframe id="iframeid" scrolling="false" height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/加载已安装应用、未安装apk中的资源.md</div>"></iframe>
       
     </div>
     

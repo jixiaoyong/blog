@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="季小勇的博客">
 <meta property="og:description" content="本文为《一看你就懂，超详细java中的ClassLoader详解 - CSDN博客》阅读笔记  简述JVM有三种类加载器：  BootStrap ClassLoader 启动类加载器，加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。 Extention ClassLoader 扩展类加载器，加载目录">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-25T08:11:32.868Z">
+<meta property="og:updated_time" content="2019-03-25T14:34:49.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM类加载机制之ClassLoader">
 <meta name="twitter:description" content="本文为《一看你就懂，超详细java中的ClassLoader详解 - CSDN博客》阅读笔记  简述JVM有三种类加载器：  BootStrap ClassLoader 启动类加载器，加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。 Extention ClassLoader 扩展类加载器，加载目录">
@@ -318,7 +318,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T08:11:32+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T14:34:49+00:00">
                 2019-03-25
               </time>
             
@@ -386,7 +386,8 @@
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Thread.currentThread().contextClassLoader = MClasLoader()</span><br><span class="line"><span class="keyword">var</span> clazz = Class.forName(<span class="string">"TestClass"</span>,</span><br><span class="line">        <span class="literal">true</span>, Thread.currentThread().contextClassLoader)</span><br><span class="line"><span class="keyword">var</span> say = clazz.getDeclaredMethod(<span class="string">"say"</span>,String::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line">say.invoke(clazz.newInstance(),<span class="string">"hello world"</span>)</span><br><span class="line"></span><br><span class="line">println(Thread.currentThread().contextClassLoader )</span><br><span class="line">println(Thread.currentThread().contextClassLoader.parent )</span><br></pre></td></tr></table></figure>
 <p>结果为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hello world</span><br><span class="line">MClasLoader@1d44bcfa</span><br><span class="line">sun.misc.Launcher$AppClassLoader@18b4aac2</span><br></pre></td></tr></table></figure>
-
+<p><script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script></p>
+<iframe id="iframeid" scrolling="false" height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/JVM类加载机制之ClassLoader.md</div>"></iframe>
       
     </div>
     

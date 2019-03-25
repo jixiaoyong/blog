@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="季小勇的博客">
 <meta property="og:description" content="这是我在学习Bennyhuo（ github ）的kotlin入门视频时的一些笔记，比较偏基础，用于查缺补漏。  xx.map() &amp;amp; xx.flatMap() xx.flatMap()用于返回可迭代的数组，而xx.map()则是任何可迭代数据都有的用来遍历的方法。   123456var arr = arrayListOf&amp;lt;String&amp;gt;(&quot;a c v de  fb s e">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-25T08:11:32.868Z">
+<meta property="og:updated_time" content="2019-03-25T14:34:49.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin学习笔记1">
 <meta name="twitter:description" content="这是我在学习Bennyhuo（ github ）的kotlin入门视频时的一些笔记，比较偏基础，用于查缺补漏。  xx.map() &amp;amp; xx.flatMap() xx.flatMap()用于返回可迭代的数组，而xx.map()则是任何可迭代数据都有的用来遍历的方法。   123456var arr = arrayListOf&amp;lt;String&amp;gt;(&quot;a c v de  fb s e">
@@ -318,7 +318,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T08:11:32+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T14:34:49+00:00">
                 2019-03-25
               </time>
             
@@ -409,7 +409,8 @@
 </li>
 </ul>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Observable.from(input.toCharArray().asIterable())</span><br><span class="line">        .filter &#123; !it.isWhitespace() &#125;</span><br><span class="line">        .groupBy &#123; it &#125;</span><br><span class="line">        .map&#123;</span><br><span class="line">            o -&gt;o.count().subscribe&#123;</span><br><span class="line">                print(<span class="string">"<span class="subst">$&#123;o.key&#125;</span>-&gt; <span class="variable">$it</span>  ,"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        .subscribe()</span><br></pre></td></tr></table></figure>
-
+<p><script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script></p>
+<iframe id="iframeid" scrolling="false" height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Kotlin学习笔记1.md</div>"></iframe>
       
     </div>
     

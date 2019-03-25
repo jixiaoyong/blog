@@ -84,7 +84,7 @@
 <meta property="og:site_name" content="季小勇的博客">
 <meta property="og:description" content="今天重新学习类三种排序方法，按照排序速度依次是冒泡排序，选择排序和插入排序。以下示例皆为从小到大的排序 1.冒泡排序每一次比较都可能要交换元素。冒泡排序的思想是：每一轮开始的时候，将第一个元素（a）开始与其后的元素（b）依次进行比较，将较大的元素（设为m）放到后面，并将m与其后的另外一个元素继续进行比较，直到最后一个没有排好序的元素。在接下来一轮的排序中，刚才以及之前选出来的、已经排好顺序的最大值">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-25T08:11:32.868Z">
+<meta property="og:updated_time" content="2019-03-25T14:34:49.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中三种常用的排序方法">
 <meta name="twitter:description" content="今天重新学习类三种排序方法，按照排序速度依次是冒泡排序，选择排序和插入排序。以下示例皆为从小到大的排序 1.冒泡排序每一次比较都可能要交换元素。冒泡排序的思想是：每一轮开始的时候，将第一个元素（a）开始与其后的元素（b）依次进行比较，将较大的元素（设为m）放到后面，并将m与其后的另外一个元素继续进行比较，直到最后一个没有排好序的元素。在接下来一轮的排序中，刚才以及之前选出来的、已经排好顺序的最大值">
@@ -317,7 +317,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T08:11:32+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T14:34:49+00:00">
                 2019-03-25
               </time>
             
@@ -396,40 +396,9 @@
     }
 }
 </code></pre><h1 id="3-插入排序法"><a href="#3-插入排序法" class="headerlink" title="3.插入排序法"></a>3.插入排序法</h1><p>插入排序法思想：<br>将待排序的元素分为有序和无序两种，刚开始排序的时候假设只有第一个元素是有序的，其余n-1个元素都是无序的；<br>排序开始的时，将无序部分的一个元素（a）与有序部分的最后一个元素（b）进行比较，如果a&lt;b，则将a与b交换，再将a与下一个有序元素进行比较；否则，将a加到b后面，作为有序部分的最后一个元素。<br>接着再从无序部分取出一个元素与有序部分的元素依次比较，直达所有元素都为有序元素。<br>遍历n-1次<br>代码如下：</p>
-<pre><code>    void insertSort(int[] arr){
-
-    for (int i = 1; i &lt; arr.length; i++) {
-        int instertValue = arr[i];
-
-        for (int j = i - 1; j &gt;= 0; j--) {
-            if (instertValue &lt; arr[j]) {
-                arr[j+1] = arr[j];
-                arr[j] = instertValue;
-            }else {
-                break;
-            }
-        }
-    }
-
-    /* 第二种表示形式
-    for (int i = 1; i &lt; arr.length; i++) {
-        int instertVal = arr[i];
-        int index = i - 1;
-
-        while (index &gt;= 0 &amp;&amp; instertVal &lt; arr[index]) {
-            arr[index + 1] = arr[index];
-            index--;
-        }
-        arr[index + 1] = instertVal;
-    }        
-    */
-
-    System.out.println(&quot;\n--insertSort :&quot;);
-    for (int i = 0; i &lt; arr.length; i++) {
-        System.out.print(arr[i] + &quot; &quot;);
-    }
-}
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insertSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> instertValue = arr[i];</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">			<span class="keyword">if</span> (instertValue &lt; arr[j]) &#123;</span><br><span class="line">				arr[j+<span class="number">1</span>] = arr[j];</span><br><span class="line">				arr[j] = instertValue;</span><br><span class="line">			&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/* 第二种表示形式</span></span><br><span class="line"><span class="comment">	for (int i = 1; i &lt; arr.length; i++) &#123;</span></span><br><span class="line"><span class="comment">		int instertVal = arr[i];</span></span><br><span class="line"><span class="comment">		int index = i - 1;</span></span><br><span class="line"><span class="comment">		</span></span><br><span class="line"><span class="comment">		while (index &gt;= 0 &amp;&amp; instertVal &lt; arr[index]) &#123;</span></span><br><span class="line"><span class="comment">			arr[index + 1] = arr[index];</span></span><br><span class="line"><span class="comment">			index--;</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		arr[index + 1] = instertVal;</span></span><br><span class="line"><span class="comment">	&#125;		</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line"></span><br><span class="line">	System.out.println(<span class="string">"\n--insertSort :"</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">		System.out.print(arr[i] + <span class="string">" "</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script></p>
+<iframe id="iframeid" scrolling="false" height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Java中三种常用的排序方法.md</div>"></iframe>
       
     </div>
     

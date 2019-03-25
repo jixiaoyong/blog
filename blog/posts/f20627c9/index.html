@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="季小勇的博客">
 <meta property="og:description" content="简介通过自定义Dialog类，使用Style、AnimationDrawable等实现一个透明背景的、带进度更新的弹窗。 主要涉及Style自定义以及AnimationDrawable的使用。 代码 布局文件  1234567891011121314&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;&amp;lt;LinearLayout xmlns:android=">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-25T08:11:32.868Z">
+<meta property="og:updated_time" content="2019-03-25T14:34:49.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android自定义透明背景的Dialog">
 <meta name="twitter:description" content="简介通过自定义Dialog类，使用Style、AnimationDrawable等实现一个透明背景的、带进度更新的弹窗。 主要涉及Style自定义以及AnimationDrawable的使用。 代码 布局文件  1234567891011121314&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;&amp;lt;LinearLayout xmlns:android=">
@@ -318,7 +318,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T08:11:32+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T14:34:49+00:00">
                 2019-03-25
               </time>
             
@@ -376,7 +376,8 @@
 <p>继承自<code>Dialog.java</code> ，并用构造函数调用<code>initView()</code>方法初始化dialog样式，有其他需求可以再自己实现。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化view、控件</span></span><br><span class="line">View view = View.inflate(context, R.layout.layout_dialog, <span class="keyword">null</span>);</span><br><span class="line">ImageView imageView = view.findViewById(R.id.image);</span><br><span class="line">imageView.setBackgroundResource(R.drawable.dialog_progress);</span><br><span class="line"><span class="comment">//填充布局</span></span><br><span class="line">setContentView(view);</span><br><span class="line"><span class="comment">//实现动画</span></span><br><span class="line">AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getBackground();</span><br><span class="line">animationDrawable.run();</span><br></pre></td></tr></table></figure>
 <h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><p><a href="https://github.com/jixiaoyong/AndroidNote/tree/master/code/2018-1-26/DIY_Dialog" target="_blank" rel="noopener">github源码路径</a></p>
-
+<p><script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script></p>
+<iframe id="iframeid" scrolling="false" height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android自定义透明背景的Dialog.md</div>"></iframe>
       
     </div>
     

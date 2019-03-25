@@ -86,7 +86,7 @@
 <meta property="og:description" content="简介 EventBus is a publish/subscribe event bus for Android and Java. 若无特殊说明，英文注释引自官方源码或文档，后同  EventBus在android中可以用于组件间，组件和后台线程间的通信，他基于订阅、发布的机制，将事件的收/发解耦，开销小。 其流程如下（示意图来自官方github库）：  要点EventBus的三个要素 Even">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/greenrobot/EventBus/raw/master/EventBus-Publish-Subscribe.png">
-<meta property="og:updated_time" content="2019-03-25T08:11:32.868Z">
+<meta property="og:updated_time" content="2019-03-25T14:34:49.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EventBus3简介">
 <meta name="twitter:description" content="简介 EventBus is a publish/subscribe event bus for Android and Java. 若无特殊说明，英文注释引自官方源码或文档，后同  EventBus在android中可以用于组件间，组件和后台线程间的通信，他基于订阅、发布的机制，将事件的收/发解耦，开销小。 其流程如下（示意图来自官方github库）：  要点EventBus的三个要素 Even">
@@ -320,7 +320,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T08:11:32+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T14:34:49+00:00">
                 2019-03-25
               </time>
             
@@ -365,8 +365,9 @@
 <li><p>Event</p>
 <p>事件，要传递的事件（一个类），EventBus传递该事件的对象，要传递的信息包含在该对象的属性中</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Event</span></span>&#123; &#125;</span><br></pre></td></tr></table></figure>
-<p>​</p>
 </li>
+</ul>
+<ul>
 <li><p>Subscriber</p>
 <p>订阅者，当事件发生时要对事件执行的操作。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Subscribe(threadMode = ThreadMode.MAIN)</span>  <span class="function"><span class="keyword">fun</span> <span class="title">fun1</span><span class="params">()</span></span> &#123;&#125;</span><br></pre></td></tr></table></figure>
@@ -375,7 +376,6 @@
 <p>发布者，在合适的时候发布事件</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EventBus.getDefault().post(Event())</span><br></pre></td></tr></table></figure>
 <p>此外还需要注册、注销EventBus以便订阅者能够正常接收消息</p>
-<p>​</p>
 </li>
 </ul>
 <h2 id="Subscriber的5个线程模式（ThreadMode）"><a href="#Subscriber的5个线程模式（ThreadMode）" class="headerlink" title="Subscriber的5个线程模式（ThreadMode）"></a>Subscriber的5个线程模式（ThreadMode）</h2><ul>
@@ -429,7 +429,8 @@
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">onClick</span><span class="params">(view: <span class="type">View</span>)</span></span>&#123;</span><br><span class="line">    EventBus.getDefault().register(context)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://github.com/greenrobot/EventBus" target="_blank" rel="noopener">greenrobot/EventBus: Event bus for Android and Java that simplifies communication between Activities, Fragments, Threads, Services, etc. Less code, better quality.</a></p>
 <p><a href="http://blog.csdn.net/itachi85/article/details/52205464" target="_blank" rel="noopener">Android事件总线（一）EventBus3.0用法全解析 - CSDN博客</a></p>
-
+<p><script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script></p>
+<iframe id="iframeid" scrolling="false" height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/TheUseOfEventBus.md</div>"></iframe>
       
     </div>
     

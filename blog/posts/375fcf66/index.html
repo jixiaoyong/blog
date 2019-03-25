@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="季小勇的博客">
 <meta property="og:description" content="简介最近手机中涉及到用户账户密码保存的问题，选用AES加密算法进行加密后，再通过SharedPreferences保存在手机端。 本文主要介绍AES的加密、解密用法。 代码初始化秘钥 123456789101112131415161718192021private static final String AES = &quot;AES&quot;;private static final String PASSWPR">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-25T08:11:32.868Z">
+<meta property="og:updated_time" content="2019-03-25T14:34:49.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java实现AES加密解密应用">
 <meta name="twitter:description" content="简介最近手机中涉及到用户账户密码保存的问题，选用AES加密算法进行加密后，再通过SharedPreferences保存在手机端。 本文主要介绍AES的加密、解密用法。 代码初始化秘钥 123456789101112131415161718192021private static final String AES = &quot;AES&quot;;private static final String PASSWPR">
@@ -318,7 +318,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T08:11:32+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-25T14:34:49+00:00">
                 2019-03-25
               </time>
             
@@ -366,7 +366,8 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化key</span></span><br><span class="line">SecretKeySpec key = initKey();</span><br><span class="line"><span class="comment">//加密文本并转化为16进制，方便保存</span></span><br><span class="line">String eStr = parseByte2HexStr(encrypt(resource,key));</span><br><span class="line"><span class="comment">//将加密16进制文本转为二进制，进行解密</span></span><br><span class="line">String dStr = decrypt(parseHexStr2Byte(estr));</span><br></pre></td></tr></table></figure>
 <h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="http://blog.csdn.net/hbcui1984/article/details/5201247" target="_blank" rel="noopener">JAVA实现AES加密 - CSDN博客</a></p>
 <p><a href="https://github.com/jixiaoyong/AndroidNote/tree/master/code/2018-1-22/encryption" target="_blank" rel="noopener">源码github链接</a></p>
-
+<p><script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script></p>
+<iframe id="iframeid" scrolling="false" height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Java实现AES加密解密.md</div>"></iframe>
       
     </div>
     
