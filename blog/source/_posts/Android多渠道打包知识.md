@@ -148,3 +148,7 @@ src
 此外还有美团的多渠道打包技术等
 
 具体可参考文章：[美团Android自动化之旅—生成渠道包](https://tech.meituan.com/mt-apk-packaging.html)
+
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android多渠道打包知识.md</div>"></iframe>
