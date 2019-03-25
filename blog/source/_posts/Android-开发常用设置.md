@@ -4,9 +4,6 @@ abbrlink: 1c56d6b9
 date: 2017-08-27 23:25:05
 ---
 
-<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
-<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android-开发常用设置.md</div>"></iframe>
-
 # Android Studio
 
 * 国内较快的仓库：
@@ -31,3 +28,6 @@ date: 2017-08-27 23:25:05
     #set ndk env
     NDKROOT=/home/jixiaoyong/AndroidDev/Sdk/ndk-bundle
     export PATH=$NDKROOT:$PATH
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android-开发常用设置.md</div>"></iframe>
