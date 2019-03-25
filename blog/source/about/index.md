@@ -3,11 +3,11 @@ title: 关于
 date: 2016-06-06 6:06:06
 ---
 
-如你所见，这是一个托管在 ```GitHub``` 上面的博客，由```Hexo``` 生成，使用的主题是``` NexT``` ，感谢所有为以上提到的项目有过付出的人，没有他们的话这个小站不会存在。
+如你所见，这是一个托管在 `GitHub` 上面的博客，由`Hexo` 生成，使用的主题是` NexT` ，感谢所有为以上提到的项目有过付出的人，没有他们的话这个小站不会存在。
 
-学习的过程需要不断的探索、累积，更需要有条理的总结，我会把平时学习的心得体会、经验放到这里，主要是为了自己能够在学习的过程中有计划的总结学习到的知识，同时也方便之后查阅。
+学习的过程需要不断的探索、累积，更需要有条理的总结，我会把平时学习的心得体会、经验总结放到这里，主要是为了自己能够在学习的过程中有计划的总结学习到的知识，同时也方便之后查阅。
 
-我的邮箱是：[jixiaoyong1995@gmail.com](mailto:jixiaoyong1995@gmail.com)
+我的邮箱是：[jixiaoyong1995#gmail.com](mailto:jixiaoyong1995@gmail.com)
 
 
 
@@ -20,3 +20,18 @@ date: 2016-06-06 6:06:06
 很遗憾在此之前，我自己也写过不少这样欠缺思考，直接“拿来主义”的文章，真是惭愧。今日起，技术类文章务必自己理解了，理顺了才写，务必每个观点都有对应的参考依据。宁可少写，也不能乱写瞎写。之前的文章，也要慢慢的修正。
 
 哎呀，一不小心立了个Flag，千万不要打脸(￣ε(#￣)☆╰╮(￣▽￣///)。
+
+2019-03-25 update
+
+今后写博客，尽量避免写一些口水文，基础教程之类的文章，这类文章在我的学习过程中对我有很大的帮助，但网络上已经有很多步骤更加具体，内容更加完善的文章，实在没有必要再花费时间在这里了。日后逐渐深入源码，探究平常用法背后的实现原理，希望以此记录自己提升技术能力的过程。
+
+TODO List:
+
+* 选好方向
+* 广泛阅读
+* 深入思考
+* 及时总结
+* 定时输出
+
+<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
+<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/about/index.md</div>"></iframe>
