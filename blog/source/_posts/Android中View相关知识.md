@@ -5,12 +5,7 @@ tag:
 ---
 
 <script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
-<iframe id="iframeid"
-scrolling=false  height="30" frameborder="no" border="0"marginwidth="0" marginheight="0" 
- onload="Javascript:editOnGithub()" 
- srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/Android中View相关知识.md
-    </div>">
-</iframe>
+<iframe id="iframeid" scrolling=false  height="30" frameborder="no" border="0"marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/Android中View相关知识.md</div>"></iframe>
 
 # View的坐标
 
