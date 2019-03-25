@@ -3,48 +3,12 @@ function editOnGithub() {
     var iframeObj = document.getElementById("iframeid");
     var url = iframeObj.contentWindow.document.getElementById("url");
 
-    // console.log(iframeObj);
-    // console.log(url);
     var htmlContent = `
          <div>
-        <style type="text/css">
-            .BtnGroup {
-                border: 1px solid;
-                border-color: rgba(162, 172, 175, 0.712);
-                border-radius: 25px;
-                -moz-border-radius: 25px;
-                padding: 5px;
-                padding-left: 20px;
-                padding-right: 20px;
-                width: fit-content;
-                width: -webkit-fit-content;
-                width: -moz-fit-content;
-                height: 26px;
-                line-height: 26px;
-                background-color: rgba(162, 172, 175, 0.712);
-            }
-
-            a {
-                text-decoration: none;
-            }
-
-            span {
-                height: 100%;
-                vertical-align: middle;
-                line-height: 100%;
-                padding: 2px;
-            }
-
-            a:link,
-            a:visited {
-                color: black;
-            }
-
-            a:hover {
-                color: white;
-            }
-        </style>
-        <div class="BtnGroup">
+         <style type="text/css">
+                @import"https://jixiaoyong.github.io/css/style-edit-on-github.css";
+     </style>
+        <div class="button white">
             <a href="${url.textContent}" target="_blank">
                 <span><svg height="21" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="21"
                         aria-hidden="true">
@@ -56,7 +20,6 @@ function editOnGithub() {
                 Edit This Page On Github
             </a>
         </div>
-
     </div> `;
     url.innerHTML = htmlContent;
 
