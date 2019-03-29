@@ -69,6 +69,13 @@ Scroller不能使View滑动，而只能配合View的computeScroll()方法实现�
 
 * 如此反复直到绘制滑动完毕。
 
+# TODO
+
+recycleview滑动
+ItemTouchHelper源码分析 https://www.jianshu.com/p/130fdd755471
+嵌套滑动 https://blog.csdn.net/qq_15807167/article/details/51637678
+https://www.cnblogs.com/dasusu/p/9159904.html
+滑动展示删除按钮 https://www.jianshu.com/p/9bfed6e127cc
 
 <script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
 <iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android中View相关知识.md</div>"></iframe>
