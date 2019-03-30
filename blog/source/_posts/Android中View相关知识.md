@@ -44,6 +44,8 @@ ViewConfiguration.get(this).scaledTouchSlop
 
 mScroller.startScroll()方法可以实现平滑的滑动
 
+scrollX,scrollY表示的是view的X,Y坐标减去view内容的X，Y坐标。所以scrollX大于0，则表示view内容向左移动，scrollX小于0表示view内容向右移动。
+
 ```kotlin
 private val mScroller = Scroller(context)
 
@@ -75,7 +77,7 @@ recycleview滑动
 ItemTouchHelper源码分析 https://www.jianshu.com/p/130fdd755471
 嵌套滑动 https://blog.csdn.net/qq_15807167/article/details/51637678
 https://www.cnblogs.com/dasusu/p/9159904.html
-滑动展示删除按钮 https://www.jianshu.com/p/9bfed6e127cc
+滑动展示删除按钮 https://www.jianshu.com/p/9bfed6e127cc >> 对应的demo：https://github.com/jixiaoyong/DiyWidget/blob/master/diy-widget/src/main/java/cf/android666/applibrary/SwipeRecyclerView.kt
 
 <script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
 <iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android中View相关知识.md</div>"></iframe>
