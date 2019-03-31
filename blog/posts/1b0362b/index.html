@@ -77,17 +77,17 @@
 
 
 
-<meta name="description" content="View的坐标Android中的坐标，以屏幕左上角顶点为原点(0,0)，以横轴为x轴，竖轴为y轴，数值依次递增。 View的坐标信息有以下几种，其坐标都是以父View的左上角顶点为原点：  x，y 是View的左上角坐标。  translationX，translationY是View左上角顶点与父容器左上角顶点的偏移量，默认为0。  left，top 是分别是View左上角顶点的x轴，y轴坐标。">
+<meta name="description" content="本文为笔记性质，尚未成文。 View的坐标Android中的坐标，以屏幕左上角顶点为原点(0,0)，以横轴为x轴，竖轴为y轴，数值依次递增。 View的坐标信息有以下几种，其坐标都是以父View的左上角顶点为原点：  x，y 是View的左上角坐标。  translationX，translationY是View左上角顶点与父容器左上角顶点的偏移量，默认为0。  left，top 是分别是View">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android中View相关知识">
 <meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/1b0362b/index.html">
 <meta property="og:site_name" content="季小勇的博客">
-<meta property="og:description" content="View的坐标Android中的坐标，以屏幕左上角顶点为原点(0,0)，以横轴为x轴，竖轴为y轴，数值依次递增。 View的坐标信息有以下几种，其坐标都是以父View的左上角顶点为原点：  x，y 是View的左上角坐标。  translationX，translationY是View左上角顶点与父容器左上角顶点的偏移量，默认为0。  left，top 是分别是View左上角顶点的x轴，y轴坐标。">
+<meta property="og:description" content="本文为笔记性质，尚未成文。 View的坐标Android中的坐标，以屏幕左上角顶点为原点(0,0)，以横轴为x轴，竖轴为y轴，数值依次递增。 View的坐标信息有以下几种，其坐标都是以父View的左上角顶点为原点：  x，y 是View的左上角坐标。  translationX，translationY是View左上角顶点与父容器左上角顶点的偏移量，默认为0。  left，top 是分别是View">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-31T03:28:08.659Z">
+<meta property="og:updated_time" content="2019-03-31T06:43:52.789Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android中View相关知识">
-<meta name="twitter:description" content="View的坐标Android中的坐标，以屏幕左上角顶点为原点(0,0)，以横轴为x轴，竖轴为y轴，数值依次递增。 View的坐标信息有以下几种，其坐标都是以父View的左上角顶点为原点：  x，y 是View的左上角坐标。  translationX，translationY是View左上角顶点与父容器左上角顶点的偏移量，默认为0。  left，top 是分别是View左上角顶点的x轴，y轴坐标。">
+<meta name="twitter:description" content="本文为笔记性质，尚未成文。 View的坐标Android中的坐标，以屏幕左上角顶点为原点(0,0)，以横轴为x轴，竖轴为y轴，数值依次递增。 View的坐标信息有以下几种，其坐标都是以父View的左上角顶点为原点：  x，y 是View的左上角坐标。  translationX，translationY是View左上角顶点与父容器左上角顶点的偏移量，默认为0。  left，top 是分别是View">
 
 
 
@@ -317,7 +317,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-31T03:28:08+00:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-31T06:43:52+00:00">
                 2019-03-31
               </time>
             
@@ -351,7 +351,8 @@
       
 
       
-        <h1 id="View的坐标"><a href="#View的坐标" class="headerlink" title="View的坐标"></a>View的坐标</h1><p>Android中的坐标，以屏幕左上角顶点为原点(0,0)，以横轴为x轴，竖轴为y轴，数值依次递增。</p>
+        <p>本文为笔记性质，尚未成文。</p>
+<h1 id="View的坐标"><a href="#View的坐标" class="headerlink" title="View的坐标"></a>View的坐标</h1><p>Android中的坐标，以屏幕左上角顶点为原点(0,0)，以横轴为x轴，竖轴为y轴，数值依次递增。</p>
 <p>View的坐标信息有以下几种，其坐标都是以父View的左上角顶点为原点：</p>
 <ul>
 <li><p>x，y 是View的左上角坐标。</p>
@@ -359,8 +360,7 @@
 <li><p>translationX，translationY是View左上角顶点与父容器左上角顶点的偏移量，默认为0。</p>
 </li>
 <li><p>left，top 是分别是View左上角顶点的x轴，y轴坐标。</p>
-</li>
-<li><p>right，bottom分别是View右下角顶点的x轴，y轴坐标。</p>
+<p>right，bottom分别是View右下角顶点的x轴，y轴坐标。</p>
 </li>
 </ul>
 <blockquote>
@@ -368,25 +368,25 @@
 </blockquote>
 <p>x = translationX + left；</p>
 <p>y = translationY + top；</p>
-<p>改变translationX/Y的值便可以更改View的位置。当View平移的时候，代表原始位置信息的left，right，top，bottom的值并不会变化。</p>
+<p>改变translationX/Y的值便可以更改<strong>View的位置</strong>。当View平移的时候，代表原始位置信息的left，right，top，bottom的值并不会变化。</p>
 <p>在OnTouch事件中，我们可以从event得到两种值：</p>
 <p>event.rawX,event.rawY 代表 相对于手机屏幕原点的坐标</p>
 <p>event.X,event.Y 代表 相对于当前View左上角的坐标</p>
 <p>TouchSlop则代表认为滑动开始的最小距离</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ViewConfiguration.<span class="keyword">get</span>(<span class="keyword">this</span>).scaledTouchSlop</span><br></pre></td></tr></table></figure>
 <h1 id="滑动"><a href="#滑动" class="headerlink" title="滑动"></a>滑动</h1><p>mScroller.startScroll()方法可以实现平滑的滑动</p>
-<p>scrollX,scrollY表示的是view的X,Y坐标减去view内容的X，Y坐标。所以scrollX大于0，则表示view内容向左移动，scrollX小于0表示view内容向右移动。</p>
+<p>scrollX,scrollY表示的是<em>view的X，Y坐标减去view内容的X，Y坐标</em>。</p>
+<p>所以scrollX&gt;0，则表示view内容向左移动，scrollX&lt;0表示view内容向右移动。类似于窗户(view)位置不变，景色(view内容)的scrollX&gt;0即景色向右移动，则在窗户中看到的效果是景色向窗户左边移动。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> mScroller = Scroller(context)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">smoothScrollBy</span><span class="params">(destX: <span class="type">Int</span>, destY: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    mScroller.startScroll(scrollX, scrollY, destX, destY, <span class="number">1000</span>)<span class="comment">//destX, destY的值如果是正的话，会向左，上方移动</span></span><br><span class="line">    invalidate()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">computeScroll</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (mScroller.computeScrollOffset()) &#123;</span><br><span class="line">        scrollTo(mScroller.currX, mScroller.currY)</span><br><span class="line">        postInvalidate()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Scroller不能使View滑动，而只能配合View的computeScroll()方法实现是View的内容滑动的效果。</p>
+<p>Scroller不能使View滑动，而只能配合View的computeScroll()方法实现是<strong>View的内容滑动</strong>的效果。</p>
 <ul>
-<li><p>mScroller.startScroll()记录下要滑动的数据，而invalidate()通知View重绘；</p>
-</li>
-<li><p>每次重绘都会调用computeScroll()方法，利用mScroller计算出接下来要scrollTo()的具体值并执行，再次postInvalidate()通知View重绘；</p>
-</li>
-<li><p>如此反复直到绘制滑动完毕。</p>
-</li>
+<li>mScroller.startScroll()记录下要滑动的数据，而invalidate()通知View重绘；</li>
+<li>每次重绘都会调用computeScroll()方法，利用mScroller计算出接下来要scrollTo()的具体值并执行，再次postInvalidate()通知View重绘；</li>
+<li>如此反复直到绘制滑动完毕。</li>
 </ul>
-<h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h1><p>recycleview滑动<br>ItemTouchHelper源码分析 <a href="https://www.jianshu.com/p/130fdd755471" target="_blank" rel="noopener">https://www.jianshu.com/p/130fdd755471</a><br>嵌套滑动 <a href="https://blog.csdn.net/qq_15807167/article/details/51637678" target="_blank" rel="noopener">https://blog.csdn.net/qq_15807167/article/details/51637678</a><br><a href="https://www.cnblogs.com/dasusu/p/9159904.html" target="_blank" rel="noopener">https://www.cnblogs.com/dasusu/p/9159904.html</a><br>滑动展示删除按钮 <a href="https://www.jianshu.com/p/9bfed6e127cc" target="_blank" rel="noopener">https://www.jianshu.com/p/9bfed6e127cc</a> &gt;&gt; 对应的demo：<a href="https://github.com/jixiaoyong/DiyWidget/blob/master/diy-widget/src/main/java/cf/android666/applibrary/SwipeRecyclerView.kt" target="_blank" rel="noopener">https://github.com/jixiaoyong/DiyWidget/blob/master/diy-widget/src/main/java/cf/android666/applibrary/SwipeRecyclerView.kt</a></p>
+<p>上述无论是translationX还是scrollX等引起的view变化，都不能改变View的定位（left，right，top，bottom值），而如果<strong>更改margin的值，则可以更改View的定位</strong>。</p>
+<h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h1><p>recycleview滑动<br>ItemTouchHelper源码分析 <a href="https://www.jianshu.com/p/130fdd755471" target="_blank" rel="noopener">https://www.jianshu.com/p/130fdd755471</a><br>嵌套滑动 <a href="https://blog.csdn.net/qq_15807167/article/details/51637678" target="_blank" rel="noopener">https://blog.csdn.net/qq_15807167/article/details/51637678</a><br><a href="https://www.cnblogs.com/dasusu/p/9159904.html" target="_blank" rel="noopener">https://www.cnblogs.com/dasusu/p/9159904.html</a><br><del>滑动展示删除按钮</del> <a href="https://www.jianshu.com/p/9bfed6e127cc" target="_blank" rel="noopener">https://www.jianshu.com/p/9bfed6e127cc</a> &gt;&gt; 对应的demo：<a href="https://github.com/jixiaoyong/DiyWidget/blob/master/diy-widget/src/main/java/cf/android666/applibrary/SwipeRecyclerView.kt" target="_blank" rel="noopener">https://github.com/jixiaoyong/DiyWidget/blob/master/diy-widget/src/main/java/cf/android666/applibrary/SwipeRecyclerView.kt</a></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/Holmofy/article/details/53959511" target="_blank" rel="noopener">View滑动效果常用属性详解：scroll、translation、LayoutParams</a></p>
 <p><script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script></p>
 <iframe id="iframeid" scrolling="false" height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android中View相关知识.md</div>"></iframe>
 
@@ -561,7 +561,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -621,7 +621,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#View的坐标"><span class="nav-number">1.</span> <span class="nav-text">View的坐标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#滑动"><span class="nav-number">2.</span> <span class="nav-text">滑动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TODO"><span class="nav-number">3.</span> <span class="nav-text">TODO</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#View的坐标"><span class="nav-number">1.</span> <span class="nav-text">View的坐标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#滑动"><span class="nav-number">2.</span> <span class="nav-text">滑动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TODO"><span class="nav-number">3.</span> <span class="nav-text">TODO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
