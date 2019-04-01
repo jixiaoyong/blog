@@ -20,10 +20,11 @@ date: 2017-09-03 23:25:05
   * 当滑动字母导航栏时，除了处理本身的变化外，还要留出接口，以便其他控件获取当前选中的字母。
   * 联系人列表滑动时，除了处理本身变化外，同样要留出接口以便获取当前置顶的item对应的字母
   * 字母导航栏要留出方法，以便其他控件指定选中的字母，并更新界面
-#具体代码
+# 具体代码
 **ContactsListView.java**
 重写该类主要是为了实现ItemDecoration根据不同的item变化，同时可以从xml布局文件中获取ItemDecoration的自定义属性。
 主要代码：
+
 ```
     public ContactsListView(Context context) {
         this(context, null, 0);
@@ -41,6 +42,7 @@ date: 2017-09-03 23:25:05
 
 ```
 故而在其内部自定义了一个继承自ItemDecoratio得静态内部类Decorationn类：
+
 ```
 public Decoration(List<String> data){
 //获取要显示的联系人数据对应的英文tag集合
@@ -83,8 +85,10 @@ private void drawText(Canvas canvas, float left, float right, View child, String
 //画出文字
 }
 ```
+
 **LetterIndex.java**
 该类用来画出字母导航栏，并且提供方法获取/设置当前选中的字母
+
 ```
  public interface onIndexClickListener {
         void onIndexClick(int chooseId);
@@ -102,9 +106,10 @@ private void drawText(Canvas canvas, float left, float right, View child, String
         }
     }
 ```
-然后重写```onTouchEvent(MotionEvent event)```方法，在ACTION_DOWN、ACTION_MOVE、ACTION_UP时调用对应的方法即可。
+然后重写`onTouchEvent(MotionEvent event)`方法，在ACTION_DOWN、ACTION_MOVE、ACTION_UP时调用对应的方法即可。
 
 重写onDraw()方法，画出对应的界面
+
 ```
    @Override
     protected void onDraw(Canvas canvas) {
@@ -144,8 +149,11 @@ private void drawText(Canvas canvas, float left, float right, View child, String
 
 ```
 # 源码
+
 源代码在我的Github，[点这里](https://github.com/jixiaoyong/my_application_on_deepin/tree/master/contactsdemo/src/main)可以找到。
+
 # 预览如下
+
 ![预览.gif](http://upload-images.jianshu.io/upload_images/120748-183eea3cad2b42ac.gif?imageMogr2/auto-orient/strip)
 
 
