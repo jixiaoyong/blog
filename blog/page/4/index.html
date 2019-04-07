@@ -316,8 +316,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-05T10:15:40+00:00">
-                2019-04-05
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-07T16:03:06+00:00">
+                2019-04-07
               </time>
             
           </span>
@@ -463,8 +463,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-05T10:15:40+00:00">
-                2019-04-05
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-07T16:03:06+00:00">
+                2019-04-07
               </time>
             
           </span>
@@ -610,8 +610,8 @@ Event
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-05T10:15:40+00:00">
-                2019-04-05
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-07T16:03:06+00:00">
+                2019-04-07
               </time>
             
           </span>
@@ -756,8 +756,8 @@ java绑定分为静态绑定和动态绑定：
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-05T10:15:40+00:00">
-                2019-04-05
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-07T16:03:06+00:00">
+                2019-04-07
               </time>
             
           </span>
@@ -899,8 +899,8 @@ heap区：Eden Space（伊甸园）、Survivor Space(幸存者区)、Tenured Gen
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-05T10:15:40+00:00">
-                2019-04-05
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-07T16:03:06+00:00">
+                2019-04-07
               </time>
             
           </span>
@@ -1047,8 +1047,8 @@ Boot ROM ：开机时，引导芯片从ROM读取读取初始化代
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-05T10:15:40+00:00">
-                2019-04-05
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-07T16:03:06+00:00">
+                2019-04-07
               </time>
             
           </span>
@@ -1189,8 +1189,8 @@ PendingI
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-05T10:15:40+00:00">
-                2019-04-05
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-07T16:03:06+00:00">
+                2019-04-07
               </time>
             
           </span>
@@ -1336,8 +1336,8 @@ android.support.v7.widget.Toolbar
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-05T10:15:40+00:00">
-                2019-04-05
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-07T16:03:06+00:00">
+                2019-04-07
               </time>
             
           </span>
@@ -1372,8 +1372,20 @@ android.support.v7.widget.Toolbar
       
         
           
-          绘制两个图形重叠部分android自定义view时两个图形重叠部分的绘制方式,一定要调用canvas.saveLayer() ，否则不生效。
-1234567891011121314151617//这个步骤十分重要，将当前画布保存为新的一层int save = canvas.saveLayer(0,0,mWidth,mHeight,null,Canvas.ALL_SAVE_FLAG);Paint paint = new Paint();paint.setColor(mBackgroundColor
+          View的绘制View的绘制分为3部分：
+
+measure
+测量，决定了View的测量宽、高。几乎所有情况下都等同于View的最终宽、高（如果View需要多次measure才能确定大小，或者重写了layout()方法，并修改了传入的值的话则不会相等）。
+
+layout
+布局，决定View的四个顶点坐标和实际的宽、高。
+
+draw
+绘制，决定了View的具体显示内容。
+
+
+其中通过ViewRootImpl类的performTraversals()依次调用performXXX()方法。
+Measur
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1475,8 +1487,8 @@ android.support.v7.widget.Toolbar
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-05T10:15:40+00:00">
-                2019-04-05
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-07T16:03:06+00:00">
+                2019-04-07
               </time>
             
           </span>
@@ -1615,8 +1627,8 @@ android.support.v7.widget.Toolbar
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-05T10:15:40+00:00">
-                2019-04-05
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-07T16:03:06+00:00">
+                2019-04-07
               </time>
             
           </span>
