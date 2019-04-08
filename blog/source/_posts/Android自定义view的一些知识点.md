@@ -172,7 +172,7 @@ android自定义view时两个图形重叠部分的绘制方式,一定要调用`c
 
 `paint.setXfermode()`可以设置的值参考下图：
 
-![](http://jixiaoyong.github.io/blog/images/default/2018-02-19/PorterDuffMode.png)
+![](http://jixiaoyong.github.io/images/20190408175100.png)
 
 参考自[【原】使用Xfermode正确的绘制出遮罩效果 - sky0014 - 博客园  ](https://www.cnblogs.com/DarkMaster/p/4618872.html)
 
