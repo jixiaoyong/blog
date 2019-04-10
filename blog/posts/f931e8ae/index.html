@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="季小勇的博客">
 <meta property="og:description" content="AIDL（Android Interface Definition Language ，Android接口定义语言）用于Android IPC，适用于大量并发请求。 主要分为两部分：  服务端 创建Service监听Client的请求，通过创建AIDL将接口暴露给客户端 客户端 绑定到服务端获取BInder对象，将其转化为对应AIDL，并调用接口对应方法。  两者的连线就是AIDL，因此两个APP">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-08T10:01:59.319Z">
+<meta property="og:updated_time" content="2019-04-10T04:02:52.309Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android中AIDL的使用">
 <meta name="twitter:description" content="AIDL（Android Interface Definition Language ，Android接口定义语言）用于Android IPC，适用于大量并发请求。 主要分为两部分：  服务端 创建Service监听Client的请求，通过创建AIDL将接口暴露给客户端 客户端 绑定到服务端获取BInder对象，将其转化为对应AIDL，并调用接口对应方法。  两者的连线就是AIDL，因此两个APP">
@@ -318,8 +318,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-08T10:01:59+00:00">
-                2019-04-08
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-10T04:02:52+00:00">
+                2019-04-10
               </time>
             
           </span>
@@ -370,6 +370,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// People.aidl</span></span><br><span class="line"><span class="keyword">package</span> cf.android666.androidlib;</span><br><span class="line"><span class="keyword">import</span> cf.android666.androidlib.People;</span><br><span class="line"><span class="comment">// Declare any non-default types here with import statements</span></span><br><span class="line"></span><br><span class="line">parcelable People;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>AIDL中除了基本数据类型，其他的参数必须标记方向（in,out,inout）。</li>
+<li>AIDL不支持方法重载，也就是说不能有两个同名的方法（即使参数类型、个数不同也不行）。</li>
 <li>AIDL中只支持方法，不支持静态变量。</li>
 </ul>
 <h1 id="AIDL用法"><a href="#AIDL用法" class="headerlink" title="AIDL用法"></a>AIDL用法</h1><h2 id="AIDL"><a href="#AIDL" class="headerlink" title="AIDL"></a>AIDL</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ManagerAidl.aidl</span></span><br><span class="line"><span class="keyword">package</span> cf.android666.androidlib;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cf.android666.androidlib.People;</span><br><span class="line"><span class="keyword">import</span> cf.android666.androidlib.TaskCallBack;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ManagerAidl</span> </span>&#123;</span><br><span class="line">    <span class="comment">//客户端提供的方法</span></span><br><span class="line">    <span class="function">List&lt;People&gt; <span class="title">getPeopleList</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addPeople</span><span class="params">(in People people)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//回调接口，用于服务端往客户端通信</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">registerCallBack</span><span class="params">(in TaskCallBack callback)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">unregisterCallBack</span><span class="params">(in TaskCallBack callback)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
