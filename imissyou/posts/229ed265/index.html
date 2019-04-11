@@ -2,8 +2,10 @@
 
 
 
+  
 
-<html class="theme-next muse" lang="zh-Hans">
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,7 +40,7 @@
 
   
   
-  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/imissyou/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -46,29 +48,27 @@
 
 
 
-<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/imissyou/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/default_avatar.jpg?v=5.1.4">
+<link href="/imissyou/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/default_avatar.jpg?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/imissyou/images/default_avatar.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/default_avatar.jpg?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/imissyou/images/default_avatar.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/blog/images/default_avatar.jpg?v=5.1.4" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/imissyou/images/default_avatar.png?v=5.1.4">
 
 
+  <link rel="mask-icon" href="/imissyou/images/default_avatar.png?v=5.1.4" color="#222">
 
 
 
-  <meta name="keywords" content="数据结构,">
 
 
+  <meta name="keywords" content="Hexo, NexT, jixiaoyong">
 
 
 
@@ -77,31 +77,32 @@
 
 
 
-<meta name="description" content="前言Hash表是一种可以快速插入和查找的数据结构，将数据保存在通过hash函数计算得到的下标中。 插入和删除 所需时间为O(1)。在确定容量、无需遍历时效果最好。 当其大小接近容量时，效率会变得很差。 存储方式Hash表有两种存储方式  开放地址法 开放地址法，直接将数据存储在数组中。 当hash算出的地址已经被占用时，则走过一定的步长找到另外一个空位（在填充质数很大时就会很耗时）并保存数据。">
-<meta name="keywords" content="数据结构">
+
+
+<meta name="description" content="夜跑，晚归，雷雨骤至。 漆黑的夜空突然炸响一声闷雷，黄豆大小的雨点刷刷地扯起一片白茫茫的雨幕，刚开始还能在地上砸出一朵朵水花，接着便消失在地面上还来不及找到去处的雨水聚起的水池之中。 不时闪过的惊雷像是一场烟花秀不时照亮半片天空，一双脚踩下去，像是冲锋艇般拖着两行水尾。 这一切并不是毫无征兆，早在出发前就有天气预报说要降雨，然而又有谁轻易相信天气预报呢？在刚刚踏出家门的时候就隐约有些雨点，甚至天空">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构_Hash表">
-<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/1f6681a0/index.html">
-<meta property="og:site_name" content="季小勇的博客">
-<meta property="og:description" content="前言Hash表是一种可以快速插入和查找的数据结构，将数据保存在通过hash函数计算得到的下标中。 插入和删除 所需时间为O(1)。在确定容量、无需遍历时效果最好。 当其大小接近容量时，效率会变得很差。 存储方式Hash表有两种存储方式  开放地址法 开放地址法，直接将数据存储在数组中。 当hash算出的地址已经被占用时，则走过一定的步长找到另外一个空位（在填充质数很大时就会很耗时）并保存数据。">
+<meta property="og:title" content="暴风雨">
+<meta property="og:url" content="https://jixiaoyong.github.io/imissyou/posts/229ed265/index.html">
+<meta property="og:site_name" content="I Miss You">
+<meta property="og:description" content="夜跑，晚归，雷雨骤至。 漆黑的夜空突然炸响一声闷雷，黄豆大小的雨点刷刷地扯起一片白茫茫的雨幕，刚开始还能在地上砸出一朵朵水花，接着便消失在地面上还来不及找到去处的雨水聚起的水池之中。 不时闪过的惊雷像是一场烟花秀不时照亮半片天空，一双脚踩下去，像是冲锋艇般拖着两行水尾。 这一切并不是毫无征兆，早在出发前就有天气预报说要降雨，然而又有谁轻易相信天气预报呢？在刚刚踏出家门的时候就隐约有些雨点，甚至天空">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-11T15:51:31.655Z">
+<meta property="og:updated_time" content="2019-04-11T15:51:32.091Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据结构_Hash表">
-<meta name="twitter:description" content="前言Hash表是一种可以快速插入和查找的数据结构，将数据保存在通过hash函数计算得到的下标中。 插入和删除 所需时间为O(1)。在确定容量、无需遍历时效果最好。 当其大小接近容量时，效率会变得很差。 存储方式Hash表有两种存储方式  开放地址法 开放地址法，直接将数据存储在数组中。 当hash算出的地址已经被占用时，则走过一定的步长找到另外一个空位（在填充质数很大时就会很耗时）并保存数据。">
+<meta name="twitter:title" content="暴风雨">
+<meta name="twitter:description" content="夜跑，晚归，雷雨骤至。 漆黑的夜空突然炸响一声闷雷，黄豆大小的雨点刷刷地扯起一片白茫茫的雨幕，刚开始还能在地上砸出一朵朵水花，接着便消失在地面上还来不及找到去处的雨水聚起的水池之中。 不时闪过的惊雷像是一场烟花秀不时照亮半片天空，一双脚踩下去，像是冲锋艇般拖着两行水尾。 这一切并不是毫无征兆，早在出发前就有天气预报说要降雨，然而又有谁轻易相信天气预报呢？在刚刚踏出家门的时候就隐约有些雨点，甚至天空">
 
 
 
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blog/',
+    root: '/imissyou/',
     scheme: 'Muse',
     version: '5.1.4',
     sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -118,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/1f6681a0/">
+  <link rel="canonical" href="https://jixiaoyong.github.io/imissyou/posts/229ed265/">
 
 
 
 
 
-  <title>数据结构_Hash表 | 季小勇的博客</title>
+  <title>暴风雨 | I Miss You</title>
   
 
 
@@ -152,9 +153,9 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blog/" class="brand" rel="start">
+      <a href="/imissyou/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">季小勇的博客</span>
+        <span class="site-title">I Miss You</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -180,7 +181,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/blog/" rel="section">
+          <a href="/imissyou/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
@@ -190,7 +191,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/blog/about/" rel="section">
+          <a href="/imissyou/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
@@ -200,7 +201,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/blog/archives/" rel="section">
+          <a href="/imissyou/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
@@ -273,16 +274,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/1f6681a0/">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/imissyou/imissyou/posts/229ed265/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="季小勇">
+      <meta itemprop="name" content="残桐落叶">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+      <meta itemprop="image" content="/imissyou/images/default_avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="季小勇的博客">
+      <meta itemprop="name" content="I Miss You">
     </span>
 
     
@@ -290,7 +291,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">数据结构_Hash表</h1>
+          <h1 class="post-title" itemprop="name headline">暴风雨</h1>
         
 
         <div class="post-meta">
@@ -302,25 +303,13 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-23T17:35:36+00:00">
-                2018-12-23
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-11T15:51:31+00:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-11T22:42:02+00:00">
                 2019-04-11
               </time>
+            
+
+            
+
             
           </span>
 
@@ -352,49 +341,27 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Hash表是一种可以快速插入和查找的数据结构，将数据保存在通过hash函数计算得到的下标中。</p>
-<p>插入和删除 所需时间为O(1)。在确定容量、无需遍历时效果最好。</p>
-<p>当其大小接近容量时，效率会变得很差。</p>
-<h1 id="存储方式"><a href="#存储方式" class="headerlink" title="存储方式"></a>存储方式</h1><p>Hash表有两种存储方式</p>
-<ol>
-<li><p>开放地址法</p>
-<p>开放地址法，直接将数据存储在数组中。</p>
-<p>当hash算出的地址已经被占用时，则走过一定的步长找到另外一个空位（在填充质数很大时就会很耗时）并保存数据。</p>
-</li>
-<li><p>链地址法</p>
-<p>链地址法，创建保存数据的数组，该数组中不直接保存数据，而是保存一个用来存储这些数据的链表，将数据项直接存储的链表中。</p>
-<p>当hash算法计算出的地址时，遍历数组中对应的链表找到空位并保存。</p>
-</li>
-</ol>
-<p>其中，开放地址法又分为3种实现：</p>
-<ul>
-<li><p>线性探测</p>
-<p>每次前进的步长为1</p>
-<p>即查找的位置依次是<code>x + 1,2,3,4,5,……</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">存储达到容量2/3以上时候读写性能会很差</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>二次探测</p>
-<p>每次前进的步长为当前查找次数的平方</p>
-<p>即查找的位置依次是<code>x + 1,4,9,……</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当前几次找不到之后就会很恐慌，步长越来越大到后面无法继续下去</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>再哈希法</p>
-<p>每次前进的步长是根据另外一个hash算法计算出来的值</p>
-<p>这个算法要求如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 与第一次hash输出不同  </span><br><span class="line"><span class="number">2</span>. 不能输出<span class="number">0</span></span><br></pre></td></tr></table></figure>
-<p>已经有一个公认的比较好的二次hash算法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stepSize = constant - (key % constant)</span><br><span class="line">如：stepSize = <span class="number">5</span> - (key % <span class="number">5</span>)</span><br><span class="line">* constant 是小于数组容量的质数</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h1><p><strong>再哈希法 VS 二次探测法</strong></p>
-<p>在小型哈希表中，再哈希法比二次探测好；</p>
-<p>但如果容量充足，并且容量大小不再变化时，二次探测效果好，在装填因子小于0.5时几乎没有性能损失</p>
-<p><strong>开放地址法 VS 链地址法</strong></p>
-<p>hash表容器大小未知时，用链地址法比较好</p>
-<p>当装填因子变得很大时，开放地址法性能下降很快，但链地址法只是线性下降。</p>
-<h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><p><a href="https://github.com/jixiaoyong/Notes-Files/blob/master/AndroidLearningResource/java_note/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/tree/Hash.kt" target="_blank" rel="noopener">👉点这里</a>查看源码</p>
+        <p>夜跑，晚归，雷雨骤至。</p>
+<p>漆黑的夜空突然炸响一声闷雷，黄豆大小的雨点刷刷地扯起一片白茫茫的雨幕，刚开始还能在地上砸出一朵朵水花，接着便消失在地面上还来不及找到去处的雨水聚起的水池之中。</p>
+<p>不时闪过的惊雷像是一场烟花秀不时照亮半片天空，一双脚踩下去，像是冲锋艇般拖着两行水尾。</p>
+<p>这一切并不是毫无征兆，早在出发前就有天气预报说要降雨，然而又有谁轻易相信天气预报呢？在刚刚踏出家门的时候就隐约有些雨点，甚至天空也闪过一片雷光，可是谁又能因此打破好不容易培养起来的习惯，又怎会轻易返回呢？</p>
+<p>安静，凉爽，一切只不过又是一次普通的夜跑。可是这一切又太过正常，反而有些不正常，终于似乎零星有些雨点落下，于是往回奔跑吧，万一真的有雨呢？</p>
+<p>世事的发展总是不以人的意志而转移，更何况是酝酿了这么久的暴雨——暴风雨终于来了。</p>
+<p>躲？屋檐下，便利店里，救命稻草版的庇护所，汗水与雨水交融。手机APP提示还要持续两个小时。你知道这事情总会过去，你也知道他大概什么时候回过去，可是真正身处其中的时候，很多事情是没法用总会过去来应对的。</p>
+<p>外面雨越来越大，电闪雷鸣，倾盆大雨。知道这雨总会变小，也知道这暴风总会消寂，可当真正身处其中的时候，是不会满足于静静等待着他消寂的—— 暴风雨看起来马上会消失，又可能永远不会消失。</p>
+<p>躲是躲不掉的。拿好行装，撑起雨伞，扎进这雨幕中，让双脚泡进水中，让鞋子充满水变得肥腻轻盈，让汗水与雨点交融，让身体化为一把利刃，扎进这暴风雨中，用舌尖舔舐每一滴雨水的味道。</p>
+<p>雷电在头顶炸响，一条条汽车在马路游荡，红的黄的霓虹灯交融在雨幕中。一团耀眼的白光过后，不远处的景观树拦腰折断，脚下一掌深的水中埋藏着一个个噬人的陷阱。之前也曾经历过无数次暴风雨，却没有一次像今天这样使我感到死亡的威胁，只想赶快过去。可是又能怎么办呢，雨天、没车、没有躲避的地方，一切只能靠一双脚一步步踏出一条路。</p>
+<p>天桥下，车站旁，到处是避雨的人，一路除了匆匆路过的电车，唯有暴雨作伴。然而我以不能停歇，从踏出这一步开始，这一切就只能硬着头皮独自走下去。</p>
+<p>不知何时雨势渐弱，进入了繁华闹市中人流也多了起来，一对小夫妻推着孩子等着过马路，爸爸推着车子，妈妈用手遮着头，整个人却挡在推车的前面，努力为孩子挡住一片风雨。</p>
+<p>我独撑着伞，想过去遮一把雨水，却不忍打扰这一家人。也许此时这幸福的小宝宝此时还不能理解父母的爱，也还不明白”终有一天这世界没有人会在乎你的，有一天没有人会在乎你的哭、闹，没有人会在乎你一切的喜怒哀乐，你只能学会自己承受”。只是到那个时候，当他再次面对今日的暴风雨，不知道他又会做出怎样的选择呢？</p>
+<p>回到家中冲个澡，窗外雨声逐渐稀疏。也许当时再多避一会儿就能安然回家，也许当时不出门便无需经历这一切，可是哪有那么多假设呢，如果再次返回到当初的场景，相信以当时的认知我仍然会做出相同的选择。一切看似偶然，却又都是必然，只是在这一场突如其来的暴风雨中，我经历了什么？又学到了什么？将来再次面对类似的选择时我又会做出怎样的选择？</p>
+<p>我，不知道。</p>
+<p>PS.文中一段话引自一位演员的采访录中，触动很深，为了不影响全文体验，不具体指明。如有不妥敬请指出。</p>
 <p><script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script></p>
-<iframe id="iframeid" scrolling="false" height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/数据结构_Hash表.md</div>"></iframe>
+&lt;iframe id=”iframeid”<br>scrolling=false  height=”30” frameborder=”no” border=”0”marginwidth=”0” marginheight=”0”<br> onload=”Javascript:editOnGithub()”<br> srcdoc=”<div id="&quot;url&quot;"><a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/imissyou/source/_posts/雷雨.md" target="_blank" rel="noopener">https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/imissyou/source/_posts/雷雨.md</a><br>    </div>“&gt;<br>
+
+
+
       
     </div>
     
@@ -410,11 +377,11 @@
         <ul class="post-copyright">
   <li class="post-copyright-author">
     <strong>本文作者：</strong>
-    季小勇
+    残桐落叶
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jixiaoyong.github.io/blog/posts/1f6681a0/" title="数据结构_Hash表">https://jixiaoyong.github.io/blog/posts/1f6681a0/</a>
+    <a href="https://jixiaoyong.github.io/imissyou/posts/229ed265/" title="暴风雨">https://jixiaoyong.github.io/imissyou/posts/229ed265/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -427,12 +394,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/blog/tags/数据结构/" rel="tag"># 数据结构</a>
-          
-        </div>
-      
 
       
       
@@ -442,8 +403,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/posts/11c01876/" rel="next" title="数据结构_红黑树">
-                <i class="fa fa-chevron-left"></i> 数据结构_红黑树
+              <a href="/imissyou/posts/2102181c/" rel="next" title="Getting Better">
+                <i class="fa fa-chevron-left"></i> Getting Better
               </a>
             
           </div>
@@ -451,10 +412,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/posts/b3af796a/" rel="prev" title="数据结构_堆">
-                数据结构_堆 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -549,23 +506,14 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/blog/images/default_avatar.jpg" alt="季小勇">
+              <img class="site-author-image" itemprop="image" src="/imissyou/images/default_avatar.png" alt="残桐落叶">
             
-              <p class="site-author-name" itemprop="name">季小勇</p>
+              <p class="site-author-name" itemprop="name">残桐落叶</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -574,9 +522,9 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/blog/archives/">
+                <a href="/imissyou/archives/">
               
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -589,7 +537,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -606,42 +554,12 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.wanandroid.com/" title="WanAndroid" target="_blank">WanAndroid</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
 
           
 
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存储方式"><span class="nav-number">2.</span> <span class="nav-text">存储方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#比较"><span class="nav-number">3.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#源码"><span class="nav-number">4.</span> <span class="nav-text">源码</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -660,13 +578,11 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">季小勇</span>
+  <span class="author" itemprop="copyrightHolder">残桐落叶</span>
 
   
 </div>
 
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -729,57 +645,57 @@
 
   
   
-    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+    <script type="text/javascript" src="/imissyou/lib/jquery/index.js?v=2.1.3"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+    <script type="text/javascript" src="/imissyou/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+    <script type="text/javascript" src="/imissyou/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/imissyou/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+    <script type="text/javascript" src="/imissyou/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
   
   
-    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+    <script type="text/javascript" src="/imissyou/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
-
 
 
   
 
 
-  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/imissyou/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/imissyou/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/imissyou/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/imissyou/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/imissyou/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -840,7 +756,7 @@
     } else if (/json$/i.test(search_path)) {
       isXml = false;
     }
-    var path = "/blog/" + search_path;
+    var path = "/imissyou/" + search_path;
     // monitor main search box;
 
     var onPopupClose = function (e) {
@@ -1160,28 +1076,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
 
   
 
