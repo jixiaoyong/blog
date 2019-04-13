@@ -75,6 +75,22 @@ Scroller不能使View滑动，而只能配合View的computeScroll()方法实现�
 
 
 
+# Window和WindowManager
+
+WindowManager.LayoutParams.flags有三个常用选项：
+
+* WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL // 只处理Window区域内的点击事件，之外的交给其他Window处理
+* WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE // 不接受输入事件，不获取焦点，同时会开启FLAG_NOT_TOUCH_MODAL，最终事件会传递给下层具有焦点的Window
+* WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED  // 让Window显示在锁屏界面上
+
+WindowManager.LayoutParams.type代表Window的类型(三个)：
+
+* 应用Window 对应一个Activity。`z-ordered`:1~99
+* 子Window 不能单独存在，附属在特定的父Window中，如Dialog。`z-ordered`:1000~1999
+* 系统Window 需要系统权限，如Toast，状态栏等。`z-ordered`:2000~2999
+
+`z-ordered`值大的Window会覆盖掉低值的Window。
+
 # TODO
 
 recycleview滑动
