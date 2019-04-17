@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="I Miss You">
 <meta property="og:description" content="最是三秋叶落尽，空引愁思无端生。终难忍，落叶惹徒增愁绪万千。 慵懒的阳光透过稀落的枝杈，耳畔商贩的叫卖声声不绝，班车一辆又一辆，来来往往的人呵，不知去往何方。 年轻的妈妈牵着她的儿子，路过，一级级的石板，手里还有着定是孩子爱吃的零食。路边一辆车停了，商贩摆下她的货物，用具，果子，又一个生活里奔波的人，几年后便终是你我。 大学的门敞开着，男男女女的学生，在有太阳的周末的下午，一切都那么安逸，疏懒。银">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-17T09:49:55.309Z">
+<meta property="og:updated_time" content="2019-04-17T11:31:38.961Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="秋引">
 <meta name="twitter:description" content="最是三秋叶落尽，空引愁思无端生。终难忍，落叶惹徒增愁绪万千。 慵懒的阳光透过稀落的枝杈，耳畔商贩的叫卖声声不绝，班车一辆又一辆，来来往往的人呵，不知去往何方。 年轻的妈妈牵着她的儿子，路过，一级级的石板，手里还有着定是孩子爱吃的零食。路边一辆车停了，商贩摆下她的货物，用具，果子，又一个生活里奔波的人，几年后便终是你我。 大学的门敞开着，男男女女的学生，在有太阳的周末的下午，一切都那么安逸，疏懒。银">
@@ -320,6 +320,17 @@
           
 
           
+          
+             <span id="/imissyou/posts/25e06c11/" class="leancloud_visitors" data-flag-title="秋引">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -1062,6 +1073,113 @@
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("BDPbC62pglXOop9DC1tEFEUJ-gzGzoHsz", "if5pzWytt3aRHaO0sEHkGJ84");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 

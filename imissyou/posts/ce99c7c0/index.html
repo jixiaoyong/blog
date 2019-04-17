@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="I Miss You">
 <meta property="og:description" content="小镇下雪了，这已是今年第二场雪。 灰蒙蒙的天地，谁人不小心划破了口袋，窸窣的洒落，甜甜的白砂糖的味道。 早就有人说今年当是暖冬了，说有多少年难遇，又有人说这降温应当只是个插曲，合当还是要暖起来。然而终究还是降温了，席卷了大半个疆域的寒潮终究还是来了，把雪花撒进了天南海北的故乡，撒进了一个个朋友圈的动态。 枯落的荒草简直要刺破眼镜，口鼻里是从未闻过的味道，落雪的土地僵硬冰凉，手机陷在不远的落叶堆里，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-17T09:49:55.309Z">
+<meta property="og:updated_time" content="2019-04-17T11:31:38.961Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小镇来雪">
 <meta name="twitter:description" content="小镇下雪了，这已是今年第二场雪。 灰蒙蒙的天地，谁人不小心划破了口袋，窸窣的洒落，甜甜的白砂糖的味道。 早就有人说今年当是暖冬了，说有多少年难遇，又有人说这降温应当只是个插曲，合当还是要暖起来。然而终究还是降温了，席卷了大半个疆域的寒潮终究还是来了，把雪花撒进了天南海北的故乡，撒进了一个个朋友圈的动态。 枯落的荒草简直要刺破眼镜，口鼻里是从未闻过的味道，落雪的土地僵硬冰凉，手机陷在不远的落叶堆里，">
@@ -320,6 +320,17 @@
           
 
           
+          
+             <span id="/imissyou/posts/ce99c7c0/" class="leancloud_visitors" data-flag-title="小镇来雪">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -1069,6 +1080,113 @@
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("BDPbC62pglXOop9DC1tEFEUJ-gzGzoHsz", "if5pzWytt3aRHaO0sEHkGJ84");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
