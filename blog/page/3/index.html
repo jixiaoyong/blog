@@ -3,11 +3,22 @@
 
 
 
-<html class="theme-next muse" lang="zh-Hans">
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -17,10 +28,8 @@
 
 
 
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -36,9 +45,23 @@
 
 
 
-  
-  
-  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/blog/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=7.1.0" color="#222">
 
 
 
@@ -46,61 +69,20 @@
 
 
 
-<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/default_avatar.jpg?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/default_avatar.jpg?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/default_avatar.jpg?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/blog/images/default_avatar.jpg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, android, jixiaoyong, blog">
-
-
-
-
-
-
-
-
-
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="季小勇的博客">
-<meta property="og:url" content="https://jixiaoyong.github.io/blog/page/3/index.html">
-<meta property="og:site_name" content="季小勇的博客">
-<meta property="og:locale" content="zh-Hans">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="季小勇的博客">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/blog/',
     scheme: 'Muse',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -112,12 +94,34 @@
 </script>
 
 
+  
 
+
+
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="季小勇的博客">
+<meta property="og:url" content="https://jixiaoyong.github.io/blog/page/3/index.html">
+<meta property="og:site_name" content="季小勇的博客">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="季小勇的博客">
+
+
+
+
+
+  
+  
   <link rel="canonical" href="https://jixiaoyong.github.io/blog/page/3/">
 
 
 
-
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>季小勇的博客</title>
   
@@ -129,9 +133,38 @@
 
 
 
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -144,7 +177,7 @@
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -154,13 +187,12 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -168,56 +200,80 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/blog/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-about">
-          <a href="/blog/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/blog/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            归档
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -246,12 +302,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -262,6 +326,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
@@ -288,11 +354,20 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/posts/b00ac86a/" itemprop="url">利用travis通过Hexo在Github上自动部署Markdown文档</a></h1>
+                
+                <a href="/blog/posts/b00ac86a/" class="post-title-link" itemprop="url">利用travis通过Hexo在Github上自动部署Markdown文档</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -300,25 +375,30 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-20T22:35:34+00:00">
-                2018-12-20
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-20 22:35:34" itemprop="dateCreated datePublished" datetime="2018-12-20T22:35:34+00:00">2018-12-20</time>
             
 
             
-              <span class="post-meta-divider">|</span>
-            
+              
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
               
-                <span class="post-meta-item-text">更新于&#58;</span>
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-17 13:32:14" itemprop="dateModified" datetime="2019-04-17T13:32:14+00:00">2019-04-17</time>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-17T12:18:14+00:00">
-                2019-04-17
-              </time>
             
           </span>
 
@@ -326,20 +406,34 @@
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/blog/posts/b00ac86a/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/b00ac86a/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
           
-             <span id="/blog/posts/b00ac86a/" class="leancloud_visitors" data-flag-title="利用travis通过Hexo在Github上自动部署Markdown文档">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/blog/posts/b00ac86a/" class="leancloud_visitors" data-flag-title="利用travis通过Hexo在Github上自动部署Markdown文档">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -363,29 +457,39 @@
       
         
           
-          前言
+            <p>
+              前言
 本文介绍了一个只需要更新Markdown文档到Github，即可实时更新博客内容的方法。
 本文参考这篇文章 实现，并根据我的需求更改了部分内容，以实现部署多个hexo工程到同一Github项目不同目录下。
 
 Github为我们提供了Github Pages 方便我们建立简单的网页来介绍项目，很多时候我们用他来搭建静态博客。
 通过Hexo可以将我们写的Markdown文档格式化为静态网页，再将其部署到Github上面对应的user_name.github.io上面，就可以拥有一个在线的静态博
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/posts/b00ac86a/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/posts/b00ac86a/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -416,6 +520,8 @@ Github为我们提供了Github Pages 方便我们建立简单的网页来介绍�
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
@@ -442,11 +548,20 @@ Github为我们提供了Github Pages 方便我们建立简单的网页来介绍�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/posts/a2863875/" itemprop="url">Android运行时权限</a></h1>
+                
+                <a href="/blog/posts/a2863875/" class="post-title-link" itemprop="url">Android运行时权限</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -454,25 +569,30 @@ Github为我们提供了Github Pages 方便我们建立简单的网页来介绍�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-25T13:10:08+00:00">
-                2018-11-25
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-25 13:10:08" itemprop="dateCreated datePublished" datetime="2018-11-25T13:10:08+00:00">2018-11-25</time>
             
 
             
-              <span class="post-meta-divider">|</span>
-            
+              
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
               
-                <span class="post-meta-item-text">更新于&#58;</span>
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-17 13:32:14" itemprop="dateModified" datetime="2019-04-17T13:32:14+00:00">2019-04-17</time>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-17T12:18:14+00:00">
-                2019-04-17
-              </time>
             
           </span>
 
@@ -480,20 +600,34 @@ Github为我们提供了Github Pages 方便我们建立简单的网页来介绍�
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/blog/posts/a2863875/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/a2863875/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
           
-             <span id="/blog/posts/a2863875/" class="leancloud_visitors" data-flag-title="Android运行时权限">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/blog/posts/a2863875/" class="leancloud_visitors" data-flag-title="Android运行时权限">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -517,7 +651,8 @@ Github为我们提供了Github Pages 方便我们建立简单的网页来介绍�
       
         
           
-          简介本文介绍了Android运行时权限的一些处理流程。
+            <p>
+              简介本文介绍了Android运行时权限的一些处理流程。
 Android运行时权限是Android6之后出现的处理权限的新方式，此前开发者只需要应用需要的权限在AndroidManifest.xml文件中声明即可，现在则需要在使用到对应权限时检测是否有该权限并作出相应处理。
 正文一般流程
 在AndroidManifest.xml中声明所需权限
@@ -525,23 +660,32 @@ Android运行时权限是Android6之后出现的处理权限的新方式，此�
 在使用之前检查是否有该权限checkSelfPermission(),如果有则继续相应操作
 
 如果没有权限则检测是否需要向用户解释为什么需要该权限Acti
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/posts/a2863875/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/posts/a2863875/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -572,6 +716,8 @@ Android运行时权限是Android6之后出现的处理权限的新方式，此�
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
@@ -598,11 +744,20 @@ Android运行时权限是Android6之后出现的处理权限的新方式，此�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/posts/b2cdb69e/" itemprop="url">Java中的泛型</a></h1>
+                
+                <a href="/blog/posts/b2cdb69e/" class="post-title-link" itemprop="url">Java中的泛型</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -610,25 +765,30 @@ Android运行时权限是Android6之后出现的处理权限的新方式，此�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-03T11:01:34+00:00">
-                2018-11-03
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-03 11:01:34" itemprop="dateCreated datePublished" datetime="2018-11-03T11:01:34+00:00">2018-11-03</time>
             
 
             
-              <span class="post-meta-divider">|</span>
-            
+              
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
               
-                <span class="post-meta-item-text">更新于&#58;</span>
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-17 13:32:14" itemprop="dateModified" datetime="2019-04-17T13:32:14+00:00">2019-04-17</time>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-17T12:18:14+00:00">
-                2019-04-17
-              </time>
             
           </span>
 
@@ -636,20 +796,34 @@ Android运行时权限是Android6之后出现的处理权限的新方式，此�
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/blog/posts/b2cdb69e/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/b2cdb69e/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
           
-             <span id="/blog/posts/b2cdb69e/" class="leancloud_visitors" data-flag-title="Java中的泛型">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/blog/posts/b2cdb69e/" class="leancloud_visitors" data-flag-title="Java中的泛型">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -673,29 +847,39 @@ Android运行时权限是Android6之后出现的处理权限的新方式，此�
       
         
           
-          Java中的泛型实现了参数类型化的概念。
+            <p>
+              Java中的泛型实现了参数类型化的概念。
 主要有以下形式：
-1234class OneClazz&lt;T&gt;&#123;    T t;    &lt;Y&gt; void fun()&#123;&#125;&#125;
+class OneClazz&lt;T&gt;&#123;    T t;    &lt;Y&gt; void fun()&#123;&#125;&#125;
 本文主要记录Java泛型一些比较特殊的知识点。
 泛型特性泛型在Java SE5被引入，可以在类和方法中，将类型作为类型参数传入。
-泛型类型参数会在实际运行时被擦除到他的第一个边界。如&lt;T&gt;会被擦除为Objet，而&lt;T extends ClazzA&gt;
-          ...
+泛型类型参数会在实际运行时被擦除到他的第一个边界。如&lt;T&gt;会被擦除为Objet，而&lt;T extends ClazzA&gt;则会被擦
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/posts/b2cdb69e/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/posts/b2cdb69e/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -726,6 +910,8 @@ Android运行时权限是Android6之后出现的处理权限的新方式，此�
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
@@ -752,11 +938,20 @@ Android运行时权限是Android6之后出现的处理权限的新方式，此�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/posts/e35c106d/" itemprop="url">Flutter Widget简单入门</a></h1>
+                
+                <a href="/blog/posts/e35c106d/" class="post-title-link" itemprop="url">Flutter Widget简单入门</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -764,25 +959,30 @@ Android运行时权限是Android6之后出现的处理权限的新方式，此�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-21T22:26:41+00:00">
-                2018-10-21
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-21 22:26:41" itemprop="dateCreated datePublished" datetime="2018-10-21T22:26:41+00:00">2018-10-21</time>
             
 
             
-              <span class="post-meta-divider">|</span>
-            
+              
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
               
-                <span class="post-meta-item-text">更新于&#58;</span>
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-17 13:32:14" itemprop="dateModified" datetime="2019-04-17T13:32:14+00:00">2019-04-17</time>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-17T12:18:14+00:00">
-                2019-04-17
-              </time>
             
           </span>
 
@@ -790,20 +990,34 @@ Android运行时权限是Android6之后出现的处理权限的新方式，此�
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/blog/posts/e35c106d/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/e35c106d/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
           
-             <span id="/blog/posts/e35c106d/" class="leancloud_visitors" data-flag-title="Flutter Widget简单入门">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/blog/posts/e35c106d/" class="leancloud_visitors" data-flag-title="Flutter Widget简单入门">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -827,25 +1041,35 @@ Android运行时权限是Android6之后出现的处理权限的新方式，此�
       
         
           
-          Flutter是Google提出的跨平台开发框架，使用Dart语言，支持Android，IOS系统。Flutter一个重要的概念即是——“万物皆控件（Widget）”，像Padding,Center等都是Widget。
+            <p>
+              Flutter是Google提出的跨平台开发框架，使用Dart语言，支持Android，IOS系统。Flutter一个重要的概念即是——“万物皆控件（Widget）”，像Padding,Center等都是Widget。
 Widget和Android中的View很相似但又有不同，Widget一旦生成便“一成不变”，直到下一次因为Widget更改或者state更新而被重新创建（Flutter’s framework creates a new tree of widget instances.），而
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/posts/e35c106d/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/posts/e35c106d/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -876,6 +1100,8 @@ Widget和Android中的View很相似但又有不同，Widget一旦生成便“一
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
@@ -902,11 +1128,20 @@ Widget和Android中的View很相似但又有不同，Widget一旦生成便“一
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/posts/f931e8ae/" itemprop="url">Android中AIDL的使用</a></h1>
+                
+                <a href="/blog/posts/f931e8ae/" class="post-title-link" itemprop="url">Android中AIDL的使用</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -914,25 +1149,30 @@ Widget和Android中的View很相似但又有不同，Widget一旦生成便“一
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-07T21:15:39+00:00">
-                2018-08-07
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-07 21:15:39" itemprop="dateCreated datePublished" datetime="2018-08-07T21:15:39+00:00">2018-08-07</time>
             
 
             
-              <span class="post-meta-divider">|</span>
-            
+              
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
               
-                <span class="post-meta-item-text">更新于&#58;</span>
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-17 13:32:14" itemprop="dateModified" datetime="2019-04-17T13:32:14+00:00">2019-04-17</time>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-17T12:18:14+00:00">
-                2019-04-17
-              </time>
             
           </span>
 
@@ -940,20 +1180,34 @@ Widget和Android中的View很相似但又有不同，Widget一旦生成便“一
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/blog/posts/f931e8ae/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/f931e8ae/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
           
-             <span id="/blog/posts/f931e8ae/" class="leancloud_visitors" data-flag-title="Android中AIDL的使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/blog/posts/f931e8ae/" class="leancloud_visitors" data-flag-title="Android中AIDL的使用">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -977,30 +1231,40 @@ Widget和Android中的View很相似但又有不同，Widget一旦生成便“一
       
         
           
-          AIDL（Android Interface Definition Language ，Android接口定义语言）用于Android IPC，适用于大量并发请求。
+            <p>
+              AIDL（Android Interface Definition Language ，Android接口定义语言）用于Android IPC，适用于大量并发请求。
 主要分为两部分：
 
 服务端 创建Service监听Client的请求，通过创建AIDL将接口暴露给客户端
 客户端 绑定到服务端获取BInder对象，将其转化为对应AIDL，并调用接口对应方法。
 
 两者的连线就是AIDL，因此两个APP的AIDL必须一致，可以将AIDL文件放到一个Android Library中，或者打成aar文件供
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/posts/f931e8ae/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/posts/f931e8ae/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1031,6 +1295,8 @@ Widget和Android中的View很相似但又有不同，Widget一旦生成便“一
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
@@ -1057,11 +1323,20 @@ Widget和Android中的View很相似但又有不同，Widget一旦生成便“一
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/posts/c0fefed0/" itemprop="url">Android事件分发</a></h1>
+                
+                <a href="/blog/posts/c0fefed0/" class="post-title-link" itemprop="url">Android事件分发</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1069,25 +1344,30 @@ Widget和Android中的View很相似但又有不同，Widget一旦生成便“一
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-24T20:25:33+00:00">
-                2018-04-24
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-04-24 20:25:33" itemprop="dateCreated datePublished" datetime="2018-04-24T20:25:33+00:00">2018-04-24</time>
             
 
             
-              <span class="post-meta-divider">|</span>
-            
+              
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
               
-                <span class="post-meta-item-text">更新于&#58;</span>
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-17 13:32:14" itemprop="dateModified" datetime="2019-04-17T13:32:14+00:00">2019-04-17</time>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-17T12:18:14+00:00">
-                2019-04-17
-              </time>
             
           </span>
 
@@ -1095,20 +1375,34 @@ Widget和Android中的View很相似但又有不同，Widget一旦生成便“一
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/blog/posts/c0fefed0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/c0fefed0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
           
-             <span id="/blog/posts/c0fefed0/" class="leancloud_visitors" data-flag-title="Android事件分发">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/blog/posts/c0fefed0/" class="leancloud_visitors" data-flag-title="Android事件分发">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -1132,29 +1426,39 @@ Widget和Android中的View很相似但又有不同，Widget一旦生成便“一
       
         
           
-          Android事件分发，指手指点击屏幕后，从Activity、ViewGroup到View的一系列过程。
+            <p>
+              Android事件分发，指手指点击屏幕后，从Activity、ViewGroup到View的一系列过程。
 简介Android系统的窗口机制如下图：
 Activity内有一个Window对象，其实现类是PhoneWindow；
 DecorView为顶层View，DecorView是一个FrameLayout，其中有TitleView和ContentView；
 
 TitleView为标题栏，ContentView就是平时在Activity的onCreate()方法中设置的视图，TitleView可以
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/posts/c0fefed0/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/posts/c0fefed0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1185,6 +1489,8 @@ TitleView为标题栏，ContentView就是平时在Activity的onCreate()方法中
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
@@ -1211,11 +1517,20 @@ TitleView为标题栏，ContentView就是平时在Activity的onCreate()方法中
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/posts/7ee9086b/" itemprop="url">AsyncTask源码解析</a></h1>
+                
+                <a href="/blog/posts/7ee9086b/" class="post-title-link" itemprop="url">AsyncTask源码解析</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1223,25 +1538,30 @@ TitleView为标题栏，ContentView就是平时在Activity的onCreate()方法中
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-19T22:04:28+00:00">
-                2018-04-19
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-04-19 22:04:28" itemprop="dateCreated datePublished" datetime="2018-04-19T22:04:28+00:00">2018-04-19</time>
             
 
             
-              <span class="post-meta-divider">|</span>
-            
+              
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
               
-                <span class="post-meta-item-text">更新于&#58;</span>
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-17 13:32:14" itemprop="dateModified" datetime="2019-04-17T13:32:14+00:00">2019-04-17</time>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-17T12:18:14+00:00">
-                2019-04-17
-              </time>
             
           </span>
 
@@ -1249,20 +1569,34 @@ TitleView为标题栏，ContentView就是平时在Activity的onCreate()方法中
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/blog/posts/7ee9086b/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/7ee9086b/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
           
-             <span id="/blog/posts/7ee9086b/" class="leancloud_visitors" data-flag-title="AsyncTask源码解析">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/blog/posts/7ee9086b/" class="leancloud_visitors" data-flag-title="AsyncTask源码解析">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -1286,7 +1620,8 @@ TitleView为标题栏，ContentView就是平时在Activity的onCreate()方法中
       
         
           
-          
+            <p>
+              
 这是AsyncTask源码的简单分析，主要基于《Android开发艺术探索》一书的内容。
 
 AsyncTask是Android中多线程处理方式之一（其余为1.HandlerThread、2.IntentService以及普通的线程Thread）。
@@ -1296,23 +1631,32 @@ AsyncTask常用方法：
 onPreExecute()
 doInBackground()
 onProgressUpdat
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/posts/7ee9086b/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/posts/7ee9086b/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1343,6 +1687,8 @@ onProgressUpdat
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
@@ -1369,11 +1715,20 @@ onProgressUpdat
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/posts/8d60b485/" itemprop="url">加载已安装应用、未安装apk中的资源</a></h1>
+                
+                <a href="/blog/posts/8d60b485/" class="post-title-link" itemprop="url">加载已安装应用、未安装apk中的资源</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1381,25 +1736,30 @@ onProgressUpdat
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T21:40:32+00:00">
-                2018-04-15
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-04-15 21:40:32" itemprop="dateCreated datePublished" datetime="2018-04-15T21:40:32+00:00">2018-04-15</time>
             
 
             
-              <span class="post-meta-divider">|</span>
-            
+              
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
               
-                <span class="post-meta-item-text">更新于&#58;</span>
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-17 13:32:14" itemprop="dateModified" datetime="2019-04-17T13:32:14+00:00">2019-04-17</time>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-17T12:18:14+00:00">
-                2019-04-17
-              </time>
             
           </span>
 
@@ -1407,20 +1767,34 @@ onProgressUpdat
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/blog/posts/8d60b485/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/8d60b485/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
           
-             <span id="/blog/posts/8d60b485/" class="leancloud_visitors" data-flag-title="加载已安装应用、未安装apk中的资源">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/blog/posts/8d60b485/" class="leancloud_visitors" data-flag-title="加载已安装应用、未安装apk中的资源">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -1444,27 +1818,37 @@ onProgressUpdat
       
         
           
-           加载已安装应用、未安装apk中的资源，其思路主要是获取到对应的ClassLoader/Context，通过ClassLoader加载R.java等类，再通过反射获取对应的资源id及资源。
+            <p>
+               加载已安装应用、未安装apk中的资源，其思路主要是获取到对应的ClassLoader/Context，通过ClassLoader加载R.java等类，再通过反射获取对应的资源id及资源。
 加载已安装应用资源sharedUserId在当前应用中加载已安装的其他应用资源，需要二者有相同的sharedUserId，这样Android系统为二者分配同一个Linux用户ID，两个App可以相互访问代码、资源等。
 
 通过Shared User id,拥有同一个User id的多个APK可以配置成运行在同一
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/posts/8d60b485/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/posts/8d60b485/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1495,6 +1879,8 @@ onProgressUpdat
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
@@ -1521,11 +1907,20 @@ onProgressUpdat
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/posts/b3994218/" itemprop="url">JVM类加载机制之ClassLoader</a></h1>
+                
+                <a href="/blog/posts/b3994218/" class="post-title-link" itemprop="url">JVM类加载机制之ClassLoader</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1533,25 +1928,30 @@ onProgressUpdat
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T16:40:32+00:00">
-                2018-04-15
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-04-15 16:40:32" itemprop="dateCreated datePublished" datetime="2018-04-15T16:40:32+00:00">2018-04-15</time>
             
 
             
-              <span class="post-meta-divider">|</span>
-            
+              
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
               
-                <span class="post-meta-item-text">更新于&#58;</span>
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-17 13:32:14" itemprop="dateModified" datetime="2019-04-17T13:32:14+00:00">2019-04-17</time>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-17T12:18:14+00:00">
-                2019-04-17
-              </time>
             
           </span>
 
@@ -1559,20 +1959,34 @@ onProgressUpdat
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/blog/posts/b3994218/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/b3994218/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
           
-             <span id="/blog/posts/b3994218/" class="leancloud_visitors" data-flag-title="JVM类加载机制之ClassLoader">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/blog/posts/b3994218/" class="leancloud_visitors" data-flag-title="JVM类加载机制之ClassLoader">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -1596,7 +2010,8 @@ onProgressUpdat
       
         
           
-          
+            <p>
+              
 本文为《一看你就懂，超详细java中的ClassLoader详解 - CSDN博客》阅读笔记
 
 简述JVM有三种类加载器：
@@ -1604,23 +2019,32 @@ onProgressUpdat
 BootStrap ClassLoader 启动类加载器，加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。
 Extention ClassLoader 扩展类加载器，加载目录%JRE_HOME%\lib\ext目录下的jar包和class文件。
 App ClassLoade
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/posts/b3994218/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/posts/b3994218/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1653,6 +2077,8 @@ App ClassLoade
   
   
 
+  
+
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
   
   
@@ -1677,11 +2103,20 @@ App ClassLoade
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/posts/5962504e/" itemprop="url">Android 异步消息机制 Handler、Message、Looper</a></h1>
+                
+                <a href="/blog/posts/5962504e/" class="post-title-link" itemprop="url">Android 异步消息机制 Handler、Message、Looper</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1689,25 +2124,30 @@ App ClassLoade
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-01T20:08:08+00:00">
-                2018-04-01
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-04-01 20:08:08" itemprop="dateCreated datePublished" datetime="2018-04-01T20:08:08+00:00">2018-04-01</time>
             
 
             
-              <span class="post-meta-divider">|</span>
-            
+              
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
               
-                <span class="post-meta-item-text">更新于&#58;</span>
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-17 13:32:14" itemprop="dateModified" datetime="2019-04-17T13:32:14+00:00">2019-04-17</time>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-17T12:18:14+00:00">
-                2019-04-17
-              </time>
             
           </span>
 
@@ -1715,20 +2155,34 @@ App ClassLoade
 
           
             
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/blog/posts/5962504e/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/5962504e/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
           
-             <span id="/blog/posts/5962504e/" class="leancloud_visitors" data-flag-title="Android 异步消息机制 Handler、Message、Looper">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+            <span id="/blog/posts/5962504e/" class="leancloud_visitors" data-flag-title="Android 异步消息机制 Handler、Message、Looper">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -1752,30 +2206,40 @@ App ClassLoade
       
         
           
-          
+            <p>
+              
 此文为鸿洋博客阅读笔记，配合原文食用口味更佳。
 Android 异步消息处理机制 让你深入理解 Looper、Handler、Message三者关系 - CSDN博客
 
 导图
 过程分析LooperLooper.perpare()Looper.perpare()方法创建Looper对象（同时创建MessageQueue对象），并与当前线程关联保存在sThreadLocal中。
-123456789101112public static final void prepare() &#123;    
-          ...
+public static final void prepare() &#123;          if (sThre
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/blog/posts/5962504e/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/posts/5962504e/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -1804,15 +2268,12 @@ Android 异步消息处理机制 让你深入理解 Looper、Handler、Message�
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/blog/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/blog/">1</a><a class="page-number" href="/blog/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/blog/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/7/">7</a><a class="extend next" rel="next" href="/blog/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/blog/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/blog/">1</a><a class="page-number" href="/blog/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/blog/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/blog/page/7/">7</a><a class="extend next" rel="next" href="/blog/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
 
           </div>
-          
-
-
           
 
         </div>
@@ -1828,56 +2289,112 @@ Android 异步消息处理机制 让你深入理解 Looper、Handler、Message�
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/blog/images/default_avatar.jpg" alt="季小勇">
             
               <p class="site-author-name" itemprop="name">季小勇</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <div class="site-description motion-element" itemprop="description"></div>
           </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
+          
+            <nav class="site-state motion-element">
               
-                <a href="/blog/archives/">
-              
-                  <span class="site-state-item-count">64</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
+                <div class="site-state-item site-state-posts">
                 
-                  <span class="site-state-item-count">14</span>
-                  <span class="site-state-item-name">标签</span>
+                  <a href="/blog/archives/">
                 
-              </div>
-            
+                    <span class="site-state-item-count">64</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
 
-          </nav>
+              
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
           
 
           
 
           
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/jixiaoyong" title="GitHub &rarr; https://github.com/jixiaoyong" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:jixiaoyong1995@gmail.com" title="E-Mail &rarr; mailto:jixiaoyong1995@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
           
 
           
@@ -1890,7 +2407,7 @@ Android 异步消息处理机制 让你深入理解 Looper、Handler、Message�
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://www.wanandroid.com/" title="WanAndroid" target="_blank">WanAndroid</a>
+                    <a href="http://www.wanandroid.com/" title="http://www.wanandroid.com/" rel="noopener" target="_blank">WanAndroid</a>
                   </li>
                 
               </ul>
@@ -1898,9 +2415,12 @@ Android 异步消息处理机制 让你深入理解 Looper、Handler、Message�
           
 
           
+            
+          
+          
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -1908,6 +2428,7 @@ Android 异步消息处理机制 让你深入理解 Looper、Handler、Message�
 
     </div>
   </aside>
+  
 
 
         
@@ -1916,17 +2437,17 @@ Android 异步消息处理机制 让你深入理解 Looper、Handler、Message�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">季小勇</span>
 
   
+
+  
 </div>
 
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -1942,9 +2463,8 @@ Android 异步消息处理机制 让你深入理解 Looper、Handler、Message�
 
 
 
-
   <div style="display: none;">
-  <script type="text/javascript" src="https://s96.cnzz.com/z_stat.php?id=1277214306&web_id=1277214306"></script>
+    <script src="//s95.cnzz.com/z_stat.php?id=1277214306&web_id=1277214306"></script>
   </div>
 
 
@@ -1962,11 +2482,14 @@ Android 异步消息处理机制 让你深入理解 Looper、Handler、Message�
 
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -1980,92 +2503,9 @@ Android 异步消息处理机制 让你深入理解 Looper、Handler、Message�
 
 
 
-  
 
 
 
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
 
 
 
@@ -2080,7 +2520,88 @@ Android 异步消息处理机制 让你深入理解 Looper、Handler、Message�
 
   
 
-  <script type="text/javascript">
+
+
+  
+  <script src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/blog/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/blog/js/utils.js?v=7.1.0"></script>
+
+  <script src="/blog/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/blog/js/schemes/muse.js?v=7.1.0"></script>
+
+
+
+  
+
+  
+
+
+  <script src="/blog/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'BDPbC62pglXOop9DC1tEFEUJ-gzGzoHsz',
+    appKey: 'if5pzWytt3aRHaO0sEHkGJ84',
+    placeholder: 'ヾ(=^▽^=)ノ',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn'
+  });
+</script>
+
+
+
+
+
+  
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -2129,6 +2650,8 @@ Android 异步消息处理机制 让你深入理解 Looper、Handler、Message�
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -2162,8 +2685,9 @@ Android 异步消息处理机制 让你深入理解 Looper、Handler、Message�
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -2332,9 +2856,9 @@ Android 异步消息处理机制 让你深入理解 Looper、Handler、Message�
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -2404,142 +2928,65 @@ Android 异步消息处理机制 让你深入理解 Looper、Handler、Message�
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("BDPbC62pglXOop9DC1tEFEUJ-gzGzoHsz", "if5pzWytt3aRHaO0sEHkGJ84");</script>
+
+  
+  
+
+  
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+
+
+  
+
+  
+
+  
   <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
   </script>
 
 
+  
+
+  
+
+  
 
   
 
   
 
   
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
 
   
 
