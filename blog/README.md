@@ -23,6 +23,6 @@
 
 很高兴与你相遇，既然来了，不妨[进来聊聊](https://jixiaoyong.github.io)。
 
-我的邮箱：jixiaoyong1995@gmail.com
+我的邮箱：aml4aWFveW9uZzE5OTVAZ21haWwuY29tCg==
 
 

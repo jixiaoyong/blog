@@ -7,7 +7,7 @@ date: 2016-06-06 6:06:06
 
 学习的过程需要不断的探索、累积，更需要有条理的总结，我会把平时学习的心得体会、经验总结放到这里，主要是为了自己能够在学习的过程中有计划的总结学习到的知识，同时也方便之后查阅。
 
-我的邮箱是：[jixiaoyong1995#gmail.com](mailto:jixiaoyong1995@gmail.com)
+我的邮箱是：aml4aWFveW9uZzE5OTVAZ21haWwuY29tCg==
 
 
 
