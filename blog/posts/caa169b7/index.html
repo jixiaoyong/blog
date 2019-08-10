@@ -99,21 +99,18 @@
 
 
 
-  <meta name="description" content="前言本文介绍了二叉树，及其应用。 树，既能像链表那样快速插入和删除，又可以像数组那样快速查找。  每棵树有且只有一个根，从根到任何一个节点有且只有一条路径；每个节点都可以有0个或者多个子节点，没有子节点的节点叫做叶子节点。 层是指从根节点到该节点的“代”树，根节点的在0层。 二叉搜索树一个节点只能有0~2个子节点的树叫做二叉树； 如果二叉树的左子节点的关键字小于该节点，右子节点的关键字大于该节点，">
-<meta name="keywords" content="数据结构">
+  <meta name="description" content="当APP的minSdkVersion低于Android 5时，在方法数大于65536时，需要将APP打包为多个DEX文件，此时需要添加MultiDex依赖。 官方方法如下： 1.build.gradle 12345678910111213android &amp;#123;    defaultConfig &amp;#123;        ...        minSdkVersion 15">
+<meta name="keywords" content="android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构_二叉树">
-<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/101c73f/index.html">
+<meta property="og:title" content="Android 5.x以下加载MultiDex白屏的处理优化">
+<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/caa169b7/index.html">
 <meta property="og:site_name" content="季小勇的博客">
-<meta property="og:description" content="前言本文介绍了二叉树，及其应用。 树，既能像链表那样快速插入和删除，又可以像数组那样快速查找。  每棵树有且只有一个根，从根到任何一个节点有且只有一条路径；每个节点都可以有0个或者多个子节点，没有子节点的节点叫做叶子节点。 层是指从根节点到该节点的“代”树，根节点的在0层。 二叉搜索树一个节点只能有0~2个子节点的树叫做二叉树； 如果二叉树的左子节点的关键字小于该节点，右子节点的关键字大于该节点，">
+<meta property="og:description" content="当APP的minSdkVersion低于Android 5时，在方法数大于65536时，需要将APP打包为多个DEX文件，此时需要添加MultiDex依赖。 官方方法如下： 1.build.gradle 12345678910111213android &amp;#123;    defaultConfig &amp;#123;        ...        minSdkVersion 15">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://jixiaoyong.github.io/images/20190103200423.png">
-<meta property="og:image" content="https://jixiaoyong.github.io/images/20190103203447.png">
-<meta property="og:updated_time" content="2019-08-10T04:31:56.556Z">
+<meta property="og:updated_time" content="2019-08-10T04:31:56.552Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据结构_二叉树">
-<meta name="twitter:description" content="前言本文介绍了二叉树，及其应用。 树，既能像链表那样快速插入和删除，又可以像数组那样快速查找。  每棵树有且只有一个根，从根到任何一个节点有且只有一条路径；每个节点都可以有0个或者多个子节点，没有子节点的节点叫做叶子节点。 层是指从根节点到该节点的“代”树，根节点的在0层。 二叉搜索树一个节点只能有0~2个子节点的树叫做二叉树； 如果二叉树的左子节点的关键字小于该节点，右子节点的关键字大于该节点，">
-<meta name="twitter:image" content="https://jixiaoyong.github.io/images/20190103200423.png">
+<meta name="twitter:title" content="Android 5.x以下加载MultiDex白屏的处理优化">
+<meta name="twitter:description" content="当APP的minSdkVersion低于Android 5时，在方法数大于65536时，需要将APP打包为多个DEX文件，此时需要添加MultiDex依赖。 官方方法如下： 1.build.gradle 12345678910111213android &amp;#123;    defaultConfig &amp;#123;        ...        minSdkVersion 15">
 
 
 
@@ -121,7 +118,7 @@
 
   
   
-  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/101c73f/">
+  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/caa169b7/">
 
 
 
@@ -131,7 +128,7 @@
   };
 </script>
 
-  <title>数据结构_二叉树 | 季小勇的博客</title>
+  <title>Android 5.x以下加载MultiDex白屏的处理优化 | 季小勇的博客</title>
   
 
 
@@ -355,7 +352,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/101c73f/">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/caa169b7/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="季小勇">
@@ -372,7 +369,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">数据结构_二叉树
+          <h1 class="post-title" itemprop="name headline">Android 5.x以下加载MultiDex白屏的处理优化
 
               
             
@@ -398,24 +395,12 @@
                 
               
 
-              <time title="创建时间：2019-01-03 22:09:40" itemprop="dateCreated datePublished" datetime="2019-01-03T22:09:40+00:00">2019-01-03</time>
+              <time title="创建时间：2019-08-10 11:39:00 / 修改时间：04:31:56" itemprop="dateCreated datePublished" datetime="2019-08-10T11:39:00+00:00">2019-08-10</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-10 04:31:56" itemprop="dateModified" datetime="2019-08-10T04:31:56+00:00">2019-08-10</time>
               
             
           </span>
@@ -433,8 +418,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/blog/posts/101c73f/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/101c73f/" itemprop="commentCount"></span>
+                <a href="/blog/posts/caa169b7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/caa169b7/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -442,7 +427,7 @@
 
           
           
-            <span id="/blog/posts/101c73f/" class="leancloud_visitors" data-flag-title="数据结构_二叉树">
+            <span id="/blog/posts/caa169b7/" class="leancloud_visitors" data-flag-title="Android 5.x以下加载MultiDex白屏的处理优化">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -473,61 +458,42 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍了二叉树，及其应用。</p>
-<p>树，既能像链表那样快速插入和删除，又可以像数组那样快速查找。</p>
-<p><img src="https://jixiaoyong.github.io/images/20190103200423.png" alt="树"></p>
-<p>每棵树有且只有一个<strong>根</strong>，从根到任何一个节点<strong>有且只有一条路径</strong>；每个节点都可以有0个或者多个<strong>子节点</strong>，没有子节点的节点叫做<strong>叶子节点</strong>。</p>
-<p><strong>层</strong>是指从根节点到该节点的“代”树，根节点的在<strong>0层</strong>。</p>
-<h1 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h1><p>一个节点只能有0~2个子节点的树叫做<strong>二叉树</strong>；</p>
-<p>如果二叉树的左子节点的关键字小于该节点，右子节点的关键字大于该节点，则该二叉树称为<strong>二叉搜索树</strong>。</p>
-<p>如下，是一个二叉树的节点：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BinaryNode</span></span>(<span class="keyword">val</span> iId: <span class="built_in">Int</span>, <span class="keyword">val</span> dData: <span class="built_in">Double</span>, <span class="keyword">var</span> left: BinaryNode? = <span class="literal">null</span>, <span class="keyword">var</span> right: BinaryNode? = <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">toString</span><span class="params">()</span></span>: String &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"&#123;<span class="variable">$iId</span>,<span class="variable">$dData</span>&#125;"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><p>遍历树指安装一定的顺序访问数的每个节点，按照访问节点的顺序不同，可以分为三种：</p>
-<ul>
-<li>前序遍历</li>
-<li>中序遍历</li>
-<li>后序遍历</li>
-</ul>
-<p>以中序遍历为例，其访问节点的顺序如下：</p>
+        <p>当APP的minSdkVersion低于Android 5时，在方法数大于65536时，需要将APP打包为多个DEX文件，此时需要添加MultiDex依赖。</p>
+<p>官方方法如下：</p>
+<p>1.<code>build.gradle</code></p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        ...</span><br><span class="line">        minSdkVersion <span class="number">15</span> </span><br><span class="line">        targetSdkVersion <span class="number">28</span></span><br><span class="line">        multiDexEnabled <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">  compile <span class="string">'com.android.support:multidex:1.0.3'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.<code>MyApplication</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">方式❶：</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyApplication</span> <span class="keyword">extends</span> <span class="title">MultiDexApplication</span> </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line">方式❷：</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyApplication</span> <span class="keyword">extends</span> <span class="title">SomeOtherApplication</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">attachBaseContext</span><span class="params">(Context base)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">super</span>.attachBaseContext(base);</span><br><span class="line">     MultiDex.install(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此外，为了避免一些启动期间需要的任何类未在主 DEX 文件中提供而导致<code>java.lang.NoClassDefFoundError</code>，还需要告诉AS将这些类添加到主DEX文件中：</p>
+<p>3.<code>build.gradle</code></p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            ❶ multiDexKeepFile file(<span class="string">'multidex-config.txt'</span>)</span><br><span class="line">            ❷ multiDexKeepProguard(<span class="string">'multidex-config.pro'</span>)</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//multidex-config.txt</span></span><br><span class="line">com<span class="regexp">/example/</span>MyClass.<span class="keyword">class</span></span><br><span class="line">com<span class="regexp">/example/</span>MyOtherClass.<span class="keyword">class</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//multidex-config.pro</span></span><br><span class="line">-keep <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">example</span>.<span class="title">MyClass</span></span></span><br><span class="line"><span class="class">-<span class="title">keep</span> <span class="title">class</span> <span class="title">com</span>.<span class="title">example</span>.<span class="title">MyClassToo</span></span></span><br><span class="line"><span class="class">-<span class="title">keep</span> <span class="title">class</span> <span class="title">com</span>.<span class="title">example</span>.** &#123;</span> *; &#125; <span class="comment">// All classes in the com.example package</span></span><br></pre></td></tr></table></figure>
+<p>但是在实际运行中，Android 4.x的系统会在APP安装后第一次启动时，在<code>MultiDex.install(this)</code>方法中进行DEX文件合并优化等耗时操作（主线程），往往会持续数十秒以上，从而导致APP第一次启动时长时间白屏，十分影响体验。</p>
+<p>查阅相应的资料后大体有以下几种方案</p>
 <ol>
-<li>调用自身遍历该节点的左子树；</li>
-<li>访问这个节点；</li>
-<li>调用自身遍历该节点的右子树。</li>
+<li><p>设置主Activity的背景为透明色</p>
+<p>这样当用户点击APP图标启动APP时，在主Activity启动之前看到的一直是桌面的样子而非白屏，但这只是一种障眼法，用户可能会以为系统卡顿，体验并不好。</p>
+</li>
+<li><p>在Application中检测到是第一次启动的话，新开一个进程并在其中进行<code>MultiDex.install(this)</code></p>
+<p>这种方法在主进程启动时，检测到尚未进行MultidexOpt，则阻塞当前进程，新开一个进程，在其中加载一个Activity，并在后台进程运行<code>MultiDex.install(this)</code>，当MultidexOpt完成后再关闭当前进程，返回主进程继续正常开启APP。</p>
+<p>由于主进程被阻塞的同时成为了后台进程，所以也不会触发ANR，此外子进程中的过渡Activity也只用到了基本的类，所以基本不用担心会触发<code>java.lang.NoClassDefFoundError</code>，而且过渡Activity可以展示进度、提示等用户友好的页面，相对来说体验也好了很多。</p>
+<p>但是这种方法从子进程返回主进程涉及到进程间通信，以及主进程的主Activity启动时生命周期会出现异常(<code>onCreate()</code> -&gt; <code>onStart()</code> -&gt; <code>onResume()</code> -&gt; <code>onPause()</code>-&gt;<code>onResume()</code>)，仍然不是很好的解决方法。</p>
+</li>
 </ol>
-<p>实现如下：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 中序遍历法</span></span><br><span class="line"><span class="comment"> * 使所有节点的关键值按照升序被访问</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">inTraversing</span><span class="params">(node: <span class="type">BinaryNode</span>?)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (node == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    inTraversing(node.left)</span><br><span class="line">    print(<span class="string">"<span class="variable">$node</span>,"</span>)</span><br><span class="line">    inTraversing(node.right)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="最大值和最小值"><a href="#最大值和最小值" class="headerlink" title="最大值和最小值"></a>最大值和最小值</h2><p>二叉搜索树的最大值是右子树中最右端没有子节点的右子节点；</p>
-<p>二叉搜索树的最小值是左子树中最左端没有子节点的左子节点。</p>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>二叉搜索树因为节点要满足<code>左子节点 &lt; 节点 &lt; 右子节点</code>这个条件，所以删除需要分以下几种情况：</p>
-<p>按照要删除的节点子节点数目的不同，分为3种情况</p>
-<ul>
-<li><p>要删除的节点是叶节点 将其父节点的指向设为null即可</p>
-</li>
-<li><p>要删除的节点有且只有一个节点 将其父节点指向其子节点</p>
-</li>
-<li><p>要删除的节点有两个子节点 这时候可以找该子节点的右子树中最小的（或者左子树中最大的）节点并替换掉要删除的节点，</p>
-<p>与此同时如果这个节点有右子节点（或对应的左子节点）则按照2/3的规则处理，这样就能保证这个树的结构不会出错</p>
-</li>
-</ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">delete</span><span class="params">(iId: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">        <span class="comment">//查找iId对应的节点</span></span><br><span class="line">        <span class="keyword">var</span> current = root</span><br><span class="line">        <span class="keyword">var</span> parent = root</span><br><span class="line">        <span class="keyword">while</span> (current?.iId != iId) &#123;</span><br><span class="line">            <span class="keyword">if</span> (current == <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            &#125;</span><br><span class="line">            parent = current</span><br><span class="line">            current = <span class="keyword">if</span> (iId &gt; current.iId) &#123;</span><br><span class="line">                current.right</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                current.left</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (parent == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 按照要删除的节点子节点数目的不同，分为3种情况</span></span><br><span class="line"><span class="comment">         * 1/3 要删除的节点是叶节点 将其父节点的指向设为null即可</span></span><br><span class="line"><span class="comment">         * 2/3 要删除的节点有且只有一个节点 将其父节点指向其子节点</span></span><br><span class="line"><span class="comment">         * 3/3 要删除的节点有两个子节点 这时候可以找该子节点的右子树中最小的（或者左子树中最大的）节点并替换掉要删除的节点，</span></span><br><span class="line"><span class="comment">         *     与此同时如果这个节点有右子节点（或对应的左子节点）则按照2/3的规则处理，这样就能保证这个树的结构不会出错</span></span><br><span class="line"><span class="comment">         *     下面采用的是找该节点的右子树最小值，即右子节点或者右子节点的最后一个左子节点</span></span><br><span class="line"><span class="comment">         *     找到后用该子节点的值替换掉要删除的节点值，如果该子节点还有右子节点，将该子节点的父节点指向其右子节点</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">if</span> (current.left != <span class="literal">null</span> &amp;&amp; current.right != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="comment">//双子节点</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">// 当前点右子节点的左子节点为null</span></span><br><span class="line">            <span class="keyword">if</span> (current.right!!.left == <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (current.iId &gt; parent.iId) &#123;</span><br><span class="line">                    parent.right = current.right</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    parent.left = current.right</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//TODO 是否需要将右节点的左子节点指向当前点的左子节点</span></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> cChildNode = current.right</span><br><span class="line">            <span class="keyword">var</span> cParentNode = current!!</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (cChildNode?.left != <span class="literal">null</span>) &#123;</span><br><span class="line">                cParentNode = cChildNode</span><br><span class="line">                cChildNode = cChildNode.left</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//后继节点</span></span><br><span class="line">            cParentNode.left = cChildNode!!.right</span><br><span class="line">            cChildNode!!.right = current.right</span><br><span class="line">            cChildNode!!.left = current.left</span><br><span class="line">            <span class="keyword">if</span> (current.iId &gt; parent.iId) &#123;</span><br><span class="line">                parent.right = cChildNode</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                parent.left = cChildNode</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (current.left == <span class="literal">null</span> &amp;&amp; current.right == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="comment">//叶子节点</span></span><br><span class="line">            <span class="keyword">if</span> (current.iId &gt; parent.iId) &#123;</span><br><span class="line">                parent.right = <span class="literal">null</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                parent.left = <span class="literal">null</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (current.left == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (current.iId &gt; parent.iId) &#123;</span><br><span class="line">                parent.right = current.right</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                parent.left = current.right</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (current.right == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (current.iId &gt; parent.iId) &#123;</span><br><span class="line">                parent.right = current.left</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                parent.left = current.left</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="哈夫曼编码"><a href="#哈夫曼编码" class="headerlink" title="哈夫曼编码"></a>哈夫曼编码</h1><p>哈夫曼编码用来对一段文本进行压缩，解压。</p>
-<blockquote>
-<p>压缩：用字符的编码替代字符</p>
-<p>解压：用字符代替对应的编码</p>
-</blockquote>
-<p>实现思路如下：</p>
-<ul>
-<li>将字符按照出现的频次生成优先级队列；</li>
-<li>依次<strong>取出</strong>两个最小的字符，为他们生成一个父节点（父节点频次为两个子节点之和）；</li>
-<li>并将插入优先级队列中，依次循环直到优先级队列中只有一个节点——哈夫曼树的根节点；</li>
-<li>从哈夫曼树的根开始，以向左为0，向右为1对其叶子节点上的字符赋予编码。</li>
-</ul>
-<p>其过程如下图所示：</p>
-<p><img src="https://jixiaoyong.github.io/images/20190103203447.png" alt="哈夫曼编码示意图"></p>
-<h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><p><a href="https://github.com/jixiaoyong/Notes-Files/blob/master/AndroidLearningResource/java_note/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/tree/BinaryTree.kt" target="_blank" rel="noopener">👉点这里</a> 查看<code>二叉树</code>源码</p>
-<p><a href="https://github.com/jixiaoyong/Notes-Files/blob/master/AndroidLearningResource/java_note/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AD%A6%E4%B9%A0/tree/HuffmanCodeUtils.kt" target="_blank" rel="noopener">👉点这里</a> 查看<code>哈夫曼编码</code>源码</p>
+<p>结合上述的分析后，可以看到这种问题的优化思路主要在于如何在避免<code>java.lang.NoClassDefFoundError</code>的同时，在后台可靠的通过<code>MultiDex.install(this)</code>执行MultidexOpt操作。</p>
+<p>通过以上方案1和2的结合，可以有一个比较完美的解决方案：</p>
+<ol>
+<li>方案2中在过渡Activity的后台线程进行MultidexOpt操作思路是正确的，但是不需要再单独开一个进程，我们完全可以将其当做主进程的第一个Activity，等待MultidexOpt操作完成后再跳转到主Activity并finish掉本Activity，这样主Activity的生命周期也不会受影响。</li>
+<li>这种情况下在部分低端机上，过渡Activity到主Activity跳转时会出现短暂黑屏，我们可以在过渡页面将Activity切换动画设置为渐变效果，并将主Activity背景设置为透明，待主Activity完全加载好后再将背景切换为普通模式。</li>
+</ol>
+<p>综上处理，我们的Application无需改动，甚至主Activity也可以不做改动，只需要添加一个过渡页面为启动Activity，在其中后台进行MultidexOpt，等DEX文件处理完毕后再加载主Activity。对项目改动少并且逻辑较为简单。</p>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><p><a href="https://developer.android.google.cn/studio/build/multidex.html?hl=zh-CN" target="_blank" rel="noopener">配置方法数超过 64K 的应用</a></p>
+<p><a href="https://www.jianshu.com/p/c2d7b76ff063" target="_blank" rel="noopener">Android MultiDex初次启动APP优化方案优雅的实现</a></p>
+<p><a href="https://www.zybuluo.com/946898963/note/1219741" target="_blank" rel="noopener">MultiDex深入学习</a></p>
 <p><script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script></p>
-<iframe id="iframeid" scrolling="false" height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/数据结构_二叉树.md</div>"></iframe>
+&lt;iframe id=”iframeid”<br>scrolling=false  height=”30” frameborder=”no” border=”0”marginwidth=”0” marginheight=”0”<br> onload=”Javascript:editOnGithub()”<br> srcdoc=”<div id="&quot;url&quot;"><a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/AndroidMultiDexOpt.md" target="_blank" rel="noopener">https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/AndroidMultiDexOpt.md</a><br>    </div>“&gt;<br>
+
+
+
       
     </div>
 
@@ -561,7 +527,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://jixiaoyong.github.io/blog/posts/101c73f/" title="数据结构_二叉树">https://jixiaoyong.github.io/blog/posts/101c73f/</a>
+    <a href="https://jixiaoyong.github.io/blog/posts/caa169b7/" title="Android 5.x以下加载MultiDex白屏的处理优化">https://jixiaoyong.github.io/blog/posts/caa169b7/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -574,7 +540,7 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/数据结构/" rel="tag"># 数据结构</a>
+            <a href="/blog/tags/android/" rel="tag"># android</a>
           
         </div>
       
@@ -642,8 +608,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/posts/2041f2cb/" rel="next" title="数据结构_高级排序">
-                <i class="fa fa-chevron-left"></i> 数据结构_高级排序
+              <a href="/blog/posts/1b0362b/" rel="next" title="Android中View相关知识">
+                <i class="fa fa-chevron-left"></i> Android中View相关知识
               </a>
             
           </div>
@@ -651,10 +617,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/posts/851be5ef/" rel="prev" title="数据结构_总结">
-                数据结构_总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -850,7 +812,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二叉搜索树"><span class="nav-number">2.</span> <span class="nav-text">二叉搜索树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历"><span class="nav-number">2.1.</span> <span class="nav-text">遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大值和最小值"><span class="nav-number">2.2.</span> <span class="nav-text">最大值和最小值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除"><span class="nav-number">2.3.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#哈夫曼编码"><span class="nav-number">3.</span> <span class="nav-text">哈夫曼编码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#源码"><span class="nav-number">4.</span> <span class="nav-text">源码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文档"><span class="nav-number">1.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
             
 
           </div>
