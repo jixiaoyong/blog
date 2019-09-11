@@ -56,8 +56,17 @@ function decryptAES (password) {
       }
 
       document.getElementById('hbe-security').style.display = 'none';
-      if (document.getElementById('toc-div')) {
-        document.getElementById('toc-div').style.display = 'inline';
+
+      var tocDiv = document.getElementById("toc-div");
+      if (tocDiv) {
+        tocDiv.style.display = 'inline';
+      }
+
+      var tocDivs = document.getElementsByClassName('toc-div-class');
+      if (tocDivs && tocDivs.length > 0) {
+        for (var idx in tocDivs) {
+          tocDivs[idx].style.display = 'inline';
+        }
       }
     }
 
@@ -145,7 +154,7 @@ function hbeLoader(){
     if (keyPressEvent.keyCode === 13) {
       const result = decryptAES(password);
       if (result) {
-        setCookie(GenerateCookieName(), password, 30);
+        setCookie(generateCookieName(), password, 30);
       }
     }
   };
