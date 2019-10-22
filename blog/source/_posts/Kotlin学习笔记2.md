@@ -97,7 +97,55 @@ fun copyArray(from: Array<out Any>, to: Array<in Int>) {
 }
 ```
 
+* 星号投射
 
+> 你对类型参数一无所知，但仍然希望以安全的方式使用它。
+
+**安全的使用**，则表示该类`Group<T>`满足
+
+> 1.子类至少接收和父类一样范围的参数 >=  ---> 父类入参为Noting 不能安全写入
+>
+>  2.子类最多返回和父类一样范围的参数 <=  ---> 父类出参为Any? 可以安全读取
+
+则有以下三种实现方式
+
+![in-out-star-projection-approaches](https://jixiaoyong.github.io/images/20191022194750.png)
+
+其中：
+
+`Group<in Noting>` 的`fetch()`方法一直返回`Any?`
+
+`Group<out Any?>` 的`T`需要与实际的`Group`的`T`保持一致，否则会报错
+
+`Group<*>` 既能`insert`正确返回对应的类型，也不用实时修改
+
+```kotlin
+object TClass {
+
+    fun readIn(group: Group<in Nothing>) {
+        val d = group.fetch()
+    }
+
+    fun readOut(group: Group<out Animal>) {
+        val d = group.fetch()
+    }
+
+    fun read(group: Group<*>) {
+        val d = group.fetch()
+    }
+
+}
+interface Group<T : Dog> {
+    fun insert(member: T): Unit
+    fun fetch(): T
+}
+```
+
+
+
+* 参考资料
+
+[Star-Projections and How They Work](https://typealias.com/guides/star-projections-and-how-they-work/)
 
 <script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
 <iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Kotlin学习笔记2.md</div>"></iframe>
