@@ -245,6 +245,25 @@ class ClassB() {
 
 
 
+# 中缀函数
+
+需要满足三个条件：
+
+1. 成员函数或拓展函数
+2. 只有一个参数
+3. infix声明
+
+```kotlin
+infix fun String.div(string: String):String{
+    return this.replace(string,"")
+}
+
+使用：
+val s = "bababbaab" div "a"
+```
+
+
+
 * 参考资料
 
 [Star-Projections and How They Work](https://typealias.com/guides/star-projections-and-how-they-work/)
