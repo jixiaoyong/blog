@@ -5,15 +5,15 @@ abbrlink: 8a52763a
 date: 2018-02-11 11:38:43
 ---
 
-- 尾递归优化
+# 尾递归优化
 
-  把递归通过编译器转化为迭代，从而避免Stack Overflow
+把递归通过编译器转化为迭代，从而避免Stack Overflow
 
-  “以时间换取空间”
+“以时间换取空间”
 
-  普通递归：
+普通递归：
 
-  调用函数之后，还需要使用其返回值供自己使用，即自身返回值依赖于下一级函数，一般是调用自身的代码后面，还有其他的代码要执行。
+调用函数之后，还需要使用其返回值供自己使用，即自身返回值依赖于下一级函数，一般是调用自身的代码后面，还有其他的代码要执行。
 
 ```kotlin
 fun fun1(n: Int): BigInteger {
@@ -48,13 +48,13 @@ tailrec fun fun2(n: Int, m: Result) {
 
 ​	本例中传入`fun2()`的`Result`实例保存了计算结果
 
-- sealed class 密封类
+# sealed class 密封类
 
-  密封类的所有子类必须在一个文件(xx.kt)中，他的子类是有限的，所以当`when()`的时候不需要`else`。
+密封类的所有子类必须在一个文件(xx.kt)中，他的子类是有限的，所以当`when()`的时候不需要`else`。
 
-  某种意义上他们像是一种`enum class`，只不过他的子类可以有多个实例。
+某种意义上他们像是一种`enum class`，只不过他的子类可以有多个实例。
 
-  > Sealed classes are used for representing restricted class hierarchies, when a value can have one of the types from a limited set, but cannot have any other type. They are, in a sense, an extension of enum classes: the set of values for an enum type is also restricted, but each enum constant exists only as a single instance, whereas a subclass of a sealed class can have multiple instances which can contain state.
+> Sealed classes are used for representing restricted class hierarchies, when a value can have one of the types from a limited set, but cannot have any other type. They are, in a sense, an extension of enum classes: the set of values for an enum type is also restricted, but each enum constant exists only as a single instance, whereas a subclass of a sealed class can have multiple instances which can contain state.
 
 ```kotlin
 //sealed class
@@ -68,20 +68,20 @@ sealed class Player{
 class p2():Player()
 ```
 
-* kotlin抛出异常
+# kotlin抛出异常
 
 ```kotlin
 @Throws(RemoteException::class)
 fun getBookList():List<Book>
 ```
 
-* kotlin中的泛型
+# kotlin中的泛型
 
-  `out` 协变，使用子类泛型的对象可以赋值给使用父类泛型的对象，相当于`extend`，用于方法的返回值（生产者）时使用
+`out` 协变，使用子类泛型的对象可以赋值给使用父类泛型的对象，相当于`extend`，用于方法的返回值（生产者）时使用
 
-  `in` 逆变，使用父类泛型的对象可以赋值给使用子类泛型的对象，相当于`super`，用于方法的参数（消费者）时使用
+`in` 逆变，使用父类泛型的对象可以赋值给使用子类泛型的对象，相当于`super`，用于方法的参数（消费者）时使用
 
-  不变，当泛型即当消费者，又当生产者时，不用`in`或者`out`
+不变，当泛型即当消费者，又当生产者时，不用`in`或者`out`
 
 ```kotlin
 fun main(args: Array<String>) {
@@ -97,7 +97,7 @@ fun copyArray(from: Array<out Any>, to: Array<in Int>) {
 }
 ```
 
-* 星号投射
+# 星号投射
 
 > 你对类型参数一无所知，但仍然希望以安全的方式使用它。
 
@@ -138,6 +138,108 @@ object TClass {
 interface Group<T : Dog> {
     fun insert(member: T): Unit
     fun fetch(): T
+}
+```
+
+
+
+# 委托
+
+委托是将重复出现的代码放到一个地方。
+
+![委托示意图](https://jixiaoyong.github.io/images/20191023194526.png)
+
+* 类委托 ：
+
+```kotlin
+interface Interface {	fun a()	}
+class A : Interface
+class B(a: Interface) : Interface by a
+```
+
+这样B便可以将`Interface`中方法的实现委托给类`A`的对象`a`
+
+* 委托属性：
+
+将同一类型的属性的`get`、`set`方法放到一个地方实现，可以在加入`其它操作`
+
+```kotlin
+class Delegate {
+    var name: String = ""
+
+    operator fun getValue(clazz: Any?, property: KProperty<*>): String {
+        println("get()")//其它操作
+        return name
+    }
+
+    operator fun setValue(clazz: Any?, property: KProperty<*>, t: String) {
+        println(" set()")
+        name = t
+    }
+}
+
+class ClassA {
+    var name: String by Delegate()
+    var age: String by Delegate()
+}
+```
+
+* 委托类的初始化函数：
+
+```kotlin
+fun <T> delegate(initializer: () -> T) = Delegate(initializer)
+
+class MyClass1 {
+    var name: String by delegate {
+        println("MyClass1.name init")
+        "MyClass1"
+    }
+}
+
+class Delegate<T>(initializer: () -> T) {
+    operator fun getValue(myClass1: T, property: KProperty<*>): String {
+        println("$className get()")
+        return name
+    }
+
+    operator fun setValue(myClass1: T, property: KProperty<*>, t: String) {
+        println("$className set()")
+        name = t
+    }
+
+    var name: String = ""
+    var className = initializer()
+}
+```
+
+* Map委托：
+
+将类的`属性`名称和`map`中的`key`一一对应，从而将对于`value`赋值给`属性`
+
+```kotlin
+class ClassB(map: Map<String, Any>) {
+    val name: String by map
+    val age: Int by map
+}
+fun main() {
+    val map = mapOf("name" to "shany",
+            "age" to 18)
+    val b = ClassB(map)
+    print(b.name)//shayn
+    print(b.age)//18
+}
+```
+
+* veroable
+
+可以拦截赋值操作
+
+```kotlin
+class ClassB() {
+   var name:String by Delegates.vetoable("ThisIsInitialValue"){
+       property, oldValue, newValue ->
+       return@vetoable false //返回true允许更改值，false不允许更改
+   }
 }
 ```
 
