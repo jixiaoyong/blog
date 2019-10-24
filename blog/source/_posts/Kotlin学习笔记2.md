@@ -262,11 +262,44 @@ infix fun String.div(string: String):String{
 val s = "bababbaab" div "a"
 ```
 
+# inline内联函数
+
+`inline`修饰的函数在被调用时将字节码动态插入到被到调用的地方。
+
+`inline`修饰的函数的`lambda参数`如果运行在该函数内部的*`子函数/其他环境`*，则不允许这个lambda函数**非局部返回**（因为没有办法从该 `子函数/其他环境` 中直接退出lambda所在的外层函数），对于这种lambda函数需要添加**`crossinline`**修饰。
+
+```kotlin
+//**非局部返回**指从lambda2中执行return语句，推出的是整个func()
+inline fun func1(crossinline lambda1:()->Unit,  lambda2:()->Unit){
+    val f = Runnable {
+        lambda1()//不可以调用非局部返回，所以用crossinline修饰
+    }
+    
+    lambda2()//可以调用非局部返回
+}
+
+```
+
+Kotlin也存在Java泛型所具有的**类型擦除**问题，为了优化该问题，inline函数可以结合`reified`实现**实体化类型参数**
+
+```kotlin
+inline fun <reified T> isInstanceOf(value: Any) = value is T //在这里仍然可以知道T是什么类型的，所以可以执行value is T 
+print(isInstanceOf<String>(""))//true
+```
+
+**原理:**内联函数会直接被插入到被调用的地方，而`reified`修饰的类型参数会保证将用户调用时写的类型`String`同时也写入到被调用的地方，如此便没有发生类型擦除。
 
 
-* 参考资料
+
+
+
+
+
+# 参考资料
 
 [Star-Projections and How They Work](https://typealias.com/guides/star-projections-and-how-they-work/)
+
+[Kotlin的独门秘籍Reified实化类型参数(下篇)](https://blog.csdn.net/u013064109/article/details/83507076)
 
 <script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
 <iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Kotlin学习笔记2.md</div>"></iframe>
