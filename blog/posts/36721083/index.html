@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="JiXiaoyong&#39;s Blog">
 <meta property="og:description" content="简介在编码中常常会用到单例，来确保类有一个唯一的对象，一般情况下将构造方法私有化既可以实现，但当考虑到多线程时事情会变得有些复杂，本文讨论的正是几种多线程的情况下实现单例的方法。 1.普通单例私有化构造方法，对外提供一个公有、静态的方法，在其内部判断类对象是否已经存在，否的话生成类对象再返回。 123456789101112131415class ASingleton&amp;#123;		private">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-26T07:03:21.731Z">
+<meta property="og:updated_time" content="2019-10-26T07:04:08.592Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java创建线程安全的单例Singleton">
 <meta name="twitter:description" content="简介在编码中常常会用到单例，来确保类有一个唯一的对象，一般情况下将构造方法私有化既可以实现，但当考虑到多线程时事情会变得有些复杂，本文讨论的正是几种多线程的情况下实现单例的方法。 1.普通单例私有化构造方法，对外提供一个公有、静态的方法，在其内部判断类对象是否已经存在，否的话生成类对象再返回。 123456789101112131415class ASingleton&amp;#123;		private">
@@ -369,7 +369,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java创建线程安全的单例Singleton
+          <h1 class="post-title" itemprop="name headline">Java创建线程安全的单例Singleton<a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/Java创建线程安全的单例Singleton.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
 
               
             
@@ -412,7 +412,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-26 07:03:21" itemprop="dateModified" datetime="2019-10-26T07:03:21+00:00">2019-10-26</time>
+                <time title="修改时间：2019-10-26 07:04:08" itemprop="dateModified" datetime="2019-10-26T07:04:08+00:00">2019-10-26</time>
               
             
           </span>
@@ -496,8 +496,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> SingletonEnum&#123;</span><br><span class="line">	INSTANCE;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dosth</span><span class="params">()</span></span>&#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>但是，android开发者要注意，枚举占用的内存是普通单例的两倍多，所以，并不推荐在android中使用。</p>
 <p>关于枚举的更详细资料，参阅(深入理解Java枚举类型(enum))[<a href="http://blog.csdn.net/javazejian/article/details/71333103#t7]" target="_blank" rel="noopener">http://blog.csdn.net/javazejian/article/details/71333103#t7]</a></p>
-<p><script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script></p>
-<iframe id="iframeid" scrolling="false" height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Java创建线程安全的单例Singleton.md</div>"></iframe>
+
       
     </div>
 

@@ -110,7 +110,7 @@
 <meta property="og:image" content="https://jixiaoyong.github.io/images/jetpack_donut.png">
 <meta property="og:image" content="https://jixiaoyong.github.io/images/20190124212220.png">
 <meta property="og:image" content="https://jixiaoyong.github.io/images/20190202161443.png">
-<meta property="og:updated_time" content="2019-10-26T07:03:21.731Z">
+<meta property="og:updated_time" content="2019-10-26T07:04:08.596Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从Sunflower开始学习优雅的Jetpack架构">
 <meta name="twitter:description" content="Google大法NB！！！(破音)  前言Jetpack是Google推出的一系列Android软件集合，“使您可以更轻松地开发出色的 Android 应用。这些组件可帮助您遵循最佳做法、让您摆脱编写样板代码的工作并简化复杂任务，以便您将精力集中放在所需的代码上”。 Sunflower则是Google用来演示如何使用Jetpack进行Android开发的Demo，有着非常优雅的架构与十分简洁的代">
@@ -373,7 +373,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">从Sunflower开始学习优雅的Jetpack架构
+          <h1 class="post-title" itemprop="name headline">从Sunflower开始学习优雅的Jetpack架构<a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/从Sunflower开始学习优雅的Jetpack架构.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
 
               
             
@@ -416,7 +416,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-26 07:03:21" itemprop="dateModified" datetime="2019-10-26T07:03:21+00:00">2019-10-26</time>
+                <time title="修改时间：2019-10-26 07:04:08" itemprop="dateModified" datetime="2019-10-26T07:04:08+00:00">2019-10-26</time>
               
             
           </span>
@@ -484,8 +484,7 @@
 <p>本文中的大部分代码、示意图除非特殊注明外，皆来自Google的<a href="https://github.com/googlesamples/android-sunflower" target="_blank" rel="noopener">Sunflower工程</a>或其他互联网资源，根据篇幅需要做了部分精简，所有权益归原作者所有。</p>
 </blockquote>
 <p>下图是<a href="https://developer.android.google.cn/jetpack/" target="_blank" rel="noopener">Google Jetpack官网</a>对Jetpack的介绍图：</p>
-<center>     <img style="border-radius: 0.3125em;     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://jixiaoyong.github.io/images/jetpack_donut.png">     <br>     <div style="color:orange; border-bottom: 1px solid #d9d9d9;     display: inline-block;     color: #999;     padding: 2px;">Jetpack示意图 <font style="color: #BEBEBE">来自GoogleJetpack官网</font></div> </center>
-
+<p><center>     <img style="border-radius: 0.3125em;     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://jixiaoyong.github.io/images/jetpack_donut.png">     <br>     <div style="color:orange; border-bottom: 1px solid #d9d9d9;     display: inline-block;     color: #999;     padding: 2px;">Jetpack示意图 <font style="color: #BEBEBE">来自GoogleJetpack官网</font></div> </center></p>
 <h1 id="对Sunflower的整体分析"><a href="#对Sunflower的整体分析" class="headerlink" title="对Sunflower的整体分析"></a>对Sunflower的整体分析</h1><p>下图是Sunflower架构的简单示意图：</p>
 <p><img src="https://jixiaoyong.github.io/images/20190124212220.png" alt=""></p>
 <p>可以看到，APP的界面有<code>我的花园</code>、<code>植物目录</code>和<code>植物介绍</code>三部分，这三者的切换逻辑通过<font color="#0288d1" size="4"><strong><code>Navigation</code></strong></font>实现。</p>
@@ -535,9 +534,7 @@
 <p><code>ViewModel</code>是设计用来以一种可以感知生命周期（<code>lifecycle</code>）的方式存储和管理与UI相关的数据，它可以允许数据在诸如屏幕旋转的变化中存活下来，也就是说<code>VideModule</code>的数据生命周期可能要比他附着的<code>Activity</code>或<code>Fragment</code>的生命周期长。</p>
 <p>同时，<code>UI controller</code>可以在<code>Activity</code>等不再需要数据时，自动调用<code>ViewModel</code>的<code>onCleared()</code>方法清除这些数据以避免内存泄漏。</p>
 <p>下图是<code>ViewModel</code>和<code>Activity</code>的生命周期对比：</p>
-<center>     <img style="border-radius: 0.3125em;     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://jixiaoyong.github.io/images/20190202161443.png">     <br>     <div style="color:orange; border-bottom: 1px solid #d9d9d9;     display: inline-block;     color: #999;     padding: 2px;">ViewModel和Activity的生命周期对比图：左图Activity先经历了一次旋转，然后finish，右边是与此相关的ViewModel的生命周期<br><font style="color: #BEBEBE">来自GoogleJetpack官网</font></div> </center>
-
-<p>此外，由于默认的获取ViewModel的方法只能调取无参构造函数，当需要向ViewModel传递参数时，就需要用到Factory工厂模式来创建ViewModel：</p>
+<p><center>     <img style="border-radius: 0.3125em;     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://jixiaoyong.github.io/images/20190202161443.png">     <br>     <div style="color:orange; border-bottom: 1px solid #d9d9d9;     display: inline-block;     color: #999;     padding: 2px;">ViewModel和Activity的生命周期对比图：左图Activity先经历了一次旋转，然后finish，右边是与此相关的ViewModel的生命周期<br><font style="color: #BEBEBE">来自GoogleJetpack官网</font></div> </center><br>此外，由于默认的获取ViewModel的方法只能调取无参构造函数，当需要向ViewModel传递参数时，就需要用到Factory工厂模式来创建ViewModel：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> viewModel = ViewModelProviders.of(<span class="keyword">this</span>, factory).<span class="keyword">get</span>(GardenPlantingListViewModel::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PlantDetailViewModelFactory</span></span>(args:Any) : ViewModelProvider.NewInstanceFactory() &#123;...&#125;</span><br></pre></td></tr></table></figure>
 <p>还可以将<code>ViewModel</code>于<code>LiveData</code>结合，这样在<code>Activity</code>等地方对<code>LiveData</code>进行订阅后，当<code>LiveData</code>的值发生变化时<code>Activity</code>等可以及时得到通知，而做出相应变化。此外<code>ViewModel</code>与<code>lifecycle</code>的结合可以保证在<code>Activity</code>等生命周期结束后数据得到及时的清理。</p>
 <h2 id="Room保存数据"><a href="#Room保存数据" class="headerlink" title="Room保存数据"></a>Room保存数据</h2><blockquote>
@@ -560,9 +557,6 @@
 </ul>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://developer.android.google.cn/jetpack/" target="_blank" rel="noopener">Android Jetpack官网</a></p>
 <p><a href="https://blog.csdn.net/weixin_42215792/article/details/80395379" target="_blank" rel="noopener">Android Jetpack-Navigation 使用中参数的传递</a></p>
-<p><script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script></p>
-<iframe id="iframeid" scrolling="false" height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/从Sunflower开始学习优雅的Jetpack架构.md</div>"></iframe>
-
 
       
     </div>

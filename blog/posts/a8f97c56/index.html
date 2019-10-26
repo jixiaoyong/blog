@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="JiXiaoyong&#39;s Blog">
 <meta property="og:description" content="基于Python3.x Python文件默认格式.py 首行默认以下命令： 12#!/usr/bin/python# -*- coding: UTF-8 -*- 数据类型 数字 整数int  1，2，3 长整数long  1112L 浮点数float （小数）1.23，3.14 复数complex  3.14j  字符串  ‘abc’，”abc”，’’’abc‘’‘ ‘x’和”x” 区别不大 ‘’">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-26T07:03:21.731Z">
+<meta property="og:updated_time" content="2019-10-26T07:04:08.592Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python入门知识">
 <meta name="twitter:description" content="基于Python3.x Python文件默认格式.py 首行默认以下命令： 12#!/usr/bin/python# -*- coding: UTF-8 -*- 数据类型 数字 整数int  1，2，3 长整数long  1112L 浮点数float （小数）1.23，3.14 复数complex  3.14j  字符串  ‘abc’，”abc”，’’’abc‘’‘ ‘x’和”x” 区别不大 ‘’">
@@ -369,7 +369,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Python入门知识
+          <h1 class="post-title" itemprop="name headline">Python入门知识<a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/Python入门知识.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
 
               
             
@@ -412,7 +412,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-26 07:03:21" itemprop="dateModified" datetime="2019-10-26T07:03:21+00:00">2019-10-26</time>
+                <time title="修改时间：2019-10-26 07:04:08" itemprop="dateModified" datetime="2019-10-26T07:04:08+00:00">2019-10-26</time>
               
             
           </span>
@@ -573,8 +573,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Father</span><span class="params">(object)</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">    print(<span class="string">"father"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">(self)</span>:</span></span><br><span class="line">    print(<span class="string">"i am f"</span>)</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span><span class="params">(Father)</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="comment">#子类方法不会自己调用父类方法，需要手动调用</span></span><br><span class="line">    super(Child,self).__init__()</span><br><span class="line">    <span class="comment">#调用父类方法2：</span></span><br><span class="line">    <span class="comment">#Father.__init__(self)</span></span><br><span class="line">    print(<span class="string">"child"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">(self)</span>:</span></span><br><span class="line">    print(<span class="string">'i am c'</span>)</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">go</span><span class="params">(self,where)</span>:</span></span><br><span class="line">    print(<span class="string">'go to %s'</span>%where)</span><br><span class="line"></span><br><span class="line">c = Child() <span class="comment">#father child</span></span><br><span class="line">c.say() <span class="comment">#i am c</span></span><br><span class="line">c.go(<span class="string">'home'</span>) <span class="comment">#go ro home</span></span><br></pre></td></tr></table></figure>
 <p>子类继承父类，则需要在子类定义时传入父类</p>
 <p>子类如果有与父类同名方法，则优先调用子类方法，除非子类特别调用父类的方法</p>
-<p><script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script></p>
-<iframe id="iframeid" scrolling="false" height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Python入门知识.md</div>"></iframe>
+
       
     </div>
 
