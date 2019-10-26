@@ -19,7 +19,6 @@ tag: android
 下图是[Google Jetpack官网](https://developer.android.google.cn/jetpack/)对Jetpack的介绍图：
 
 <center>     <img style="border-radius: 0.3125em;     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"      src="https://jixiaoyong.github.io/images/jetpack_donut.png">     <br>     <div style="color:orange; border-bottom: 1px solid #d9d9d9;     display: inline-block;     color: #999;     padding: 2px;">Jetpack示意图 <font style="color: #BEBEBE">来自GoogleJetpack官网</font></div> </center>
-
 # 对Sunflower的整体分析
 
 下图是Sunflower架构的简单示意图：
@@ -223,7 +222,6 @@ binding.viewmodel = ...
 下图是`ViewModel`和`Activity`的生命周期对比：
 
 <center>     <img style="border-radius: 0.3125em;     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);"      src="https://jixiaoyong.github.io/images/20190202161443.png">     <br>     <div style="color:orange; border-bottom: 1px solid #d9d9d9;     display: inline-block;     color: #999;     padding: 2px;">ViewModel和Activity的生命周期对比图：左图Activity先经历了一次旋转，然后finish，右边是与此相关的ViewModel的生命周期<br/><font style="color: #BEBEBE">来自GoogleJetpack官网</font></div> </center>
-
 此外，由于默认的获取ViewModel的方法只能调取无参构造函数，当需要向ViewModel传递参数时，就需要用到Factory工厂模式来创建ViewModel：
 
 ```kotlin
@@ -262,9 +260,3 @@ class PlantDetailViewModelFactory(args:Any) : ViewModelProvider.NewInstanceFacto
 [Android Jetpack官网](https://developer.android.google.cn/jetpack/)
 
 [Android Jetpack-Navigation 使用中参数的传递](https://blog.csdn.net/weixin_42215792/article/details/80395379)
-
-
-
-<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
-<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/从Sunflower开始学习优雅的Jetpack架构.md</div>"></iframe>
-

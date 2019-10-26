@@ -142,5 +142,4 @@ public Messenger(IBinder target) {
 
 [Android 接口定义语言 (AIDL)](https://developer.android.google.cn/guide/components/aidl?hl=zh-cn)
 
-<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
-<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android中的Messenger详解.md</div>"></iframe>
+

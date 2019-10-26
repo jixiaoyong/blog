@@ -78,5 +78,4 @@ Android常用的通信方式
 - 同一进程不同线程间 -->  Handler
 
 
-<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
-<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android系统架构简介.md</div>"></iframe>
+

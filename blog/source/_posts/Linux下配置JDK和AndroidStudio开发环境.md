@@ -39,5 +39,3 @@ sudo update-alternatives --install  /usr/bin/javac javac  JDK主目录的绝对�
 
 
 
-<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
-<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Linux下配置JDK和AndroidStudio开发环境.md</div>"></iframe>

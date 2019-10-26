@@ -309,5 +309,4 @@ public void sendSuccessResultCallback(final Object object, final Callback callba
 
 `OkHttpRequestBuilder`的`build()`方法会生成`RequestCall`对象，`RequestCall`对象的`execute()`方法会调用`OkHttpRequestBuilder`对象的`generateRequest()`方法产生`Request`，并据此产生`Call`对象，最后通过该`Call`对象的enqueue方法执行网络请求。
 
-<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
-<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/OkHttpUtils分析.md</div>"></iframe>
+

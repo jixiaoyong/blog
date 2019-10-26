@@ -84,5 +84,3 @@ cmd
 * 增加文件名中文支持
 * ~~增加图片自动上传、替换为github链接~~(2018/2/2已实现)
 
-<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
-<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/PythonPostHexoToGithub.md</div>"></iframe>

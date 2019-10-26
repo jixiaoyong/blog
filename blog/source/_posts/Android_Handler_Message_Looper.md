@@ -165,5 +165,4 @@ public final boolean sendMessageDelayed(Message msg, long delayMillis)  {
 
 此外**`handler.post(runnable)`**也是通过在**`post()`**内部调用`getPostMessage()`方法将`runnable赋予msg.callback`，并在`post()`中通过`sendMessageDelayed()`方法调用`sendMessageAtTime()方法`将`msg压入MessageQueue`中
 
-<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
-<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android_Handler_Message_Looper.md</div>"></iframe>
+

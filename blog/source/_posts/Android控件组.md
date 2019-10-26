@@ -203,5 +203,4 @@ date: 2017-09-20 23:25:05
 
 demo的github链接:[github](https://github.com/jixiaoyong/my_application_on_deepin/tree/master/weightgroup)
 
-<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
-<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android控件组.md</div>"></iframe>
+

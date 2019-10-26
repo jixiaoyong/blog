@@ -102,7 +102,6 @@ com/example/MyOtherClass.class
 [MultiDex深入学习](https://www.zybuluo.com/946898963/note/1219741)
 
 
-<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
-<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/AndroidMultiDexOpt.md</div>"></iframe>
+
 
 

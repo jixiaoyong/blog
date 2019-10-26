@@ -105,5 +105,4 @@ https://www.cnblogs.com/dasusu/p/9159904.html
 
 [View滑动效果常用属性详解：scroll、translation、LayoutParams](https://blog.csdn.net/Holmofy/article/details/53959511)
 
-<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
-<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Android中View相关知识.md</div>"></iframe>
+

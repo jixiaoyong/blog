@@ -80,5 +80,3 @@ public static void main(String[] args){
 * `f.setAccessible(true);` 方法可以解除`private` 限制，进而可以操作类的私有变量，方法
 * `clazz.getXXX()` 方法获取**全部公有**变量、方法 ，**包括父类或接口**的xx，`clazz.getDeclaredXXX()` 方法获取**全部** 变量、方法，包括私有的，实现接口的方法，**但是不包括父类的**
 
-<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
-<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Java反射简单应用.md</div>"></iframe>

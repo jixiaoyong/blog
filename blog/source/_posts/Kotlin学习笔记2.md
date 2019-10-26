@@ -297,5 +297,4 @@ print(isInstanceOf<String>(""))//true
 
 [Kotlin的独门秘籍Reified实化类型参数(下篇)](https://blog.csdn.net/u013064109/article/details/83507076)
 
-<script src="https://jixiaoyong.github.io/js/edit_on_github.js"></script>
-<iframe id="iframeid" scrolling=false height="50" frameborder="no" border="0" marginwidth="0" marginheight="0" onload="Javascript:editOnGithub()" srcdoc="<div id=&quot;url&quot;>https://github.com/jixiaoyong/jixiaoyong.github.io/blob/hexo_blog/blog/source/_posts/Kotlin学习笔记2.md</div>"></iframe>
+
