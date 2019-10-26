@@ -2,8 +2,7 @@
 
 # [我的博客](https://jixiaoyong.github.io)  [![Build Status](https://www.travis-ci.org/jixiaoyong/jixiaoyong.github.io.svg?branch=hexo_blog)](https://www.travis-ci.org/jixiaoyong/jixiaoyong.github.io)
 
-![logo](https://jixiaoyong.github.io/images/20191024232517.png)
-
+![Logo of Blog](https://jixiaoyong.github.io/images/20191026161934.png)
 
 
 这是我在`Github`上面基于`Hexo`搭建的个人博客。
