@@ -4,7 +4,9 @@ abbrlink: f7965978
 date: 2016-03-25 06:06:06
 ---
 
-`Hello World！`
+```
+Hello World！
+````
 
 一直以来，为了有一个合适的在线写字的地方，我尝试过许多种工具，从最初的 QQ 空间开始，到各种门户网站的博客，再到自己开始尝试搭建博客，一路奔忙，门户网站的限制太多，自己搭建的博客又时常由于空间提供商的各种问题而无法访问。许多时候一个平台只能使用一段时间，这样子颠颠撞撞大概也有五六年的时间了。
 
@@ -14,19 +16,21 @@ date: 2016-03-25 06:06:06
 
 # 准备软件
 
-- 下载软件：
+下载软件：
 - node 客户端
 - git
-- github windows 客户端
+- github windows 客户端(可选)
 
 # 装 git 和 github windows 客户端
 
 - 安装 git:
+
   git 安装时按照默认的配置，一路点击确定就可以。
-- 安装 github
-  github 安装分为两种：
-  一种是直接用官网的安装包，在安装的时候需要从网上下载资料，受网速限制，这种方法很慢，而且容易出错；
-  另一种直接找一份github离线安装包解压到本地即可使用，我就是使用后一种方法。
+- ~安装 github客户端（可选，如果熟悉git命令可以直接命令行操作）~
+
+  ~github 安装分为两种：~
+  ~一种是直接用官网的安装包，在安装的时候需要从网上下载资料，受网速限制，这种方法很慢，而且容易出错；
+  另一种直接找一份github离线安装包解压到本地即可使用，我就是使用后一种方法。~
 
 # 安装node
 
@@ -36,8 +40,8 @@ date: 2016-03-25 06:06:06
 在安装完 git, node 之后
 
 - win 键 + R 输入cmd 打开 windows 自带命令行，
-  输入git /npm
-  之后，如果显示出帮助信息而非不是内部或外部命令，也不是可运行的程序或批处理文件这样的提示，就说明 git 和 node 已经配置好了环境变量，否则就需要手动配置。
+  分别输入`git` 、 `npm`
+  之后，如果显示出帮助信息而非*“不是内部或外部命令，也不是可运行的程序或批处理文件”*这样的提示，就说明 git 和 node 已经配置好了环境变量，否则就需要手动配置。
 
 # 配置环境变量方法：
 
@@ -92,7 +96,7 @@ cd blog
 hexo server[info] Hexo is running at http://localhost:4000/. Press Ctrl+C to stop
 ```
 
-打开本地地址：http://localhost:4000/，就可以看到本地搭建好的 hexo 博客了
+打开本地地址：http://localhost:4000/ ，就可以看到本地搭建好的 hexo 博客了
 这样子一个 hexo 博客就在本地搭建好了
 
 # 目录的解释：
@@ -148,10 +152,10 @@ title: 新的文章date: 2014-05-07 18:44:12updated : 2014-05-10 18:44:12permali
   打开_config.yml，修改以下部分：
 
 ```
-Sitetitle: 季小勇的博客
+Sitetitle: Jixiaoyong's Blog
 subtitle:
 description:
-author: 季小勇
+author: Jixiaoyong
 language: zh-CN
 timezone:# URL
 #If your site is put in a subdirectory, set url as 'http://yoursite.com/child' 
@@ -162,11 +166,16 @@ root: http://yoursite.github.io/blog/
 
 此处由于我是将网站放在二级目录 ./blog/ 下面，所以 root 目录设置如此，使用的是绝对路径，否则在网页上显示的时候，css 等由于路径不对，加载可能会有问题。
 
+**部署方法1**
+
 ```
 deploy: type: git repo:https://github.com/yourname/yourname.github.io.git
 ```
 
-这行语句是使用 hexo 自动 deploy 到 github 时的设置，如果正常的话，当用 hexo 对网站静态化处理后，再执行 hexo deploy 就可以自动部署到 github 上面了，但是我的电脑 git 或者 node 由于是不同时间装的期间还重装了几次系统，可能导致某些设置有误，所以在执行 hexo deploy 的时候一直提示有问题，故而采用另一种办法手动同步网站，这句话也可以不修改。
+这行语句是使用 hexo 自动 deploy 到 github 时的设置，~如果正常的话，当用 hexo 对网站静态化处理后，再执行 hexo deploy 就可以自动部署到 github 上面了，但是我的电脑 git 或者 node 由于是不同时间装的期间还重装了几次系统，可能导致某些设置有误，所以在执行 hexo deploy 的时候一直提示有问题，故而采用另一种办法手动同步网站，这句话也可以不修改。~
+
+**部署方法1**
+
 
 - 用 hexo 对文章进行静态化处理：
 
@@ -174,7 +183,7 @@ deploy: type: git repo:https://github.com/yourname/yourname.github.io.git
   hexo generate
   ```
 
-在blog\public目录下生成的 public 包含所有的静态化文件,此时，这个文件夹内所有的内容就是处理好的网站，将其发布到合适的空间就可以正常显示。
+在`blog\public`目录下生成的 `public` 包含所有的静态化文件,此时，这个文件夹内所有的内容就是处理好的网站，将其发布到合适的空间就可以正常显示。
 由于之前的 git 或者 node 配置有误，所以这时候采用手动同步网站:
 
 - 将上次在 github 上建立的项目yourname.github.io
@@ -187,8 +196,8 @@ deploy: type: git repo:https://github.com/yourname/yourname.github.io.git
 之后打开同步的项目，确认当前的branch是master，否则同步之后网站不会显示。
 [![确认是 master](http://upload-images.jianshu.io/upload_images/120748-620f9db488c0c384.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)](http://jixiaoyong.github.io/jixiaoyong.github.io/blog/2016/04/%E5%B0%8F%E7%99%BD%E7%AC%94%E8%AE%B0%EF%BC%9Agithub%20+%20hexo%E5%BB%BA%E7%AB%8B%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/images/1461461275758.jpg)
 
-在 github 同步的目录下找到上次建好的项目yourname.github.io ,进入之后，将上文获得到的public内容放入目标文件夹，我选择的是将博客放在子目录，所以这里新建了一个blog文件夹用于放置博客，所以就是将public
-全部内容 放入./yourname.github.io/blog/目录下，这样子在网站上显示的时候，博客的网址就是http://yourname.github.io/blog/
+在 github 同步的目录下找到上次建好的项目`yourname.github.io`,进入之后，将上文获得到的public内容放入目标文件夹，我选择的是将博客放在子目录，所以这里新建了一个blog文件夹用于放置博客，所以就是将public
+全部内容 放入./yourname.github.io/blog/ 目录下，这样子在网站上显示的时候，博客的网址就是http://yourname.github.io/blog/
 
 这样一个简单的利用 github 托管的 hexo 博客就搭建好了。
 注：本文内容是根据我建立博客时的做法整理而成，其中有部分内容是参考网上的教程，文中引用的文字全部来自[http://blog.fens.me/hexo-bootstarp-github/](http://blog.fens.me/hexo-bootstarp-github/) ，此文对我帮助很大，感谢作者张丹(Conan)的分享。
