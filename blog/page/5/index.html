@@ -349,6 +349,197 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/36721083/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JiXiaoYong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JiXiaoyong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/posts/36721083/" class="post-title-link" itemprop="url">Java创建线程安全的单例Singleton</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-02-14 18:34:16" itemprop="dateCreated datePublished" datetime="2018-02-14T18:34:16+00:00">2018-02-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-28 10:24:34" itemprop="dateModified" datetime="2019-10-28T10:24:34+00:00">2019-10-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/blog/posts/36721083/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/36721083/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/blog/posts/36721083/" class="leancloud_visitors" data-flag-title="Java创建线程安全的单例Singleton">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              简介在编码中常常会用到单例，来确保类有一个唯一的对象，一般情况下将构造方法私有化既可以实现，但当考虑到多线程时事情会变得有些复杂，本文讨论的正是几种多线程的情况下实现单例的方法。
+1.普通单例私有化构造方法，对外提供一个公有、静态的方法，在其内部判断类对象是否已经存在，否的话生成类对象再返回。
+class ASingleton&#123;		private static ASingleton as;		private void ASinleton() &#123;		System.out.pri
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/posts/36721083/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/8a52763a/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -411,7 +602,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-27 03:38:30" itemprop="dateModified" datetime="2019-10-27T03:38:30+00:00">2019-10-27</time>
+                <time title="修改时间：2019-10-28 10:24:34" itemprop="dateModified" datetime="2019-10-28T10:24:34+00:00">2019-10-28</time>
               
             
           </span>
@@ -605,7 +796,7 @@ fun fun1(n: Int): BigInteger &#123;    if (n == 0) return BigInteger.valueOf(1L)
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-27 03:38:30" itemprop="dateModified" datetime="2019-10-27T03:38:30+00:00">2019-10-27</time>
+                <time title="修改时间：2019-10-28 10:24:34" itemprop="dateModified" datetime="2019-10-28T10:24:34+00:00">2019-10-28</time>
               
             
           </span>
@@ -800,7 +991,7 @@ var arr = arrayListOf&lt;String&gt;("a c v de  fb s e  gf d")arr.flatMap &#123; 
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-27 03:38:30" itemprop="dateModified" datetime="2019-10-27T03:38:30+00:00">2019-10-27</time>
+                <time title="修改时间：2019-10-28 10:24:34" itemprop="dateModified" datetime="2019-10-28T10:24:34+00:00">2019-10-28</time>
               
             
           </span>
@@ -999,7 +1190,7 @@ var testInter
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-27 03:38:30" itemprop="dateModified" datetime="2019-10-27T03:38:30+00:00">2019-10-27</time>
+                <time title="修改时间：2019-10-28 10:24:34" itemprop="dateModified" datetime="2019-10-28T10:24:34+00:00">2019-10-28</time>
               
             
           </span>
@@ -1189,7 +1380,7 @@ var testInter
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-27 03:38:30" itemprop="dateModified" datetime="2019-10-27T03:38:30+00:00">2019-10-27</time>
+                <time title="修改时间：2019-10-28 10:24:34" itemprop="dateModified" datetime="2019-10-28T10:24:34+00:00">2019-10-28</time>
               
             
           </span>
@@ -1390,7 +1581,7 @@ hexo_post_di
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-27 03:38:30" itemprop="dateModified" datetime="2019-10-27T03:38:30+00:00">2019-10-27</time>
+                <time title="修改时间：2019-10-28 10:24:34" itemprop="dateModified" datetime="2019-10-28T10:24:34+00:00">2019-10-28</time>
               
             
           </span>
@@ -1581,7 +1772,7 @@ Just test
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-27 03:38:30" itemprop="dateModified" datetime="2019-10-27T03:38:30+00:00">2019-10-27</time>
+                <time title="修改时间：2019-10-28 10:24:34" itemprop="dateModified" datetime="2019-10-28T10:24:34+00:00">2019-10-28</time>
               
             
           </span>
@@ -1786,7 +1977,7 @@ sp = SpiderMain()gityuan = gityuan_urls.GitYuanUrls()gity
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-27 03:38:30" itemprop="dateModified" datetime="2019-10-27T03:38:30+00:00">2019-10-27</time>
+                <time title="修改时间：2019-10-28 10:24:34" itemprop="dateModified" datetime="2019-10-28T10:24:34+00:00">2019-10-28</time>
               
             
           </span>
@@ -1987,7 +2178,7 @@ sp = SpiderMain()gityuan = gityuan_urls.GitYuanUrls()gity
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-27 03:38:30" itemprop="dateModified" datetime="2019-10-27T03:38:30+00:00">2019-10-27</time>
+                <time title="修改时间：2019-10-28 10:24:34" itemprop="dateModified" datetime="2019-10-28T10:24:34+00:00">2019-10-28</time>
               
             
           </span>
@@ -2104,198 +2295,6 @@ sp = SpiderMain()gityuan = gityuan_urls.GitYuanUrls()gity
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/375fcf66/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JiXiaoYong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JiXiaoyong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/blog/posts/375fcf66/" class="post-title-link" itemprop="url">Java实现AES加密解密应用</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-01-22 23:51:19" itemprop="dateCreated datePublished" datetime="2018-01-22T23:51:19+00:00">2018-01-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-10-27 03:38:30" itemprop="dateModified" datetime="2019-10-27T03:38:30+00:00">2019-10-27</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/blog/posts/375fcf66/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/375fcf66/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/blog/posts/375fcf66/" class="leancloud_visitors" data-flag-title="Java实现AES加密解密应用">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              简介最近手机中涉及到用户账户密码保存的问题，选用AES加密算法进行加密后，再通过SharedPreferences保存在手机端。
-本文主要介绍AES的加密、解密用法。
-代码初始化秘钥
-private static final String AES = "AES";private static final String PASSWPRD = "123456";public static SecretKeySpec initKey()&#123;    SecretKeySpec key = nul
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/blog/posts/375fcf66/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2344,7 +2343,7 @@ private static final String AES = "AES";private static final String PASSWPRD = "
                 
                   <a href="/blog/archives/">
                 
-                    <span class="site-state-item-count">65</span>
+                    <span class="site-state-item-count">66</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
