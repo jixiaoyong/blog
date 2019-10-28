@@ -19,7 +19,7 @@ tag: java
    }
    ```
 
-2. ` join(long millis)`是一个同步方法，最早通过调用`wait()`方法挂起当前线程，直到其他线程调用子线程`cThread`的`notify()`或者`notifyAll()`方法
+2. ` join(long millis)`是一个同步方法，最后会通过调用`wait()`方法挂起当前线程（即`调用线程`），直到其他线程调用子线程`cThread`的`notify()`或者`notifyAll()`方法
 
    ```java
    public final synchronized void join(long millis)
@@ -89,7 +89,7 @@ tag: java
 
 **锁池**：某个`Thread`调用某个对象的同步方法（`synchronized`），但还没获取到该对象的锁时，会进入锁池和其他类似的线程一起竞争该对象的锁。
 
-**等待池**：当某个`Thread`调用某个对象的`wait()`方法释放掉改对象的锁进入阻塞后（waiting on this object's monitor），会进入等待池。等待池中的线程不会竞争该对象的锁。
+**等待池**：当某个`Thread`调用某个对象的`wait()`方法释放掉该对象的锁进入阻塞后（waiting on this object's monitor），会进入等待池。等待池中的线程不会竞争该对象的锁。
 
 
 
