@@ -3,6 +3,7 @@ title: Kotlin学习笔记2
 tags: kotlin
 abbrlink: 8a52763a
 date: 2018-02-11 11:38:43
+
 ---
 
 # 尾递归优化
@@ -25,11 +26,11 @@ fun fun1(n: Int): BigInteger {
 }
 ```
 
-​	尾递归：
-
-​	调用自身之后，无需再返回当前函数,将处理结果以其他形式返回。
-
-​	普通递归和尾递归都存在栈溢出风险（未优化前，例子中的函数计算10000到100000的阶乘时会溢出），kotlin提供了一种尾递归优化的方法——`tailrec`，使得编译器在编译时将递归转化为迭代，从而避免栈溢出。
+尾递归：
+	
+调用自身之后，无需再返回当前函数,将处理结果以其他形式返回。
+	
+普通递归和尾递归都存在栈溢出风险（未优化前，例子中的函数计算10000到100000的阶乘时会溢出），kotlin提供了一种尾递归优化的方法——`tailrec`，使得编译器在编译时将递归转化为迭代，从而避免栈溢出。
 
 ```kotlin
 data class Result(var value: BigInteger = BigInteger.valueOf(1L))
@@ -46,7 +47,7 @@ tailrec fun fun2(n: Int, m: Result) {
 }
 ```
 
-​	本例中传入`fun2()`的`Result`实例保存了计算结果
+本例中传入`fun2()`的`Result`实例保存了计算结果
 
 # sealed class 密封类
 
@@ -105,7 +106,7 @@ fun copyArray(from: Array<out Any>, to: Array<in Int>) {
 
 > 1.子类至少接收和父类一样范围的参数 >=  ---> 父类入参为Noting 不能安全写入
 >
->  2.子类最多返回和父类一样范围的参数 <=  ---> 父类出参为Any? 可以安全读取
+> 2.子类最多返回和父类一样范围的参数 <=  ---> 父类出参为Any? 可以安全读取
 
 则有以下三种实现方式
 
@@ -289,6 +290,121 @@ print(isInstanceOf<String>(""))//true
 
 **原理:**内联函数会直接被插入到被调用的地方，而`reified`修饰的类型参数会保证将用户调用时写的类型`String`同时也写入到被调用的地方，如此便没有发生类型擦除。
 
+# coroutines 协程
+
+协程可以看做是一个轻量级的thread，他运行在线程当中，由用户控制，没有上下文切换的开销。
+
+在Android中使用协程，特别是在IO操作及网络请求等需要根据耗时操作更新界面的需求时，可以将IO操作和界面操作串行，避免切换线程、回调嵌套等导致代码可读性查的问题。
+
+如配合支持协程的retrofit，我们可以将网络请求简化如下：
+
+```kotlin
+        launch(Dispatchers.Main) {
+            //这里是主线程
+            showProgressOnMainThread()
+            val repos = withContext(Dispatchers.IO) {
+                //这里是UI线程
+                retrofitApi.getRepos("jixiaoyong").string()
+            }
+            //这里是主线程
+            updateUIOnMainThread(repos)
+        }
+```
+
+kotlin协程需要单独添加依赖：
+
+```groovy
+implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2'
+implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.2" //Android可以再添加这个依赖，会有一些特殊方法
+```
+
+ 一个父协程总是等待所有的子协程执行结束， 父协程被取消的时候，所有它的子协程也会被递归的取消。 
+
+## 协程中`runBlocking`与`coroutineScope`的区别
+
+相同点：
+
+依次执行内部代码，如果`代码1`是启动协程，那么启动该子协程后，继续执行`代码1`后面的代码直到最后一行（类似启动新线程，不会阻塞当前线程），然后再等待所有内部协程结束，才会退出。
+
+不同点：
+
+[**`runBlocking`**](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html )：会运行一个新的协程线程，并阻塞其所在`线程`,直到其内部所有协程/子协程执行完毕才会退出。设计用来以阻塞的方式执行协程代码，不应该在协程中使用。
+
+[**`coroutineScope`**](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html )：不会阻塞其所在线程，要在协程中使用，当其内部所有协程/子协程执行完毕才会退出。设计用来执行并行操作，一旦有子协程失败，则其他子协程都会被取消，整个代码块执行失败。
+
+## 协程的思维导图
+
+<iframe width='853' height='480' src='https://embed.coggle.it/diagram/Xb_CZoumpCamgUAj/1235701ea5f157867e045f0f5ac28f886effdb5fa1e27b72afa5266e6e3e8891' frameborder='0' allowfullscreen></iframe>
+
+
+需要说明的是
+
+`Dispatchers.Unconfined` 非受限，不会限定协程运行的线程，而是随环境切换
+
+```kotlin
+    launch(Dispatchers.Unconfined) {
+        // main thread
+        withContext(newSingleThreadContext("hello")){
+            //hello thread
+        }
+        //hello thread
+    }
+```
+
+## 协程局部变量
+
+通过`ThreadLocal`、[`ThreadContextElement`]( https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-thread-context-element/index.html )，配合`asContextElement("value")`方法实现。和协程所在的线程没有关系。
+
+直接修改`ThreadLocal`的值，会在切换协程的时候失效（会被改为切换到的协程所使用的的值），当再次切回本协程时，被重置为上一个通过`asContextElement("value")`方法更新的值或者`null`（如果没有指定）。
+
+>  原理：**启动和恢复时保存`ThreadLocal`在当前线程的值，并修改为 value，挂起和结束时修改当前线程`ThreadLocal`的值为之前保存的值** 
+>
+>  —— [Kotlin Coroutines(协程) 完全解析（五），协程的并发](https://johnnyshieh.me/posts/kotlin-coroutine-concurrency/ )
+
+```kotlin
+val threadLocal = ThreadLocal<String?>() // 声明线程局部变量
+
+fun main() = runBlocking<Unit> {
+
+    threadLocal.set("main")
+    printValue(1) // main
+    async (Dispatchers.Default + threadLocal.asContextElement(value = "launch")) {
+        printValue(2) // launch
+        threadLocal.set("hello")
+//        threadLocal.asContextElement("hello") //如果使用这个方法更新，则 printValue(4) 会打印 hello
+        printValue(3) // hello
+        yield()
+        printValue(4)// launch
+    }.await()
+    printValue(5) // main
+}
+
+fun printValue(number: Int){
+    println("$number: ${Thread.currentThread()}, thread local value: '${threadLocal.get()}'")
+}
+```
+
+
+
+## 在Android中使用
+
+Kotlin官方推荐一下两种方式：
+
+```kotlin
+1. CoroutineScope
+class Activity : CoroutineScope by CoroutineScope(Dispatchers.Default) {
+    // 继续运行……
+    
+2. MainScope
+class Activity {
+    private val mainScope = MainScope()
+    fun destroy() {
+    mainScope.cancel()
+}
+// 继续运行……
+```
+
+
 
 
 # 参考资料
@@ -297,4 +413,6 @@ print(isInstanceOf<String>(""))//true
 
 [Kotlin的独门秘籍Reified实化类型参数(下篇)](https://blog.csdn.net/u013064109/article/details/83507076)
 
+[Kotlin 协程官网]( https://www.kotlincn.net/docs/reference/coroutines/coroutines-guide.html )
 
+[Kotlin Coroutines(协程) 完全解析（五），协程的并发
