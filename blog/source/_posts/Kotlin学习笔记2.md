@@ -415,4 +415,4 @@ class Activity {
 
 [Kotlin 协程官网]( https://www.kotlincn.net/docs/reference/coroutines/coroutines-guide.html )
 
-[Kotlin Coroutines(协程) 完全解析（五），协程的并发
+[Kotlin Coroutines(协程) 完全解析（五），协程的并发](https://johnnyshieh.me/posts/kotlin-coroutine-concurrency/)
