@@ -2,6 +2,7 @@
 title: Kotlin学习笔记3
 tags: kotlin
 date: 2019-11-05 18:46:19
+
 ---
 
 > 本文为笔记性质，尚未成文，待整理
@@ -360,11 +361,11 @@ supervisor取消的话，会取消掉所有子协程
 
 3. 以粗粒度限制线程
 
-   2，3都是保证对共享变量的操作限制在同一个线程中
+   2、3都是保证将对共享变量的操作限制在同一个线程中，从而保证线程安全。
 
 4. 互斥
 
-   类似于线程的锁，协程的  [Mutex](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.sync/-mutex/index.html) 的lock和unlock方法可以保证同一时间只有一个协程访问指定代码。Mutex不会阻塞线程。
+   类似于线程的锁，协程的 [Mutex](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.sync/-mutex/index.html) 的lock和unlock方法可以保证同一时间只有一个协程访问指定代码。Mutex不会阻塞线程。
 
 5. Actors
 
@@ -419,7 +420,7 @@ suspend fun selectFizzBuzz(fizz: ReceiveChannel<String>, buzz: ReceiveChannel<St
 
  [onReceiveOrNull](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/on-receive-or-null.html)  可以允许为空，这样可以在关闭通道时执行特定操作 
 
-  [onSend](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-send-channel/on-send.html) 子句 发送消息
+ [onSend](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-send-channel/on-send.html) 子句 发送消息
 
 ```kotlin
 fun CoroutineScope.produceNumbers(side: SendChannel<Int>) = produce<Int> {
@@ -450,4 +451,4 @@ fun CoroutineScope.produceNumbers(side: SendChannel<Int>) = produce<Int> {
 
 [Kotlin的独门秘籍Reified实化类型参数(下篇)](https://blog.csdn.net/u013064109/article/details/83507076)
 
-[Kotlin 协程官网--异步流](https://www.kotlincn.net/docs/reference/coroutines/flow.html)
+[Kotlin 协程 中文官网--异步流](https://www.kotlincn.net/docs/reference/coroutines/flow.html)
