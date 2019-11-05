@@ -109,7 +109,7 @@
 <meta property="og:site_name" content="JiXiaoyong&#39;s Blog">
 <meta property="og:description" content="本文为笔记性质，尚未成文，待整理  异步流 lazy方式创建一个序列，只有在访问的时候才生产对应的项目 123456fun foo(): Sequence&amp;lt;Int&amp;gt; = sequence&amp;#123;    for (i in 1..3) &amp;#123;        Thread.sleep(1000)//会阻塞调用线程        yield(i)//生产一个项目    &amp;#125">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-05T11:18:50.748Z">
+<meta property="og:updated_time" content="2019-11-05T18:32:09.084Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kotlin学习笔记3">
 <meta name="twitter:description" content="本文为笔记性质，尚未成文，待整理  异步流 lazy方式创建一个序列，只有在访问的时候才生产对应的项目 123456fun foo(): Sequence&amp;lt;Int&amp;gt; = sequence&amp;#123;    for (i in 1..3) &amp;#123;        Thread.sleep(1000)//会阻塞调用线程        yield(i)//生产一个项目    &amp;#125">
@@ -395,7 +395,7 @@
                 
               
 
-              <time title="创建时间：2019-11-05 18:46:19 / 修改时间：11:18:50" itemprop="dateCreated datePublished" datetime="2019-11-05T18:46:19+00:00">2019-11-05</time>
+              <time title="创建时间：2019-11-05 18:46:19 / 修改时间：18:32:09" itemprop="dateCreated datePublished" datetime="2019-11-05T18:46:19+00:00">2019-11-05</time>
             
 
             
@@ -553,10 +553,10 @@
 <li><p>以细粒度限制线程</p>
 </li>
 <li><p>以粗粒度限制线程</p>
-<p>2，3都是保证对共享变量的操作限制在同一个线程中</p>
+<p>2、3都是保证将对共享变量的操作限制在同一个线程中，从而保证线程安全。</p>
 </li>
 <li><p>互斥</p>
-<p>类似于线程的锁，协程的  <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.sync/-mutex/index.html" target="_blank" rel="noopener">Mutex</a> 的lock和unlock方法可以保证同一时间只有一个协程访问指定代码。Mutex不会阻塞线程。</p>
+<p>类似于线程的锁，协程的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.sync/-mutex/index.html" target="_blank" rel="noopener">Mutex</a> 的lock和unlock方法可以保证同一时间只有一个协程访问指定代码。Mutex不会阻塞线程。</p>
 </li>
 <li><p>Actors</p>
 <p> 一个 <a href="https://en.wikipedia.org/wiki/Actor_model" target="_blank" rel="noopener">actor</a> 是由协程、 被限制并封装到该协程中的状态以及一个与其它协程通信的 <em>通道</em> 组合而成的一个实体。 </p>
@@ -572,7 +572,7 @@
 <h1 id="Select表达式"><a href="#Select表达式" class="headerlink" title="Select表达式"></a>Select表达式</h1><p>  <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.selects/select.html" target="_blank" rel="noopener">select</a> 表达式允许我们使用其 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/on-receive.html" target="_blank" rel="noopener">onReceive</a> 子句 <em>同时</em> 从两个生产者接收数据：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">selectFizzBuzz</span><span class="params">(fizz: <span class="type">ReceiveChannel</span>&lt;<span class="type">String</span>&gt;, buzz: <span class="type">ReceiveChannel</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    select&lt;<span class="built_in">Unit</span>&gt; &#123; <span class="comment">// &lt;Unit&gt; 意味着该 select 表达式不返回任何结果</span></span><br><span class="line">        fizz.onReceive &#123; value -&gt;  <span class="comment">// 这是第一个 select 子句</span></span><br><span class="line">            println(<span class="string">"fizz -&gt; '<span class="variable">$value</span>'"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        buzz.onReceive &#123; value -&gt;  <span class="comment">// 这是第二个 select 子句</span></span><br><span class="line">            println(<span class="string">"buzz -&gt; '<span class="variable">$value</span>'"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p> <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/on-receive-or-null.html" target="_blank" rel="noopener">onReceiveOrNull</a>  可以允许为空，这样可以在关闭通道时执行特定操作 </p>
-<p>  <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-send-channel/on-send.html" target="_blank" rel="noopener">onSend</a> 子句 发送消息</p>
+<p> <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-send-channel/on-send.html" target="_blank" rel="noopener">onSend</a> 子句 发送消息</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> CoroutineScope.<span class="title">produceNumbers</span><span class="params">(side: <span class="type">SendChannel</span>&lt;<span class="type">Int</span>&gt;)</span></span> = produce&lt;<span class="built_in">Int</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">for</span> (num <span class="keyword">in</span> <span class="number">1</span>..<span class="number">10</span>) &#123; <span class="comment">// 生产从 1 到 10 的 10 个数值</span></span><br><span class="line">        delay(<span class="number">100</span>) <span class="comment">// 延迟 100 毫秒</span></span><br><span class="line">        select&lt;<span class="built_in">Unit</span>&gt; &#123;</span><br><span class="line">            onSend(num) &#123;&#125; <span class="comment">// 发送到主通道</span></span><br><span class="line">            side.onSend(num) &#123;&#125; <span class="comment">// 或者发送到 side 通道</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p> Select延迟值可以使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/on-await.html" target="_blank" rel="noopener">onAwait</a> 子句查询 </p>
 <iframe width="853" height="480" src="https://embed.coggle.it/diagram/Xb_CZoumpCamgUAj/1235701ea5f157867e045f0f5ac28f886effdb5fa1e27b72afa5266e6e3e8891" frameborder="0" allowfullscreen></iframe>
@@ -583,7 +583,7 @@
 
 
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/u013064109/article/details/83507076" target="_blank" rel="noopener">Kotlin的独门秘籍Reified实化类型参数(下篇)</a></p>
-<p><a href="https://www.kotlincn.net/docs/reference/coroutines/flow.html" target="_blank" rel="noopener">Kotlin 协程官网–异步流</a></p>
+<p><a href="https://www.kotlincn.net/docs/reference/coroutines/flow.html" target="_blank" rel="noopener">Kotlin 协程 中文官网–异步流</a></p>
 
       
     </div>
