@@ -64,3 +64,48 @@ java代码如下：
 
 
 
+# LiveData
+
+`LiveData`可以在数据有变化的时候调用订阅者并执行指定方法。
+
+`Transformations`有两个转化`LiveData`的方法：`map()`和`switchMap()`。
+
+`map()`可以将一个`LiveData`经过处理转化为另外一个`LiveData`。
+
+而`switchMap()`则可以根据不同的需要切换不同的`LiveData`。
+
+```kotlin
+val live = MutableLiveData<String>()
+val d : LiveData<String> = map(live){
+  "this is $it"
+}
+val e = switchMap(live) {
+    return@switchMap when (it) {
+        "a" -> MutableLiveData<String>("a")
+        "b" -> MutableLiveData("b")
+        else -> MutableLiveData("else")
+    }
+}
+```
+
+此外，`LiveData`的子类`MediatorLiveData`可以添加多个监听项，每个项目改变都会回调对应的`onChange()`方法。
+
+```kotlin
+val mediatorLiveData = MediatorLiveData<String>()
+
+mediatorLiveData.addSource(d) {
+    update(it, e.value)
+}
+
+mediatorLiveData.addSource(e) {
+    update(d.value, it)
+}
+
+fun update(a: String? = "", b: String? = "") {
+    //do sth
+}
+```
+
+# 参考资料
+
+[【译】LiveData 使用详解](https://www.jianshu.com/p/dab2ee97d680)
