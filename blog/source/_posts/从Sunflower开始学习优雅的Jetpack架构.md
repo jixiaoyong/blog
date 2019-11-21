@@ -246,14 +246,15 @@ class PlantDetailViewModelFactory(args:Any) : ViewModelProvider.NewInstanceFacto
 
 ## WorkManager管理任务
 
-`WorkManager`用来管理即时或定时任务。
+`WorkManager`用来管理即时或定时任务，官方定义是在指定约束条件成熟时可靠的在后台执行对应的任务。
+
+具体使用可以参考这个[GIST](https://gist.github.com/jixiaoyong/041d8b0775e392302b4cd57a98b4f6fa)。
 
 和他相关的有下面几个关键类：
 
 * `Worker` 定义要执行的任务内容
 * `WorkRequest` 代表一项单独的任务，明确具体要执行的任务内容（Worker）、任务的类型（WorkRequest.Builder的子类，决定任务一次性还是重复的）以及任务执行的条件（Constraints，如联网、电池电量等等）
-* WorkManager 执行管理WorkRequest
-* WorkInfo 包含一个指定任务的信息
+* WorkManager 执行管理WorkRequest，安排执行Worker中的工作内容。
 
 # 参考资料
 
