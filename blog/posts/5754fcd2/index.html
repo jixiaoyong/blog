@@ -99,18 +99,20 @@
 
 
 
-  <meta name="description" content="今天重新学习类三种排序方法，按照排序速度依次是冒泡排序，选择排序和插入排序。以下示例皆为从小到大的排序 1.冒泡排序每一次比较都可能要交换元素。冒泡排序的思想是：每一轮开始的时候，将第一个元素（a）开始与其后的元素（b）依次进行比较，将较大的元素（设为m）放到后面，并将m与其后的另外一个元素继续进行比较，直到最后一个没有排好序的元素。在接下来一轮的排序中，刚才以及之前选出来的、已经排好顺序的最大值">
+  <meta name="description" content="近期有一个实现定时启动APP提醒用户的需求，一番比较之后觉得用闹钟AlarmManager实现比较合适，本文是对此过程的梳理，属于比较基础性的内容。 需求需求需要实现  “每天在指定时间范围内,循环提示用户直到满足指定的条件”  拆分需求：  每天都要提醒 在时间范围内一直循环 满足条件后结束当天循环  方案选择Android中可以用到的循环任务实现有Handler、Timer、Scheduled">
 <meta name="keywords" content="blog,jixiaoyong,android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java中三种常用的排序方法">
-<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/1fd30f6e/index.html">
+<meta property="og:title" content="Android AlarmManager设置重复任务">
+<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/5754fcd2/index.html">
 <meta property="og:site_name" content="Ji Xiaoyong&#39;s Blog">
-<meta property="og:description" content="今天重新学习类三种排序方法，按照排序速度依次是冒泡排序，选择排序和插入排序。以下示例皆为从小到大的排序 1.冒泡排序每一次比较都可能要交换元素。冒泡排序的思想是：每一轮开始的时候，将第一个元素（a）开始与其后的元素（b）依次进行比较，将较大的元素（设为m）放到后面，并将m与其后的另外一个元素继续进行比较，直到最后一个没有排好序的元素。在接下来一轮的排序中，刚才以及之前选出来的、已经排好顺序的最大值">
+<meta property="og:description" content="近期有一个实现定时启动APP提醒用户的需求，一番比较之后觉得用闹钟AlarmManager实现比较合适，本文是对此过程的梳理，属于比较基础性的内容。 需求需求需要实现  “每天在指定时间范围内,循环提示用户直到满足指定的条件”  拆分需求：  每天都要提醒 在时间范围内一直循环 满足条件后结束当天循环  方案选择Android中可以用到的循环任务实现有Handler、Timer、Scheduled">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-06T14:50:20.973Z">
+<meta property="og:image" content="https://developer.android.google.cn/images/guide/background/bg-job-choose.svg">
+<meta property="og:updated_time" content="2019-12-06T14:50:20.969Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java中三种常用的排序方法">
-<meta name="twitter:description" content="今天重新学习类三种排序方法，按照排序速度依次是冒泡排序，选择排序和插入排序。以下示例皆为从小到大的排序 1.冒泡排序每一次比较都可能要交换元素。冒泡排序的思想是：每一轮开始的时候，将第一个元素（a）开始与其后的元素（b）依次进行比较，将较大的元素（设为m）放到后面，并将m与其后的另外一个元素继续进行比较，直到最后一个没有排好序的元素。在接下来一轮的排序中，刚才以及之前选出来的、已经排好顺序的最大值">
+<meta name="twitter:title" content="Android AlarmManager设置重复任务">
+<meta name="twitter:description" content="近期有一个实现定时启动APP提醒用户的需求，一番比较之后觉得用闹钟AlarmManager实现比较合适，本文是对此过程的梳理，属于比较基础性的内容。 需求需求需要实现  “每天在指定时间范围内,循环提示用户直到满足指定的条件”  拆分需求：  每天都要提醒 在时间范围内一直循环 满足条件后结束当天循环  方案选择Android中可以用到的循环任务实现有Handler、Timer、Scheduled">
+<meta name="twitter:image" content="https://developer.android.google.cn/images/guide/background/bg-job-choose.svg">
 
 
 
@@ -118,7 +120,7 @@
 
   
   
-  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/1fd30f6e/">
+  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/5754fcd2/">
 
 
 
@@ -128,7 +130,7 @@
   };
 </script>
 
-  <title>Java中三种常用的排序方法 | Ji Xiaoyong's Blog</title>
+  <title>Android AlarmManager设置重复任务 | Ji Xiaoyong's Blog</title>
   
 
 
@@ -350,7 +352,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/1fd30f6e/">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/5754fcd2/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ji Xiaoyong">
@@ -367,7 +369,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java中三种常用的排序方法<a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/Java中三种常用的排序方法.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+          <h1 class="post-title" itemprop="name headline">Android AlarmManager设置重复任务<a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/AndroidAlarmManager设置重复任务.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
 
               
             
@@ -393,24 +395,12 @@
                 
               
 
-              <time title="创建时间：2016-12-20 23:25:05" itemprop="dateCreated datePublished" datetime="2016-12-20T23:25:05+00:00">2016-12-20</time>
+              <time title="创建时间：2019-12-06 18:18:18 / 修改时间：14:50:20" itemprop="dateCreated datePublished" datetime="2019-12-06T18:18:18+00:00">2019-12-06</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-12-06 14:50:20" itemprop="dateModified" datetime="2019-12-06T14:50:20+00:00">2019-12-06</time>
               
             
           </span>
@@ -428,8 +418,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/blog/posts/1fd30f6e/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/1fd30f6e/" itemprop="commentCount"></span>
+                <a href="/blog/posts/5754fcd2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/5754fcd2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -437,7 +427,7 @@
 
           
           
-            <span id="/blog/posts/1fd30f6e/" class="leancloud_visitors" data-flag-title="Java中三种常用的排序方法">
+            <span id="/blog/posts/5754fcd2/" class="leancloud_visitors" data-flag-title="Android AlarmManager设置重复任务">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -468,52 +458,85 @@
       
 
       
-        <p>今天重新学习类三种排序方法，按照排序速度依次是冒泡排序，选择排序和插入排序。<br>以下示例皆为从小到大的排序</p>
-<h1 id="1-冒泡排序"><a href="#1-冒泡排序" class="headerlink" title="1.冒泡排序"></a>1.冒泡排序</h1><p>每一次比较都可能要交换元素。<br>冒泡排序的思想是：<br>每一轮开始的时候，将第一个元素（a）开始与其后的元素（b）依次进行比较，将较大的元素（设为m）放到后面，并将m与其后的另外一个元素继续进行比较，直到最后一个没有排好序的元素。<br>在接下来一轮的排序中，刚才以及之前选出来的、已经排好顺序的最大值不用参与排序。<br>依次类推，总共遍历n-1轮，即可完成排序。<br>具体代码如下：</p>
-<pre><code> void bubble(int[] arr){
-    int temp;
-    for (int i = 0; i &lt; arr.length - 1; i++) {
-        for (int j = 0; j &lt; arr.length - i - 1; j++) {
-            if (arr[j] &gt; arr[j + 1]) {
-                temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
-        }
-    }
-
-    System.out.println(&quot;\n--bubble :&quot;);
-    for (int i = 0; i &lt; arr.length; i++) {
-        System.out.print(arr[i] + &quot; &quot;);
-    }
-}
-</code></pre><h1 id="2-选择排序"><a href="#2-选择排序" class="headerlink" title="2.选择排序"></a>2.选择排序</h1><p>每次比较的时候不交换<br>选择排序的思想：<br>每次比较的时候找到的两个数中的较大值并记下其位置，等到当前一轮的遍历完成之后，将最后一个未排序元素与这一轮遍历找到的最大值交换<br>最多交换n-1次<br>代码如下：</p>
-<pre><code>   void select(int[] arr){
-
-    for (int i = 0; i &lt; arr.length; i++) {
-        int maxIndex = 0;
-        int temp = 0;
-
-        for (int j = 1; j &lt; arr.length - i; j++) {
-            if (arr[maxIndex] &lt; arr[j]) {
-                maxIndex = j;
-            }
-        }
-
-        temp = arr[maxIndex];
-        arr[maxIndex] = arr[arr.length - i - 1];
-        arr[arr.length - i - 1] = temp;
-    }
-
-
-    System.out.println(&quot;\n--select :&quot;);
-
-    for (int i = 0; i &lt; arr.length; i++) {
-        System.out.print(arr[i] + &quot; &quot;);
-    }
-}
-</code></pre><h1 id="3-插入排序法"><a href="#3-插入排序法" class="headerlink" title="3.插入排序法"></a>3.插入排序法</h1><p>插入排序法思想：<br>将待排序的元素分为有序和无序两种，刚开始排序的时候假设只有第一个元素是有序的，其余n-1个元素都是无序的；<br>排序开始的时，将无序部分的一个元素（a）与有序部分的最后一个元素（b）进行比较，如果a&lt;b，则将a与b交换，再将a与下一个有序元素进行比较；否则，将a加到b后面，作为有序部分的最后一个元素。<br>接着再从无序部分取出一个元素与有序部分的元素依次比较，直达所有元素都为有序元素。<br>遍历n-1次<br>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insertSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> instertValue = arr[i];</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">			<span class="keyword">if</span> (instertValue &lt; arr[j]) &#123;</span><br><span class="line">				arr[j+<span class="number">1</span>] = arr[j];</span><br><span class="line">				arr[j] = instertValue;</span><br><span class="line">			&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/* 第二种表示形式</span></span><br><span class="line"><span class="comment">	for (int i = 1; i &lt; arr.length; i++) &#123;</span></span><br><span class="line"><span class="comment">		int instertVal = arr[i];</span></span><br><span class="line"><span class="comment">		int index = i - 1;</span></span><br><span class="line"><span class="comment">		</span></span><br><span class="line"><span class="comment">		while (index &gt;= 0 &amp;&amp; instertVal &lt; arr[index]) &#123;</span></span><br><span class="line"><span class="comment">			arr[index + 1] = arr[index];</span></span><br><span class="line"><span class="comment">			index--;</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		arr[index + 1] = instertVal;</span></span><br><span class="line"><span class="comment">	&#125;		</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line"></span><br><span class="line">	System.out.println(<span class="string">"\n--insertSort :"</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">		System.out.print(arr[i] + <span class="string">" "</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>近期有一个实现定时启动APP提醒用户的需求，一番比较之后觉得用闹钟<code>AlarmManager</code>实现比较合适，本文是对此过程的梳理，属于比较基础性的内容。</p>
+<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>需求需要实现</p>
+<blockquote>
+<p>“每天在指定时间范围内,循环提示用户直到满足指定的条件”</p>
+</blockquote>
+<p>拆分需求：</p>
+<ol>
+<li>每天都要提醒</li>
+<li>在时间范围内一直循环</li>
+<li>满足条件后结束当天循环</li>
+</ol>
+<h1 id="方案选择"><a href="#方案选择" class="headerlink" title="方案选择"></a>方案选择</h1><p>Android中可以用到的循环任务实现有<code>Handler</code>、<code>Timer</code>、<code>ScheduledExecutorService</code>（这三个可以看<a href="https://blog.csdn.net/qq_27489007/article/details/79220609" target="_blank" rel="noopener">这里</a>），还有最近的<a href="https://developer.android.google.cn/topic/libraries/architecture/workmanager" target="_blank" rel="noopener"><code>WorkManager</code></a>和我们要用到的<a href="https://developer.android.google.cn/training/scheduling/alarms" target="_blank" rel="noopener"><code>AlarmManager</code></a>。</p>
+<blockquote>
+<p> WorkManager offers a backwards compatible (API level 14+) API leveraging <a href="https://developer.android.google.cn/reference/android/app/job/JobScheduler" target="_blank" rel="noopener"><code>JobScheduler</code></a> API (API level 23+) and above to help optimize battery life and batch jobs and a combination of <a href="https://developer.android.google.cn/reference/android/app/AlarmManager" target="_blank" rel="noopener"><code>AlarmManager</code></a> &amp; <a href="https://developer.android.google.cn/reference/android/app/BroadcastReceiver" target="_blank" rel="noopener"><code>BroadcastReceiver</code></a> on lower devices. </p>
+</blockquote>
+<p>这几个方案中，前三者都需要APP在前台运行，<code>WorkManager</code>和<code>AlarmManager</code>则在APP退出之后也可以使用，甚至在低版本上<code>WorkManager</code>底层也是通过<code>AlarmManager</code>实现的。</p>
+<p><code>WorkManager</code>主要倾向于保证任务在APP退出，甚至设备关机重启等情况下也会被执行，虽然也提供循环任务的，但是无法确保在精确的时间得到执行，且最小间隔15min。</p>
+<p>相比之下，<code>AlarmManager</code>可以确保任务在指定时间（精确的时间）得到执行，并且对于循环的间隔也更加灵活。</p>
+<p><img src="https://developer.android.google.cn/images/guide/background/bg-job-choose.svg" alt="Android推荐选择方案"></p>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>据Android官网介绍，闹钟主要用于在应用程序生命周期之外进行定时操作。</p>
+<p>闹钟具有以下特征：</p>
+<blockquote>
+<ul>
+<li>它们可让您按设定的时间和/或间隔触发 intent。</li>
+<li>您可以将它们与广播接收器结合使用，以启动服务以及执行其他操作。</li>
+<li>它们在应用外部运行，因此即使应用未运行，或设备本身处于休眠状态，您也可以使用它们来触发事件或操作。</li>
+<li>它们可以帮助您最大限度地降低应用的资源要求。您可以安排定期执行操作，而无需依赖定时器或持续运行后台服务。</li>
+</ul>
+</blockquote>
+<p>需要注意的是，Android为了避免重复闹钟可能带来的性能消耗，推荐使用不是很精确的<code>setInexactRepeating()</code>， 而不是精确的<code>setRepeating()</code>，并且在<code>API19+</code>之后的所有的重复闹钟都不是精确的，如果需要精确闹钟需要使用 <code>setWindow(int, long, long, android.app.PendingIntent)</code> 或<code>setExact(int, long, android.app.PendingIntent)</code>。 重复闹钟具有以下特征：</p>
+<blockquote>
+<ul>
+<li>闹钟类型。要了解详情，请参阅<a href="https://developer.android.google.cn/training/scheduling/alarms#type" target="_blank" rel="noopener">选择闹钟类型</a>。</li>
+<li>触发时间。如果您指定的触发时间为过去的时间，则闹钟会立即触发。</li>
+<li>闹钟的间隔。例如，每天一次、每小时一次、每 5 分钟一次，等等。</li>
+<li>闹钟触发的待定 intent。当您设置了使用同一待定 intent 的第二个闹钟时，它会替换原始闹钟。</li>
+</ul>
+</blockquote>
+<h2 id="闹钟类型"><a href="#闹钟类型" class="headerlink" title="闹钟类型"></a>闹钟类型</h2><p>闹钟有两个类型：</p>
+<ol>
+<li><p>距离系统启动后的时间，主要用于“间隔多久重复一次”这样的需求</p>
+<p><code>ELAPSED_REALTIME</code> 距离开机时间多久后启用闹钟，如果系统在休眠中则不会唤醒</p>
+<p><code>ELAPSED_REALTIME_WAKEUP</code> 在系统休眠时也会唤醒系统</p>
+</li>
+<li><p>精确的时间UTC，主要用于“在当天下午8点整开始”等这样的需求</p>
+<p><code>RTC</code> 在指定的时间触发闹钟，不会唤醒机器</p>
+<p><code>RTC_WAKEUP</code> 在指定时间触发闹钟，并且唤醒设备</p>
+</li>
+</ol>
+<h2 id="触发时间"><a href="#触发时间" class="headerlink" title="触发时间"></a>触发时间</h2><p>闹钟触发的时间，分为从设备上次启动时间和精准时间两种。</p>
+<p>如果触发的时间早于当前系统时间的话，系统会根据过去的时间和重复间隔选择一个合适的时间来触发（有几分钟内的误差）。</p>
+<p>从实际运行来看，使用<code>ELAPSED_*</code>的基本上会立即（几秒钟）触发该闹钟，并且每次循环间隔有几毫秒的误差。</p>
+<p>使用<code>RTC_*</code>则会在刚开始的两三次出现间隔时间小于指定时间的情况，后期稳定：</p>
+<p>设置的闹钟间隔为10分钟，闹钟开始时间早于当前时间，唤醒结果如下<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP,</span><br><span class="line">            calendar.timeInMillis,</span><br><span class="line">            <span class="number">10</span> * <span class="number">60</span> * <span class="number">1000</span>,</span><br><span class="line">            alarmIntent</span><br><span class="line">        )</span><br><span class="line"><span class="number">2019</span>-<span class="number">12</span>-<span class="number">06</span> <span class="number">14</span>:<span class="number">13</span>:<span class="number">46.696</span> </span><br><span class="line"><span class="number">2019</span>-<span class="number">12</span>-<span class="number">06</span> <span class="number">14</span>:<span class="number">16</span>:<span class="number">26.634</span> </span><br><span class="line"><span class="number">2019</span>-<span class="number">12</span>-<span class="number">06</span> <span class="number">14</span>:<span class="number">24</span>:<span class="number">26.765</span> </span><br><span class="line"><span class="number">2019</span>-<span class="number">12</span>-<span class="number">06</span> <span class="number">14</span>:<span class="number">34</span>:<span class="number">26.579</span> </span><br><span class="line"><span class="number">2019</span>-<span class="number">12</span>-<span class="number">06</span> <span class="number">14</span>:<span class="number">43</span>:<span class="number">46.785</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="间隔时间"><a href="#间隔时间" class="headerlink" title="间隔时间"></a>间隔时间</h2><p>间隔时间有两种：</p>
+<ol>
+<li><code>AlarmManager interval</code> 如果设置的是<code>setInexactRepeating()</code>，则需要设置<code>AlarmManager</code>指定的几种间隔时间。</li>
+<li>任意时间 <code>setRepeating()</code>方法可以使用任意时间</li>
+</ol>
+<h2 id="待定的intent"><a href="#待定的intent" class="headerlink" title="待定的intent"></a>待定的intent</h2><blockquote>
+<p>当您设置了使用同一待定 intent 的第二个闹钟时，它会替换原始闹钟 </p>
+</blockquote>
+<p>待定的<code>Intent</code>是一个<code>PendingIntent</code>，可以用来打开<code>Service</code>，<code>Activity</code>，<code>Broadcast</code>等等。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">getPendingIntent</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">        context: <span class="type">Context</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">        action: <span class="type">String</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">        requestCode: <span class="type">Int</span></span></span></span><br><span class="line"><span class="function"><span class="params">    )</span></span>: PendingIntent &#123;</span><br><span class="line">        <span class="keyword">return</span> PendingIntent.getBroadcast(context, requestCode, Intent(action), <span class="number">0</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>注意这里的<code>requestCode</code>，当不需要该闹钟时可以根据这个来取消。</p>
+<h2 id="取消闹钟"><a href="#取消闹钟" class="headerlink" title="取消闹钟"></a>取消闹钟</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alarmManager.cancel(getPendingIntent(context,ACTION,RequestCode))</span><br></pre></td></tr></table></figure>
+<h2 id="在重启时恢复闹钟"><a href="#在重启时恢复闹钟" class="headerlink" title="在重启时恢复闹钟"></a>在重启时恢复闹钟</h2><p>由于闹钟会在设备关机的时候被取消，所以需要监听设备开机广播（<code>android.intent.action.BOOT_COMPLETED</code>），并且恢复闹钟。</p>
+<h1 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h1><h2 id="设置一个每天指定时间循环的闹钟"><a href="#设置一个每天指定时间循环的闹钟" class="headerlink" title="设置一个每天指定时间循环的闹钟"></a>设置一个每天指定时间循环的闹钟</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">setupDailyAlarmClock</span><span class="params">( context: <span class="type">Context</span>,startTime: <span class="type">Pair</span>&lt;<span class="type">Int</span>, <span class="built_in">Int</span>&gt;)</span></span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">val</span> alarmMgr = context.getSystemService(Context.ALARM_SERVICE) <span class="keyword">as</span> AlarmManager</span><br><span class="line">        <span class="keyword">val</span> alarmIntent = getPendingIntent(</span><br><span class="line">            context,</span><br><span class="line">            BROADCAST_ACTION_REPEAT,</span><br><span class="line">            RequestCode.START_REPEAT_INVENTORY</span><br><span class="line">        )</span><br><span class="line">        <span class="comment">// Set the alarm to start at xx:xx</span></span><br><span class="line">        <span class="keyword">val</span> calendar: Calendar = Calendar.getInstance().apply &#123;</span><br><span class="line">            timeInMillis = System.currentTimeMillis()</span><br><span class="line">            <span class="keyword">set</span>(Calendar.HOUR_OF_DAY, startTime.first)</span><br><span class="line">            <span class="keyword">set</span>(Calendar.MINUTE, startTime.second)</span><br><span class="line">            <span class="keyword">set</span>(Calendar.SECOND, <span class="number">0</span>)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1 day</span></span><br><span class="line">        alarmMgr.setRepeating(</span><br><span class="line">            AlarmManager.RTC_WAKEUP,</span><br><span class="line">            calendar.timeInMillis,</span><br><span class="line">            AlarmManager.INTERVAL_DAY,</span><br><span class="line">            alarmIntent</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>在每天指定时间到了之后，开始设置一个间隔10分钟唤醒一次的闹钟，直到超时或者满足指定的条件后取消该闹钟。</p>
+<h2 id="监听每日循环的闹钟"><a href="#监听每日循环的闹钟" class="headerlink" title="监听每日循环的闹钟"></a>监听每日循环的闹钟</h2><p>监听其发送的广播<code>BROADCAST_ACTION_REPEAT</code>。</p>
+<p>启用当日循环闹钟：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">setupRepeatAlarmClock</span><span class="params">(context: <span class="type">Context</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> startTime = SharePreferencesUtils.sharedPreferences</span><br><span class="line">        .getString(KEY_STARTT_TIME,DEF_INVENTORY_TIME)?.toFormatTime() ?: <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> alarmMgr = context.getSystemService(Context.ALARM_SERVICE) <span class="keyword">as</span> AlarmManager</span><br><span class="line">    <span class="keyword">val</span> alarmIntent = getPendingIntent(</span><br><span class="line">        context,</span><br><span class="line">        BROADCAST_ACTION_START,</span><br><span class="line">        RequestCode.START_INVENTORY</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> tenMinutes = DEF_INVENTORY_DURATION * <span class="number">60</span> * <span class="number">1000</span></span><br><span class="line">    alarmMgr.setRepeating(</span><br><span class="line">        AlarmManager.ELAPSED_REALTIME_WAKEUP,<span class="comment">//从开机后多久</span></span><br><span class="line">        SystemClock.elapsedRealtime(),<span class="comment">//当前自开机完后的时间</span></span><br><span class="line">        tenMinutes,<span class="comment">//每十分钟循环一次</span></span><br><span class="line">        alarmIntent</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在广播接收器中收听到<code>BROADCAST_ACTION_START</code>后去开启任务</p>
+<h2 id="条件满足后关闭当日循环闹钟"><a href="#条件满足后关闭当日循环闹钟" class="headerlink" title="条件满足后关闭当日循环闹钟"></a>条件满足后关闭当日循环闹钟</h2><p>在收到<code>BROADCAST_ACTION_START</code>后检测到已经超时或其他满足取消条件的情况，则取消任务。</p>
+<p>或者可以再订一个结束时间的闹钟，到时间后取消当日循环闹钟。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> alarmManager = getSystemService(Context.ALARM_SERVICE) <span class="keyword">as</span> AlarmManager</span><br><span class="line">alarmManager.cancel(pIntent)</span><br></pre></td></tr></table></figure>
+<p>注意这里的<code>pIntent</code>需要与设置闹钟时的<code>PendingIntent</code>一致(满足<code>Intent.filterEquals()</code>的条件)。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/qq_27489007/article/details/79220609" target="_blank" rel="noopener">Android定时任务及循环任务基础大集合</a></p>
+<p><a href="https://developer.android.google.cn/training/scheduling/alarms" target="_blank" rel="noopener">安排重复闹钟 Android官网</a></p>
 
       
     </div>
@@ -559,7 +582,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://jixiaoyong.github.io/blog/posts/1fd30f6e/" title="Java中三种常用的排序方法">https://jixiaoyong.github.io/blog/posts/1fd30f6e/</a>
+    <a href="https://jixiaoyong.github.io/blog/posts/5754fcd2/" title="Android AlarmManager设置重复任务">https://jixiaoyong.github.io/blog/posts/5754fcd2/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -579,8 +602,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/posts/25db0a11/" rel="next" title="Linux下配置Git，使用AndroidStudio同步工程到Github">
-                <i class="fa fa-chevron-left"></i> Linux下配置Git，使用AndroidStudio同步工程到Github
+              <a href="/blog/posts/fd5546ac/" rel="next" title="Kotlin学习笔记3">
+                <i class="fa fa-chevron-left"></i> Kotlin学习笔记3
               </a>
             
           </div>
@@ -588,10 +611,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/posts/1c56d6b9/" rel="prev" title="Android开发常用设置">
-                Android开发常用设置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -787,7 +806,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-冒泡排序"><span class="nav-number">1.</span> <span class="nav-text">1.冒泡排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-选择排序"><span class="nav-number">2.</span> <span class="nav-text">2.选择排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-插入排序法"><span class="nav-number">3.</span> <span class="nav-text">3.插入排序法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#需求"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方案选择"><span class="nav-number">2.</span> <span class="nav-text">方案选择</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分析"><span class="nav-number">3.</span> <span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#闹钟类型"><span class="nav-number">3.1.</span> <span class="nav-text">闹钟类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#触发时间"><span class="nav-number">3.2.</span> <span class="nav-text">触发时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#间隔时间"><span class="nav-number">3.3.</span> <span class="nav-text">间隔时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#待定的intent"><span class="nav-number">3.4.</span> <span class="nav-text">待定的intent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#取消闹钟"><span class="nav-number">3.5.</span> <span class="nav-text">取消闹钟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在重启时恢复闹钟"><span class="nav-number">3.6.</span> <span class="nav-text">在重启时恢复闹钟</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体实现"><span class="nav-number">4.</span> <span class="nav-text">具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置一个每天指定时间循环的闹钟"><span class="nav-number">4.1.</span> <span class="nav-text">设置一个每天指定时间循环的闹钟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监听每日循环的闹钟"><span class="nav-number">4.2.</span> <span class="nav-text">监听每日循环的闹钟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件满足后关闭当日循环闹钟"><span class="nav-number">4.3.</span> <span class="nav-text">条件满足后关闭当日循环闹钟</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
