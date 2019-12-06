@@ -1,6 +1,5 @@
 ---
 title: Android AlarmManager设置重复任务
-abbrlink: 1c56d6b9
 date: 2019-12-6 18:18:18
 ---
 
