@@ -111,7 +111,7 @@
 <meta property="og:site_name" content="Ji Xiaoyong&#39;s Blog">
 <meta property="og:description" content="HashMap使用由Map.Entry&amp;lt;K,V&amp;gt;组成的数组table保存数据。  在JDK1.7中，数据以数组或链表形式保存，JDK1.8中则新增了红黑树。 发生hash冲突时，JDK1.7采用采用头插法，可能会产生逆序和环形链表；JDK1.8采用尾插法，直接插入链表或红黑树尾部。 具体JDK1.7与1.8对比查看这里  每个Node包含了以下信息： 123456Node&amp;lt;K,V">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-15T09:52:17.064Z">
+<meta property="og:updated_time" content="2019-12-15T16:12:49.312Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java笔记之HashMap保存数据">
 <meta name="twitter:description" content="HashMap使用由Map.Entry&amp;lt;K,V&amp;gt;组成的数组table保存数据。  在JDK1.7中，数据以数组或链表形式保存，JDK1.8中则新增了红黑树。 发生hash冲突时，JDK1.7采用采用头插法，可能会产生逆序和环形链表；JDK1.8采用尾插法，直接插入链表或红黑树尾部。 具体JDK1.7与1.8对比查看这里  每个Node包含了以下信息： 123456Node&amp;lt;K,V">
@@ -397,7 +397,7 @@
                 
               
 
-              <time title="创建时间：2019-12-15 16:41:35 / 修改时间：09:52:17" itemprop="dateCreated datePublished" datetime="2019-12-15T16:41:35+00:00">2019-12-15</time>
+              <time title="创建时间：2019-12-15 16:41:35 / 修改时间：16:12:49" itemprop="dateCreated datePublished" datetime="2019-12-15T16:41:35+00:00">2019-12-15</time>
             
 
             
@@ -469,15 +469,15 @@
 <p>每个<code>Node</code>包含了以下信息：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Node&lt;K,V&gt; implements Map.Entry&lt;K,V&gt;&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> hash;</span><br><span class="line">    <span class="keyword">final</span> K key;</span><br><span class="line">    V value;</span><br><span class="line">    Node&lt;K,V&gt; next;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <p>在执行<code>hashMap.put(&quot;k&quot;, &quot;v&quot;);</code>时，会先计算<code>key</code>的<code>hash</code>值</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> h;</span><br><span class="line">        <span class="keyword">return</span> (key == <span class="keyword">null</span>) ? <span class="number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">  <span class="comment">//这里原始hash值(32位)的高位和地位进行按位异或（不同为，相同为0），增加了随机性，避免因为hashCode计算得到的hash值（低位相同概率高）计算索引时（见下文↓）一直取低位值而可能导致的索引一直的重复问题。</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> h;</span><br><span class="line">        <span class="keyword">return</span> (key == <span class="keyword">null</span>) ? <span class="number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">  <span class="comment">//这里原始hash值(32位)的高位和地位进行按位异或（不同为，相同为0），</span></span><br><span class="line">  <span class="comment">//增加了随机性，避免因为hashCode计算得到的hash值（低位相同概率高）</span></span><br><span class="line">  <span class="comment">//计算索引时（见下文↓）一直取低位值而可能导致的索引一直的重复问题。</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <h1 id="计算索引"><a href="#计算索引" class="headerlink" title="计算索引"></a>计算索引</h1><p>一个<code>key</code>对应的索引<code>index</code>是由这个<code>key</code>的<code>hash()</code>值对<code>HashMap</code>的数组长度<code>length</code>的余数：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index = hash % length;</span><br></pre></td></tr></table></figure>
 <p>又有<strong>在<code>Length</code>为2^n^</strong>时：</p>
 <p>hash % 2^n^ =  hash &amp; ( 2^n^ - 1)</p>
 <blockquote>
-<p>hash % 2^n^ = hash - hash / 2^n^ = hash - (hash&gt;&gt;n) * 2^n^ = hash &amp; ( 2^n^ - 1)</p>
+<p>hash % 2^n^ = hash - (hash / 2^n^) <em> 2^n^<br>= hash - (hash&gt;&gt;n) </em> 2^n^<br>= hash &amp; ( 2^n^ - 1)</p>
 </blockquote>
-<p>所以：</p>
+<p>而<code>HashMap</code>的长度<code>Length</code>又只能是2^n^，所以：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index = (length - <span class="number">1</span>) &amp; hash;</span><br></pre></td></tr></table></figure>
 <h1 id="保存值"><a href="#保存值" class="headerlink" title="保存值"></a>保存值</h1><ul>
 <li><p>当<code>table</code>为空或者长度超过加载因子<code>DEFAULT_LOAD_FACTOR</code>规定的容量(默认容量为16，加载因子为0.75)时会自动扩容。</p>
