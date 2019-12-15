@@ -29,7 +29,9 @@ Node<K,V> implements Map.Entry<K,V>{
 static final int hash(Object key) {
         int h;
         return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
-  //这里原始hash值(32位)的高位和地位进行按位异或（不同为，相同为0），增加了随机性，避免因为hashCode计算得到的hash值（低位相同概率高）计算索引时（见下文↓）一直取低位值而可能导致的索引一直的重复问题。
+  //这里原始hash值(32位)的高位和地位进行按位异或（不同为，相同为0），
+  //增加了随机性，避免因为hashCode计算得到的hash值（低位相同概率高）
+  //计算索引时（见下文↓）一直取低位值而可能导致的索引一直的重复问题。
     }
 ```
 
@@ -45,9 +47,11 @@ index = hash % length;
 
 hash % 2^n^ =  hash & ( 2^n^ - 1)
 
-> hash % 2^n^ = hash - hash / 2^n^ = hash - (hash>>n) * 2^n^ = hash & ( 2^n^ - 1)
+> hash % 2^n^ = hash - (hash / 2^n^) * 2^n^ 
+= hash - (hash>>n) * 2^n^ 
+= hash & ( 2^n^ - 1)
 
-所以：
+而`HashMap`的长度`Length`又只能是2^n^，所以：
 
 ```java
 index = (length - 1) & hash;
