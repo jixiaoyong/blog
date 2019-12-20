@@ -9,7 +9,7 @@ date: 2016-06-06 6:06:06
 
 
 
-![](https://raw.githubusercontent.com/jixiaoyong/jixiaoyong.github.io/master/images/imissyou/about_me_001.png)
+![](/images/imissyou/about_me_001.png)
 
 
 
