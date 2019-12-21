@@ -22,9 +22,9 @@ date: 2019-12-21 09:44:32
 >
 > https://stackoverflow.com/a/12193259/8389461
 
-可以参照这张图
+可以参照[这张图](https://www.jianshu.com/p/9d729c9c94c4)
 
-![图片来自https://www.jianshu.com/p/9d729c9c94c4](https://upload-images.jianshu.io/upload_images/2509688-c69b5f36addd9a63.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
+![图片来自https://www.jianshu.com/p/9d729c9c94c4](https://jixiaoyong.github.io/images/20191221191518.webp)
 
 其中，数据区占用的大小如下：
 
