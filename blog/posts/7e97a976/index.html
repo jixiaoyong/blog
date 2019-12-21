@@ -103,18 +103,21 @@
 
 
 
-  <meta name="description" content="注解，是描述Java代码的代码，它能够被编译器解析，向编译器、虚拟机说明一些事情，就像java中给程序员看的注释一样。 Android应用开发这方面比较火的是Butter Knife ,本文讲述如何自定义注解替换findViewById()。 实现注解（annotation）的思路：通过反射获取到类中使用注解的变量，方法，再调用不同的方法对这些变量，方法进行处理以达到目的。 主要涉及三方面：  定">
-<meta name="keywords" content="注解">
+  <meta name="description" content="计算Java对象的大小注意 以下所说的计算Java对象大小，不涉及该对象所持有的对象本身的大小，只计算该Java对象本身的大小（其中引用类型对象大小只计算为4bytes），如果要遍历计算Java对象大小（包含其持有对象的大小）可以参考这篇文章 Sizeof for Java 一个Java对象在内存中的大小包括以下(以64位JVM启用压缩为例，综合这里和这里的信息整理)：    分类 大小（byte">
+<meta name="keywords" content="android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java注解">
-<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/3f6454bb/index.html">
+<meta property="og:title" content="Android笔记之跨进程通信">
+<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/7e97a976/index.html">
 <meta property="og:site_name" content="Ji Xiaoyong&#39;s Blog">
-<meta property="og:description" content="注解，是描述Java代码的代码，它能够被编译器解析，向编译器、虚拟机说明一些事情，就像java中给程序员看的注释一样。 Android应用开发这方面比较火的是Butter Knife ,本文讲述如何自定义注解替换findViewById()。 实现注解（annotation）的思路：通过反射获取到类中使用注解的变量，方法，再调用不同的方法对这些变量，方法进行处理以达到目的。 主要涉及三方面：  定">
+<meta property="og:description" content="计算Java对象的大小注意 以下所说的计算Java对象大小，不涉及该对象所持有的对象本身的大小，只计算该Java对象本身的大小（其中引用类型对象大小只计算为4bytes），如果要遍历计算Java对象大小（包含其持有对象的大小）可以参考这篇文章 Sizeof for Java 一个Java对象在内存中的大小包括以下(以64位JVM启用压缩为例，综合这里和这里的信息整理)：    分类 大小（byte">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-21T08:59:18.676Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2509688-c69b5f36addd9a63.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20191221104050.png">
+<meta property="og:updated_time" content="2019-12-21T08:59:18.672Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java注解">
-<meta name="twitter:description" content="注解，是描述Java代码的代码，它能够被编译器解析，向编译器、虚拟机说明一些事情，就像java中给程序员看的注释一样。 Android应用开发这方面比较火的是Butter Knife ,本文讲述如何自定义注解替换findViewById()。 实现注解（annotation）的思路：通过反射获取到类中使用注解的变量，方法，再调用不同的方法对这些变量，方法进行处理以达到目的。 主要涉及三方面：  定">
+<meta name="twitter:title" content="Android笔记之跨进程通信">
+<meta name="twitter:description" content="计算Java对象的大小注意 以下所说的计算Java对象大小，不涉及该对象所持有的对象本身的大小，只计算该Java对象本身的大小（其中引用类型对象大小只计算为4bytes），如果要遍历计算Java对象大小（包含其持有对象的大小）可以参考这篇文章 Sizeof for Java 一个Java对象在内存中的大小包括以下(以64位JVM启用压缩为例，综合这里和这里的信息整理)：    分类 大小（byte">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/2509688-c69b5f36addd9a63.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp">
 
 
 
@@ -122,7 +125,7 @@
 
   
   
-  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/3f6454bb/">
+  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/7e97a976/">
 
 
 
@@ -132,7 +135,7 @@
   };
 </script>
 
-  <title>Java注解 | Ji Xiaoyong's Blog</title>
+  <title>Android笔记之跨进程通信 | Ji Xiaoyong's Blog</title>
   
 
 
@@ -354,7 +357,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/3f6454bb/">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/7e97a976/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ji Xiaoyong">
@@ -371,7 +374,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java注解<a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/Java注解.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+          <h1 class="post-title" itemprop="name headline">Android笔记之跨进程通信<a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/AndroidNoteInterprocessCommunication.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
 
               
             
@@ -397,24 +400,12 @@
                 
               
 
-              <time title="创建时间：2018-01-21 20:53:07" itemprop="dateCreated datePublished" datetime="2018-01-21T20:53:07+00:00">2018-01-21</time>
+              <time title="创建时间：2019-12-21 09:44:32 / 修改时间：08:59:18" itemprop="dateCreated datePublished" datetime="2019-12-21T09:44:32+00:00">2019-12-21</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-12-21 08:59:18" itemprop="dateModified" datetime="2019-12-21T08:59:18+00:00">2019-12-21</time>
               
             
           </span>
@@ -432,8 +423,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/blog/posts/3f6454bb/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/3f6454bb/" itemprop="commentCount"></span>
+                <a href="/blog/posts/7e97a976/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/7e97a976/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -441,7 +432,7 @@
 
           
           
-            <span id="/blog/posts/3f6454bb/" class="leancloud_visitors" data-flag-title="Java注解">
+            <span id="/blog/posts/7e97a976/" class="leancloud_visitors" data-flag-title="Android笔记之跨进程通信">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -472,110 +463,136 @@
       
 
       
-        <p>注解，<em>是描述Java代码的代码，它能够被编译器解析，向编译器、虚拟机说明一些事情，就像java中给程序员看的注释一样</em>。</p>
-<p>Android应用开发这方面比较火的是<a href="http://jakewharton.github.io/butterknife/" target="_blank" rel="noopener">Butter Knife</a> ,本文讲述如何自定义注解替换findViewById()。</p>
-<p>实现<strong>注解（annotation）</strong>的思路：通过<strong>反射</strong>获取到类中使用注解的变量，方法，再调用不同的方法对这些变量，方法进行处理以达到目的。</p>
-<p>主要涉及三方面：</p>
-<ul>
-<li>定义一个注解类</li>
-<li>定义一个注解帮助类</li>
-<li>使用注解</li>
-</ul>
-<h1 id="java元注解"><a href="#java元注解" class="headerlink" title="java元注解"></a>java元注解</h1><p>java语言有四个预留的注解，用来生成其他自定义的注解：</p>
-<ul>
-<li>@Target</li>
-</ul>
-<p>说明注解所能修饰的范围。其值一般为ElementType.xxx，主要有：</p>
-<ol>
-<li>CONSTRUCTOR 描述构造器</li>
-<li>FIELD 描述域</li>
-<li>LOCAL_VARIABLE 描述局部变量</li>
-<li>METHOD 描述方法</li>
-<li>PACKAGE 描述包</li>
-<li>PARAMETER 描述参数</li>
-<li>TYPE 描述类，接口，enum声明</li>
-</ol>
-<ul>
-<li>@Retention</li>
-</ul>
-<p>说明注解存活的生命周期,其值一般为RetentionPolicy.xxx，主要有</p>
-<ol>
-<li>SOURCE 仅源文件有效，被编译器丢弃</li>
-<li>CLASS 在class文件中有效，可能被虚拟机忽略</li>
-<li>RUNTIME 在运行时有效，在class被装载时被获取</li>
-</ol>
-<ul>
-<li>@Documented</li>
-</ul>
-<blockquote>
-<p>用于描述其它类型的annotation应该被作为被标注的程序成员的公共API</p>
-</blockquote>
-<p>表示是否将注解信息添加在java文档中。有该注解则会被Javadoc工具文档化</p>
-<p>是一个标记注解，没有值</p>
-<ul>
-<li>@Inherited</li>
-</ul>
-<p>表示该标记会被标记的class的子类继承，在查找该注解时，如果当前类没有，会自动向上到其父类中查找，直到<em>该注解类型被找到或是查找完了Object类还未找到</em></p>
-<p>是一个标记注解，没有值</p>
-<p><strong>注解不能继承其他注解或接口</strong></p>
-<h1 id="内建注解"><a href="#内建注解" class="headerlink" title="内建注解"></a>内建注解</h1><p>java中常见的内建注解：</p>
-<ul>
-<li><code>@Override</code> 重写父类方法</li>
-<li><code>@Deprecated</code> 不赞成使用的api</li>
-<li><code>@SuppressWarnings()</code> 忽略指定警告</li>
-</ul>
-<p>参数如下：</p>
+        <h1 id="计算Java对象的大小"><a href="#计算Java对象的大小" class="headerlink" title="计算Java对象的大小"></a>计算Java对象的大小</h1><p><strong>注意 以下所说的计算Java对象大小，不涉及该对象所持有的对象本身的大小，只计算该Java对象本身的大小（其中引用类型对象大小只计算为4bytes），如果要遍历计算Java对象大小（包含其持有对象的大小）可以参考<a href="https://www.javaworld.com/article/2077408/sizeof-for-java.html" target="_blank" rel="noopener">这篇文章 Sizeof for Java</a></strong></p>
+<p>一个Java对象在内存中的大小包括以下(以64位JVM启用压缩为例，综合<a href="https://blog.csdn.net/ITer_ZC/article/details/41822719" target="_blank" rel="noopener">这里</a>和<a href="https://blog.csdn.net/u013380694/article/details/102739636" target="_blank" rel="noopener">这里</a>的信息整理)：</p>
 <table>
 <thead>
 <tr>
-<th>参数</th>
-<th>含义</th>
+<th>分类</th>
+<th>大小（byte）</th>
+<th>备注</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>deprecation</td>
-<td>使用了过时的类或方法时的警告</td>
+<td>对象头</td>
+<td>8</td>
+<td>保存对象的 class 信息、ID、在虚拟机中的状态</td>
 </tr>
 <tr>
-<td>unchecked</td>
-<td>执行了未检查的转换时的警告</td>
+<td>Oop指针</td>
+<td>4</td>
+<td></td>
 </tr>
 <tr>
-<td>fallthrough</td>
-<td>当Switch程序块进入进入下一个case而没有Break时的警告</td>
+<td>数据区</td>
+<td></td>
+<td>对象实际包含的数据,引用类型大小为4 bytes</td>
 </tr>
 <tr>
-<td>path</td>
-<td>在类路径、源文件路径等有不存在路径时的警告</td>
+<td>数组长度</td>
+<td>4</td>
+<td>只有数组对象才有</td>
 </tr>
 <tr>
-<td>serial</td>
-<td>当可序列化的类缺少serialVersionUID定义时的警告</td>
-</tr>
-<tr>
-<td>finally</td>
-<td>任意finally子句不能正常完成时的警告</td>
-</tr>
-<tr>
-<td>all</td>
-<td>以上所有情况的警告</td>
+<td>8比特对齐</td>
+<td></td>
+<td>将对象总大小对齐到8字节所需的填充</td>
 </tr>
 </tbody>
 </table>
-<h1 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h1><h2 id="注解类"><a href="#注解类" class="headerlink" title="注解类"></a>注解类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.FIELD)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> BindView &#123;</span><br><span class="line">    <span class="comment">//注解参数只可以为public或者默认</span></span><br><span class="line">    <span class="comment">//如果注解中的值不是value，那么在进行注解的时候，需要给出对应的值的名字</span></span><br><span class="line">    <span class="comment">//如@ViewInject(id = R.id.buy)</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">value</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//注解元素必须有明确的值，要不在定义注解时指定默认值，要不在使用注解时指定</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">age</span><span class="params">()</span> <span class="keyword">default</span> 18</span>;<span class="comment">//指定默认值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>注解参数支持数据类型如下：</p>
-<p>1.所有基本数据类型（int,float,boolean,byte,double,char,long,short)<br>2.String类型<br>3.Class类型<br>4.enum类型<br>5.Annotation类型<br>6.以上所有类型的数组</p>
+<p>此外，如果是（非静态）内部类的话，由于他默认持有外部类的引用，所以会比普通类的对象多4个byte。</p>
+<p><a href="https://stackoverflow.com/a/12193259/8389461" target="_blank" rel="noopener">https://stackoverflow.com/a/12193259/8389461</a></p>
 </blockquote>
-<h2 id="注解帮助类"><a href="#注解帮助类" class="headerlink" title="注解帮助类"></a>注解帮助类</h2><p>主要提供使用注解的方法，代码中的注解替换为真正要实现的逻辑，为注解和使用注解的类搭建一个桥梁。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//核心方法如下</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bindViews</span><span class="params">(Activity activity)</span> </span>&#123;</span><br><span class="line">  		<span class="comment">//获取到使用注解的类</span></span><br><span class="line">        Class&lt;? extends Activity&gt; clazz = activity.getClass();</span><br><span class="line">  		<span class="comment">//获取该类中的所有域变量</span></span><br><span class="line">        Field[] fields = clazz.getDeclaredFields();</span><br><span class="line">  		<span class="comment">//通过遍历，将使用到注解的变量初始化</span></span><br><span class="line">        <span class="keyword">for</span> (Field field : fields) &#123;</span><br><span class="line">          	<span class="comment">//获取注解对象</span></span><br><span class="line">            BindView bindView = field.getAnnotation(BindView.class);</span><br><span class="line">            <span class="keyword">if</span> (bindView != <span class="keyword">null</span>) &#123;</span><br><span class="line">              	<span class="comment">//获取注解的值</span></span><br><span class="line">                <span class="keyword">int</span> viewId = bindView.value();</span><br><span class="line">                <span class="keyword">if</span> (viewId != -<span class="number">1</span>) &#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                      	<span class="comment">//注解要实现的逻辑，此处为替代clazz中的findViewById()方法，注意getMethod()是获取该类及其实现的接口中所有的public方法</span></span><br><span class="line">                        Method findViewById = clazz.getMethod(<span class="string">"findViewById"</span>, <span class="keyword">int</span>.class);</span><br><span class="line">                        findViewById.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">                        Object o = findViewById.invoke(activity, viewId);</span><br><span class="line">                      	<span class="comment">//修改要注解的类，到此注解目的达到</span></span><br><span class="line">                        field.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">                        field.set(activity,o);</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="使用注解"><a href="#使用注解" class="headerlink" title="使用注解"></a>使用注解</h2><p>在类中通过<code>@xxx()</code> 使用注解，并通过帮助类真正实现注解逻辑</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//标记注解</span></span><br><span class="line"><span class="meta">@BindView</span>(R.id.text)</span><br><span class="line"><span class="keyword">private</span> TextView textView;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用帮助类方法</span></span><br><span class="line">AnnotationUtils.bindViews(ASampleActivity.<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用初始化之后的变量</span></span><br><span class="line">textView.setText(<span class="string">"hello annotation"</span>);</span><br></pre></td></tr></table></figure>
-<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
-<li><a href="http://www.importnew.com/23816.html" target="_blank" rel="noopener">Java核心技术点之注解 - ImportNew</a></li>
-<li><a href="http://gityuan.com/2016/01/23/java-annotation/" target="_blank" rel="noopener">java注解–gityuan</a></li>
-</ul>
+<p>可以参照这张图</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2509688-c69b5f36addd9a63.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp" alt="图片来自https://www.jianshu.com/p/9d729c9c94c4"></p>
+<p>其中，数据区占用的大小如下：</p>
+<script async class="speakerdeck-embed" data-slide="29" data-id="6950a0f032390131a8f91e7b7986a513" data-ratio="1.77777777777778" src="https//speakerdeck.com/assets/embed.js"></script>
+
+<p>下图来自于<a href="https://speakerdeck.com/romainguy/android-memories?slide=29" target="_blank" rel="noopener">android-memories</a></p>
+<p><img src="https://jixiaoyong.github.io/images/20191221104050.png" alt="Size of data from speakerdeck.com"></p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;    // java.lang.Object shell size in bytes:</span><br><span class="line">&gt;    public static final int OBJECT_SHELL_SIZE   = 8;</span><br><span class="line">&gt;    public static final int OBJREF_SIZE         = 4;</span><br><span class="line">&gt;    public static final int LONG_FIELD_SIZE     = 8;</span><br><span class="line">&gt;    public static final int INT_FIELD_SIZE      = 4;</span><br><span class="line">&gt;    public static final int SHORT_FIELD_SIZE    = 2;</span><br><span class="line">&gt;    public static final int CHAR_FIELD_SIZE     = 2;</span><br><span class="line">&gt;    public static final int BYTE_FIELD_SIZE     = 1;</span><br><span class="line">&gt;    public static final int BOOLEAN_FIELD_SIZE  = 1;</span><br><span class="line">&gt;    public static final int DOUBLE_FIELD_SIZE   = 8;</span><br><span class="line">&gt;    public static final int FLOAT_FIELD_SIZE    = 4;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><a href="https://www.javaworld.com/article/2077408/sizeof-for-java.html" target="_blank" rel="noopener">https://www.javaworld.com/article/2077408/sizeof-for-java.html</a></p>
+</blockquote>
+<p>每个对象引用占用4个字节</p>
+<p>下面是一个计算对象大小的示例：</p>
+<p>根据<a href="https://speakerdeck.com/romainguy" target="_blank" rel="noopener">Romain Guy</a>在<a href="https://speakerdeck.com/romainguy/android-memories?slide=34" target="_blank" rel="noopener">SpeakerDeck</a>中的说法：</p>
+<blockquote>
+<p>一个空的class占用了4+8=12个byte的内存，再加上8比特对齐，实际占用大小为16比特。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="class"><span class="keyword">class</span> <span class="title">Empty</span></span>&#123;</span><br><span class="line">&gt; </span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>占用大小：</p>
+<table>
+<thead>
+<tr>
+<th>Allocation</th>
+<th>Size in bytes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dlmalloc 引用</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Object overhead（对象头）</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>Total  = 4 + 8 =12 bytes</p>
+<p>经过8-byte aligned后： total = 16 bytes</p>
+<p><a href="https://speakerdeck.com/romainguy/android-memories?slide=34" target="_blank" rel="noopener">https://speakerdeck.com/romainguy/android-memories?slide=34</a></p>
+</blockquote>
+<p>此外还有包含了数据的对象计算方式如下：</p>
+<script async class="speakerdeck-embed" data-slide="42" data-id="6950a0f032390131a8f91e7b7986a513" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>对于数组的大小计算（参考<a href="https://www.cnblogs.com/zhanjindong/p/3757767.html" target="_blank" rel="noopener">一个Java对象到底占用多大内存？</a>和<a href="https://speakerdeck.com/romainguy/android-memories?slide=54" target="_blank" rel="noopener">romainguy/android-memories</a>，后者关于数组大小的计算中<code>width&amp;padding = 8</code>的意义存疑）:</p>
+<p>按照开头的公式：<code>数组大小 = 8 对象头 + 4 Oop指针 + 4 数组大小标记length + 数组数据占用大小 + 8比特对齐</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// arr0大小 = 8 + 4 + 4 + 0 + 8比特对齐(0) = 16 bytes</span></span><br><span class="line"><span class="keyword">int</span> arr0 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</span><br><span class="line"><span class="comment">// arr1大小 = 8 + 4 + 4 + 4*1 + 8比特对齐(4) = 16 + 4 = 20 + 8比特对齐(4) = 24 bytes</span></span><br><span class="line"><span class="keyword">int</span> arr1 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">1</span>];</span><br><span class="line"><span class="comment">// arr1大小 = 8 + 4 + 4 + 4*10 + 8比特对齐(0) = 16 + 40 = 56 + 8比特对齐(0) = 56 bytes</span></span><br><span class="line"><span class="keyword">int</span> arra10 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br></pre></td></tr></table></figure>
+<h1 id="计算对象大小"><a href="#计算对象大小" class="headerlink" title="计算对象大小"></a>计算对象大小</h1><p>具体的如何计算Java中Object大小，可以参考<a href="https://stackoverflow.com/a/52682/8389461" target="_blank" rel="noopener">stackoverflow的这个回答</a>（<a href="https://github.com/cirosantilli/java-cheat/tree/a907ad2243dce2109c54d27323f9387065b5ca5c/instrument" target="_blank" rel="noopener">这里</a>有一份Github上面的实现源码）</p>
+<p>可以参考文章：</p>
+<p><a href="https://blog.csdn.net/ITer_ZC/article/details/41822719" target="_blank" rel="noopener">聊聊JVM（三）两种计算Java对象大小的方法</a></p>
+<p><a href="https://www.iteye.com/blog/brandnewuser-2113828" target="_blank" rel="noopener">准确计算Java中对象的大小</a></p>
+<p><a href="https://www.cnblogs.com/zhanjindong/p/3757767.html" target="_blank" rel="noopener">一个Java对象到底占用多大内存？</a></p>
+<h1 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h1><p>##string最长为65534</p>
+<p>String s = “”;中，在编译期最多可以有65534个字符</p>
+<blockquote>
+<p>原因是，Java中的UTF-8编码的Unicode字符串在常量池中以CONSTANT_Utf8类型表示，常量池中的所有字面量几乎都是通过CONSTANT_Utf8_info描述的。</p>
+<p>这里面的<code>u2 length</code>表明了该类型存储数据的长度，而<code>u2</code>是无符号的16位整数，因此理论上允许的的最大长度是2^16=65536。而 java class 文件是使用一种变体UTF-8格式来存放字符的，null 值使用两个字节来表示，因此只剩下 65536－ 2 ＝ 65534个字节。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; CONSTANT_Utf8_info &#123;</span><br><span class="line">&gt;     u1 tag;</span><br><span class="line">&gt;     u2 length;</span><br><span class="line">&gt;     u1 bytes[length];</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>在Java中，所有需要保存在常量池中的数据，长度最大不能超过65535，这当然也包括字符串的定义</strong></p>
+<p>上面提到的这种String长度的限制是编译期的限制，也就是使用String s= “”;这种字面值方式定义的时候才会有的限制。</p>
+<p>String在运行期有没有限制呢，答案是有的，就是我们前文提到的那个Integer.MAX_VALUE ，这个值约等于4G，在运行期，如果String的长度超过这个范围，就可能会抛出异常。(在jdk 1.9之前）</p>
+<p><a href="https://blog.csdn.net/u013380694/article/details/102739636" target="_blank" rel="noopener">https://blog.csdn.net/u013380694/article/details/102739636</a></p>
+</blockquote>
+<p>一个String对象,占用大小（JDK1.8）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** The value is used for character storage. */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">char</span> value[];  <span class="comment">//一个数组对象的引用，占用4 bytes</span></span><br><span class="line"><span class="comment">/** Cache the hash code for the string */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> hash; <span class="comment">// Default to 0   //一个int类型，占用4 bytes</span></span><br></pre></td></tr></table></figure>
+<p>再加上在64位JVM中，一个对象具有12bytes的对象头+引用，要求对齐到8的倍数(来源<a href="https://www.baeldung.com/java-size-of-object#1-objects-references-and-wrapper-classes" target="_blank" rel="noopener">2.1. Objects, References and Wrapper Classes</a>)，所以一个String对象的大小是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">size = ( 12 对象头 + 4 value + 4 hash ) + 4 8byte对齐 = 24 bytes</span><br></pre></td></tr></table></figure>
+<h2 id="枚举类enum"><a href="#枚举类enum" class="headerlink" title="枚举类enum"></a>枚举类enum</h2><h3 id="枚举类大小的计算"><a href="#枚举类大小的计算" class="headerlink" title="枚举类大小的计算"></a>枚举类大小的计算</h3><p>枚举类中的每个枚举都是该枚举类的一个对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> EnumClazz&#123;</span><br><span class="line">    Day,Hour,Minute,Second</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我们用<code>javap</code>查看其编译后的字节码可以看到：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//javac EnumClazz.java</span></span><br><span class="line"><span class="comment">//javap EnumClazz.class</span></span><br><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">EnumClazz</span> <span class="keyword">extends</span> <span class="title">java</span>.<span class="title">lang</span>.<span class="title">Enum</span>&lt;<span class="title">EnumClazz</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> EnumClazz Day;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> EnumClazz Hour;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> EnumClazz Minute;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> EnumClazz Second;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> EnumClazz[] values();</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> EnumClazz <span class="title">valueOf</span><span class="params">(java.lang.String)</span></span>;</span><br><span class="line">  <span class="keyword">static</span> &#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>简单计算一下这个EnumClazz的大小（不含引用对象的大小）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">enumClassSize = <span class="number">8</span> + <span class="number">4</span> + <span class="number">4</span>*<span class="number">4</span> + <span class="number">4</span> = <span class="number">32</span> bytes</span><br><span class="line">       对象头 +  引用 + 枚举类值的引用类型 * <span class="number">4</span>个 + <span class="number">4</span> 数组引用类型</span><br></pre></td></tr></table></figure>
+<p>然后，我们再看一下每个枚举类的值（以EnumClazz.Day为例）的大小：</p>
+<p>enum类的每个值实际上都继承自<code>java.lang.Enum</code>类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Enum</span>&lt;<span class="title">E</span> <span class="keyword">extends</span> <span class="title">Enum</span>&lt;<span class="title">E</span>&gt;&gt;</span></span><br><span class="line"><span class="class">        <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">E</span>&gt;, <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">        <span class="comment">//枚举值名称</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> String name;</span><br><span class="line">        <span class="comment">//枚举值次序，从0开始</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> ordinal;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>由此，我们可以计算<code>EnumClazz.Day</code>的大小：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">daySize = <span class="number">8</span> + <span class="number">4</span> + <span class="number">4</span> + <span class="number">4</span> + <span class="number">8</span>比特对齐(<span class="number">4</span>) = <span class="number">20</span> + <span class="number">4</span> = <span class="number">24</span> bytes</span><br><span class="line">     对象头 + Oop引用 + name + ordinal + <span class="number">8</span>比特对齐</span><br></pre></td></tr></table></figure>
+<p>也就是说，本例中每一个枚举类值占用24 bytes，由此可以计算出EnumClazz实际占用的大小应该是：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">realSize = enumClassSize + daySize * <span class="number">4</span>  = <span class="number">128</span> bytes</span><br></pre></td></tr></table></figure>
+<h3 id="Android中是否应该使用枚举"><a href="#Android中是否应该使用枚举" class="headerlink" title="Android中是否应该使用枚举"></a>Android中是否应该使用枚举</h3><p>关于是否应该在Android中使用枚举类，可以参考下文：</p>
+<p><a href="https://www.liaohuqiu.net/cn/posts/android-enum-memory-usage/" target="_blank" rel="noopener">https://www.liaohuqiu.net/cn/posts/android-enum-memory-usage/</a></p>
+<p><a href="https://stackoverflow.com/a/29972028/8389461" target="_blank" rel="noopener">https://stackoverflow.com/a/29972028/8389461</a></p>
 
       
     </div>
@@ -611,7 +628,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://jixiaoyong.github.io/blog/posts/3f6454bb/" title="Java注解">https://jixiaoyong.github.io/blog/posts/3f6454bb/</a>
+    <a href="https://jixiaoyong.github.io/blog/posts/7e97a976/" title="Android笔记之跨进程通信">https://jixiaoyong.github.io/blog/posts/7e97a976/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -624,7 +641,7 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/注解/" rel="tag"># 注解</a>
+            <a href="/blog/tags/android/" rel="tag"># android</a>
           
         </div>
       
@@ -637,8 +654,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/posts/a8f97c56/" rel="next" title="Python入门知识">
-                <i class="fa fa-chevron-left"></i> Python入门知识
+              <a href="/blog/posts/875283bd/" rel="next" title="Java笔记之匿名内部类和final">
+                <i class="fa fa-chevron-left"></i> Java笔记之匿名内部类和final
               </a>
             
           </div>
@@ -646,10 +663,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/posts/375fcf66/" rel="prev" title="Java实现AES加密解密应用">
-                Java实现AES加密解密应用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -845,7 +858,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#java元注解"><span class="nav-number">1.</span> <span class="nav-text">java元注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内建注解"><span class="nav-number">2.</span> <span class="nav-text">内建注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义注解"><span class="nav-number">3.</span> <span class="nav-text">自定义注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注解类"><span class="nav-number">3.1.</span> <span class="nav-text">注解类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注解帮助类"><span class="nav-number">3.2.</span> <span class="nav-text">注解帮助类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用注解"><span class="nav-number">3.3.</span> <span class="nav-text">使用注解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文章"><span class="nav-number">4.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算Java对象的大小"><span class="nav-number">1.</span> <span class="nav-text">计算Java对象的大小</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算对象大小"><span class="nav-number">2.</span> <span class="nav-text">计算对象大小</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实际应用"><span class="nav-number">3.</span> <span class="nav-text">实际应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举类enum"><span class="nav-number">3.1.</span> <span class="nav-text">枚举类enum</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#枚举类大小的计算"><span class="nav-number">3.1.1.</span> <span class="nav-text">枚举类大小的计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android中是否应该使用枚举"><span class="nav-number">3.1.2.</span> <span class="nav-text">Android中是否应该使用枚举</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
