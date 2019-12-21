@@ -111,15 +111,15 @@
 <meta property="og:site_name" content="Ji Xiaoyong&#39;s Blog">
 <meta property="og:description" content="原理注意 除非特殊说明，以下所说的计算Java对象大小，不涉及该对象所持有的对象本身的大小，只计算该Java对象本身的大小（其中引用类型对象大小只计算为4 bytes），如果要遍历计算Java对象大小（包含其持有对象的大小）可以参考这篇文章 Sizeof for Java 一个Java对象在内存中的大小包括以下(以64位JVM启用压缩为例，综合这里和这里的信息整理)：    分类 大小（byte）">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2509688-c69b5f36addd9a63.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20191221191518.webp">
 <meta property="og:image" content="https://jixiaoyong.github.io/images/20191221104050.png">
 <meta property="og:image" content="https://jixiaoyong.github.io/images/20191221171816.png">
 <meta property="og:image" content="https://jixiaoyong.github.io/images/20191221172243.png">
-<meta property="og:updated_time" content="2019-12-21T11:09:48.172Z">
+<meta property="og:updated_time" content="2019-12-21T11:17:54.987Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java笔记之计算Java对象的大小及其应用">
 <meta name="twitter:description" content="原理注意 除非特殊说明，以下所说的计算Java对象大小，不涉及该对象所持有的对象本身的大小，只计算该Java对象本身的大小（其中引用类型对象大小只计算为4 bytes），如果要遍历计算Java对象大小（包含其持有对象的大小）可以参考这篇文章 Sizeof for Java 一个Java对象在内存中的大小包括以下(以64位JVM启用压缩为例，综合这里和这里的信息整理)：    分类 大小（byte）">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/2509688-c69b5f36addd9a63.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp">
+<meta name="twitter:image" content="https://jixiaoyong.github.io/images/20191221191518.webp">
 
 
 
@@ -402,7 +402,7 @@
                 
               
 
-              <time title="创建时间：2019-12-21 09:44:32 / 修改时间：11:09:48" itemprop="dateCreated datePublished" datetime="2019-12-21T09:44:32+00:00">2019-12-21</time>
+              <time title="创建时间：2019-12-21 09:44:32 / 修改时间：11:17:54" itemprop="dateCreated datePublished" datetime="2019-12-21T09:44:32+00:00">2019-12-21</time>
             
 
             
@@ -507,8 +507,8 @@
 <p>此外，如果是（非静态）内部类的话，由于他默认持有外部类的引用，所以会比普通类的对象多4个byte。</p>
 <p><a href="https://stackoverflow.com/a/12193259/8389461" target="_blank" rel="noopener">https://stackoverflow.com/a/12193259/8389461</a></p>
 </blockquote>
-<p>可以参照这张图</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2509688-c69b5f36addd9a63.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp" alt="图片来自https://www.jianshu.com/p/9d729c9c94c4"></p>
+<p>可以参照<a href="https://www.jianshu.com/p/9d729c9c94c4" target="_blank" rel="noopener">这张图</a></p>
+<p><img src="https://jixiaoyong.github.io/images/20191221191518.webp" alt="图片来自https://www.jianshu.com/p/9d729c9c94c4"></p>
 <p>其中，数据区占用的大小如下：</p>
 <p>（图片来自于<a href="https://speakerdeck.com/romainguy/android-memories?slide=29" target="_blank" rel="noopener">android-memories</a>）</p>
 <p><img src="https://jixiaoyong.github.io/images/20191221104050.png" alt="Size of data from speakerdeck.com"></p>
