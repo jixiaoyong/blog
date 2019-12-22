@@ -6,9 +6,9 @@ date: 2019-12-22 09:35:37
 
 日常开发中，常用的存储键值对的数据结构是`HashMap`，根据[Java笔记之HashMap保存数据](https://xiaoyong.ml/blog/posts/ff927bd4/)和[Java笔记之计算Java对象的大小及其应用](https://xiaoyong.ml/blog/posts/b0793c74/)可以知道，`HashMap`存储**键值对**会占用比较多的内存控件，而对于内存限制较大的Android平台来说，为了避免这种浪费，官方推荐我们使用`SpareArray`和`ArrayMap`，本文对这两个类的实现进行分析比较。
 
-`SpareArray`以及他的衍生类都是以**基本类型**为`key`，因为避免了*自动装箱*，并且**用数组直接保存key、value**（而非像`HashMap`那样将其封装为`Node`对象后再保存），因而节省了内存。
+**`SpareArray`以及他的衍生类**都是以**基本类型**为`key`，因为避免了*自动装箱*，并且**用数组直接保存key、value**（而非像`HashMap`那样将其封装为`Node`对象后再保存），因而节省了内存。
 
-`ArrayMap`则支持**所有类型的key**，他是**将`key`和`value`全部保存在一个数组中**（`n`位为`key`，`n+1`位为`value`），避免了将其封装为`Node`对象带来的内存消耗。
+**`ArrayMap`**则支持**所有类型的key**，他是**将`key`和`value`全部保存在一个数组中**（`n`位为`key`，`n+1`位为`value`），避免了将其封装为`Node`对象带来的内存消耗。
 
 **当要保存的数据量比较小（小于几千个）的时候，如果KEY是基本类型，推荐使用`SparseArray`及其衍生类以节省内存，如果KEY是其他类型则使用`ArrayMap`;否则使用`HashMap`更加高效**。
 
@@ -154,6 +154,12 @@ private void gc() {
 }
 ```
 
+## HashMap与SpareArray及其衍生类对应关系
+
+参考[下图](https://android.jlelse.eu/app-optimization-with-arraymap-sparsearray-in-android-c0b7de22541a)
+
+![](https://jixiaoyong.github.io/images/20191222131219.png)
+
 # ArrayMap
 
 `ArrayMap`实现了`Map<K, V>`接口，他的API和`HashMap`相差无几，但是由于**没有对数据再包装**，**动态调整数组的大小**，一定范围内他比`HashMap`内存效率高。
@@ -291,8 +297,6 @@ public V removeAt(int index) {
    mArray = new Object[size<<1];
  }
 ```
-
-
 
 
 
