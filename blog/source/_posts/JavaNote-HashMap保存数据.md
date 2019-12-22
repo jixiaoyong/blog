@@ -4,6 +4,12 @@ tags: java
 date: 2019-12-15 16:41:35
 ---
 
+<img src="https://images.pexels.com/photos/159644/art-supplies-brushes-rulers-scissors-159644.jpeg?cs=srgb&dl=art-supplies-arts-and-crafts-ballpens-159644.jpg&fm=jpg" class="full-image" />
+
+Photo by **[Pixabay ](https://www.pexels.com/@pixabay?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels)**from **[Pexels](https://www.pexels.com/photo/pencils-in-stainless-steel-bucket-159644/?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels)**
+
+
+
 `HashMap`使用由`Node<K,V>`（继承自`Map.Entry<K,V>`）组成的**数组**`table`保存数据。
 
 在`table`中保存数据时根据`key`的`hashCode`计算到一个**随机保存位置（但都在`table`数组的大小范围内）**，当存储的**数据总量**超过加载系数`loadFactor`规定的**阈值**时则对`table`进行**扩容**。
@@ -143,17 +149,48 @@ index = (length - 1) & hash;
   * 如果是不同的`key`则先尝试以链表保存数据
   * 如果是不同的`key`，并且链表长度超过`MIN_TREEIFY_CAPACITY`规定的长度（默认64），则将链表转化为红黑树(JDK1.8新增)
 
+# 序列化
+
+在[第一节](#HashMap有以下全局变量)我们可以看到，`HashMap`的很多变量都被标记为`transient`，这表示在`Serializable`序列化时不主动去序列化这些值，那这样岂不是没法反序列化这些数据了？
+
+其实在后面我们可以看到，**`HashMap`在`writeObject()`方法中主动保存了部分数据**（原因是默认的`Serializable`由于不同JVM实现对同一对象如`String`的`HashCode`不一定一致，会导致严重的问题——`HashMap`基于`hash`值保存数据）：
+
+```java
+private void writeObject(java.io.ObjectOutputStream s)
+    throws IOException {
+    int buckets = capacity();//容量
+    // Write out the threshold, loadfactor, and any hidden stuff
+    s.defaultWriteObject();
+    s.writeInt(buckets);
+    s.writeInt(size);//保存size
+    internalWriteEntries(s);//保存table数据
+}
+
+/**
+* table不为空则返回table长度
+* 否则threshold不为空则返回threshold
+* 否则返回默认的DEFAULT_INITIAL_CAPACITY
+*/
+final int capacity() {
+        return (table != null) ? table.length :
+            (threshold > 0) ? threshold :
+            DEFAULT_INITIAL_CAPACITY;
+}
+```
+
+并在`readObject()`恢复了这些值。
+
 # 位运算
 
-| 位运算     | 符号  | 计算             |
-| ---------- | ----- | ---------------- |
-| 按位与     | &     | 相同为1，不同为0 |
-| 按位或     | `|`   | 有1则1           |
-| 按位异或   | ^     | 相同为0，不同位1 |
-| 按位取反   | ~     |                  |
-| 左移       | <<    | 相当于乘以2^n^   |
-| 右移       | `>>`  | 相当于除以2^n^   |
-| 无符号右移 | `>>>` |                  |
+| 位运算     | 符号   | 计算             |
+| ---------- | ------ | ---------------- |
+| 按位与     | &      | 相同为1，不同为0 |
+| 按位或     | &#124; | 有1则1           |
+| 按位异或   | ^      | 相同为0，不同位1 |
+| 按位取反   | ~      |                  |
+| 左移       | <<     | 相当于乘以2^n^   |
+| 右移       | `>>`   | 相当于除以2^n^   |
+| 无符号右移 | `>>>`  |                  |
 
 
 
@@ -170,3 +207,7 @@ index = (length - 1) & hash;
 [Java 8系列之重新认识HashMap](https://tech.meituan.com/2016/06/24/java-hashmap.html)
 
 [java.util.HashMap源码要点浅析](http://www.blogjava.net/killme2008/archive/2009/04/15/265721.html)
+
+[Why HashMap.Entry is transient?](https://coderanch.com/t/469720/java/HashMap-Entry-transient)
+
+[Java中HashMap关键字transient的疑惑](https://segmentfault.com/q/1010000000630486)
