@@ -4,13 +4,29 @@ tags: java
 date: 2019-12-15 16:41:35
 ---
 
-`HashMap`使用由`Map.Entry<K,V>`组成的**数组**`table`保存数据。
+`HashMap`使用由`Node<K,V>`（继承自`Map.Entry<K,V>`）组成的**数组**`table`保存数据。
 
-> 在JDK1.7中，数据以数组或链表形式保存，JDK1.8中则新增了红黑树。
+在`table`中保存数据时根据`key`的`hashCode`计算到一个**随机保存位置（但都在`table`数组的大小范围内）**，当存储的**数据总量**超过加载系数`loadFactor`规定的**阈值**时则对`table`进行**扩容**。
+
+# HashMap有以下全局变量
+
+```java
+transient Node<K,V>[] table;//实际保存键值对的数组
+transient Set<Map.Entry<K,V>> entrySet;//Holds cached entrySet().用来遍历HashMap
+transient int size;//本HashMap实际保存的键值对个数
+transient int modCount;//HashMap修改的次数，每次修改HashMap都会叠加，
+//用来在遍历的过程中检查HashMap是否被改动过来，如果有则抛出异常ConcurrentModificationException
+int threshold;//是否扩容的阈值
+final float loadFactor;//加载系数,默认0.75f
+```
+
+> `loadFactor`：默认的负载因子**0.75**是对空间和时间效率的一个平衡选择，建议大家不要修改，除非在时间和空间比较特殊的情况下：
 >
-> 发生hash冲突时，JDK1.7采用采用头插法，可能会产生逆序和环形链表；JDK1.8采用尾插法，直接插入链表或红黑树尾部。
+> 如果内存空间很多而又对时间效率要求很高，可以降低负载因子Load factor的值；
 >
-> 具体JDK1.7与1.8对比查看[这里](https://blog.csdn.net/qq_36520235/article/details/82417949)
+> 相反，如果内存空间紧张而对时间效率要求不高，可以增加负载因子`loadFactor`的值，这个值可以大于1。
+>
+> https://tech.meituan.com/2016/06/24/java-hashmap.html
 
 每个`Node`包含了以下信息：
 
@@ -34,6 +50,65 @@ static final int hash(Object key) {
   //计算索引时（见下文↓）一直取低位值而可能导致的索引一直的重复问题。
     }
 ```
+
+
+
+# `V put(K key, V value)`
+
+使用`HashMap`保存数据时：
+
+1. 使用`hash(Object key)`计算`key`的`hash`值
+
+2. 通过`hash`值计算`value`应该保存的位置`i`
+
+   ```java
+   i = (table.length - 1) & hash
+   //由于table.length限定为2的n次方，所以上面的等式相当于给table.length取余数
+   //即i永远<=table.length
+   ```
+
+   在此时会判断是否需要扩容(**只有`table`为空，或者当前存储的数据总数`size`大于阈值`threshold`时才会扩容**`resize()`)
+
+   ```java
+   threshold = capacity * loadFactor
+   阈值 = 容量 * 负载系数（默认为0.75）
+   ```
+
+3. 接下来会插入数据
+
+   * 指定位置为空（没有*hash冲突*），或已有`key`相同的值：则直接插入`value`
+   * 已经存在值并且数量大于8：则将链表转化为红黑树（JDK1.8），否则以链表形式保存数据
+   * 在移除数据时，如果红黑树数量小于6：则将红黑树转化为链表
+
+> 在JDK1.7中，数据以数组或链表形式保存，JDK1.8中则新增了红黑树。
+>
+> 发生hash冲突时，JDK1.7采用采用头插法，可能会产生逆序和环形链表；JDK1.8采用尾插法，直接插入链表或红黑树尾部。
+>
+> 具体JDK1.7与1.8对比查看[这里](https://blog.csdn.net/qq_36520235/article/details/82417949)
+
+# `V get(Object key)`
+
+使用`HashMap`获取数据时:
+
+1. 计算key的`hash值`
+
+2. 查找对应位置的`node`
+
+   * `null`：返回`null`
+
+   * `node`不为空且`key`一致：返回该`node`
+
+   * `node`不为空且`key`不一致：
+
+     如果是*链表*：遍历链表查找是否存在与`key`一致的`node`
+
+     如果是*树*：遍历树查找是否存在与`key`一致的`node`
+
+# `V remove(Object key)`
+
+使用`HashMap`移除数据时:
+
+其大体过程与`get(Object key)`类似，遍历找到对应的`node`并删除。
 
 # 计算索引
 
@@ -73,7 +148,7 @@ index = (length - 1) & hash;
 | 位运算     | 符号  | 计算             |
 | ---------- | ----- | ---------------- |
 | 按位与     | &     | 相同为1，不同为0 |
-| 按位或     | \|    | 有1则1           |
+| 按位或     | `|`   | 有1则1           |
 | 按位异或   | ^     | 相同为0，不同位1 |
 | 按位取反   | ~     |                  |
 | 左移       | <<    | 相当于乘以2^n^   |
@@ -91,3 +166,7 @@ index = (length - 1) & hash;
 [hashMap在jdk1.7与jdk1.8中的原理及不同](https://blog.csdn.net/changhangshi/article/details/82114727)
 
 [真实面试题之：Hashmap的结构，1.7和1.8有哪些区别](https://blog.csdn.net/qq_36520235/article/details/82417949)
+
+[Java 8系列之重新认识HashMap](https://tech.meituan.com/2016/06/24/java-hashmap.html)
+
+[java.util.HashMap源码要点浅析](http://www.blogjava.net/killme2008/archive/2009/04/15/265721.html)
