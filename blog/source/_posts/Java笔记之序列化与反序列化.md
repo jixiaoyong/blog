@@ -485,6 +485,8 @@ public interface Externalizable extends java.io.Serializable
 `Parcelable`通过`Parcel`传输到`IBinder`中，从而实现跨进程传输。
 
 > 对于`kotlin`语言来说，Android Studio自动生成的`Parcelable`代码不会处理val变量（因为这些变量不会变化）
+>
+> 此外，`Parcelable`在反序列化时，调用`parcel.readParcelable(classLoader)`传入的是`ClassLoader`。
 
 ## 实现
 
