@@ -103,19 +103,19 @@
 
 
 
-  <meta name="description" content="最近看到一个帖子，表示有人以&amp;quot;YYYY-MM-dd&amp;quot;格式化日期时，在2019-12-30时出现2020-12-30的BUG。 本文来简单分析一下为什么会出现这个情况 根据JDK文档关于日期的定义 ，y表示的是我们日常使用的年份，而Y表示的是Week year。 先了解几个知识点： WEAK_OF_YEAR Values calculated for the WEEK_OF_YE">
+  <meta name="description" content="最近看到一个帖子，表示有人以&amp;quot;YYYY-MM-dd&amp;quot;格式化日期时，在2019-12-30时出现2020-12-30的BUG。 本文来简单分析一下为什么会出现这个情况。 根据JDK文档关于日期的定义，y表示的是我们日常使用的年份，而Y表示的是Week year。 先了解几个知识点： Week yearWeek year表示的是这个周所属的年份。  A week year is i">
 <meta name="keywords" content="blog,jixiaoyong,android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java笔记之YYYY格式化日期">
 <meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/87a89a43/index.html">
 <meta property="og:site_name" content="Ji Xiaoyong&#39;s Blog">
-<meta property="og:description" content="最近看到一个帖子，表示有人以&amp;quot;YYYY-MM-dd&amp;quot;格式化日期时，在2019-12-30时出现2020-12-30的BUG。 本文来简单分析一下为什么会出现这个情况 根据JDK文档关于日期的定义 ，y表示的是我们日常使用的年份，而Y表示的是Week year。 先了解几个知识点： WEAK_OF_YEAR Values calculated for the WEEK_OF_YE">
+<meta property="og:description" content="最近看到一个帖子，表示有人以&amp;quot;YYYY-MM-dd&amp;quot;格式化日期时，在2019-12-30时出现2020-12-30的BUG。 本文来简单分析一下为什么会出现这个情况。 根据JDK文档关于日期的定义，y表示的是我们日常使用的年份，而Y表示的是Week year。 先了解几个知识点： Week yearWeek year表示的是这个周所属的年份。  A week year is i">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdn.net/20150912103324519?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2020-01-07T07:01:50.242Z">
+<meta property="og:updated_time" content="2020-01-07T08:13:19.518Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java笔记之YYYY格式化日期">
-<meta name="twitter:description" content="最近看到一个帖子，表示有人以&amp;quot;YYYY-MM-dd&amp;quot;格式化日期时，在2019-12-30时出现2020-12-30的BUG。 本文来简单分析一下为什么会出现这个情况 根据JDK文档关于日期的定义 ，y表示的是我们日常使用的年份，而Y表示的是Week year。 先了解几个知识点： WEAK_OF_YEAR Values calculated for the WEEK_OF_YE">
+<meta name="twitter:description" content="最近看到一个帖子，表示有人以&amp;quot;YYYY-MM-dd&amp;quot;格式化日期时，在2019-12-30时出现2020-12-30的BUG。 本文来简单分析一下为什么会出现这个情况。 根据JDK文档关于日期的定义，y表示的是我们日常使用的年份，而Y表示的是Week year。 先了解几个知识点： Week yearWeek year表示的是这个周所属的年份。  A week year is i">
 <meta name="twitter:image" content="https://img-blog.csdn.net/20150912103324519?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
@@ -399,7 +399,7 @@
                 
               
 
-              <time title="创建时间：2020-01-07 11:38:54 / 修改时间：07:01:50" itemprop="dateCreated datePublished" datetime="2020-01-07T11:38:54+00:00">2020-01-07</time>
+              <time title="创建时间：2020-01-07 11:38:54 / 修改时间：08:13:19" itemprop="dateCreated datePublished" datetime="2020-01-07T11:38:54+00:00">2020-01-07</time>
             
 
             
@@ -463,29 +463,20 @@
 
       
         <p>最近看到一个<a href="https://v2ex.com/t/633650?p=1" target="_blank" rel="noopener">帖子</a>，表示有人以<code>&quot;YYYY-MM-dd&quot;</code>格式化日期时，在<code>2019-12-30</code>时出现<code>2020-12-30</code>的BUG。</p>
-<p>本文来简单分析一下为什么会出现这个情况</p>
-<p>根据<a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#year" target="_blank" rel="noopener">JDK文档关于日期的定义</a> ，<code>y</code>表示的是我们日常使用的年份，而<code>Y</code>表示的是<code>Week year</code>。</p>
+<p>本文来简单分析一下为什么会出现这个情况。</p>
+<p>根据<a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#year" target="_blank" rel="noopener">JDK文档关于日期的定义</a>，<code>y</code>表示的是我们日常使用的年份，而<code>Y</code>表示的是<code>Week year</code>。</p>
 <p>先了解几个知识点：</p>
-<h1 id="WEAK-OF-YEAR"><a href="#WEAK-OF-YEAR" class="headerlink" title="WEAK_OF_YEAR"></a>WEAK_OF_YEAR</h1><blockquote>
-<p>Values calculated for the <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Calendar.html#WEEK_OF_YEAR" target="_blank" rel="noopener"><code>WEEK_OF_YEAR</code></a> field range from 1 to 53. The first week of a calendar year is the earliest seven day period starting on <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Calendar.html#getFirstDayOfWeek(" target="_blank" rel="noopener"><code>getFirstDayOfWeek()</code></a>) that contains at least <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Calendar.html#getMinimalDaysInFirstWeek(" target="_blank" rel="noopener"><code>getMinimalDaysInFirstWeek()</code></a>) days from that year.</p>
-</blockquote>
 <h1 id="Week-year"><a href="#Week-year" class="headerlink" title="Week year"></a>Week year</h1><p><code>Week year</code>表示的是<strong>这个周所属的年份</strong>。</p>
-<p>每年最开始的几天和最后的几天的<code>Week year</code>不一定是当年的值，而是受到每年的第一周的影响。</p>
 <blockquote>
 <p>A <em>week year</em> is in sync with a <code>WEEK_OF_YEAR</code> cycle. All weeks between the first and last weeks (inclusive) have the same <em>week year</em> value. Therefore, the first and last days of a week year may have different calendar year values.</p>
 <p>来源：<a href="https://docs.oracle.com/javase/7/docs/api/java/util/GregorianCalendar.html#week_year" target="_blank" rel="noopener">https://docs.oracle.com/javase/7/docs/api/java/util/GregorianCalendar.html#week_year</a></p>
 </blockquote>
-<p>按照JAVA文档中的定义，这几个特殊日期的<code>Week year</code>计算，主要受到<code>Calendar</code>对象的<code>getFirstDayOfWeek()</code>和<code>getMinimalDaysInFirstWeek()</code>值影响。</p>
-<p>其中：</p>
-<ul>
-<li><code>getFirstDayOfWeek()</code>指定一周的第一天，比如, <code>SUNDAY</code> in the U.S.,<code></code>MONDAY` in France.</li>
-<li><code>getMinimalDaysInFirstWeek()</code> 一年第一周所需最小的天数。比如1表示只要包含第一天就算该年的第一周，而7表示只有完整的一周都在该年才算该年的第一周</li>
-</ul>
-<p><strong>注意</strong>：在我们格式化日期时，真正按照上述规则执行的是<code>SimpleDateFormat</code>中的<code>calendar</code>对象。</p>
-<p>而通过打印这个<code>simpleDateFormat.calendar</code>，我们看到：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//JDK1.7</span></span><br><span class="line">minimalDaysInFirstWeek:<span class="number">1</span></span><br><span class="line">firstDayOfWeek:<span class="number">1</span> <span class="comment">//SUNDAY</span></span><br></pre></td></tr></table></figure>
-<p>也就是<strong>默认只要一年的1月1日在在这个周，那么本周所有日期的<code>Week year</code>都是这一年</strong>（<code>JDK1.7</code>）。</p>
-<h1 id="第01周"><a href="#第01周" class="headerlink" title="第01周"></a>第01周</h1><p>又有根据这份<a href="https://docs.oracle.com/javase/7/docs/api/java/util/GregorianCalendar.html#week_year" target="_blank" rel="noopener">JDK文档</a>，当 <code>getFirstDayOfWeek()</code> is <code>MONDAY</code> and <code>getMinimalDaysInFirstWeek()</code> is 4时，JAVA判断周日期的标准与<a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener">ISO_8601</a>兼容：</p>
+<h1 id="WEAK-OF-YEAR"><a href="#WEAK-OF-YEAR" class="headerlink" title="WEAK_OF_YEAR"></a>WEAK_OF_YEAR</h1><p>指的是这一年所有的周，从第01周开始到该年最后一周。</p>
+<p>要注意这个周不一定是自然周，所包含的日期也不一定全部都是当年的日期。</p>
+<blockquote>
+<p>Values calculated for the <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Calendar.html#WEEK_OF_YEAR" target="_blank" rel="noopener"><code>WEEK_OF_YEAR</code></a> field range from 1 to 53. The first week of a calendar year is the earliest seven day period starting on <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Calendar.html#getFirstDayOfWeek(" target="_blank" rel="noopener"><code>getFirstDayOfWeek()</code></a>) that contains at least <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Calendar.html#getMinimalDaysInFirstWeek(" target="_blank" rel="noopener"><code>getMinimalDaysInFirstWeek()</code></a>) days from that year.</p>
+</blockquote>
+<h1 id="第01周"><a href="#第01周" class="headerlink" title="第01周"></a>第01周</h1><p>根据这份<a href="https://docs.oracle.com/javase/7/docs/api/java/util/GregorianCalendar.html#week_year" target="_blank" rel="noopener">JDK文档</a>，当 <code>getFirstDayOfWeek()</code> is <code>MONDAY</code>（2） and <code>getMinimalDaysInFirstWeek()</code> is 4时，JAVA判断周日期的标准与<a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener">ISO_8601</a>兼容：</p>
 <blockquote>
 <p>第01周有几个相互等效且兼容的描述：</p>
 <p>一年中第一个星期四的星期（正式的ISO定义），</p>
@@ -494,6 +485,17 @@
 <p>从12月29日至1月4日的星期一开始的一周。</p>
 <p>来源：<a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/ISO_8601</a></p>
 </blockquote>
+<p>按照JAVA文档中的定义，每年最开始的几天和最后的几天的<code>Week year</code>不一定是当年的年份值，而是受到每年的<em>第01周/最后一周</em>的影响。</p>
+<p>JAVA中判断周主要受到<code>Calendar</code>对象的<code>getFirstDayOfWeek()</code>和<code>getMinimalDaysInFirstWeek()</code>这两个本地值的影响。</p>
+<p>其中：</p>
+<ul>
+<li><code>getFirstDayOfWeek()</code>指定一周的第一天，比如, 美国一周从<code>SUNDAY</code> 开始,法国则是<code>MONDAY</code> 。</li>
+<li><code>getMinimalDaysInFirstWeek()</code> 一年第一周所需最小的天数。比如1表示只要包含第一天就算该年的第一周，而7表示只有完整的一周都在该年才算该年的第一周。</li>
+</ul>
+<p><strong>注意</strong>：真正影响我们格式化日期结果的是<code>SimpleDateFormat</code>中的<code>calendar</code>对象对应的值。</p>
+<p>而通过打印这个<code>simpleDateFormat.calendar</code>，我们看到：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//JDK1.7</span></span><br><span class="line">minimalDaysInFirstWeek:<span class="number">1</span></span><br><span class="line">firstDayOfWeek:<span class="number">1</span> <span class="comment">//SUNDAY</span></span><br></pre></td></tr></table></figure>
+<p>所以可以得出结论，JAVA<strong>默认只要次年的1月1日在在这个跨年周，那么本周所有日期的<code>Week year</code>都是次年的</strong>（<code>JDK1.7</code>）。</p>
 <h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>有了以上知识，我们再看看<code>2019-12-30</code>以<code>YYYY</code>格式化为什么会出现问题：</p>
 <p>先看一下这些日期对应的星期：</p>
 <table>
@@ -522,16 +524,58 @@
 </table>
 <p>首先根据JDK默认的<code>第01周</code>的定义，<code>2020-01-01</code>所在的周为<code>2020的第一周</code>，所以<code>2019-12-29到2020-01-04</code>都属于是<code>2020年的第01周</code>。</p>
 <p>再根据<code>YYYY</code>表示的是<code>Week year</code>的结论，可以知道，当使用<code>YYYY</code>格式化时，<code>2019-12-29到2020-01-04</code>都会得到<code>2020</code>。</p>
-<p>而如果我们把第一周最小天数<code>minimalDaysInFirstWeek</code>改为<code>5</code>天，那么很明显这一周属于<code>2020</code>年的天数不够5天，所以这一周被划归为<code>2019</code>年的第<code>53周</code>，<code>2019-12-29到2020-01-04</code>的<code>weak year</code>都是属于<code>2019</code>。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> calendar = Calendar.getInstance()</span><br><span class="line"><span class="keyword">val</span> simpleDateFormat = SimpleDateFormat(<span class="string">"YYYY yyyy MM dd"</span>)</span><br><span class="line">calendar.<span class="keyword">set</span>(<span class="number">2019</span>, <span class="number">12</span>-<span class="number">1</span>, <span class="number">29</span>)</span><br><span class="line">println(simpleDateFormat.format(calendar.time))</span><br><span class="line"></span><br><span class="line"><span class="comment">//output</span></span><br><span class="line">DATE:<span class="number">2019</span> <span class="number">12</span> <span class="number">29</span></span><br><span class="line">minimalDaysInFirstWeek:<span class="number">1</span></span><br><span class="line">firstDayOfWeek:<span class="number">1</span></span><br><span class="line">YYYY yyyy MM dd</span><br><span class="line"><span class="number">2020</span> <span class="number">2019</span> <span class="number">12</span> <span class="number">29</span></span><br></pre></td></tr></table></figure>
+<p>而如果我们把第一周最小天数<code>minimalDaysInFirstWeek</code>改为<code>5</code>天，那么很明显这一周属于<code>2020</code>年的天数（从周日到周一，只有1号到4号4天）不够5天，所以这一周被划归为<code>2019</code>年的第<code>53周</code>，<code>2019-12-29到2020-01-04</code>的<code>week year</code>都是属于<code>2019</code>。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> calendar = Calendar.getInstance()</span><br><span class="line"><span class="keyword">val</span> simpleDateFormat = SimpleDateFormat(<span class="string">"YYYY yyyy MM dd"</span>)</span><br><span class="line">calendar.<span class="keyword">set</span>(<span class="number">2019</span>, <span class="number">12</span>-<span class="number">1</span>, <span class="number">29</span>)</span><br><span class="line">simpleDateFormat.calendar.minimalDaysInFirstWeek = <span class="number">5</span></span><br><span class="line">println(simpleDateFormat.format(calendar.time))</span><br><span class="line"></span><br><span class="line"><span class="comment">//output</span></span><br><span class="line">DATE:<span class="number">2019</span> <span class="number">12</span> <span class="number">29</span></span><br><span class="line">minimalDaysInFirstWeek:<span class="number">5</span></span><br><span class="line">firstDayOfWeek:<span class="number">1</span></span><br><span class="line">YYYY yyyy MM dd</span><br><span class="line"><span class="number">2019</span> <span class="number">2019</span> <span class="number">12</span> <span class="number">29</span></span><br></pre></td></tr></table></figure>
 <p>再比如下面这个<a href="https://blog.csdn.net/bewilderment/article/details/48391717" target="_blank" rel="noopener">示例</a>中的<code>2010-12-26</code>。</p>
 <p><img src="https://img-blog.csdn.net/20150912103324519?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
 <p>按照<code>JDK1.7</code>默认算法，一周从周日（<code>2010-12-26</code>）开始，并且当年的1月1日（<code>2011-01-01</code>）所在周为该年第一周，所以<code>2010-12-26到2011-01-01</code>都被划到了<code>2011</code>年的第一周。</p>
-<p>但如果按照<a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener">ISO_8601</a>的标准，一周从周一开始，并且起始年份包含的天数至少要有<code>4</code>天，则很明显<code>2010-12-26</code>属于<code>2010</code>年的<code>51周</code>，而<code>2010-12-27到2011-01-02</code>都属于<code>2010</code>年的第<code>52周</code>。</p>
+<p>但如果按照<a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener">ISO_8601</a>的标准，一周从周一开始，并且起始年份包含的天数至少要有<code>4</code>天：</p>
+<p>则很明显<code>2010-12-26</code>属于<code>2010</code>年的<code>51周</code>，而<code>2010-12-27到2011-01-02</code>都属于<code>2010</code>年的第<code>52周</code>（属于2020年的只有2天，不满足第一周的条件）。</p>
+<table>
+<thead>
+<tr>
+<th>周一</th>
+<th>周二</th>
+<th>周三</th>
+<th>周四</th>
+<th>周五</th>
+<th>周六</th>
+<th>周日</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20</td>
+<td>21</td>
+<td>22</td>
+<td>23</td>
+<td>24</td>
+<td>25</td>
+<td>26</td>
+</tr>
+<tr>
+<td>27</td>
+<td>28</td>
+<td>29</td>
+<td>30</td>
+<td>31</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>结合以上结论，我们可以看到，在JAVA中（<code>JDK1.7</code>）：</p>
 <ul>
-<li><code>“YYYY”</code>表示<code>Week year</code></li>
-<li>每年最开始的几天和最后的几天的<code>Week year</code>不一定是当年的值，而是受到当年的第一周的影响。</li>
-<li>当年第一周的判断与<code>simpleDateFormat.calendar.minimalDaysInFirstWeek</code>和<code>simpleDateFormat.calendar.firstDayOfWeek</code>有关。而这两个值都属于本地化值，<strong>在国内可以简单理解为一年1月1日所在的周就是当年的第一周。</strong></li>
+<li><p><code>“YYYY”</code>表示<code>Week year</code></p>
+</li>
+<li><p>每年最开始的几天和最后的几天的<code>Week year</code>不一定是当年的值，而是受到当年的第一周/最后一周的影响。</p>
+</li>
+<li><p>JAVA周的判断与<code>simpleDateFormat.calendar.minimalDaysInFirstWeek</code>和<code>simpleDateFormat.calendar.firstDayOfWeek</code>有关。</p>
+<p>而这两个值都属于本地化值，<strong>在国内可以简单理解为一年1月1日所在的周就是当年的第一周。</strong></p>
+</li>
+<li><p>我们可以通过修改<code>minimalDaysInFirstWeek</code>和<code>firstDayOfWeek</code>来更改<code>YYYY</code>格式化的值。</p>
+</li>
 </ul>
 <h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><p>JDK中日期格式化的参数及含义（来自<a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#month）：" target="_blank" rel="noopener">https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#month）：</a></p>
 <table>
@@ -940,7 +984,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WEAK-OF-YEAR"><span class="nav-number">1.</span> <span class="nav-text">WEAK_OF_YEAR</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Week-year"><span class="nav-number">2.</span> <span class="nav-text">Week year</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第01周"><span class="nav-number">3.</span> <span class="nav-text">第01周</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题分析"><span class="nav-number">4.</span> <span class="nav-text">问题分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录"><span class="nav-number">6.</span> <span class="nav-text">附录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Week-year"><span class="nav-number">1.</span> <span class="nav-text">Week year</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEAK-OF-YEAR"><span class="nav-number">2.</span> <span class="nav-text">WEAK_OF_YEAR</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第01周"><span class="nav-number">3.</span> <span class="nav-text">第01周</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题分析"><span class="nav-number">4.</span> <span class="nav-text">问题分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录"><span class="nav-number">6.</span> <span class="nav-text">附录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
