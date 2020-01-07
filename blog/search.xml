@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>Java笔记之YYYY格式化日期</title>
+      <link href="/blog/posts/87a89a43/"/>
+      <url>/blog/posts/87a89a43/</url>
+      
+        <content type="html"><![CDATA[<p>最近看到一个<a href="https://v2ex.com/t/633650?p=1" target="_blank" rel="noopener">帖子</a>，表示有人以<code>&quot;YYYY-MM-dd&quot;</code>格式化日期时，在<code>2019-12-30</code>时出现<code>2020-12-30</code>的BUG。</p><p>本文来简单分析一下为什么会出现这个情况</p><p>根据<a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#year" target="_blank" rel="noopener">JDK文档关于日期的定义</a> ，<code>y</code>表示的是我们日常使用的年份，而<code>Y</code>表示的是<code>Week year</code>。</p><p>先了解2个知识点：</p><h1 id="Week-year"><a href="#Week-year" class="headerlink" title="Week year"></a>Week year</h1><p><code>Week year</code>表示的是<strong>这个周所属的年份</strong>。每年最开始的几天和最后的几天的<code>Week year</code>不一定是当年的值，而是受到每年的第一周的影响。</p><blockquote><p>A <em>week year</em> is in sync with a <code>WEEK_OF_YEAR</code> cycle. All weeks between the first and last weeks (inclusive) have the same <em>week year</em> value. Therefore, the first and last days of a week year may have different calendar year values.</p><p>来源：<a href="https://docs.oracle.com/javase/7/docs/api/java/util/GregorianCalendar.html#week_year" target="_blank" rel="noopener">https://docs.oracle.com/javase/7/docs/api/java/util/GregorianCalendar.html#week_year</a></p></blockquote><h1 id="第01周"><a href="#第01周" class="headerlink" title="第01周"></a>第01周</h1><p>又有根据这份<a href="https://docs.oracle.com/javase/7/docs/api/java/util/GregorianCalendar.html#week_year" target="_blank" rel="noopener">JDK文档</a>，JAVA判断周日期的标准与<a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener">ISO_8601</a>兼容：</p><blockquote><p>第01周有几个相互等效且兼容的描述：</p><p>一年中第一个星期四的星期（正式的ISO定义），</p><p>1月4日这一周，</p><p>起始年份中大部分（四天或以上）的第一周，以及</p><p>从12月29日至1月4日的星期一开始的一周。</p><p>来源：<a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/ISO_8601</a></p></blockquote><h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>有了以上知识，我们再看看<code>2019-12-30</code>以<code>YYYY</code>格式化为什么会出现问题：</p><p>先看一下这些日期对应的星期：</p><table><thead><tr><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th><th>周日</th></tr></thead><tbody><tr><td>30</td><td>31</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr></tbody></table><p>首先根据<code>第01周</code>的定义，<code>2020-01-04</code>所在的周为<code>2020的第一周</code>，所以<code>2019-12-30到2020-01-05</code>都属于是<code>2020年的第01周</code>。</p><p>再根据<code>YYYY</code>表示的是<code>Week year</code>的结论，可以知道，当使用<code>YYYY</code>格式化时，<code>2019-12-30到2020-01-05</code>都会得到<code>2020</code>。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java笔记之序列化与反序列化：Serializable、Externalizable和Parcelable</title>
       <link href="/blog/posts/9d9183ec/"/>
       <url>/blog/posts/9d9183ec/</url>
