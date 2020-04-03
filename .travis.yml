@@ -22,6 +22,7 @@ install:
   - npm install hexo-generator-search --save
   - npm install hexo-generator-searchdb --save
   - npm install hexo-blog-encrypt --save
+  - npm install --save hexo-filter-sequence
   # - npm install hexo-deployer-git --save
 
 before_script:
