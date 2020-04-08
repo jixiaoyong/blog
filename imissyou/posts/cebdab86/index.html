@@ -49,19 +49,19 @@
 
 <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="/blog/css/main.css?v=7.1.0">
+<link rel="stylesheet" href="/imissyou/css/main.css?v=7.1.0">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/favicon.ico?v=7.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/imissyou/images/favicon.ico?v=7.1.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon.ico?v=7.1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/imissyou/images/favicon.ico?v=7.1.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon.ico?v=7.1.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/imissyou/images/favicon.ico?v=7.1.0">
 
 
-  <link rel="mask-icon" href="/blog/images/favicon.ico?v=7.1.0" color="#222">
+  <link rel="mask-icon" href="/imissyou/images/favicon.ico?v=7.1.0" color="#222">
 
 
 
@@ -72,7 +72,7 @@
 <script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/blog/',
+    root: '/imissyou/',
     scheme: 'Muse',
     version: '7.1.0',
     sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false,"dimmer":false},
@@ -99,22 +99,17 @@
 
 
 
-<script data-ad-client="ca-pub-2037953510405593" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-
-
-  <meta name="description" content="本文为《一看你就懂，超详细java中的ClassLoader详解 - CSDN博客》阅读笔记  简述JVM有三种类加载器：  BootStrap ClassLoader 启动类加载器，加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。 Extention ClassLoader 扩展类加载器，加载目录">
-<meta name="keywords" content="jvm">
+  <meta name="description" content="依旧是在实验室。 这是端午节过后第一天正式上课，实验间隙，实验室里面众生百态。 复习的一两桌，紧张的看着各自的复习资料，抑或嘴里念念有词，手里指指画画；寂静的一两桌，或趴或俯，眼睛盯着手机，又或脑袋躺在桌面，或玩或眠；然而最多的则是那一两桌叽叽喳喳的几张嘴，游戏足球明星和星座，各有一片春秋。 充满现代化气息的实验仪器静静的排列在各处，冰冷地安静地，看着这众生，一批又一批。 无言，春秋轮换，人来人往">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM类加载机制之ClassLoader">
-<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/b3994218/index.html">
-<meta property="og:site_name" content="Ji Xiaoyong&#39;s Blog">
-<meta property="og:description" content="本文为《一看你就懂，超详细java中的ClassLoader详解 - CSDN博客》阅读笔记  简述JVM有三种类加载器：  BootStrap ClassLoader 启动类加载器，加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。 Extention ClassLoader 扩展类加载器，加载目录">
+<meta property="og:title" content="随想五">
+<meta property="og:url" content="https://jixiaoyong.github.io/imissyou/posts/cebdab86/index.html">
+<meta property="og:site_name" content="I Miss You">
+<meta property="og:description" content="依旧是在实验室。 这是端午节过后第一天正式上课，实验间隙，实验室里面众生百态。 复习的一两桌，紧张的看着各自的复习资料，抑或嘴里念念有词，手里指指画画；寂静的一两桌，或趴或俯，眼睛盯着手机，又或脑袋躺在桌面，或玩或眠；然而最多的则是那一两桌叽叽喳喳的几张嘴，游戏足球明星和星座，各有一片春秋。 充满现代化气息的实验仪器静静的排列在各处，冰冷地安静地，看着这众生，一批又一批。 无言，春秋轮换，人来人往">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-08T02:35:42.184Z">
+<meta property="og:updated_time" content="2020-04-08T02:35:42.432Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JVM类加载机制之ClassLoader">
-<meta name="twitter:description" content="本文为《一看你就懂，超详细java中的ClassLoader详解 - CSDN博客》阅读笔记  简述JVM有三种类加载器：  BootStrap ClassLoader 启动类加载器，加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。 Extention ClassLoader 扩展类加载器，加载目录">
+<meta name="twitter:title" content="随想五">
+<meta name="twitter:description" content="依旧是在实验室。 这是端午节过后第一天正式上课，实验间隙，实验室里面众生百态。 复习的一两桌，紧张的看着各自的复习资料，抑或嘴里念念有词，手里指指画画；寂静的一两桌，或趴或俯，眼睛盯着手机，又或脑袋躺在桌面，或玩或眠；然而最多的则是那一两桌叽叽喳喳的几张嘴，游戏足球明星和星座，各有一片春秋。 充满现代化气息的实验仪器静静的排列在各处，冰冷地安静地，看着这众生，一批又一批。 无言，春秋轮换，人来人往">
 
 
 
@@ -122,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/b3994218/">
+  <link rel="canonical" href="https://jixiaoyong.github.io/imissyou/posts/cebdab86/">
 
 
 
@@ -132,7 +127,7 @@
   };
 </script>
 
-  <title>JVM类加载机制之ClassLoader | Ji Xiaoyong's Blog</title>
+  <title>随想五 | I Miss You</title>
   
 
 
@@ -200,9 +195,9 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/blog/" class="brand" rel="start">
+      <a href="/imissyou/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Ji Xiaoyong's Blog</span>
+        <span class="site-title">I Miss You</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -239,7 +234,7 @@
 
     
 
-    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+    <a href="/imissyou/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -256,7 +251,7 @@
 
     
 
-    <a href="/blog/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/imissyou/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -273,7 +268,7 @@
 
     
 
-    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/imissyou/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
 
@@ -354,16 +349,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/b3994218/">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/imissyou/imissyou/posts/cebdab86/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JI, XIAOYONG">
+      <meta itemprop="name" content="残桐落叶">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+      <meta itemprop="image" content="/imissyou/images/default_avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ji Xiaoyong's Blog">
+      <meta itemprop="name" content="I Miss You">
     </span>
 
     
@@ -371,7 +366,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JVM类加载机制之ClassLoader<a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/JVM类加载机制之ClassLoader.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+          <h1 class="post-title" itemprop="name headline">随想五<a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/imissyou/source/_posts/2015-06-23.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
 
               
             
@@ -397,7 +392,7 @@
                 
               
 
-              <time title="创建时间：2018-04-15 16:40:32" itemprop="dateCreated datePublished" datetime="2018-04-15T16:40:32+00:00">2018-04-15</time>
+              <time title="创建时间：2015-06-23 00:00:00" itemprop="dateCreated datePublished" datetime="2015-06-23T00:00:00+00:00">2015-06-23</time>
             
 
             
@@ -432,8 +427,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/blog/posts/b3994218/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/b3994218/" itemprop="commentCount"></span>
+                <a href="/imissyou/posts/cebdab86/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/imissyou/posts/cebdab86/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -441,7 +436,7 @@
 
           
           
-            <span id="/blog/posts/b3994218/" class="leancloud_visitors" data-flag-title="JVM类加载机制之ClassLoader">
+            <span id="/imissyou/posts/cebdab86/" class="leancloud_visitors" data-flag-title="随想五">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -472,46 +467,25 @@
       
 
       
-        <blockquote>
-<p>本文为<a href="https://blog.csdn.net/briblue/article/details/54973413" target="_blank" rel="noopener">《一看你就懂，超详细java中的ClassLoader详解 - CSDN博客》</a>阅读笔记</p>
-</blockquote>
-<h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>JVM有三种类加载器：</p>
-<ol>
-<li><strong>BootStrap ClassLoader</strong> 启动类加载器，加载核心类库，主要加载核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。</li>
-<li><strong>Extention ClassLoader</strong> 扩展类加载器，加载目录%JRE_HOME%\lib\ext目录下的jar包和class文件。</li>
-<li><strong>App ClassLoader</strong> 应用程序加载器，加载当前应用的classpath的所有类。</li>
-</ol>
-<p>除以上三种外，还有用户自定义的类加载器。</p>
-<p>每个类由加载它的类加载器和类本身确定其唯一性。也就是说，类加载器不同，类肯定不同。</p>
-<h1 id="加载过程"><a href="#加载过程" class="headerlink" title="加载过程"></a>加载过程</h1><p>在加载类时，通过<strong>“双亲委托”</strong>机制，依次从<strong>1</strong> -&gt; <strong>3</strong>向上查询，再从<strong>3</strong>-&gt;<strong>1</strong>依次返回结果：</p>
-<ol>
-<li>调用<code>findLoadedClass(className)</code>查询是否已经加载该类</li>
-<li>调用父加载器的<code>loadClass(className,false)</code>，若父加载器为空，则调用<code>BootStrap ClassLoader</code></li>
-<li>如果还是没有加载到该类，调用<code>findClass(className)</code></li>
-</ol>
-<p>这样子保证了每个类都是先经过最顶端的类加载器<code>BootStrap ClassLoader</code>，如果没有加载到再依次经过<code>Extention ClassLoader</code>、<code>App ClassLoader</code> 加载，确保如String等关键类不会被自定义的ClassLoader加载而导致异常。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> Class&lt;?&gt; loadClass(String name, <span class="keyword">boolean</span> resolve)</span><br><span class="line">        <span class="keyword">throws</span> ClassNotFoundException</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (getClassLoadingLock(name)) &#123;</span><br><span class="line">            <span class="comment">// 首先，检测是否已经加载</span></span><br><span class="line">            Class&lt;?&gt; c = findLoadedClass(name);</span><br><span class="line">            <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">long</span> t0 = System.nanoTime();</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (parent != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        <span class="comment">//父加载器不为空则调用父加载器的loadClass</span></span><br><span class="line">                        c = parent.loadClass(name, <span class="keyword">false</span>);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="comment">//父加载器为空则调用Bootstrap Classloader</span></span><br><span class="line">                        c = findBootstrapClassOrNull(name);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">                    <span class="comment">// ClassNotFoundException thrown if class not found</span></span><br><span class="line">                    <span class="comment">// from the non-null parent class loader</span></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="comment">// If still not found, then invoke findClass in order</span></span><br><span class="line">                    <span class="comment">// to find the class.</span></span><br><span class="line">                    <span class="keyword">long</span> t1 = System.nanoTime();</span><br><span class="line">                    <span class="comment">//父加载器没有找到，则调用findclass</span></span><br><span class="line">                    c = findClass(name);</span><br><span class="line"></span><br><span class="line">                    <span class="comment">// this is the defining class loader; record the stats</span></span><br><span class="line">                    sun.misc.PerfCounter.getParentDelegationTime().addTime(t1 - t0);</span><br><span class="line">                    sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);</span><br><span class="line">                    sun.misc.PerfCounter.getFindClasses().increment();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (resolve) &#123;</span><br><span class="line">                <span class="comment">//调用resolveClass()</span></span><br><span class="line">                resolveClass(c);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> c;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p><code>AppClassLoader</code>和<code>ExtClassLoader</code>都继承自<code>URLClassLoader</code></p>
-<p><code>AppClassLoader</code>的父加载器是<code>ExtClassLoader</code>，<code>ExtClassLoader</code>的父加载器为<code>null</code>，故而会调用<code>BootStrap ClassLoader</code></p>
-<p>ClassLoader如果没有指定父加载器，则默认的父加载器为<code>AppClassLoader</code>，自定义ClassLoader也是如此。</p>
-<h1 id="自定义ClassLoader"><a href="#自定义ClassLoader" class="headerlink" title="自定义ClassLoader"></a>自定义ClassLoader</h1><p>自定义ClassLoader一般步骤：</p>
-<ol>
-<li>继承自<code>ClassLoader</code></li>
-<li>重写<code>findClass()</code></li>
-<li>在<code>findClass()</code>方法中调用并返回<code>defineClass()</code></li>
-</ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MClasLoader</span>:<span class="type">ClassLoader</span></span>()&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">findClass</span><span class="params">(name: <span class="type">String</span>?)</span></span>: Class&lt;*&gt; &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> sysDir = System.getProperty(<span class="string">"user.dir"</span>)</span><br><span class="line">        <span class="keyword">var</span> classPath = <span class="string">"<span class="variable">$sysDir</span>/src/main/res/<span class="variable">$name</span>.class"</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> classFile = File(classPath)</span><br><span class="line">        <span class="comment">//【注意】这里一次只读取一个字节，否则会报错java.lang.ClassFormatError:</span></span><br><span class="line">        <span class="comment">// Extra bytes at the end of class file TestClass</span></span><br><span class="line">        <span class="keyword">var</span> bytes = ByteArray(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">var</span> fileInputStream = FileInputStream(classFile)</span><br><span class="line">        <span class="keyword">var</span> len = -<span class="number">1</span></span><br><span class="line">        <span class="keyword">var</span> byteBuffer = ByteOutputStream()</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line"></span><br><span class="line">            len = fileInputStream.read(bytes)</span><br><span class="line">            <span class="keyword">if</span> (len &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                byteBuffer.write(bytes)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> byteArr = byteBuffer.toByteArray()</span><br><span class="line">        <span class="keyword">return</span> defineClass(name,byteArr,<span class="number">0</span>,byteArr.size)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> clazz = MClasLoader().loadClass(<span class="string">"TestClass"</span>)</span><br><span class="line">    <span class="keyword">var</span> say = clazz.getDeclaredMethod(<span class="string">"say"</span>,String::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line">    say.invoke(clazz.newInstance(),<span class="string">"hello world"</span>)</span><br><span class="line"></span><br><span class="line">    print(MClasLoader().parent)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>而<code>defineClass()</code>则将一个字节数组转化为一个类的实例（Converts an array of bytes into an instance of class with an optional ProtectionDomain）</p>
-<h1 id="contextClassLoader"><a href="#contextClassLoader" class="headerlink" title="contextClassLoader"></a>contextClassLoader</h1><p>每个线程都有一个ClassLoader：<code>contextClassLoader</code>，通过将其设置为自定义的ClassLoader可以在加载类的时候做一些特殊的事情。</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Thread.currentThread().contextClassLoader = MClasLoader()</span><br><span class="line"><span class="keyword">var</span> clazz = Class.forName(<span class="string">"TestClass"</span>,</span><br><span class="line">        <span class="literal">true</span>, Thread.currentThread().contextClassLoader)</span><br><span class="line"><span class="keyword">var</span> say = clazz.getDeclaredMethod(<span class="string">"say"</span>,String::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line">say.invoke(clazz.newInstance(),<span class="string">"hello world"</span>)</span><br><span class="line"></span><br><span class="line">println(Thread.currentThread().contextClassLoader )</span><br><span class="line">println(Thread.currentThread().contextClassLoader.parent )</span><br></pre></td></tr></table></figure>
-<p>结果为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hello world</span><br><span class="line">MClasLoader@1d44bcfa</span><br><span class="line">sun.misc.Launcher$AppClassLoader@18b4aac2</span><br></pre></td></tr></table></figure>
+        <p>依旧是在实验室。</p>
+<p>这是端午节过后第一天正式上课，实验间隙，实验室里面众生百态。</p>
+<p>复习的一两桌，紧张的看着各自的复习资料，抑或嘴里念念有词，手里指指画画；寂静的一两桌，或趴或俯，眼睛盯着手机，又或脑袋躺在桌面，或玩或眠；然而最多的则是那一两桌叽叽喳喳的几张嘴，游戏足球明星和星座，各有一片春秋。</p>
+<p>充满现代化气息的实验仪器静静的排列在各处，冰冷地安静地，看着这众生，一批又一批。</p>
+<p>无言，春秋轮换，人来人往。来到这里的人一年年更替，才人庸人奇人蠢人碌碌无为之人，各色人物各色风景，走马灯似的替换，有什么变的，有什么不变的。</p>
+<p>变得是人，不变的，是人做的事，是做事的人。</p>
+<p>总有人做蠢事，也总会有做蠢事的人。</p>
+<p>只是，对于个人，这未免有些残酷，有些无奈。</p>
+<p>有什么办法能够将人从生活中抽离，然后去寻找自己的春暖花开。然而我们都知道这是不可能的，苦恼与琐事从来都在，苦恼与琐事就是我们的生活。</p>
+<p>人啊，要是明白什么是生活什么是妥协就好了。但或许，生活就是妥协，妥协就是我们的生活。</p>
+<p>那为什么又要有那么多的人，一次又一次的告诉我们，不一样的生活，不一样的世界。或许对于庸碌者来说，理想本身就是一种煎熬，一种惩罚。</p>
+<p>但，真的能够安心的成为一个庸人的又有几个，人总是想着能够更好一点，能够改变一点。</p>
+<p>那就应当付出，那就应当改变，那就应当承受这改变带来的一切苦痛与哀乐。</p>
+<p>死，然后生。</p>
 
       
     </div>
 
     
-
 
     
     
@@ -537,11 +511,11 @@
 
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>JI, XIAOYONG</li>
+    <strong>本文作者： </strong>残桐落叶</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://jixiaoyong.github.io/blog/posts/b3994218/" title="JVM类加载机制之ClassLoader">https://jixiaoyong.github.io/blog/posts/b3994218/</a>
+    <a href="https://jixiaoyong.github.io/imissyou/posts/cebdab86/" title="随想五">https://jixiaoyong.github.io/imissyou/posts/cebdab86/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -552,12 +526,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/blog/tags/jvm/" rel="tag"># jvm</a>
-          
-        </div>
-      
 
       
       
@@ -567,8 +535,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/posts/5962504e/" rel="next" title="Android 异步消息机制 Handler、Message、Looper">
-                <i class="fa fa-chevron-left"></i> Android 异步消息机制 Handler、Message、Looper
+              <a href="/imissyou/posts/41acf799/" rel="next" title="随想">
+                <i class="fa fa-chevron-left"></i> 随想
               </a>
             
           </div>
@@ -577,8 +545,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/posts/8d60b485/" rel="prev" title="加载已安装应用、未安装apk中的资源">
-                加载已安装应用、未安装apk中的资源 <i class="fa fa-chevron-right"></i>
+              <a href="/imissyou/posts/9d7a36e7/" rel="prev" title="变化">
+                变化 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -627,23 +595,14 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/blog/images/default_avatar.jpg" alt="JI, XIAOYONG">
+              <img class="site-author-image" itemprop="image" src="/imissyou/images/default_avatar.png" alt="残桐落叶">
             
-              <p class="site-author-name" itemprop="name">JI, XIAOYONG</p>
+              <p class="site-author-name" itemprop="name">残桐落叶</p>
               <div class="site-description motion-element" itemprop="description"></div>
           </div>
 
@@ -652,9 +611,9 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/blog/archives/">
+                  <a href="/imissyou/archives/">
                 
-                    <span class="site-state-item-count">78</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -671,35 +630,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">1</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -743,20 +674,6 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.wanandroid.com/" title="http://www.wanandroid.com/" rel="noopener" target="_blank">WanAndroid</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
 
           
             
@@ -766,23 +683,6 @@
         </div>
       </div>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简述"><span class="nav-number">1.</span> <span class="nav-text">简述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加载过程"><span class="nav-number">2.</span> <span class="nav-text">加载过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义ClassLoader"><span class="nav-number">3.</span> <span class="nav-text">自定义ClassLoader</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#contextClassLoader"><span class="nav-number">4.</span> <span class="nav-text">contextClassLoader</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
       
 
       
@@ -802,7 +702,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">JI, XIAOYONG</span>
+  <span class="author" itemprop="copyrightHolder">残桐落叶</span>
 
   
 
@@ -894,30 +794,30 @@
   
 
 
-  <script src="/blog/js/utils.js?v=7.1.0"></script>
+  <script src="/imissyou/js/utils.js?v=7.1.0"></script>
 
-  <script src="/blog/js/motion.js?v=7.1.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/blog/js/schemes/muse.js?v=7.1.0"></script>
+  <script src="/imissyou/js/motion.js?v=7.1.0"></script>
 
 
 
   
-  <script src="/blog/js/scrollspy.js?v=7.1.0"></script>
-<script src="/blog/js/post-details.js?v=7.1.0"></script>
+  
+
+
+  <script src="/imissyou/js/schemes/muse.js?v=7.1.0"></script>
+
+
+
+  
+  <script src="/imissyou/js/scrollspy.js?v=7.1.0"></script>
+<script src="/imissyou/js/post-details.js?v=7.1.0"></script>
 
 
 
   
 
 
-  <script src="/blog/js/next-boot.js?v=7.1.0"></script>
+  <script src="/imissyou/js/next-boot.js?v=7.1.0"></script>
 
 
   
@@ -976,7 +876,7 @@
     } else if (/json$/i.test(search_path)) {
       isXml = false;
     }
-    var path = "/blog/" + search_path;
+    var path = "/imissyou/" + search_path;
     // monitor main search box;
 
     var onPopupClose = function (e) {
