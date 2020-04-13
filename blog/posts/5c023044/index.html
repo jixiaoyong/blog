@@ -103,20 +103,24 @@
 
 
 
-  <meta name="description" content="这几天的工作中用到了控件组来实现复杂布局，效果不错，记录下来备用。 1. 定义控件组布局xxx_layout.xml在这里定义要使用的控件组布局，这里的布局决定了布局显示的样子。 1234567891011121314151617&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;&amp;lt;LinearLayout xmlns:android=&quot;http://sc">
-<meta name="keywords" content="blog,jixiaoyong,android">
+  <meta name="description" content="贝塞尔曲线)是用节点和控制点绘制的高精度曲线，Android中常用的有二阶、三阶贝塞尔曲线。本文介绍使用贝塞尔曲线绘制折线图，并实现动画效果。  本文代码链接：https://github.com/jixiaoyong/library/blob/master/library/src/main/java/cf/android666/applibrary/view/BezierViewAnim.kt">
+<meta name="keywords" content="android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android控件组">
-<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/3b69424a/index.html">
+<meta property="og:title" content="Android笔记之贝塞尔曲线的应用">
+<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/5c023044/index.html">
 <meta property="og:site_name" content="Ji Xiaoyong&#39;s Blog">
-<meta property="og:description" content="这几天的工作中用到了控件组来实现复杂布局，效果不错，记录下来备用。 1. 定义控件组布局xxx_layout.xml在这里定义要使用的控件组布局，这里的布局决定了布局显示的样子。 1234567891011121314151617&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;&amp;lt;LinearLayout xmlns:android=&quot;http://sc">
+<meta property="og:description" content="贝塞尔曲线)是用节点和控制点绘制的高精度曲线，Android中常用的有二阶、三阶贝塞尔曲线。本文介绍使用贝塞尔曲线绘制折线图，并实现动画效果。  本文代码链接：https://github.com/jixiaoyong/library/blob/master/library/src/main/java/cf/android666/applibrary/view/BezierViewAnim.kt">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/120748-48d0cbbf03ded7f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20200413215502.jpg">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20200413215622.png">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20200413222352.webp">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20200413220840.jpg">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20200413222302.jpg">
 <meta property="og:updated_time" content="2020-04-13T14:36:23.304Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android控件组">
-<meta name="twitter:description" content="这几天的工作中用到了控件组来实现复杂布局，效果不错，记录下来备用。 1. 定义控件组布局xxx_layout.xml在这里定义要使用的控件组布局，这里的布局决定了布局显示的样子。 1234567891011121314151617&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;&amp;lt;LinearLayout xmlns:android=&quot;http://sc">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/120748-48d0cbbf03ded7f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="Android笔记之贝塞尔曲线的应用">
+<meta name="twitter:description" content="贝塞尔曲线)是用节点和控制点绘制的高精度曲线，Android中常用的有二阶、三阶贝塞尔曲线。本文介绍使用贝塞尔曲线绘制折线图，并实现动画效果。  本文代码链接：https://github.com/jixiaoyong/library/blob/master/library/src/main/java/cf/android666/applibrary/view/BezierViewAnim.kt">
+<meta name="twitter:image" content="https://jixiaoyong.github.io/images/20200413215502.jpg">
 
 
 
@@ -124,7 +128,7 @@
 
   
   
-  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/3b69424a/">
+  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/5c023044/">
 
 
 
@@ -134,7 +138,7 @@
   };
 </script>
 
-  <title>Android控件组 | Ji Xiaoyong's Blog</title>
+  <title>Android笔记之贝塞尔曲线的应用 | Ji Xiaoyong's Blog</title>
   
 
 
@@ -356,7 +360,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/3b69424a/">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/5c023044/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JI, XIAOYONG">
@@ -373,7 +377,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android控件组<a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/Android控件组.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+          <h1 class="post-title" itemprop="name headline">Android笔记之贝塞尔曲线的应用<a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/Android自定义View之绘制贝塞尔曲线.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
 
               
             
@@ -399,7 +403,7 @@
                 
               
 
-              <time title="创建时间：2017-09-20 23:25:05" itemprop="dateCreated datePublished" datetime="2017-09-20T23:25:05+00:00">2017-09-20</time>
+              <time title="创建时间：2020-04-10 09:49:03" itemprop="dateCreated datePublished" datetime="2020-04-10T09:49:03+00:00">2020-04-10</time>
             
 
             
@@ -434,8 +438,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/blog/posts/3b69424a/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/3b69424a/" itemprop="commentCount"></span>
+                <a href="/blog/posts/5c023044/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/5c023044/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -443,7 +447,7 @@
 
           
           
-            <span id="/blog/posts/3b69424a/" class="leancloud_visitors" data-flag-title="Android控件组">
+            <span id="/blog/posts/5c023044/" class="leancloud_visitors" data-flag-title="Android笔记之贝塞尔曲线的应用">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -474,47 +478,50 @@
       
 
       
-        <p>这几天的工作中用到了控件组来实现复杂布局，效果不错，记录下来备用。</p>
-<h1 id="1-定义控件组布局xxx-layout-xml"><a href="#1-定义控件组布局xxx-layout-xml" class="headerlink" title="1. 定义控件组布局xxx_layout.xml"></a>1. 定义控件组布局xxx_layout.xml</h1><p>在这里定义要使用的控件组布局，这里的布局决定了布局显示的样子。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:padding</span>=<span class="string">"10dp"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">...</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">EditText</span></span></span><br><span class="line"><span class="tag">        <span class="attr">...</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">...</span> /&gt;</span></span><br><span class="line">      </span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="2-新建自定义属性文件attr-xml（可选）"><a href="#2-新建自定义属性文件attr-xml（可选）" class="headerlink" title="2.新建自定义属性文件attr.xml（可选）"></a>2.新建自定义属性文件attr.xml（可选）</h1><ul>
-<li><p>在<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```xml</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;resources&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- MSearchBar表明是给该控件使用的自定义属性 --&gt;</span><br><span class="line">    &lt;declare-styleable name=&quot;MSearchBar&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- 以下为示例，可以根据需求增减 --&gt;</span><br><span class="line">        &lt;attr name=&quot;textColor&quot; format=&quot;color&quot; /&gt;</span><br><span class="line">        &lt;attr name=&quot;textSize&quot; format=&quot;dimension&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/declare-styleable&gt;</span><br><span class="line"></span><br><span class="line">&lt;/resources&gt;</span><br></pre></td></tr></table></figure></p>
+        <p><a href="[https://baike.baidu.com/item/%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF](https://baike.baidu.com/item/贝塞尔曲线">贝塞尔曲线</a>)是用节点和控制点绘制的高精度曲线，Android中常用的有二阶、三阶贝塞尔曲线。本文介绍使用贝塞尔曲线绘制折线图，并实现动画效果。</p>
+<p><img src="https://jixiaoyong.github.io/images/20200413215502.jpg" alt=""></p>
+<p>本文代码链接：<a href="https://github.com/jixiaoyong/library/blob/master/library/src/main/java/cf/android666/applibrary/view/BezierViewAnim.kt" target="_blank" rel="noopener">https://github.com/jixiaoyong/library/blob/master/library/src/main/java/cf/android666/applibrary/view/BezierViewAnim.kt</a></p>
+<h1 id="贝塞尔曲线介绍"><a href="#贝塞尔曲线介绍" class="headerlink" title="贝塞尔曲线介绍"></a>贝塞尔曲线介绍</h1><p>下图是二阶贝塞尔曲线绘制方法介绍，只要各个点满足条件：AD/AB = BE/BC = DF/DE，那么当沿着当前线段移动D、E点时，F点的运动轨迹就是一个贝塞尔曲线：</p>
+<p><img src="https://jixiaoyong.github.io/images/20200413215622.png" alt="图片来自: https://www.cnblogs.com/wjtaigwh/p/6647114.html"></p>
+<p>动图示意如下：</p>
+<p><img src="https://jixiaoyong.github.io/images/20200413222352.webp" alt=""></p>
+<p>可以在下面的两个网站在线体验贝塞尔曲线：</p>
+<p><a href="https://aaaaaaaty.github.io/bezierMaker.js/playground/playground.html" target="_blank" rel="noopener">https://aaaaaaaty.github.io/bezierMaker.js/playground/playground.html</a></p>
+<p><a href="https://bezier.method.ac/" target="_blank" rel="noopener">https://bezier.method.ac/</a></p>
+<h1 id="计算控制点坐标"><a href="#计算控制点坐标" class="headerlink" title="计算控制点坐标"></a>计算控制点坐标</h1><p>在绘制折线图时，我们获取的数据可以当做贝塞尔曲线的端点，Android为我们提供了绘制二阶和三阶贝塞尔曲线的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Path.quadTo(<span class="keyword">float</span> x1, <span class="keyword">float</span> y1, <span class="keyword">float</span> x2, <span class="keyword">float</span> y2)<span class="comment">//二阶贝塞尔曲线：分别是控制点的x、y坐标和结束的的x、y坐标</span></span><br><span class="line">Path.cubicTo(<span class="keyword">float</span> x1, <span class="keyword">float</span> y1, <span class="keyword">float</span> x2, <span class="keyword">float</span> y2, <span class="keyword">float</span> x3, <span class="keyword">float</span> y3)<span class="comment">//三阶贝塞尔曲线：分别是控制点1、2的x、y坐标和结束的的x、y坐标</span></span><br></pre></td></tr></table></figure>
+<p>以<code>Path.cubicTo()</code>方法为例，在绘制三阶贝塞尔曲线时，起点和终点已知，剩下工作就是计算两个控制点的坐标。</p>
+<h2 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h2><p>按照贝塞尔曲线的定义，计算各个点对应控制点的坐标，具体的计算原理我们可以参考<a href="https://wenku.baidu.com/view/c790f8d46bec0975f565e211.html" target="_blank" rel="noopener">这篇文章</a></p>
+<p>假设起点、终点分别为<code>startPoint</code>，<code>endPoint</code>，起点前一个点为<code>beforePointF</code>，终点后一个点为<code>afterPoint</code>，那么终止点1、2（<code>controlPoint1</code>、<code>controlPoint2</code>）的坐标满足（其中a,b为任意正数，比如1/6）：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> controlPoint1X = startPoint.x + (endPoint.x - beforePointF.x) * a</span><br><span class="line"><span class="keyword">val</span> controlPoint1Y = startPoint.y + (endPoint.y - beforePointF.y) * a</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> controlPoint2X = endPoint.x - (afterPoint.x - startPoint.x) * b</span><br><span class="line"><span class="keyword">val</span> controlPoint2Y = endPoint.y - (afterPoint.y - startPoint.y) * b</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里要处理特殊情况：第一个点P~0~的前一个仍然为P~0~，最后一个点P~n~的后一个点仍为P~n~</p>
+</blockquote>
+<p>但这种情况绘制出来的贝塞尔曲线如下：</p>
+<p><img src="https://jixiaoyong.github.io/images/20200413220840.jpg" alt=""></p>
+<p>可以看到除了P~0~和P~n~外，其他点的曲线坐标和对应的点坐标不一致。</p>
+<h2 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h2><p>为了解决方法1存在的问题，我们人为的在两个点之间加入两个控制点，这样在<code>startPoint</code>，<code>endPoint</code>之间的贝塞尔曲线首尾点的坐标必定落在起点和终点上（思路来自<a href="https://blog.csdn.net/laizuling/article/details/51162011" target="_blank" rel="noopener">这里</a>）。</p>
+<p>所以，两个控制点的坐标为：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> controlPoint1X = (startPoint.x + endPoint.x) / <span class="number">2</span></span><br><span class="line"><span class="keyword">val</span> controlPoint1Y = startPoint.y</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> controlPoint2X = (startPoint.x + endPoint.x) / <span class="number">2</span></span><br><span class="line"><span class="keyword">val</span> controlPoint2Y = endPoint.y</span><br></pre></td></tr></table></figure>
+<p>这样绘制出来的曲线比较符合我们的要求。</p>
+<p>所以，最终贝塞尔曲线path计算方法如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bezierPath = Path()</span><br><span class="line">bezierPath.moveTo(pointList.first().x, -pointList.first().y)</span><br><span class="line">pointList.forEachIndexed &#123; index, startPoint -&gt;</span><br><span class="line">    <span class="keyword">when</span> (index) &#123;</span><br><span class="line">        pointList.lastIndex -&gt; &#123;</span><br><span class="line">            <span class="comment">//在绘制P(n-1) ~ P(n)点的贝塞尔曲线时，已经绘制到了P(n)点，所以此处不用再绘制</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> -&gt; &#123;</span><br><span class="line">            <span class="keyword">val</span> endPoint = pointList[index + <span class="number">1</span>]</span><br><span class="line">            bezierPath.cubicTo(</span><br><span class="line">                (startPoint.x + endPoint.x) / <span class="number">2</span>,</span><br><span class="line">                -startPoint.y, <span class="comment">//为了解决view坐标原点在左上角而做的特殊处理，下同</span></span><br><span class="line">                (startPoint.x + endPoint.x) / <span class="number">2</span>,</span><br><span class="line">                -endPoint.y,</span><br><span class="line">                endPoint.x,</span><br><span class="line">                -endPoint.y</span><br><span class="line">            )</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="给Path添加渐变背景"><a href="#给Path添加渐变背景" class="headerlink" title="给Path添加渐变背景"></a>给Path添加渐变背景</h1><p>我们可以使用<code>Paint.setShader(Shader shader)</code>方法，在绘制Path的时候绘制渐变背景。</p>
+<p>渐变背景使用Shader实现。</p>
+<p>为了确保绘制效果，我们需要在Path计算完成后，将其闭合，以确保绘制的背景在我们需要的范围内：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> shadowPaint = Paint(Paint.ANTI_ALIAS_FLAG)</span><br><span class="line">shadowPaint.style = Paint.Style.FILL</span><br><span class="line"><span class="keyword">val</span> shader =</span><br><span class="line">    LinearGradient(<span class="number">0F</span>, <span class="number">0F</span>, <span class="number">0F</span>, <span class="number">500F</span>, Color.GREEN, Color.TRANSPARENT, Shader.TileMode.CLAMP)</span><br><span class="line"></span><br><span class="line">shadowPaint.shader = shader</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> shadowPath = Path(path)</span><br><span class="line">shadowPath.lineTo(endPoint.x, <span class="number">800F</span>)</span><br><span class="line">shadowPath.lineTo(startPoint.x, <span class="number">800F</span>)</span><br><span class="line">shadowPath.lineTo(startPoint.x, startPoint.y)</span><br><span class="line">shadowPath.close()</span><br><span class="line">canvas.drawPath(shadowPath, shadowPaint)</span><br></pre></td></tr></table></figure>
+<h1 id="给Path添加动画"><a href="#给Path添加动画" class="headerlink" title="给Path添加动画"></a>给Path添加动画</h1><p>为了让Path看起来是从起点慢慢绘制到终点去的，我们可以先计算path的总长度，然后结合<code>ValueAnimator</code>实时获得对应长度的path并绘制：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mValueAnimator = ValueAnimator.ofFloat(<span class="number">0f</span>, <span class="number">1f</span>)</span><br><span class="line">mValueAnimator.duration = <span class="number">10000</span></span><br><span class="line">mValueAnimator.repeatCount = ValueAnimator.INFINITE</span><br><span class="line">mValueAnimator.interpolator = AccelerateDecelerateInterpolator()</span><br><span class="line">mValueAnimator.addUpdateListener &#123; animation -&gt; <span class="comment">//获取从0-1的变化值</span></span><br><span class="line">    progress = animation.animatedValue <span class="keyword">as</span> <span class="built_in">Float</span></span><br><span class="line">    <span class="comment">//不断刷新绘图，实现路径绘制</span></span><br><span class="line">    invalidate()</span><br><span class="line">&#125;</span><br><span class="line">mValueAnimator.start()</span><br></pre></td></tr></table></figure>
+<p>然后在<code>onDraw()</code>方法中绘制对应的path：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mPathMeasure: PathMeasure = PathMeasure(bezierPath, <span class="literal">false</span>)</span><br><span class="line"><span class="keyword">val</span> totalPathLength = mPathMeasure.length <span class="comment">//获取path总长度</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 按照进度绘制贝塞尔曲线</span></span><br><span class="line"><span class="keyword">val</span> stopD = progress * totalPathLength</span><br><span class="line">mPathMeasure.getSegment(<span class="number">0F</span>, stopD, dstPath, <span class="literal">true</span>) <span class="comment">//按照长度比例截取对应的path并赋值给dstPath</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//bezier anim</span></span><br><span class="line">canvas.drawPath(dstPath, bezierPaint) <span class="comment">//绘制对应的path</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://jixiaoyong.github.io/images/20200413222302.jpg" alt=""></p>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><ul>
+<li><p>使用canvas绘制坐标时，需要注意android的坐标原点位于屏幕左上角。所以在绘制曲线图时可以先将坐标原点向下平移一段距离，再绘制对应坐标（可以绘制实际的y坐标负值）</p>
 </li>
-<li><p>在该自定义控件的类xxx.java中，通过如下语句获取从用户使用时赋给这些属性的值：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.MSearchBar);</span><br><span class="line"><span class="keyword">float</span> textSize = array.getDimension(R.styleable.MSearchBar_textSize, <span class="number">13</span>);</span><br></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>用户动态给这些属性赋值：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">cf.android666.jixiaoyong.weightgroup.weight.MSearchBar</span></span></span><br><span class="line"><span class="tag">        <span class="attr">...</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:textColor</span>=<span class="string">"@color/colorPrimaryDark"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">cf.android666.jixiaoyong.weightgroup.weight.MSearchBar</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>注意，这里写的是<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  ​</span><br><span class="line"></span><br><span class="line"># 3. 新建组合控件的类XXX.java</span><br><span class="line"></span><br><span class="line">* 新建XXX.java，继承自布局文件的父布局LinearLayout</span><br><span class="line"></span><br><span class="line">* 更改参数少的构造方法的```super(a1,a2,a3)```为```this(a1,a2,a3)```，其中```this()```中的参数个数为参数最多的构造方法的参数数。</span><br><span class="line"></span><br><span class="line">  **注意** ：一定要做这一步，否则在使用该自定义控件组时，新建该类的对象会提示出错</span><br><span class="line"></span><br><span class="line">* 在最终会被调用的构造方法里面将xml里面定义的布局加载进来：</span><br><span class="line"></span><br><span class="line">  ```java</span><br><span class="line">  //注意三个参数：布局文件：R.layout.weight_group_layout, root：this,是否依附到root：true</span><br><span class="line">  //必须有前两个参数，否则控件的宽高等会有异常</span><br><span class="line">  View view = LayoutInflater.from(context).inflate(R.layout.weight_group_layout, this,true);</span><br></pre></td></tr></table></figure></p>
-</li>
-<li><p>使用自定义属性：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">MSearchBar</span><span class="params">(Context context, @Nullable AttributeSet attrs, <span class="keyword">int</span> defStyleAttr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs, defStyleAttr);</span><br><span class="line">  </span><br><span class="line">  		<span class="comment">//do sth</span></span><br><span class="line">  </span><br><span class="line">        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.MSearchBar);</span><br><span class="line">        <span class="keyword">float</span> textSize = array.getDimension(R.styleable.MSearchBar_textSize, <span class="number">13</span>);</span><br><span class="line">        editText.setTextSize(textSize);</span><br><span class="line">  </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>给控件组内部控件添加点击事件监听：</p>
-<ul>
-<li><p>xxx.java 要实现点击事件监听接口：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MSearchBar</span> <span class="keyword">extends</span> <span class="title">LinearLayout</span> <span class="keyword">implements</span> <span class="title">View</span>.<span class="title">OnClickListener</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>自定义接口，供使用xxx.java类时实现对监听事件的处理：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setImgLeftOnClickListener</span><span class="params">(OnImgClickListener listener)</span></span>&#123;</span><br><span class="line">    listenerL = listener;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnImgClickListener</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> OnImgClickListener listenerL;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>对要监听点击事件的控件设置监听，并调用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```java</span><br><span class="line">	//在构造方法等地方设置监听事件</span><br><span class="line">	imageViewLeft.setOnClickListener(this);</span><br><span class="line"></span><br><span class="line">	//在xxx.java中重写onClick()方法</span><br><span class="line">    @Override</span><br><span class="line">    public void onClick(View view) &#123;</span><br><span class="line">        switch (view.getId()) &#123;</span><br><span class="line">            //ImageLeft</span><br><span class="line">            case R.id.imageView:</span><br><span class="line">                if (listenerL != null) &#123;</span><br><span class="line">                    listenerL.onClick();</span><br><span class="line">                &#125;</span><br><span class="line">                break;</span><br><span class="line">            //imageRight</span><br><span class="line">            case R.id.imageView2:</span><br><span class="line">                if (listenerR != null) &#123;</span><br><span class="line">                    listenerR.onClick();</span><br><span class="line">                &#125;</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<li><p>在拼接贝塞尔曲线的path时候注意，<code>path.moveTo()</code>方法会将path切断</p>
 </li>
 </ul>
-</li>
-</ul>
-<h1 id="4-使用自定义控件组xxx-java"><a href="#4-使用自定义控件组xxx-java" class="headerlink" title="4. 使用自定义控件组xxx.java"></a>4. 使用自定义控件组xxx.java</h1><ul>
-<li><p>在布局文件main_activity.xml中添加该控件</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cf.android666.jixiaoyong.weightgroup.weight.MSearchBar</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:id</span>=<span class="string">"@+id/search_bar"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">app:textColor</span>=<span class="string">"@color/colorPrimaryDark"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">cf.android666.jixiaoyong.weightgroup.weight.MSearchBar</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-<li><p>在java中使用该控件，设置监听事件</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MSearchBar searchBar = (MSearchBar) findViewById(R.id.search_bar);</span><br><span class="line">searchBar.setImgLeftOnClickListener(<span class="keyword">new</span> MSearchBar.OnImgClickListener() &#123;</span><br><span class="line">        <span class="meta">@SuppressLint</span>(<span class="string">"WrongConstant"</span>)</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            Toast.makeText(MainActivity.<span class="keyword">this</span>, <span class="string">"Click on Left"</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-<h1 id="5-效果预览"><a href="#5-效果预览" class="headerlink" title="5.效果预览"></a>5.效果预览</h1><p><img src="http://upload-images.jianshu.io/upload_images/120748-48d0cbbf03ded7f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果预览"></p>
-<h1 id="6-源码"><a href="#6-源码" class="headerlink" title="6.源码"></a>6.源码</h1><p>demo的github链接:<a href="https://github.com/jixiaoyong/my_application_on_deepin/tree/master/weightgroup" target="_blank" rel="noopener">github</a></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://wenku.baidu.com/view/c790f8d46bec0975f565e211.html" target="_blank" rel="noopener">https://wenku.baidu.com/view/c790f8d46bec0975f565e211.html</a><br><a href="https://blog.csdn.net/laizuling/article/details/51162011" target="_blank" rel="noopener">https://blog.csdn.net/laizuling/article/details/51162011</a></p>
 
       
     </div>
@@ -550,7 +557,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://jixiaoyong.github.io/blog/posts/3b69424a/" title="Android控件组">https://jixiaoyong.github.io/blog/posts/3b69424a/</a>
+    <a href="https://jixiaoyong.github.io/blog/posts/5c023044/" title="Android笔记之贝塞尔曲线的应用">https://jixiaoyong.github.io/blog/posts/5c023044/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -561,6 +568,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/blog/tags/android/" rel="tag"># android</a>
+          
+        </div>
+      
 
       
       
@@ -570,8 +583,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/posts/a2c96aac/" rel="next" title="Android自定义View实现联系人列表">
-                <i class="fa fa-chevron-left"></i> Android自定义View实现联系人列表
+              <a href="/blog/posts/e5860bb5/" rel="next" title="Android paint绘制text">
+                <i class="fa fa-chevron-left"></i> Android paint绘制text
               </a>
             
           </div>
@@ -579,10 +592,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/posts/1a589649/" rel="prev" title="之前发布的几个App">
-                之前发布的几个App <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -780,7 +789,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-定义控件组布局xxx-layout-xml"><span class="nav-number">1.</span> <span class="nav-text">1. 定义控件组布局xxx_layout.xml</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-新建自定义属性文件attr-xml（可选）"><span class="nav-number">2.</span> <span class="nav-text">2.新建自定义属性文件attr.xml（可选）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-使用自定义控件组xxx-java"><span class="nav-number">3.</span> <span class="nav-text">4. 使用自定义控件组xxx.java</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-效果预览"><span class="nav-number">4.</span> <span class="nav-text">5.效果预览</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-源码"><span class="nav-number">5.</span> <span class="nav-text">6.源码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#贝塞尔曲线介绍"><span class="nav-number">1.</span> <span class="nav-text">贝塞尔曲线介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算控制点坐标"><span class="nav-number">2.</span> <span class="nav-text">计算控制点坐标</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法1"><span class="nav-number">2.1.</span> <span class="nav-text">方法1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法2"><span class="nav-number">2.2.</span> <span class="nav-text">方法2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#给Path添加渐变背景"><span class="nav-number">3.</span> <span class="nav-text">给Path添加渐变背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#给Path添加动画"><span class="nav-number">4.</span> <span class="nav-text">给Path添加动画</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意事项"><span class="nav-number">5.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
