@@ -6,7 +6,7 @@ date: 2020-4-10 09:49:03
 
 
 
-[贝塞尔曲线]([https://baike.baidu.com/item/%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF](https://baike.baidu.com/item/贝塞尔曲线))是用节点和控制点绘制的高精度曲线，Android中常用的有二阶、三阶贝塞尔曲线。本文介绍使用贝塞尔曲线绘制折线图，并实现动画效果。
+[贝塞尔曲线](https://baike.baidu.com/item/贝塞尔曲线)是用节点和控制点绘制的高精度曲线，Android中常用的有二阶、三阶贝塞尔曲线。本文介绍使用贝塞尔曲线绘制折线图，并实现动画效果。
 
 ![](https://jixiaoyong.github.io/images/20200413215502.jpg)
 
