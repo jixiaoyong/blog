@@ -23,7 +23,7 @@ date: 2020-4-15 14:05:03
 
   这是因为`xfermode`的效果，使用透明部分的像素与已有图形对应位置交叉作用，得出所需要的效果，如果透明区域过小，则无法作用到对应的图形。下面这个来自Hencoder.com的图可以很形象的解释：
 
-  ![](https://wx1.sinaimg.cn/large/006tNc79ly1fig73037soj30sj0x3myt.jpg)
+  ![](https://jixiaoyong.github.io/images/20200416213802.jpg)
 
 * 在新的图层绘制（在新的图层按照`xfermode`规则绘制，然后再将其绘制到原有图层）：
 
@@ -62,7 +62,7 @@ date: 2020-4-15 14:05:03
 
 [HenCoder.com](https://hencoder.com/ui-1-2/)关于`PorterDuff.Mode.DST_IN`的动画解释：
 
-![](https://wx4.sinaimg.cn/large/006tNc79ly1fig70910n6g30eg0b4x6p.gif)
+![](https://jixiaoyong.github.io/images/20200416214402.gif)
 
 可以看出，`Xfermode`的本质是处理`dst`与`src`**重合与未重合部分**的展示与否，以及颜色变化。
 
