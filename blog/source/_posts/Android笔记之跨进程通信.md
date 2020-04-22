@@ -33,7 +33,7 @@ Linux 已经提供了管道、消息队列、共享内存和 Socket 等 IPC 机�
 
 Linux为每个进程维护了一个单独的虚拟地址空间。**虚拟地址空间分为内核空间与用户空间**，用户空间包括代码、数据、堆、共享库以及栈，内核空间包括内核中的代码和数据结构，内核空间的某些区域被映射到所有进程共享的物理页面。Linux也将一组连续的虚拟页面（大小等于内存总量）映射到相应的一组连续的物理页面，这种做法为内核提供了一种便利的方法来访问物理内存中任何特定的位置。
 
-![](https://user-gold-cdn.xitu.io/2017/10/31/dffc20ef2fa8bfb5c6dde65ab9938c8d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![示意图来自https://juejin.im/post/59f8691b51882534af254317](https://jixiaoyong.github.io/images/20200422114446.png)
 
 Linux通过将一个虚拟内存区域与一个硬盘上的文件关联起来，以初始化这个虚拟内存区域的内容，这个过程称为**内存映射**（memory mapping）。这种将虚拟内存系统集成到文件系统的方法可以简单而高效地把程序和数据加载到内存中。
 
@@ -65,7 +65,8 @@ CPU获取到虚拟地址，然后通过MMU（内存管理单元）将其翻译�
 
 [管道](https://zh.wikipedia.org/wiki/%E7%AE%A1%E9%81%93_(Unix)) 是将标准输入输出连接起来的进程。 **数据复制2次，有长度限制**
 
-![](https://pic002.cnblogs.com/images/2012/426620/2012110216160766.jpg)
+![示意图来自https://pic002.cnblogs.com/images/2012/426620/2012110216160766.jpg](https://jixiaoyong.github.io/images/20200422114721.jpg)
+
 
 如图，进程1将数据**写入**到管道（内存缓存区），进程2从管道中**读取**数据。数据从写端流入管道，从读端流出，这样就实现了进程间通信
 
@@ -118,8 +119,7 @@ https://www.ibm.com/developerworks/cn/linux/l-ipc/part2/index1.html
 
 数据拷贝1次，有权限校验（为发送方添加了UID/PID身份）
 
-![参与Binder通信的所有角色](http://hi.csdn.net/attachment/201102/27/0_1298798582y7c5.gif)
-
+![参与Binder通信的所有角色 图片来自https://blog.csdn.net/universus/article/details/6211589](https://jixiaoyong.github.io/images/20200422115508.gif)
 
 
 时序图：
@@ -145,7 +145,7 @@ note over Client: 操作内核Binder
 Client -->> Server:相当于操作Server
 ```
 
-
+![20200422115253](https://jixiaoyong.github.io/images/20200422115253.png)
 
 理论上的Binder逻辑：
 
@@ -249,7 +249,8 @@ private ServiceConnection mConnection = new ServiceConnection() {
 
 根据[Android服务之bindService源码分析](https://blog.csdn.net/zhangyongfeiyong/article/details/51953300)mConnection会通过`context.bindService(intent, mConnection, Context.BIND_AUTO_CREATE);`最终在ActivityManagerService通过Binder驱动程序调用ActivityThread类中的scheduleBindService方法传递到Service所在进程中，并根据Service的状态不同而被调用对应方法（**即mConnection通过ServerManager从Client传递到了Service**）。
 
-![](https://img-blog.csdn.net/20160719100800917?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![图片来自https://img-blog.csdn.net/20160719100800917?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center](https://jixiaoyong.github.io/images/20200422115031.jpg)
+
 
 在这其中我们用到了两个涉及到AIDL文件：
 
@@ -390,13 +391,7 @@ public interface AidlBinderInterface extends android.os.IInterface {
 https://www.cnblogs.com/a284628487/p/3187320.html
 
 
-
-![](https://images0.cnblogs.com/blog/391137/201307/12211553-49c477a875e84b2aae764c67f38f26b2.jpg)
-
-
-
-
-
+![图片来自https://images0.cnblogs.com/blog/391137/201307/12211553-49c477a875e84b2aae764c67f38f26b2.jpg](https://jixiaoyong.github.io/images/20200422114923.jpg)
 
 
 ## others
