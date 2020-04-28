@@ -226,7 +226,7 @@ SoftReference sf = new SoftReference(p);只要有足够内存就不会被GC回�
 
 # 脑图
 
-![](https://raw.githubusercontent.com/jixiaoyong/jixiaoyong.github.io/master/images/blog/2018-02/JVMMemory.png)
+![](https://jixiaoyong.github.io/images/blog/2018-02/JVMMemory.png)
 
 
 
