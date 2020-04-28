@@ -2,6 +2,7 @@
 title: Java笔记之计算Java对象的大小及其应用
 tags: java
 date: 2019-12-21 09:44:32
+
 ---
 
 # 原理
@@ -52,11 +53,11 @@ class Empty{
 > | ------------------------- | ------------- |
 > | dlmalloc 引用             | 4             |
 > | Object overhead（对象头） | 8             |
-> 
->Total  = 4 + 8 =12 bytes
-> 
->经过*8-byte aligned*后： total = 16 bytes
-> 
+>
+> Total  = 4 + 8 =12 bytes
+>
+> 经过*8-byte aligned*后： total = 16 bytes
+>
 > https://speakerdeck.com/romainguy/android-memories?slide=34
 
 此外还有**包含了数据的对象**大小计算方式如下：
@@ -148,25 +149,25 @@ public class Main {
 
 `String s = “”;`中，在编译期最多可以有65534个字符
 
-> 原因是，Java中的UTF-8编码的Unicode字符串在常量池中以`CONSTANT_Utf8`类型表示，常量池中的所有字面量几乎都是通过`CONSTANT_Utf8_info`描述的。
+> ~~原因是，Java中的UTF-8编码的Unicode字符串在常量池中以`CONSTANT_Utf8`类型表示，常量池中的所有字面量几乎都是通过`CONSTANT_Utf8_info`描述的。~~
 >
-> 这里面的`u2 length`表明了该类型存储数据的长度，而`u2`是无符号的16位整数，因此理论上允许的的最大长度是`2^16=65536`。而 Java class 文件是使用一种变体`UTF-8`格式来存放字符的，`null` 值使用两个字节来表示，因此只剩下` 65536－ 2 ＝ 65534`个字节。
+>~~这里面的`u2 length`表明了该类型存储数据的长度，而`u2`是无符号的16位整数，因此理论上允许的的最大长度是`2^16=65536`。而 Java class 文件是使用一种变体`UTF-8`格式来存放字符的，`null` 值使用两个字节来表示，因此只剩下` 65536－ 2 ＝ 65534`个字节。~~
 >
-> ```c
-> CONSTANT_Utf8_info {
->     u1 tag;
->     u2 length;
->     u1 bytes[length];
-> }
-> ```
+>```c
+>CONSTANT_Utf8_info {
+>u1 tag;
+>u2 length;
+>u1 bytes[length];
+>}
+>```
 >
-> **所以，在Java中，所有需要保存在常量池中的数据，长度最大不能超过65535，这当然也包括字符串的定义**
+>**所以，在Java中，所有需要保存在常量池中的数据，长度最大不能超过65535，这当然也包括字符串的定义**
 >
-> 上面提到的这种String长度的限制是*编译期的限制*，也就是使用`String s= “”;`这种字面值方式定义的时候才会有的限制。
+>上面提到的这种String长度的限制是*编译期的限制*，也就是使用`String s= “”;`这种字面值方式定义的时候才会有的限制。
 >
-> String在*运行期*有没有限制呢，答案是有的，就是我们前文提到的那个`Integer.MAX_VALUE `，这个值约等于4G，在运行期，如果String的长度超过这个范围，就可能会抛出异常。(在jdk 1.9之前）
+>String在*运行期*有没有限制呢，答案是有的，就是我们前文提到的那个`Integer.MAX_VALUE `，这个值约等于4G，在运行期，如果String的长度超过这个范围，就可能会抛出异常。(在jdk 1.9之前）
 >
-> https://blog.csdn.net/u013380694/article/details/102739636
+>https://blog.csdn.net/u013380694/article/details/102739636
 
 **一个String对象,占用大小（JDK1.8）为24 bytes**（不计算持有的char数组占用的大小）：
 
