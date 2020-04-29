@@ -15,7 +15,8 @@ date: 2018-04-01 20:08:08
 
 # 导图
 
-![android消息机制思维图](https://github.com/jixiaoyong/Notes-Files/blob/master/draw-io/png/Handler_Message_Looper.png?raw=true)
+![20200429160005](https://jixiaoyong.github.io/images/20200429160005.png)
+
 
 # 过程分析
 
