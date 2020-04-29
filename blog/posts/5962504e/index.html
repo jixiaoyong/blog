@@ -111,12 +111,12 @@
 <meta property="og:site_name" content="Ji Xiaoyong&#39;s Blog">
 <meta property="og:description" content="此文为鸿洋博客阅读笔记，配合原文食用口味更佳。 Android 异步消息处理机制 让你深入理解 Looper、Handler、Message三者关系 - CSDN博客  导图 过程分析LooperLooper.perpare()Looper.perpare()方法创建Looper对象（同时创建MessageQueue对象），并与当前线程关联保存在sThreadLocal中。 1234567891">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/jixiaoyong/Notes-Files/blob/master/draw-io/png/Handler_Message_Looper.png?raw=true">
-<meta property="og:updated_time" content="2020-04-28T07:00:37.050Z">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20200429160005.png">
+<meta property="og:updated_time" content="2020-04-29T08:32:51.915Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 异步消息机制 Handler、Message、Looper">
 <meta name="twitter:description" content="此文为鸿洋博客阅读笔记，配合原文食用口味更佳。 Android 异步消息处理机制 让你深入理解 Looper、Handler、Message三者关系 - CSDN博客  导图 过程分析LooperLooper.perpare()Looper.perpare()方法创建Looper对象（同时创建MessageQueue对象），并与当前线程关联保存在sThreadLocal中。 1234567891">
-<meta name="twitter:image" content="https://github.com/jixiaoyong/Notes-Files/blob/master/draw-io/png/Handler_Message_Looper.png?raw=true">
+<meta name="twitter:image" content="https://jixiaoyong.github.io/images/20200429160005.png">
 
 
 
@@ -416,7 +416,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-04-28 07:00:37" itemprop="dateModified" datetime="2020-04-28T07:00:37+00:00">2020-04-28</time>
+                <time title="修改时间：2020-04-29 08:32:51" itemprop="dateModified" datetime="2020-04-29T08:32:51+00:00">2020-04-29</time>
               
             
           </span>
@@ -478,7 +478,7 @@
 <p>此文为鸿洋博客阅读笔记，配合原文食用口味更佳。</p>
 <p><a href="https://blog.csdn.net/lmj623565791/article/details/38377229" target="_blank" rel="noopener">Android 异步消息处理机制 让你深入理解 Looper、Handler、Message三者关系 - CSDN博客</a></p>
 </blockquote>
-<h1 id="导图"><a href="#导图" class="headerlink" title="导图"></a>导图</h1><p><img src="https://github.com/jixiaoyong/Notes-Files/blob/master/draw-io/png/Handler_Message_Looper.png?raw=true" alt="android消息机制思维图"></p>
+<h1 id="导图"><a href="#导图" class="headerlink" title="导图"></a>导图</h1><p><img src="https://jixiaoyong.github.io/images/20200429160005.png" alt="20200429160005"></p>
 <h1 id="过程分析"><a href="#过程分析" class="headerlink" title="过程分析"></a>过程分析</h1><h2 id="Looper"><a href="#Looper" class="headerlink" title="Looper"></a>Looper</h2><h3 id="Looper-perpare"><a href="#Looper-perpare" class="headerlink" title="Looper.perpare()"></a><strong>Looper.perpare()</strong></h3><p><code>Looper.perpare()</code>方法创建<code>Looper对象</code>（同时创建<code>MessageQueue对象</code>），并与当前线程关联保存在<code>sThreadLocal</code>中。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">if</span> (sThreadLocal.get() != <span class="keyword">null</span>) &#123;  </span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Only one Looper may be created per thread"</span>);  </span><br><span class="line">        &#125;  </span><br><span class="line">        sThreadLocal.set(<span class="keyword">new</span> Looper(<span class="keyword">true</span>));  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Looper</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;  </span><br><span class="line">        mQueue = <span class="keyword">new</span> MessageQueue(quitAllowed);  </span><br><span class="line">        mRun = <span class="keyword">true</span>;  </span><br><span class="line">        mThread = Thread.currentThread();  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="Looper-loop"><a href="#Looper-loop" class="headerlink" title="Looper.loop()"></a><strong>Looper.loop()</strong></h3><p><code>Looper.loop()</code>方法获取保存的<code>Looper对象</code>并由此获取到<code>MessageQueue对象</code>。</p>
