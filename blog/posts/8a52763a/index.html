@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/blog/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/favicon.ico?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon.ico?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon.ico?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/blog/images/favicon.ico?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script data-ad-client="ca-pub-2037953510405593" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+
+  <meta name="description" content="尾递归优化把递归通过编译器转化为迭代，从而避免Stack Overflow “以时间换取空间” 普通递归： 调用函数之后，还需要使用其返回值供自己使用，即自身返回值依赖于下一级函数，一般是调用自身的代码后面，还有其他的代码要执行。 1234567fun fun1(n: Int): BigInteger &amp;#123;    if (n == 0) return BigInteger.valueOf(">
+<meta name="keywords" content="kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin学习笔记2">
+<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/8a52763a/index.html">
+<meta property="og:site_name" content="Ji Xiaoyong&#39;s Blog">
+<meta property="og:description" content="尾递归优化把递归通过编译器转化为迭代，从而避免Stack Overflow “以时间换取空间” 普通递归： 调用函数之后，还需要使用其返回值供自己使用，即自身返回值依赖于下一级函数，一般是调用自身的代码后面，还有其他的代码要执行。 1234567fun fun1(n: Int): BigInteger &amp;#123;    if (n == 0) return BigInteger.valueOf(">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20191022194750.png">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20191023194526.png">
+<meta property="og:updated_time" content="2020-10-16T17:23:22.660Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin学习笔记2">
+<meta name="twitter:description" content="尾递归优化把递归通过编译器转化为迭代，从而避免Stack Overflow “以时间换取空间” 普通递归： 调用函数之后，还需要使用其返回值供自己使用，即自身返回值依赖于下一级函数，一般是调用自身的代码后面，还有其他的代码要执行。 1234567fun fun1(n: Int): BigInteger &amp;#123;    if (n == 0) return BigInteger.valueOf(">
+<meta name="twitter:image" content="https://jixiaoyong.github.io/images/20191022194750.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/8a52763a/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Kotlin学习笔记2 | Ji Xiaoyong's Blog</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-138652239-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-138652239-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ji Xiaoyong's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/8a52763a/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JI, XIAOYONG">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ji Xiaoyong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Kotlin学习笔记2<a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/Kotlin学习笔记2.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-02-11 11:38:43" itemprop="dateCreated datePublished" datetime="2018-02-11T11:38:43+00:00">2018-02-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-10-16 17:23:22" itemprop="dateModified" datetime="2020-10-16T17:23:22+00:00">2020-10-16</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/blog/posts/8a52763a/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/8a52763a/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/blog/posts/8a52763a/" class="leancloud_visitors" data-flag-title="Kotlin学习笔记2">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="尾递归优化"><a href="#尾递归优化" class="headerlink" title="尾递归优化"></a>尾递归优化</h1><p>把递归通过编译器转化为迭代，从而避免Stack Overflow</p>
+<p>“以时间换取空间”</p>
+<p>普通递归：</p>
+<p>调用函数之后，还需要使用其返回值供自己使用，即自身返回值依赖于下一级函数，一般是调用自身的代码后面，还有其他的代码要执行。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">fun1</span><span class="params">(n: <span class="type">Int</span>)</span></span>: BigInteger &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> BigInteger.valueOf(<span class="number">1L</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> n.toBigInteger().times(fun1(n - <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>尾递归：</p>
+<p>调用自身之后，无需再返回当前函数,将处理结果以其他形式返回。</p>
+<p>普通递归和尾递归都存在栈溢出风险（未优化前，例子中的函数计算10000到100000的阶乘时会溢出），kotlin提供了一种尾递归优化的方法——<code>tailrec</code>，使得编译器在编译时将递归转化为迭代，从而避免栈溢出。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Result</span></span>(<span class="keyword">var</span> value: BigInteger = BigInteger.valueOf(<span class="number">1L</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">//尾递归，tailrec为kotlin中优化关键字</span></span><br><span class="line"><span class="keyword">tailrec</span> <span class="function"><span class="keyword">fun</span> <span class="title">fun2</span><span class="params">(n: <span class="type">Int</span>, m: <span class="type">Result</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">        m.value = m.value.times(BigInteger.valueOf(<span class="number">1L</span>))</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        m.value = m.value.times(n.toBigInteger())</span><br><span class="line">        fun2(n-<span class="number">1</span>,m)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>本例中传入<code>fun2()</code>的<code>Result</code>实例保存了计算结果</p>
+<h1 id="sealed-class-密封类"><a href="#sealed-class-密封类" class="headerlink" title="sealed class 密封类"></a>sealed class 密封类</h1><p>密封类的所有子类必须在一个文件(xx.kt)中，他的子类是有限的，所以当<code>when()</code>的时候不需要<code>else</code>。</p>
+<p>某种意义上他们像是一种<code>enum class</code>，只不过他的子类可以有多个实例。</p>
+<blockquote>
+<p>Sealed classes are used for representing restricted class hierarchies, when a value can have one of the types from a limited set, but cannot have any other type. They are, in a sense, an extension of enum classes: the set of values for an enum type is also restricted, but each enum constant exists only as a single instance, whereas a subclass of a sealed class can have multiple instances which can contain state.</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//sealed class</span></span><br><span class="line"><span class="keyword">sealed</span> <span class="class"><span class="keyword">class</span> <span class="title">Player</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Play</span></span>(<span class="keyword">var</span> arg:String) : Player()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">object</span> Stop : Player()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">p2</span></span>():Player()</span><br></pre></td></tr></table></figure>
+<h1 id="kotlin抛出异常"><a href="#kotlin抛出异常" class="headerlink" title="kotlin抛出异常"></a>kotlin抛出异常</h1><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Throws(RemoteException::class)</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getBookList</span><span class="params">()</span></span>:List&lt;Book&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="kotlin中的泛型"><a href="#kotlin中的泛型" class="headerlink" title="kotlin中的泛型"></a>kotlin中的泛型</h1><p><code>out</code> 协变，使用子类泛型的对象可以赋值给使用父类泛型的对象，相当于<code>extend</code>，用于方法的返回值（生产者）时使用</p>
+<p><code>in</code> 逆变，使用父类泛型的对象可以赋值给使用子类泛型的对象，相当于<code>super</code>，用于方法的参数（消费者）时使用</p>
+<p>不变，当泛型即当消费者，又当生产者时，不用<code>in</code>或者<code>out</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> from = arrayOf(<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>)</span><br><span class="line">    <span class="keyword">val</span> to = arrayOf(Any())</span><br><span class="line"></span><br><span class="line">    copyArray(from,to)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">copyArray</span><span class="params">(from: <span class="type">Array</span>&lt;<span class="type">out</span> <span class="type">Any</span>&gt;, to: <span class="type">Array</span>&lt;<span class="type">in</span> <span class="type">Int</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="comment">//这里的from被out修饰，只能作为生产者调用get之类的方法，不能作为消费者调用set之类的方法</span></span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="星号投射"><a href="#星号投射" class="headerlink" title="星号投射"></a>星号投射</h1><blockquote>
+<p>你对类型参数一无所知，但仍然希望以安全的方式使用它。</p>
+</blockquote>
+<p><strong>安全的使用</strong>，则表示该类<code>Group&lt;T&gt;</code>满足</p>
+<blockquote>
+<p>1.子类至少接收和父类一样范围的参数 &gt;=  —&gt; 父类入参为Noting 不能安全写入</p>
+<p>2.子类最多返回和父类一样范围的参数 &lt;=  —&gt; 父类出参为Any? 可以安全读取</p>
+</blockquote>
+<p>则有以下三种实现方式</p>
+<p><img src="https://jixiaoyong.github.io/images/20191022194750.png" alt="in-out-star-projection-approaches"></p>
+<p>其中：</p>
+<p><code>Group&lt;in Noting&gt;</code> 的<code>fetch()</code>方法一直返回<code>Any?</code></p>
+<p><code>Group&lt;out Any?&gt;</code> 的<code>T</code>需要与实际的<code>Group</code>的<code>T</code>保持一致，否则会报错</p>
+<p><code>Group&lt;*&gt;</code> 既能<code>insert</code>正确返回对应的类型，也不用实时修改</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> TClass &#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">readIn</span><span class="params">(group: <span class="type">Group</span>&lt;<span class="type">in</span> <span class="type">Nothing</span>&gt;)</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> d = group.fetch()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">readOut</span><span class="params">(group: <span class="type">Group</span>&lt;<span class="type">out</span> <span class="type">Animal</span>&gt;)</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> d = group.fetch()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">read</span><span class="params">(group: <span class="type">Group</span>&lt;*&gt;)</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> d = group.fetch()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Group</span>&lt;<span class="type">T : Dog</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">insert</span><span class="params">(member: <span class="type">T</span>)</span></span>: <span class="built_in">Unit</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">fetch</span><span class="params">()</span></span>: T</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="委托"><a href="#委托" class="headerlink" title="委托"></a>委托</h1><p>委托是将重复出现的代码放到一个地方。</p>
+<p><img src="https://jixiaoyong.github.io/images/20191023194526.png" alt="委托示意图"></p>
+<ul>
+<li>类委托 ：</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Interface</span> </span>&#123;	<span class="function"><span class="keyword">fun</span> <span class="title">a</span><span class="params">()</span></span>	&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> : <span class="type">Interface</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span>(a: Interface) : Interface <span class="keyword">by</span> a</span><br></pre></td></tr></table></figure>
+<p>这样B便可以将<code>Interface</code>中方法的实现委托给类<code>A</code>的对象<code>a</code></p>
+<ul>
+<li>委托属性：</li>
+</ul>
+<p>将同一类型的属性的<code>get</code>、<code>set</code>方法放到一个地方实现，可以在加入<code>其它操作</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Delegate</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: String = <span class="string">""</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(clazz: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: String &#123;</span><br><span class="line">        println(<span class="string">"get()"</span>)<span class="comment">//其它操作</span></span><br><span class="line">        <span class="keyword">return</span> name</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">setValue</span><span class="params">(clazz: <span class="type">Any</span>?, property: <span class="type">KProperty</span>&lt;*&gt;, t: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">        println(<span class="string">" set()"</span>)</span><br><span class="line">        name = t</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassA</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: String <span class="keyword">by</span> Delegate()</span><br><span class="line">    <span class="keyword">var</span> age: String <span class="keyword">by</span> Delegate()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>委托类的初始化函数：</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">delegate</span><span class="params">(initializer: ()</span></span> -&gt; T) = Delegate(initializer)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass1</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: String <span class="keyword">by</span> delegate &#123;</span><br><span class="line">        println(<span class="string">"MyClass1.name init"</span>)</span><br><span class="line">        <span class="string">"MyClass1"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Delegate</span>&lt;<span class="type">T</span>&gt;</span>(initializer: () -&gt; T) &#123;</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(myClass1: <span class="type">T</span>, property: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: String &#123;</span><br><span class="line">        println(<span class="string">"<span class="variable">$className</span> get()"</span>)</span><br><span class="line">        <span class="keyword">return</span> name</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">setValue</span><span class="params">(myClass1: <span class="type">T</span>, property: <span class="type">KProperty</span>&lt;*&gt;, t: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">        println(<span class="string">"<span class="variable">$className</span> set()"</span>)</span><br><span class="line">        name = t</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> name: String = <span class="string">""</span></span><br><span class="line">    <span class="keyword">var</span> className = initializer()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Map委托：</li>
+</ul>
+<p>将类的<code>属性</code>名称和<code>map</code>中的<code>key</code>一一对应，从而将对于<code>value</code>赋值给<code>属性</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassB</span></span>(map: Map&lt;String, Any&gt;) &#123;</span><br><span class="line">    <span class="keyword">val</span> name: String <span class="keyword">by</span> map</span><br><span class="line">    <span class="keyword">val</span> age: <span class="built_in">Int</span> <span class="keyword">by</span> map</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> map = mapOf(<span class="string">"name"</span> to <span class="string">"shany"</span>,</span><br><span class="line">            <span class="string">"age"</span> to <span class="number">18</span>)</span><br><span class="line">    <span class="keyword">val</span> b = ClassB(map)</span><br><span class="line">    print(b.name)<span class="comment">//shayn</span></span><br><span class="line">    print(b.age)<span class="comment">//18</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>veroable</li>
+</ul>
+<p>可以拦截赋值操作</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassB</span></span>() &#123;</span><br><span class="line">   <span class="keyword">var</span> name:String <span class="keyword">by</span> Delegates.vetoable(<span class="string">"ThisIsInitialValue"</span>)&#123;</span><br><span class="line">       property, oldValue, newValue -&gt;</span><br><span class="line">       <span class="keyword">return</span><span class="symbol">@vetoable</span> <span class="literal">false</span> <span class="comment">//返回true允许更改值，false不允许更改</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="中缀函数"><a href="#中缀函数" class="headerlink" title="中缀函数"></a>中缀函数</h1><p>需要满足三个条件：</p>
+<ol>
+<li>成员函数或拓展函数</li>
+<li>只有一个参数</li>
+<li>infix声明</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">infix</span> <span class="function"><span class="keyword">fun</span> String.<span class="title">div</span><span class="params">(string: <span class="type">String</span>)</span></span>:String&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.replace(string,<span class="string">""</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">使用：</span><br><span class="line"><span class="keyword">val</span> s = <span class="string">"bababbaab"</span> div <span class="string">"a"</span></span><br></pre></td></tr></table></figure>
+<h1 id="inline内联函数"><a href="#inline内联函数" class="headerlink" title="inline内联函数"></a>inline内联函数</h1><p><code>inline</code>修饰的函数在被调用时将字节码动态插入到被到调用的地方。</p>
+<p><code>inline</code>修饰的函数的<code>lambda参数</code>如果运行在该函数内部的<em><code>子函数/其他环境</code></em>，则不允许这个lambda函数<strong>非局部返回</strong>（因为没有办法从该 <code>子函数/其他环境</code> 中直接退出lambda所在的外层函数），对于这种lambda函数需要添加<strong><code>crossinline</code></strong>修饰。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//**非局部返回**指从lambda2中执行return语句，推出的是整个func()</span></span><br><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">func1</span><span class="params">(<span class="keyword">crossinline</span> lambda1:()</span></span>-&gt;<span class="built_in">Unit</span>,  lambda2:()-&gt;<span class="built_in">Unit</span>)&#123;</span><br><span class="line">    <span class="keyword">val</span> f = Runnable &#123;</span><br><span class="line">        lambda1()<span class="comment">//不可以调用非局部返回，所以用crossinline修饰</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    lambda2()<span class="comment">//可以调用非局部返回</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Kotlin也存在Java泛型所具有的<strong>类型擦除</strong>问题，为了优化该问题，inline函数可以结合<code>reified</code>实现<strong>实体化类型参数</strong></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;<span class="keyword">reified</span> T&gt;</span> <span class="title">isInstanceOf</span><span class="params">(value: <span class="type">Any</span>)</span></span> = value <span class="keyword">is</span> T <span class="comment">//在这里仍然可以知道T是什么类型的，所以可以执行value is T </span></span><br><span class="line">print(isInstanceOf&lt;String&gt;(<span class="string">""</span>))<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p><strong>原理:</strong>内联函数会直接被插入到被调用的地方，而<code>reified</code>修饰的类型参数会保证将用户调用时写的类型<code>String</code>同时也写入到被调用的地方，如此便没有发生类型擦除。</p>
+<h1 id="coroutines-协程"><a href="#coroutines-协程" class="headerlink" title="coroutines 协程"></a>coroutines 协程</h1><p>协程可以看做是一个轻量级的thread，他运行在线程当中，由用户控制，没有上下文切换的开销。</p>
+<p>在Android中使用协程，特别是在IO操作及网络请求等需要根据耗时操作更新界面的需求时，可以将IO操作和界面操作串行，避免切换线程、回调嵌套等导致代码可读性查的问题。</p>
+<p>如配合支持协程的retrofit，我们可以将网络请求简化如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">launch(Dispatchers.Main) &#123;</span><br><span class="line">    <span class="comment">//这里是主线程</span></span><br><span class="line">    showProgressOnMainThread()</span><br><span class="line">    <span class="keyword">val</span> repos = withContext(Dispatchers.IO) &#123;</span><br><span class="line">        <span class="comment">//这里是UI线程</span></span><br><span class="line">        retrofitApi.getRepos(<span class="string">"jixiaoyong"</span>).string()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//这里是主线程</span></span><br><span class="line">    updateUIOnMainThread(repos)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>kotlin协程需要单独添加依赖：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">implementation <span class="string">'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2'</span></span><br><span class="line">implementation <span class="string">"org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.2"</span> <span class="comment">//Android可以再添加这个依赖，会有一些特殊方法</span></span><br></pre></td></tr></table></figure>
+<p> 一个父协程总是等待所有的子协程执行结束， 父协程被取消的时候，所有它的子协程也会被递归的取消。 </p>
+<h2 id="协程中runBlocking与coroutineScope的区别"><a href="#协程中runBlocking与coroutineScope的区别" class="headerlink" title="协程中runBlocking与coroutineScope的区别"></a>协程中<code>runBlocking</code>与<code>coroutineScope</code>的区别</h2><p>相同点：</p>
+<p>依次执行内部代码，如果<code>代码1</code>是启动协程，那么启动该子协程后，继续执行<code>代码1</code>后面的代码直到最后一行（类似启动新线程，不会阻塞当前线程），然后再等待所有内部协程结束，才会退出。</p>
+<p>不同点：</p>
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html" target="_blank" rel="noopener"><strong><code>runBlocking</code></strong></a>：会运行一个新的协程线程，并阻塞其所在<code>线程</code>,直到其内部所有协程/子协程执行完毕才会退出。设计用来以阻塞的方式执行协程代码，不应该在协程中使用。</p>
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html" target="_blank" rel="noopener"><strong><code>coroutineScope</code></strong></a>：不会阻塞其所在线程，要在协程中使用，当其内部所有协程/子协程执行完毕才会退出。设计用来执行并行操作，一旦有子协程失败，则其他子协程都会被取消，整个代码块执行失败。</p>
+<h2 id="协程的思维导图"><a href="#协程的思维导图" class="headerlink" title="协程的思维导图"></a>协程的思维导图</h2><iframe width="853" height="480" src="https://embed.coggle.it/diagram/Xb_CZoumpCamgUAj/1235701ea5f157867e045f0f5ac28f886effdb5fa1e27b72afa5266e6e3e8891" frameborder="0" allowfullscreen></iframe>
+
+
+<p>需要说明的是</p>
+<p><code>Dispatchers.Unconfined</code> 非受限，不会限定协程运行的线程，而是随环境切换</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">launch(Dispatchers.Unconfined) &#123;</span><br><span class="line">    <span class="comment">// main thread</span></span><br><span class="line">    withContext(newSingleThreadContext(<span class="string">"hello"</span>))&#123;</span><br><span class="line">        <span class="comment">//hello thread</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//hello thread</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="协程局部变量"><a href="#协程局部变量" class="headerlink" title="协程局部变量"></a>协程局部变量</h2><p>通过<code>ThreadLocal</code>、<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-thread-context-element/index.html" target="_blank" rel="noopener"><code>ThreadContextElement</code></a>，配合<code>asContextElement(&quot;value&quot;)</code>方法实现。和协程所在的线程没有关系。</p>
+<p>直接修改<code>ThreadLocal</code>的值，会在切换协程的时候失效（会被改为切换到的协程所使用的的值），当再次切回本协程时，被重置为上一个通过<code>asContextElement(&quot;value&quot;)</code>方法更新的值或者<code>null</code>（如果没有指定）。</p>
+<blockquote>
+<p> 原理：<strong>启动和恢复时保存<code>ThreadLocal</code>在当前线程的值，并修改为 value，挂起和结束时修改当前线程<code>ThreadLocal</code>的值为之前保存的值</strong> </p>
+<p> —— <a href="https://johnnyshieh.me/posts/kotlin-coroutine-concurrency/" target="_blank" rel="noopener">Kotlin Coroutines(协程) 完全解析（五），协程的并发</a></p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> threadLocal = ThreadLocal&lt;String?&gt;() <span class="comment">// 声明线程局部变量</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> = runBlocking&lt;<span class="built_in">Unit</span>&gt; &#123;</span><br><span class="line"></span><br><span class="line">    threadLocal.<span class="keyword">set</span>(<span class="string">"main"</span>)</span><br><span class="line">    printValue(<span class="number">1</span>) <span class="comment">// main</span></span><br><span class="line">    async (Dispatchers.Default + threadLocal.asContextElement(value = <span class="string">"launch"</span>)) &#123;</span><br><span class="line">        printValue(<span class="number">2</span>) <span class="comment">// launch</span></span><br><span class="line">        threadLocal.<span class="keyword">set</span>(<span class="string">"hello"</span>)</span><br><span class="line"><span class="comment">//        threadLocal.asContextElement("hello") //如果使用这个方法更新，则 printValue(4) 会打印 hello</span></span><br><span class="line">        printValue(<span class="number">3</span>) <span class="comment">// hello</span></span><br><span class="line">        yield()</span><br><span class="line">        printValue(<span class="number">4</span>)<span class="comment">// launch</span></span><br><span class="line">    &#125;.await()</span><br><span class="line">    printValue(<span class="number">5</span>) <span class="comment">// main</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">printValue</span><span class="params">(number: <span class="type">Int</span>)</span></span>&#123;</span><br><span class="line">    println(<span class="string">"<span class="variable">$number</span>: <span class="subst">$&#123;Thread.currentThread()&#125;</span>, thread local value: '<span class="subst">$&#123;threadLocal.get()&#125;</span>'"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="在Android中使用"><a href="#在Android中使用" class="headerlink" title="在Android中使用"></a>在Android中使用</h2><p>Kotlin官方推荐一下两种方式：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. CoroutineScope</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Activity</span> : <span class="type">CoroutineScope by CoroutineScope</span></span>(Dispatchers.Default) &#123;</span><br><span class="line">    <span class="comment">// 继续运行……</span></span><br><span class="line">    </span><br><span class="line"><span class="number">2</span>. MainScope</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Activity</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> mainScope = MainScope()</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">destroy</span><span class="params">()</span></span> &#123;</span><br><span class="line">    mainScope.cancel()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 继续运行……</span></span><br></pre></td></tr></table></figure>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://typealias.com/guides/star-projections-and-how-they-work/" target="_blank" rel="noopener">Star-Projections and How They Work</a></p>
+<p><a href="https://blog.csdn.net/u013064109/article/details/83507076" target="_blank" rel="noopener">Kotlin的独门秘籍Reified实化类型参数(下篇)</a></p>
+<p><a href="https://www.kotlincn.net/docs/reference/coroutines/coroutines-guide.html" target="_blank" rel="noopener">Kotlin 协程官网</a></p>
+<p><a href="https://johnnyshieh.me/posts/kotlin-coroutine-concurrency/" target="_blank" rel="noopener">Kotlin Coroutines(协程) 完全解析（五），协程的并发</a></p>
+
+      
+    </div>
+
+    
+
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JI, XIAOYONG</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://jixiaoyong.github.io/blog/posts/8a52763a/" title="Kotlin学习笔记2">https://jixiaoyong.github.io/blog/posts/8a52763a/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/kotlin/" rel="tag"># kotlin</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/posts/135b2780/" rel="next" title="Kotlin学习笔记1">
+                <i class="fa fa-chevron-left"></i> Kotlin学习笔记1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/posts/36721083/" rel="prev" title="Java创建线程安全的单例Singleton">
+                Java创建线程安全的单例Singleton <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/blog/images/default_avatar.jpg" alt="JI, XIAOYONG">
+            
+              <p class="site-author-name" itemprop="name">JI, XIAOYONG</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/blog/archives/">
+                
+                    <span class="site-state-item-count">81</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/jixiaoyong" title="GitHub &rarr; https://github.com/jixiaoyong" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:jixiaoyong1995@gmail.com" title="E-Mail &rarr; mailto:jixiaoyong1995@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.wanandroid.com/" title="http://www.wanandroid.com/" rel="noopener" target="_blank">WanAndroid</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#尾递归优化"><span class="nav-number">1.</span> <span class="nav-text">尾递归优化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sealed-class-密封类"><span class="nav-number">2.</span> <span class="nav-text">sealed class 密封类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kotlin抛出异常"><span class="nav-number">3.</span> <span class="nav-text">kotlin抛出异常</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kotlin中的泛型"><span class="nav-number">4.</span> <span class="nav-text">kotlin中的泛型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#星号投射"><span class="nav-number">5.</span> <span class="nav-text">星号投射</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#委托"><span class="nav-number">6.</span> <span class="nav-text">委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#中缀函数"><span class="nav-number">7.</span> <span class="nav-text">中缀函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#inline内联函数"><span class="nav-number">8.</span> <span class="nav-text">inline内联函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#coroutines-协程"><span class="nav-number">9.</span> <span class="nav-text">coroutines 协程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#协程中runBlocking与coroutineScope的区别"><span class="nav-number">9.1.</span> <span class="nav-text">协程中runBlocking与coroutineScope的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协程的思维导图"><span class="nav-number">9.2.</span> <span class="nav-text">协程的思维导图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协程局部变量"><span class="nav-number">9.3.</span> <span class="nav-text">协程局部变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在Android中使用"><span class="nav-number">9.4.</span> <span class="nav-text">在Android中使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">10.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JI, XIAOYONG</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+  <div style="display: none;">
+    <script type="text/javascript" src="//s96.cnzz.com/z_stat.php?id=1277214306&web_id=1277214306"></script>
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script src="//cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/blog/js/utils.js?v=7.1.0"></script>
+
+  <script src="/blog/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/blog/js/schemes/muse.js?v=7.1.0"></script>
+
+
+
+  
+  <script src="/blog/js/scrollspy.js?v=7.1.0"></script>
+<script src="/blog/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/blog/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+  
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'eiCorogUwe1OdpPG65oSWEsP-MdYXbMMI',
+    appKey: 'glorq3CiX4j8RNIWf7kq5LBW',
+    placeholder: 'ヾ(=^▽^=)ノ',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/blog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
