@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/blog/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/favicon.ico?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon.ico?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon.ico?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/blog/images/favicon.ico?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script data-ad-client="ca-pub-2037953510405593" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+
+  <meta name="description" content="最近看到一个帖子，表示有人以&amp;quot;YYYY-MM-dd&amp;quot;格式化日期时，在2019-12-30时出现2020-12-30的BUG。 本文来简单分析一下为什么会出现这个情况。 根据JDK文档关于日期的定义，y表示的是我们日常使用的年份，而Y表示的是Week year。 先了解几个知识点： Week yearWeek year表示的是这个周所属的年份。  A week year is i">
+<meta name="keywords" content="blog,jixiaoyong,android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java笔记之YYYY格式化日期">
+<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/87a89a43/index.html">
+<meta property="og:site_name" content="Ji Xiaoyong&#39;s Blog">
+<meta property="og:description" content="最近看到一个帖子，表示有人以&amp;quot;YYYY-MM-dd&amp;quot;格式化日期时，在2019-12-30时出现2020-12-30的BUG。 本文来简单分析一下为什么会出现这个情况。 根据JDK文档关于日期的定义，y表示的是我们日常使用的年份，而Y表示的是Week year。 先了解几个知识点： Week yearWeek year表示的是这个周所属的年份。  A week year is i">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdn.net/20150912103324519?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2020-10-16T02:05:53.282Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java笔记之YYYY格式化日期">
+<meta name="twitter:description" content="最近看到一个帖子，表示有人以&amp;quot;YYYY-MM-dd&amp;quot;格式化日期时，在2019-12-30时出现2020-12-30的BUG。 本文来简单分析一下为什么会出现这个情况。 根据JDK文档关于日期的定义，y表示的是我们日常使用的年份，而Y表示的是Week year。 先了解几个知识点： Week yearWeek year表示的是这个周所属的年份。  A week year is i">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20150912103324519?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/87a89a43/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Java笔记之YYYY格式化日期 | Ji Xiaoyong's Blog</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-138652239-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-138652239-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ji Xiaoyong's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/87a89a43/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JI, XIAOYONG">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ji Xiaoyong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java笔记之YYYY格式化日期<a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/Java笔记之YYYY格式化日期.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-07 11:38:54" itemprop="dateCreated datePublished" datetime="2020-01-07T11:38:54+00:00">2020-01-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-10-16 02:05:53" itemprop="dateModified" datetime="2020-10-16T02:05:53+00:00">2020-10-16</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/blog/posts/87a89a43/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/87a89a43/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/blog/posts/87a89a43/" class="leancloud_visitors" data-flag-title="Java笔记之YYYY格式化日期">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近看到一个<a href="https://v2ex.com/t/633650?p=1" target="_blank" rel="noopener">帖子</a>，表示有人以<code>&quot;YYYY-MM-dd&quot;</code>格式化日期时，在<code>2019-12-30</code>时出现<code>2020-12-30</code>的BUG。</p>
+<p>本文来简单分析一下为什么会出现这个情况。</p>
+<p>根据<a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#year" target="_blank" rel="noopener">JDK文档关于日期的定义</a>，<code>y</code>表示的是我们日常使用的年份，而<code>Y</code>表示的是<code>Week year</code>。</p>
+<p>先了解几个知识点：</p>
+<h1 id="Week-year"><a href="#Week-year" class="headerlink" title="Week year"></a>Week year</h1><p><code>Week year</code>表示的是<strong>这个周所属的年份</strong>。</p>
+<blockquote>
+<p>A <em>week year</em> is in sync with a <code>WEEK_OF_YEAR</code> cycle. All weeks between the first and last weeks (inclusive) have the same <em>week year</em> value. Therefore, the first and last days of a week year may have different calendar year values.</p>
+<p>来源：<a href="https://docs.oracle.com/javase/7/docs/api/java/util/GregorianCalendar.html#week_year" target="_blank" rel="noopener">https://docs.oracle.com/javase/7/docs/api/java/util/GregorianCalendar.html#week_year</a></p>
+</blockquote>
+<h1 id="WEAK-OF-YEAR"><a href="#WEAK-OF-YEAR" class="headerlink" title="WEAK_OF_YEAR"></a>WEAK_OF_YEAR</h1><p>指的是这一年所有的周，从第01周开始到该年最后一周。</p>
+<p>要注意这个周不一定是自然周，所包含的日期也不一定全部都是当年的日期。</p>
+<blockquote>
+<p>Values calculated for the <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Calendar.html#WEEK_OF_YEAR" target="_blank" rel="noopener"><code>WEEK_OF_YEAR</code></a> field range from 1 to 53. The first week of a calendar year is the earliest seven day period starting on <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Calendar.html#getFirstDayOfWeek(" target="_blank" rel="noopener"><code>getFirstDayOfWeek()</code></a>) that contains at least <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Calendar.html#getMinimalDaysInFirstWeek(" target="_blank" rel="noopener"><code>getMinimalDaysInFirstWeek()</code></a>) days from that year.</p>
+</blockquote>
+<h1 id="第01周"><a href="#第01周" class="headerlink" title="第01周"></a>第01周</h1><p>根据这份<a href="https://docs.oracle.com/javase/7/docs/api/java/util/GregorianCalendar.html#week_year" target="_blank" rel="noopener">JDK文档</a>，当 <code>getFirstDayOfWeek()</code> is <code>MONDAY</code>（2） and <code>getMinimalDaysInFirstWeek()</code> is 4时，JAVA判断周日期的标准与<a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener">ISO_8601</a>兼容：</p>
+<blockquote>
+<p>第01周有几个相互等效且兼容的描述：</p>
+<p>一年中第一个星期四的星期（正式的ISO定义），</p>
+<p>1月4日这一周，</p>
+<p>起始年份中大部分（四天或以上）的第一周，以及</p>
+<p>从12月29日至1月4日的星期一开始的一周。</p>
+<p>来源：<a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/ISO_8601</a></p>
+</blockquote>
+<p>按照JAVA文档中的定义，每年最开始的几天和最后的几天的<code>Week year</code>不一定是当年的年份值，而是受到每年的<em>第01周/最后一周</em>的影响。</p>
+<p>JAVA中判断周主要受到<code>Calendar</code>对象的<code>getFirstDayOfWeek()</code>和<code>getMinimalDaysInFirstWeek()</code>这两个本地值的影响。</p>
+<p>其中：</p>
+<ul>
+<li><code>getFirstDayOfWeek()</code>指定一周的第一天，比如, 美国一周从<code>SUNDAY</code> 开始,法国则是<code>MONDAY</code> 。</li>
+<li><code>getMinimalDaysInFirstWeek()</code> 一年第一周所需最小的天数。比如1表示只要包含第一天就算该年的第一周，而7表示只有完整的一周都在该年才算该年的第一周。</li>
+</ul>
+<p><strong>注意</strong>：真正影响我们格式化日期结果的是<code>SimpleDateFormat</code>中的<code>calendar</code>对象对应的值。</p>
+<p>而通过打印这个<code>simpleDateFormat.calendar</code>，我们看到：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//JDK1.7</span></span><br><span class="line">minimalDaysInFirstWeek:<span class="number">1</span></span><br><span class="line">firstDayOfWeek:<span class="number">1</span> <span class="comment">//SUNDAY</span></span><br></pre></td></tr></table></figure>
+<p>所以可以得出结论，JAVA<strong>默认只要次年的1月1日在在这个跨年周，那么本周所有日期的<code>Week year</code>都是次年的</strong>（<code>JDK1.7</code>）。</p>
+<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>有了以上知识，我们再看看<code>2019-12-30</code>以<code>YYYY</code>格式化为什么会出现问题：</p>
+<p>先看一下这些日期对应的星期：</p>
+<table>
+<thead>
+<tr>
+<th>周日</th>
+<th>周一</th>
+<th>周二</th>
+<th>周三</th>
+<th>周四</th>
+<th>周五</th>
+<th>周六</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>29</td>
+<td>30</td>
+<td>31</td>
+<td><strong>1</strong></td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>首先根据JDK默认的<code>第01周</code>的定义，<code>2020-01-01</code>所在的周为<code>2020的第一周</code>，所以<code>2019-12-29到2020-01-04</code>都属于是<code>2020年的第01周</code>。</p>
+<p>再根据<code>YYYY</code>表示的是<code>Week year</code>的结论，可以知道，当使用<code>YYYY</code>格式化时，<code>2019-12-29到2020-01-04</code>都会得到<code>2020</code>。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> calendar = Calendar.getInstance()</span><br><span class="line"><span class="keyword">val</span> simpleDateFormat = SimpleDateFormat(<span class="string">"YYYY yyyy MM dd"</span>)</span><br><span class="line">calendar.<span class="keyword">set</span>(<span class="number">2019</span>, <span class="number">12</span>-<span class="number">1</span>, <span class="number">29</span>)</span><br><span class="line">println(simpleDateFormat.format(calendar.time))</span><br><span class="line"></span><br><span class="line"><span class="comment">//output</span></span><br><span class="line">DATE:<span class="number">2019</span> <span class="number">12</span> <span class="number">29</span></span><br><span class="line">minimalDaysInFirstWeek:<span class="number">1</span></span><br><span class="line">firstDayOfWeek:<span class="number">1</span></span><br><span class="line">YYYY yyyy MM dd</span><br><span class="line"><span class="number">2020</span> <span class="number">2019</span> <span class="number">12</span> <span class="number">29</span></span><br></pre></td></tr></table></figure>
+<p>而如果我们把第一周最小天数<code>minimalDaysInFirstWeek</code>改为<code>5</code>天，那么很明显这一周属于<code>2020</code>年的天数（从周日到周一，只有1号到4号4天）不够5天，所以这一周被划归为<code>2019</code>年的第<code>53周</code>，<code>2019-12-29到2020-01-04</code>的<code>week year</code>都是属于<code>2019</code>。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> calendar = Calendar.getInstance()</span><br><span class="line"><span class="keyword">val</span> simpleDateFormat = SimpleDateFormat(<span class="string">"YYYY yyyy MM dd"</span>)</span><br><span class="line">calendar.<span class="keyword">set</span>(<span class="number">2019</span>, <span class="number">12</span>-<span class="number">1</span>, <span class="number">29</span>)</span><br><span class="line">simpleDateFormat.calendar.minimalDaysInFirstWeek = <span class="number">5</span></span><br><span class="line">println(simpleDateFormat.format(calendar.time))</span><br><span class="line"></span><br><span class="line"><span class="comment">//output</span></span><br><span class="line">DATE:<span class="number">2019</span> <span class="number">12</span> <span class="number">29</span></span><br><span class="line">minimalDaysInFirstWeek:<span class="number">5</span></span><br><span class="line">firstDayOfWeek:<span class="number">1</span></span><br><span class="line">YYYY yyyy MM dd</span><br><span class="line"><span class="number">2019</span> <span class="number">2019</span> <span class="number">12</span> <span class="number">29</span></span><br></pre></td></tr></table></figure>
+<p>再比如下面这个<a href="https://blog.csdn.net/bewilderment/article/details/48391717" target="_blank" rel="noopener">示例</a>中的<code>2010-12-26</code>。</p>
+<p><img src="https://img-blog.csdn.net/20150912103324519?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p>按照<code>JDK1.7</code>默认算法，一周从周日（<code>2010-12-26</code>）开始，并且当年的1月1日（<code>2011-01-01</code>）所在周为该年第一周，所以<code>2010-12-26到2011-01-01</code>都被划到了<code>2011</code>年的第一周。</p>
+<p>但如果按照<a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank" rel="noopener">ISO_8601</a>的标准，一周从周一开始，并且起始年份包含的天数至少要有<code>4</code>天：</p>
+<p>则很明显<code>2010-12-26</code>属于<code>2010</code>年的<code>51周</code>，而<code>2010-12-27到2011-01-02</code>都属于<code>2010</code>年的第<code>52周</code>（属于2020年的只有2天，不满足第一周的条件）。</p>
+<table>
+<thead>
+<tr>
+<th>周一</th>
+<th>周二</th>
+<th>周三</th>
+<th>周四</th>
+<th>周五</th>
+<th>周六</th>
+<th>周日</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20</td>
+<td>21</td>
+<td>22</td>
+<td>23</td>
+<td>24</td>
+<td>25</td>
+<td>26</td>
+</tr>
+<tr>
+<td>27</td>
+<td>28</td>
+<td>29</td>
+<td>30</td>
+<td>31</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>结合以上结论，我们可以看到，在JAVA中（<code>JDK1.7</code>）：</p>
+<ul>
+<li><p><code>“YYYY”</code>表示<code>Week year</code></p>
+</li>
+<li><p>每年最开始的几天和最后的几天的<code>Week year</code>不一定是当年的值，而是受到当年的第一周/最后一周的影响。</p>
+</li>
+<li><p>JAVA周的判断与<code>simpleDateFormat.calendar.minimalDaysInFirstWeek</code>和<code>simpleDateFormat.calendar.firstDayOfWeek</code>有关。</p>
+<p>而这两个值都属于本地化值，<strong>在国内可以简单理解为一年1月1日所在的周就是当年的第一周。</strong></p>
+</li>
+<li><p>我们可以通过修改<code>minimalDaysInFirstWeek</code>和<code>firstDayOfWeek</code>来更改<code>YYYY</code>格式化的值。</p>
+</li>
+</ul>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><p>JDK中日期格式化的参数及含义（来自<a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#month）：" target="_blank" rel="noopener">https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#month）：</a></p>
+<table>
+<thead>
+<tr>
+<th>Letter</th>
+<th>Date or Time Component</th>
+<th>Presentation</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>G</code></td>
+<td>Era designator</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#text" target="_blank" rel="noopener">Text</a></td>
+<td><code>AD</code></td>
+</tr>
+<tr>
+<td><code>y</code></td>
+<td>Year</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#year" target="_blank" rel="noopener">Year</a></td>
+<td><code>1996</code>; <code>96</code></td>
+</tr>
+<tr>
+<td><code>Y</code></td>
+<td>Week year</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#year" target="_blank" rel="noopener">Year</a></td>
+<td><code>2009</code>; <code>09</code></td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td>Month in year</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#month" target="_blank" rel="noopener">Month</a></td>
+<td><code>July</code>; <code>Jul</code>; <code>07</code></td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>Week in year</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#number" target="_blank" rel="noopener">Number</a></td>
+<td><code>27</code></td>
+</tr>
+<tr>
+<td><code>W</code></td>
+<td>Week in month</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#number" target="_blank" rel="noopener">Number</a></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>D</code></td>
+<td>Day in year</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#number" target="_blank" rel="noopener">Number</a></td>
+<td><code>189</code></td>
+</tr>
+<tr>
+<td><code>d</code></td>
+<td>Day in month</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#number" target="_blank" rel="noopener">Number</a></td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td><code>F</code></td>
+<td>Day of week in month</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#number" target="_blank" rel="noopener">Number</a></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td>Day name in week</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#text" target="_blank" rel="noopener">Text</a></td>
+<td><code>Tuesday</code>; <code>Tue</code></td>
+</tr>
+<tr>
+<td><code>u</code></td>
+<td>Day number of week (1 = Monday, …, 7 = Sunday)</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#number" target="_blank" rel="noopener">Number</a></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>Am/pm marker</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#text" target="_blank" rel="noopener">Text</a></td>
+<td><code>PM</code></td>
+</tr>
+<tr>
+<td><code>H</code></td>
+<td>Hour in day (0-23)</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#number" target="_blank" rel="noopener">Number</a></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>k</code></td>
+<td>Hour in day (1-24)</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#number" target="_blank" rel="noopener">Number</a></td>
+<td><code>24</code></td>
+</tr>
+<tr>
+<td><code>K</code></td>
+<td>Hour in am/pm (0-11)</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#number" target="_blank" rel="noopener">Number</a></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>h</code></td>
+<td>Hour in am/pm (1-12)</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#number" target="_blank" rel="noopener">Number</a></td>
+<td><code>12</code></td>
+</tr>
+<tr>
+<td><code>m</code></td>
+<td>Minute in hour</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#number" target="_blank" rel="noopener">Number</a></td>
+<td><code>30</code></td>
+</tr>
+<tr>
+<td><code>s</code></td>
+<td>Second in minute</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#number" target="_blank" rel="noopener">Number</a></td>
+<td><code>55</code></td>
+</tr>
+<tr>
+<td><code>S</code></td>
+<td>Millisecond</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#number" target="_blank" rel="noopener">Number</a></td>
+<td><code>978</code></td>
+</tr>
+<tr>
+<td><code>z</code></td>
+<td>Time zone</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#timezone" target="_blank" rel="noopener">General time zone</a></td>
+<td><code>Pacific Standard Time</code>; <code>PST</code>; <code>GMT-08:00</code></td>
+</tr>
+<tr>
+<td><code>Z</code></td>
+<td>Time zone</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#rfc822timezone" target="_blank" rel="noopener">RFC 822 time zone</a></td>
+<td><code>-0800</code></td>
+</tr>
+<tr>
+<td><code>X</code></td>
+<td>Time zone</td>
+<td><a href="https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html#iso8601timezone" target="_blank" rel="noopener">ISO 8601 time zone</a></td>
+<td><code>-08</code>; <code>-0800</code>; <code>-08:00</code></td>
+</tr>
+</tbody>
+</table>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>感谢这篇文章，让我推翻了上一次的结论，发现了真正的原因：<a href="https://blog.csdn.net/bewilderment/article/details/48391717" target="_blank" rel="noopener">JAVA中的SimpleDateFormat yyyy和YYYY的区别</a></p>
+<p><a href="https://docs.oracle.com/javase/7/docs/api/java/util/GregorianCalendar.html#week_year" target="_blank" rel="noopener">GregorianCalenda jdk1.7</a></p>
+<p>在线显示本周是一年第几周的网站：<a href="https://www.epochconverter.com/weeknumbers" target="_blank" rel="noopener">What’s the Current Week Number?</a></p>
+
+      
+    </div>
+
+    
+
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JI, XIAOYONG</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://jixiaoyong.github.io/blog/posts/87a89a43/" title="Java笔记之YYYY格式化日期">https://jixiaoyong.github.io/blog/posts/87a89a43/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/posts/7e97a976/" rel="next" title="Android笔记之跨进程通信">
+                <i class="fa fa-chevron-left"></i> Android笔记之跨进程通信
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/posts/a64dc0bc/" rel="prev" title="LeetCode笔记--重建二叉树">
+                LeetCode笔记--重建二叉树 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/blog/images/default_avatar.jpg" alt="JI, XIAOYONG">
+            
+              <p class="site-author-name" itemprop="name">JI, XIAOYONG</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/blog/archives/">
+                
+                    <span class="site-state-item-count">81</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/jixiaoyong" title="GitHub &rarr; https://github.com/jixiaoyong" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:jixiaoyong1995@gmail.com" title="E-Mail &rarr; mailto:jixiaoyong1995@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.wanandroid.com/" title="http://www.wanandroid.com/" rel="noopener" target="_blank">WanAndroid</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Week-year"><span class="nav-number">1.</span> <span class="nav-text">Week year</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEAK-OF-YEAR"><span class="nav-number">2.</span> <span class="nav-text">WEAK_OF_YEAR</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第01周"><span class="nav-number">3.</span> <span class="nav-text">第01周</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题分析"><span class="nav-number">4.</span> <span class="nav-text">问题分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录"><span class="nav-number">6.</span> <span class="nav-text">附录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JI, XIAOYONG</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+  <div style="display: none;">
+    <script type="text/javascript" src="//s96.cnzz.com/z_stat.php?id=1277214306&web_id=1277214306"></script>
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script src="//cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/blog/js/utils.js?v=7.1.0"></script>
+
+  <script src="/blog/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/blog/js/schemes/muse.js?v=7.1.0"></script>
+
+
+
+  
+  <script src="/blog/js/scrollspy.js?v=7.1.0"></script>
+<script src="/blog/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/blog/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+  
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'eiCorogUwe1OdpPG65oSWEsP-MdYXbMMI',
+    appKey: 'glorq3CiX4j8RNIWf7kq5LBW',
+    placeholder: 'ヾ(=^▽^=)ノ',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/blog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

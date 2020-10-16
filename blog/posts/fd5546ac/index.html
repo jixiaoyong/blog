@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/blog/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/favicon.ico?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon.ico?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon.ico?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/blog/images/favicon.ico?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script data-ad-client="ca-pub-2037953510405593" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+
+  <meta name="description" content="本文为笔记性质，尚未成文，待整理  异步流 lazy方式创建一个序列，只有在访问的时候才生产对应的项目 123456fun foo(): Sequence&amp;lt;Int&amp;gt; = sequence&amp;#123;    for (i in 1..3) &amp;#123;        Thread.sleep(1000)//会阻塞调用线程        yield(i)//生产一个项目    &amp;#125">
+<meta name="keywords" content="kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin学习笔记3">
+<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/fd5546ac/index.html">
+<meta property="og:site_name" content="Ji Xiaoyong&#39;s Blog">
+<meta property="og:description" content="本文为笔记性质，尚未成文，待整理  异步流 lazy方式创建一个序列，只有在访问的时候才生产对应的项目 123456fun foo(): Sequence&amp;lt;Int&amp;gt; = sequence&amp;#123;    for (i in 1..3) &amp;#123;        Thread.sleep(1000)//会阻塞调用线程        yield(i)//生产一个项目    &amp;#125">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-10-16T02:05:53.282Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin学习笔记3">
+<meta name="twitter:description" content="本文为笔记性质，尚未成文，待整理  异步流 lazy方式创建一个序列，只有在访问的时候才生产对应的项目 123456fun foo(): Sequence&amp;lt;Int&amp;gt; = sequence&amp;#123;    for (i in 1..3) &amp;#123;        Thread.sleep(1000)//会阻塞调用线程        yield(i)//生产一个项目    &amp;#125">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/fd5546ac/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Kotlin学习笔记3 | Ji Xiaoyong's Blog</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-138652239-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-138652239-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ji Xiaoyong's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/fd5546ac/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JI, XIAOYONG">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ji Xiaoyong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Kotlin学习笔记3<a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/Kotlin学习笔记3.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-05 18:46:19" itemprop="dateCreated datePublished" datetime="2019-11-05T18:46:19+00:00">2019-11-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-10-16 02:05:53" itemprop="dateModified" datetime="2020-10-16T02:05:53+00:00">2020-10-16</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/blog/posts/fd5546ac/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/fd5546ac/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/blog/posts/fd5546ac/" class="leancloud_visitors" data-flag-title="Kotlin学习笔记3">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文为笔记性质，尚未成文，待整理</p>
+</blockquote>
+<h1 id="异步流"><a href="#异步流" class="headerlink" title="异步流"></a>异步流</h1><ol>
+<li><p>lazy方式创建一个序列，只有在访问的时候才生产对应的项目</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span>: Sequence&lt;<span class="built_in">Int</span>&gt; = sequence&#123;</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>..<span class="number">3</span>) &#123;</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>)<span class="comment">//会阻塞调用线程</span></span><br><span class="line">        yield(i)<span class="comment">//生产一个项目</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用Flow流在不阻塞主线程的情况下，延迟生产多个值并返回</p>
+<p> 当流在一个可取消的挂起函数（例如 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html" target="_blank" rel="noopener">delay</a>）中挂起的时候取消，否则不能取消。 </p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//flow 构建器中的代码直到流被收集的时候才运行，并且每次collect都会被启动</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span>: Flow&lt;<span class="built_in">Int</span>&gt; = flow &#123; <span class="comment">// 流构建器</span></span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>..<span class="number">3</span>) &#123;</span><br><span class="line">        delay(<span class="number">100</span>) <span class="comment">// 假装我们在这里做了一些有用的事情，这里可以被取消</span></span><br><span class="line">        emit(i) <span class="comment">// 发送下一个值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> = runBlocking&lt;<span class="built_in">Unit</span>&gt; &#123;</span><br><span class="line">    <span class="comment">// 启动并发的协程以验证主线程并未阻塞</span></span><br><span class="line">    launch &#123;</span><br><span class="line">        <span class="keyword">for</span> (k <span class="keyword">in</span> <span class="number">1</span>..<span class="number">3</span>) &#123;</span><br><span class="line">            println(<span class="string">"I'm not blocked <span class="variable">$k</span>"</span>)</span><br><span class="line">            delay(<span class="number">100</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 收集这个流</span></span><br><span class="line">    foo().collect &#123; value -&gt; println(value) &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow-of.html" target="_blank" rel="noopener">flowOf</a> 构建器定义了一个发射固定值集的流。</p>
+<p>使用 <code>.asFlow()</code> 扩展函数，可以将各种集合与序列转换为流。</p>
+<p> 可以使用操作符转换流，就像使用集合与序列一样。 过渡操作符应用于上游流，并返回下游流。 这些操作符也是冷操作符，就像流一样。这类操作符（<code>map</code>、<code>fliter</code>…）本身不是挂起函数，但是可以调用挂起函数<code>suspend</code>。它运行的速度很快，返回新的转换流的定义。 </p>
+<p> 在流转换操作符中，最通用的一种称为 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/transform.html" target="_blank" rel="noopener">transform</a>。它可以用来模仿简单的转换，例如 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/map.html" target="_blank" rel="noopener">map</a> 与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/filter.html" target="_blank" rel="noopener">filter</a>，以及实施更复杂的转换。 使用 <code>transform</code> 操作符，我们可以 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow-collector/emit.html" target="_blank" rel="noopener">发射</a> 任意值任意次 </p>
+<p> 限长过渡操作符（例如 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/take.html" target="_blank" rel="noopener">take</a>）在流触及相应限制的时候会将它的执行取消。 </p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">numbers</span><span class="params">()</span></span>: Flow&lt;<span class="built_in">Int</span>&gt; = flow &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;                          </span><br><span class="line">        emit(<span class="number">1</span>)</span><br><span class="line">        emit(<span class="number">2</span>) </span><br><span class="line">        println(<span class="string">"This line will not execute"</span>)</span><br><span class="line">        emit(<span class="number">3</span>)    </span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        println(<span class="string">"Finally in numbers"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> = runBlocking&lt;<span class="built_in">Unit</span>&gt; &#123;</span><br><span class="line">    numbers() </span><br><span class="line">        .take(<span class="number">2</span>) <span class="comment">// 只获取前两个</span></span><br><span class="line">        .collect &#123; value -&gt; println(value) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>流构造器中的协程上下文默认和collect的协程上下文一致，如果强行转换上下文会出错。</p>
+<p>而使用<code>flowOn()</code>则可以指定流创建的协程上下文：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span>: Flow&lt;<span class="built_in">Int</span>&gt; = flow &#123;</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>..<span class="number">3</span>) &#123;</span><br><span class="line">        Thread.sleep(<span class="number">100</span>) <span class="comment">// 假装我们以消耗 CPU 的方式进行计算</span></span><br><span class="line">        log(<span class="string">"Emitting <span class="variable">$i</span>"</span>)</span><br><span class="line">        emit(i) <span class="comment">// 发射下一个值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;.flowOn(Dispatchers.Default) <span class="comment">// 在流构建器中改变消耗 CPU 代码上下文的正确方式</span></span><br></pre></td></tr></table></figure>
+<p>如果flow的生产和收集很消耗时间时，可以用<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/buffer.html" target="_blank" rel="noopener"><code>buffer()</code></a>函数将<code>buffer()</code>之前的代码在一个单独的协程运行，collect则在调用协程运行，这样将flow的构建、收集由串行转化为并行可以节约时间（如果构建运行的快，则会挂起直到collect赶上来）。</p>
+<blockquote>
+<p> It will use two coroutines for execution of the code. A coroutine <code>Q</code> that calls this code is going to execute <code>collect</code>, and the code before <code>buffer</code> will be executed in a separate new coroutine <code>P</code> concurrently with <code>Q</code></p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">foo()</span><br><span class="line">       .buffer() <span class="comment">// buffer emissions, don't wait</span></span><br><span class="line">       .collect &#123; value -&gt; </span><br><span class="line">               delay(<span class="number">300</span>) <span class="comment">// pretend we are processing it for 300 ms</span></span><br><span class="line">           println(value) </span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="合并conflate"><a href="#合并conflate" class="headerlink" title="合并conflate"></a>合并conflate</h1><p> <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/conflate.html" target="_blank" rel="noopener">conflate</a> operator can be used to skip intermediate values when a collector is too slow to process them. </p>
+<p>当collect比构建慢的时候，就只会请求最新的值，而跳过中间生产的这些值。</p>
+<p>比如，构建器生产了1，2，… ,100这些数，而collect读取的慢，第一次读的时候是1，等处理完再读取的时候构建器生产的是5，那么collect就读取5，中间的2，3，4都会被丢弃。</p>
+<p> Conflation is one way to speed up processing when both the emitter and collector are slow 。 The other way is to cancel a slow collector and restart it every time a new value is emitted.  </p>
+<p><code>collectLatest</code>可以保证每次都获取最新的值，如果collect比生产慢，那么当新的值生产出来时，collect会被取消，并且去处理最新的值。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span>: Flow&lt;<span class="built_in">Int</span>&gt; = flow &#123;</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>..<span class="number">3</span>) &#123;</span><br><span class="line">        delay(<span class="number">100</span>) <span class="comment">// pretend we are asynchronously waiting 100 ms</span></span><br><span class="line">        emit(i) <span class="comment">// emit next value</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> = runBlocking&lt;<span class="built_in">Unit</span>&gt; &#123; </span><br><span class="line">    <span class="keyword">val</span> time = measureTimeMillis &#123;</span><br><span class="line">        foo()</span><br><span class="line">            .collectLatest &#123; value -&gt; <span class="comment">// cancel &amp; restart on the latest value</span></span><br><span class="line">                    println(<span class="string">"Collecting <span class="variable">$value</span>"</span>) </span><br><span class="line">                delay(<span class="number">300</span>) <span class="comment">// pretend we are processing it for 300 ms</span></span><br><span class="line">                println(<span class="string">"Done <span class="variable">$value</span>"</span>) </span><br><span class="line">            &#125; </span><br><span class="line">    &#125;   </span><br><span class="line">    println(<span class="string">"Collected in <span class="variable">$time</span> ms"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//output</span></span><br><span class="line">Collecting <span class="number">1</span></span><br><span class="line">Collecting <span class="number">2</span></span><br><span class="line">Collecting <span class="number">3</span></span><br><span class="line">Done <span class="number">3</span></span><br><span class="line">Collected <span class="keyword">in</span> <span class="number">694</span> ms</span><br></pre></td></tr></table></figure>
+<h1 id="组合多个流"><a href="#组合多个流" class="headerlink" title="组合多个流"></a>组合多个流</h1><p><code>zip</code>将两个流“压缩”为一个流：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">val</span> number = (<span class="number">1</span>..<span class="number">3</span>).asFlow()</span><br><span class="line">    <span class="keyword">val</span> strs = flowOf(<span class="string">"one"</span>, <span class="string">"two"</span>, <span class="string">"three"</span>)</span><br><span class="line">    number.zip(strs) &#123; a, b -&gt;</span><br><span class="line">        <span class="string">"<span class="variable">$a</span> -&gt; <span class="variable">$b</span>"</span></span><br><span class="line">    &#125;.collect&#123;</span><br><span class="line">        println(<span class="string">"<span class="variable">$it</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">// output</span></span><br><span class="line"><span class="number">1</span> -&gt; one</span><br><span class="line"><span class="number">2</span> -&gt; two</span><br><span class="line"><span class="number">3</span> -&gt; three</span><br></pre></td></tr></table></figure>
+<p> 当 flow 表示变量或操作的最新值时(参见关于合并的相关章节) ，可能需要执行依赖于相应流的最新值的计算，并在任何上游流发出值时重新计算它。 相应的操作符族称为联合操作符 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/combine.html" target="_blank" rel="noopener"><code>combine</code></a>。即每个构建值发生变化时都会触发collect。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> nums = (<span class="number">1</span>..<span class="number">3</span>).asFlow().onEach &#123; delay(<span class="number">300</span>) &#125; <span class="comment">// numbers 1..3 every 300 ms</span></span><br><span class="line"><span class="keyword">val</span> strs = flowOf(<span class="string">"one"</span>, <span class="string">"two"</span>, <span class="string">"three"</span>).onEach &#123; delay(<span class="number">400</span>) &#125; <span class="comment">// strings every 400 ms          </span></span><br><span class="line"><span class="keyword">val</span> startTime = System.currentTimeMillis() <span class="comment">// remember the start time </span></span><br><span class="line">nums.combine(strs) &#123; a, b -&gt; <span class="string">"<span class="variable">$a</span> -&gt; <span class="variable">$b</span>"</span> &#125; <span class="comment">// compose a single string with "combine"</span></span><br><span class="line">    .collect &#123; value -&gt; <span class="comment">// collect and print </span></span><br><span class="line">            println(<span class="string">"<span class="variable">$value</span> at <span class="subst">$&#123;System.currentTimeMillis() - startTime&#125;</span> ms from start"</span>) </span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//output    </span></span><br><span class="line"><span class="number">1</span> -&gt; one at <span class="number">452</span> ms from start</span><br><span class="line"><span class="number">2</span> -&gt; one at <span class="number">651</span> ms from start</span><br><span class="line"><span class="number">2</span> -&gt; two at <span class="number">854</span> ms from start</span><br><span class="line"><span class="number">3</span> -&gt; two at <span class="number">952</span> ms from start</span><br><span class="line"><span class="number">3</span> -&gt; three at <span class="number">1256</span> ms from start</span><br></pre></td></tr></table></figure>
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-concat.html" target="_blank" rel="noopener"><code>flatMapConcat</code></a> 可以将flow的内容“抹平”（即假设原先为<code>Array&lt;Array&lt;Int&gt;&gt;</code>，则押平后为：<code>Array&lt;Int&gt;</code>）。串行执行，即先执行代码块，然后对其<code>flatMapConcat</code>，然后collect，之后再执行下一轮的Flow项目。</p>
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-merge.html" target="_blank" rel="noopener"><code>flatMapMerge</code></a> 按顺序调用它的代码块 ，但是同时收集结果流，这相当于首先执行一个顺序映射 ，然后对结果调用 flattonmerge。并行执行，先依次对Flow项目调用代码块，然后哪个值先出来，就先对其调用 <code>flatMapMerge</code>，然后collect。</p>
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-latest.html" target="_blank" rel="noopener"><code>flatMapLatest</code></a> 类似 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect-latest.html" target="_blank" rel="noopener"><code>collectLatest</code></a> ，每次新值出来就会取消还没有处理结束的旧流的操作。</p>
+<h1 id="流异常"><a href="#流异常" class="headerlink" title="流异常"></a>流异常</h1><p>流的异常有如下捕获方式：</p>
+<ol>
+<li><p><a href="https://kotlinlang.org/docs/reference/exceptions.html" target="_blank" rel="noopener"><code>try/catch</code></a> block </p>
+</li>
+<li><p>透明捕获  <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html" target="_blank" rel="noopener">catch</a>  ，只会捕获发送在他之前的异常</p>
+</li>
+<li><h4 id="声明式捕获-将collect的主要逻辑放到onEach中，保证onEach在catch之前"><a href="#声明式捕获-将collect的主要逻辑放到onEach中，保证onEach在catch之前" class="headerlink" title="声明式捕获 将collect的主要逻辑放到onEach中，保证onEach在catch之前"></a>声明式捕获 将collect的主要逻辑放到onEach中，保证onEach在catch之前</h4></li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">foo()</span><br><span class="line">    .onEach &#123; value -&gt;</span><br><span class="line">            check(value &lt;= <span class="number">1</span>) &#123; <span class="string">"Collected value"</span> &#125;                 </span><br><span class="line">        println(value) </span><br><span class="line">    &#125;</span><br><span class="line">    .<span class="keyword">catch</span> &#123; e -&gt; println(<span class="string">"Caught e"</span>) &#125;</span><br><span class="line">    .collect()</span><br></pre></td></tr></table></figure>
+<h1 id="流完成"><a href="#流完成" class="headerlink" title="流完成"></a>流完成</h1><ol>
+<li><p><code>try</code>/<code>finally</code> </p>
+</li>
+<li><p><code>onCompletion()</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">foo()</span><br><span class="line">    .onCompletion &#123; println(<span class="string">"Done"</span>) &#125;</span><br><span class="line">    .collect &#123; value -&gt; println(value) &#125;</span><br></pre></td></tr></table></figure>
+<p>而且他还可以判断是否是异常退出。但是只是判断，并不会处理、拦截异常，并且只能处理上游的异常。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">foo()</span><br><span class="line">    .onCompletion &#123; cause -&gt; <span class="keyword">if</span> (cause != <span class="literal">null</span>) println(<span class="string">"Flow completed exceptionally"</span>) &#125;</span><br><span class="line">    .<span class="keyword">catch</span> &#123; cause -&gt; println(<span class="string">"Caught exception"</span>) &#125;</span><br><span class="line">    .collect &#123; value -&gt; println(value) &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="launchIn-this-与collect"><a href="#launchIn-this-与collect" class="headerlink" title="launchIn(this) 与collect"></a>launchIn(this) 与collect</h1><p><code>collect</code>后的代码只有在collect执行完后才能执行，而<code>launchIn</code>可以指定其在单独的协程程序中启动流的集合，从而不会阻塞当前协程。</p>
+<h1 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h1><p> <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-channel/index.html" target="_blank" rel="noopener">Channel</a>  类似于BlockingQueue。但他的操作是挂起的。  通道提供了一种在流中传输值的方法 </p>
+<p><code>send</code> 发送 缓存区已满或不存在时调用方会被挂起</p>
+<p><code>channel.receive()</code> 接收</p>
+<p><code>channel.close()</code> 关闭通道，表示没有更多的元素进入通道</p>
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html" target="_blank" rel="noopener"><code>CoroutineScope.produce</code></a>  Launches new coroutine to produce a stream of values by sending them to a channel and returns a reference to the coroutine as a <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/index.html" target="_blank" rel="noopener">ReceiveChannel</a>. This resulting object can be used to <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/receive.html" target="_blank" rel="noopener">receive</a> elements produced by this coroutine. 在新的协程中生产并返回了一个<code>ReceiveChannel&lt;T&gt;</code>对象。</p>
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/consume-each.html" target="_blank" rel="noopener"><code>ReceiveChannel&lt;E&gt;.consumeEach</code></a> 遍历ReceiveChannel的item执行指定action，并在块执行完毕后消耗掉这个ReceiveChannel（调用cancel()）。</p>
+<p> <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/index.html" target="_blank" rel="noopener">ReceiveChannel</a>.<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/cancel.html" target="_blank" rel="noopener">cancel()</a> 取消接收来自这个通道的剩余元素，关闭通道并从中删除所有缓存的元素。</p>
+<h1 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h1><p>管道指：1.一个协程在流中开始生产无穷多个元素 2.另一个或多个协程消费这些流</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> kotlinx.coroutines.*</span><br><span class="line"><span class="keyword">import</span> kotlinx.coroutines.channels.*</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> = runBlocking &#123;</span><br><span class="line">    <span class="keyword">val</span> numbers = produceNumbers() <span class="comment">// 从 1 开始生产整数</span></span><br><span class="line">    <span class="keyword">val</span> squares = square(numbers) <span class="comment">// 对整数做平方</span></span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>..<span class="number">5</span>) println(squares.receive()) <span class="comment">// 打印前 5 个数字</span></span><br><span class="line">    println(<span class="string">"Done!"</span>) <span class="comment">// 我们的操作已经结束了</span></span><br><span class="line">    coroutineContext.cancelChildren() <span class="comment">// 取消子协程</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> CoroutineScope.<span class="title">produceNumbers</span><span class="params">()</span></span> = produce&lt;<span class="built_in">Int</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) send(x++) <span class="comment">// 从 1 开始的无限的整数流</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> CoroutineScope.<span class="title">square</span><span class="params">(numbers: <span class="type">ReceiveChannel</span>&lt;<span class="type">Int</span>&gt;)</span></span>: ReceiveChannel&lt;<span class="built_in">Int</span>&gt; = produce &#123;</span><br><span class="line">    <span class="keyword">for</span> (x <span class="keyword">in</span> numbers) send(x * x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>没有缓冲的通道： 如果发送先被调用，则它将被挂起直到接收被调用， 如果接收先被调用，它将被挂起直到发送被调用。 </p>
+<p>带缓冲的通道： <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-channel.html" target="_blank" rel="noopener">Channel()</a> 工厂函数与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html" target="_blank" rel="noopener">produce</a> 建造器通过一个可选的参数 <code>capacity</code> 来指定 <em>缓冲区大小</em> 。缓冲允许发送者在被挂起前发送多个元素， 就像 <code>BlockingQueue</code> 有指定的容量一样，当缓冲区被占满的时候将会引起阻塞。 </p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> channel = Channel&lt;<span class="built_in">Int</span>&gt;(<span class="number">4</span>) <span class="comment">// 启动带缓冲的通道</span></span><br></pre></td></tr></table></figure>
+<p> 发送和接收操作是 <em>公平的</em> 并且尊重调用它们的多个协程。它们遵守先进先出原则。</p>
+<p> 计时器通道是一种特别的会合通道，每次经过特定的延迟都会从该通道进行消费并产生 <code>Unit</code> 。如果在间隔还没到的时候调用<code>tickerChannel.receive()</code>则会返回<code>null</code>。产生的间隔由<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-ticker-mode/index.html" target="_blank" rel="noopener"><code>TickerModel</code></a>控制</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> tickerChannel =  ticker(delayMillis = <span class="number">100</span>, initialDelayMillis = <span class="number">0</span>,mode = TickerMode.FIXED_PERIOD) <span class="comment">//创建计时器通道 mode默认为TickerMode.FIXED_PERIOD</span></span><br><span class="line"> tickerChannel.receive() <span class="comment">//第一次调用立马返回Unit</span></span><br></pre></td></tr></table></figure>
+<p><code>coroutineContext.cancelChildren()</code> // 取消所有的子协程来让主协程结束</p>
+<h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><h2 id="异常的传播"><a href="#异常的传播" class="headerlink" title="异常的传播"></a>异常的传播</h2><p> 协程构建器有两种风格：自动的传播异常（<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html" target="_blank" rel="noopener">launch</a> 以及 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/actor.html" target="_blank" rel="noopener">actor</a>） 或者将它们暴露给用户（<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html" target="_blank" rel="noopener">async</a> 以及 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html" target="_blank" rel="noopener">produce</a>）。 前者对待异常是不处理的，类似于 Java 的 <code>Thread.uncaughtExceptionHandler</code>， 而后者依赖用户来最终消耗异常，比如说，通过 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html" target="_blank" rel="noopener">await</a> 或 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/receive.html" target="_blank" rel="noopener">receive</a>  </p>
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-exception-handler/index.html" target="_blank" rel="noopener">CoroutineExceptionHandler</a> 仅在预计不会由用户处理的异常上调用， 所以在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html" target="_blank" rel="noopener">async</a> 构建器中注册它没有任何效果。</p>
+<p> 协程内部使用 <code>CancellationException</code> 来进行取消，这个异常会被所有的处理者忽略，所以那些可以被 <code>catch</code> 代码块捕获的异常仅仅应该被用来作为额外调试信息的资源。 </p>
+<p> 如果协程遇到除 <code>CancellationException</code> 以外的异常，它将取消具有该异常的父协程。 这种行为不能被覆盖，且它被用来提供一个稳定的协程层次结构来进行<a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/composing-suspending-functions.md#structured-concurrency-with-async" target="_blank" rel="noopener">结构化并发</a>而无需依赖 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-exception-handler/index.html" target="_blank" rel="noopener">CoroutineExceptionHandler</a> 的实现。 且当所有的子协程被终止的时候，原本的异常被父协程所处理。 </p>
+<p>应该将<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-exception-handler/index.html" target="_blank" rel="noopener">CoroutineExceptionHandler</a> 总是被设置在由 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html" target="_blank" rel="noopener">GlobalScope</a> 启动的协程中。将异常处理者设置在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html" target="_blank" rel="noopener">runBlocking</a> 主作用域内启动的协程中是没有意义的，尽管子协程已经设置了异常处理者， 但是主协程也总是会被取消的。 </p>
+<p>异常被抛出后，所有同级的子协程都会被关闭，然后异常传递给父协程，直到异常被处理。</p>
+<p> 一个协程的多个子协程抛出异常将会发生什么？ 通常的规则是“第一个异常赢得了胜利“。</p>
+<h2 id="监督"><a href="#监督" class="headerlink" title="监督"></a>监督</h2><p>普通的取消 是一种双向机制，在协程的整个层次结构之间传播。 </p>
+<p> SupervisorJob  它类似于常规的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job.html" target="_blank" rel="noopener">Job</a>， 但他的取消只会向下传播 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">val supervisor = SupervisorJob()with(CoroutineScope(coroutineContext + supervisor)) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">supervisor取消的话，会取消掉所有子协程</span><br></pre></td></tr></table></figure>
+<h4 id="监督作业"><a href="#监督作业" class="headerlink" title="监督作业"></a>监督作业</h4><p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-supervisor-job.html" target="_blank" rel="noopener">SupervisorJob</a> 可以被用于这些目的。它类似于常规的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job.html" target="_blank" rel="noopener">Job</a>，唯一的不同是：SupervisorJob 的取消只会向下传播。这是非常容易从示例中观察到的：</p>
+<h4 id="监督作用域"><a href="#监督作用域" class="headerlink" title="监督作用域"></a>监督作用域</h4><p>对于<em>作用域</em>的并发，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/supervisor-scope.html" target="_blank" rel="noopener">supervisorScope</a> 可以被用来替代 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html" target="_blank" rel="noopener">coroutineScope</a> 来实现相同的目的。它只会单向的传播并且当子作业自身执行失败的时候将它们全部取消。它也会在所有的子作业执行结束前等待， 就像 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html" target="_blank" rel="noopener">coroutineScope</a> 所做的那样。</p>
+<h4 id="监督协程中的异常"><a href="#监督协程中的异常" class="headerlink" title="监督协程中的异常"></a>监督协程中的异常</h4><p>常规的作业和监督作业之间的另一个重要区别是异常处理。 每一个子作业应该通过异常处理机制处理自身的异常。 这种差异来自于子作业的执行失败不会传播给它的父作业的事实。</p>
+<h2 id="协程的线程安全"><a href="#协程的线程安全" class="headerlink" title="协程的线程安全"></a>协程的线程安全</h2><ol>
+<li>使用线程安全的数据结构</li>
+</ol>
+   <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> counter = AtomicInteger()</span><br><span class="line"> withContext(Dispatchers.Default) &#123;</span><br><span class="line">        counter.incrementAndGet()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>以细粒度限制线程</p>
+</li>
+<li><p>以粗粒度限制线程</p>
+<p>2、3都是保证将对共享变量的操作限制在同一个线程中，从而保证线程安全。</p>
+</li>
+<li><p>互斥</p>
+<p>类似于线程的锁，协程的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.sync/-mutex/index.html" target="_blank" rel="noopener">Mutex</a> 的lock和unlock方法可以保证同一时间只有一个协程访问指定代码。Mutex不会阻塞线程。</p>
+</li>
+<li><p>Actors</p>
+<p> 一个 <a href="https://en.wikipedia.org/wiki/Actor_model" target="_blank" rel="noopener">actor</a> 是由协程、 被限制并封装到该协程中的状态以及一个与其它协程通信的 <em>通道</em> 组合而成的一个实体。 </p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这个函数启动一个新的计数器 actor</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> CoroutineScope.<span class="title">counterActor</span><span class="params">()</span></span> = actor&lt;CounterMsg&gt; &#123;</span><br><span class="line">    <span class="keyword">var</span> counter = <span class="number">0</span> <span class="comment">// actor 状态</span></span><br><span class="line">    <span class="keyword">for</span> (msg <span class="keyword">in</span> channel) &#123; <span class="comment">// 即将到来消息的迭代器</span></span><br><span class="line">        <span class="keyword">when</span> (msg) &#123;</span><br><span class="line">            <span class="keyword">is</span> IncCounter -&gt; counter++</span><br><span class="line">            <span class="keyword">is</span> GetCounter -&gt; msg.response.complete(counter)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//1.要递增状态时</span></span><br><span class="line">counter.send(IncCounter)</span><br><span class="line"><span class="comment">//2.要获取当前状态时</span></span><br><span class="line"><span class="comment">// 发送一条消息以用来从一个 actor 中获取计数值</span></span><br><span class="line"><span class="keyword">val</span> response = CompletableDeferred&lt;<span class="built_in">Int</span>&gt;()</span><br><span class="line">counter.send(GetCounter(response))</span><br><span class="line">println(<span class="string">"Counter = <span class="subst">$&#123;response.await()&#125;</span>"</span>)</span><br></pre></td></tr></table></figure>
+<p>  <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-completable-deferred/index.html" target="_blank" rel="noopener">CompletableDeferred</a> 通信原语表示未来可知（可传达）的单个值 。</p>
+<p>在使用时，由于actor 是一个协程，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-send-channel/send.html" target="_blank" rel="noopener"><code>SendChannel .send()</code></a> 方法会在通道缓存满的时候挂起调用方，从而最终保证了<code>counter++</code>方法是依次执行的，不会产生并发问题。</p>
+<p>actor 在高负载下比锁更有效，因为在这种情况下它总是有工作要做，而且根本不需要切换到不同的上下文。 </p>
+</li>
+</ol>
+<blockquote>
+<p> 注意，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/actor.html" target="_blank" rel="noopener">actor</a> 协程构建器是一个双重的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html" target="_blank" rel="noopener">produce</a> 协程构建器。一个 actor 与它接收消息的通道相关联，而一个 producer 与它发送元素的通道相关联。 </p>
+</blockquote>
+<h1 id="Select表达式"><a href="#Select表达式" class="headerlink" title="Select表达式"></a>Select表达式</h1><p>  <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.selects/select.html" target="_blank" rel="noopener">select</a> 表达式允许我们使用其 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/on-receive.html" target="_blank" rel="noopener">onReceive</a> 子句 <em>同时</em> 从两个生产者接收数据：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">selectFizzBuzz</span><span class="params">(fizz: <span class="type">ReceiveChannel</span>&lt;<span class="type">String</span>&gt;, buzz: <span class="type">ReceiveChannel</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    select&lt;<span class="built_in">Unit</span>&gt; &#123; <span class="comment">// &lt;Unit&gt; 意味着该 select 表达式不返回任何结果</span></span><br><span class="line">        fizz.onReceive &#123; value -&gt;  <span class="comment">// 这是第一个 select 子句</span></span><br><span class="line">            println(<span class="string">"fizz -&gt; '<span class="variable">$value</span>'"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        buzz.onReceive &#123; value -&gt;  <span class="comment">// 这是第二个 select 子句</span></span><br><span class="line">            println(<span class="string">"buzz -&gt; '<span class="variable">$value</span>'"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/on-receive-or-null.html" target="_blank" rel="noopener">onReceiveOrNull</a>  可以允许为空，这样可以在关闭通道时执行特定操作 </p>
+<p> <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-send-channel/on-send.html" target="_blank" rel="noopener">onSend</a> 子句 发送消息</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> CoroutineScope.<span class="title">produceNumbers</span><span class="params">(side: <span class="type">SendChannel</span>&lt;<span class="type">Int</span>&gt;)</span></span> = produce&lt;<span class="built_in">Int</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">for</span> (num <span class="keyword">in</span> <span class="number">1</span>..<span class="number">10</span>) &#123; <span class="comment">// 生产从 1 到 10 的 10 个数值</span></span><br><span class="line">        delay(<span class="number">100</span>) <span class="comment">// 延迟 100 毫秒</span></span><br><span class="line">        select&lt;<span class="built_in">Unit</span>&gt; &#123;</span><br><span class="line">            onSend(num) &#123;&#125; <span class="comment">// 发送到主通道</span></span><br><span class="line">            side.onSend(num) &#123;&#125; <span class="comment">// 或者发送到 side 通道</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> Select延迟值可以使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/on-await.html" target="_blank" rel="noopener">onAwait</a> 子句查询 </p>
+<iframe width="853" height="480" src="https://embed.coggle.it/diagram/Xb_CZoumpCamgUAj/1235701ea5f157867e045f0f5ac28f886effdb5fa1e27b72afa5266e6e3e8891" frameborder="0" allowfullscreen></iframe>
+
+
+
+
+
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://blog.csdn.net/u013064109/article/details/83507076" target="_blank" rel="noopener">Kotlin的独门秘籍Reified实化类型参数(下篇)</a></p>
+<p><a href="https://www.kotlincn.net/docs/reference/coroutines/flow.html" target="_blank" rel="noopener">Kotlin 协程 中文官网–异步流</a></p>
+
+      
+    </div>
+
+    
+
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JI, XIAOYONG</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://jixiaoyong.github.io/blog/posts/fd5546ac/" title="Kotlin学习笔记3">https://jixiaoyong.github.io/blog/posts/fd5546ac/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/kotlin/" rel="tag"># kotlin</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/posts/b4abf652/" rel="next" title="Java并发编程笔记">
+                <i class="fa fa-chevron-left"></i> Java并发编程笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/posts/5754fcd2/" rel="prev" title="Android AlarmManager设置重复任务">
+                Android AlarmManager设置重复任务 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/blog/images/default_avatar.jpg" alt="JI, XIAOYONG">
+            
+              <p class="site-author-name" itemprop="name">JI, XIAOYONG</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/blog/archives/">
+                
+                    <span class="site-state-item-count">81</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/jixiaoyong" title="GitHub &rarr; https://github.com/jixiaoyong" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:jixiaoyong1995@gmail.com" title="E-Mail &rarr; mailto:jixiaoyong1995@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.wanandroid.com/" title="http://www.wanandroid.com/" rel="noopener" target="_blank">WanAndroid</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#异步流"><span class="nav-number">1.</span> <span class="nav-text">异步流</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#合并conflate"><span class="nav-number">2.</span> <span class="nav-text">合并conflate</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组合多个流"><span class="nav-number">3.</span> <span class="nav-text">组合多个流</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#流异常"><span class="nav-number">4.</span> <span class="nav-text">流异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#声明式捕获-将collect的主要逻辑放到onEach中，保证onEach在catch之前"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">声明式捕获 将collect的主要逻辑放到onEach中，保证onEach在catch之前</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#流完成"><span class="nav-number">5.</span> <span class="nav-text">流完成</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#launchIn-this-与collect"><span class="nav-number">6.</span> <span class="nav-text">launchIn(this) 与collect</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Channel"><span class="nav-number">7.</span> <span class="nav-text">Channel</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#管道"><span class="nav-number">8.</span> <span class="nav-text">管道</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#异常"><span class="nav-number">9.</span> <span class="nav-text">异常</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#异常的传播"><span class="nav-number">9.1.</span> <span class="nav-text">异常的传播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监督"><span class="nav-number">9.2.</span> <span class="nav-text">监督</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#监督作业"><span class="nav-number">9.2.0.1.</span> <span class="nav-text">监督作业</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监督作用域"><span class="nav-number">9.2.0.2.</span> <span class="nav-text">监督作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监督协程中的异常"><span class="nav-number">9.2.0.3.</span> <span class="nav-text">监督协程中的异常</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协程的线程安全"><span class="nav-number">9.3.</span> <span class="nav-text">协程的线程安全</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Select表达式"><span class="nav-number">10.</span> <span class="nav-text">Select表达式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">11.</span> <span class="nav-text">参考资料</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JI, XIAOYONG</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+  <div style="display: none;">
+    <script type="text/javascript" src="//s96.cnzz.com/z_stat.php?id=1277214306&web_id=1277214306"></script>
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script src="//cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/blog/js/utils.js?v=7.1.0"></script>
+
+  <script src="/blog/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/blog/js/schemes/muse.js?v=7.1.0"></script>
+
+
+
+  
+  <script src="/blog/js/scrollspy.js?v=7.1.0"></script>
+<script src="/blog/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/blog/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+  
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'eiCorogUwe1OdpPG65oSWEsP-MdYXbMMI',
+    appKey: 'glorq3CiX4j8RNIWf7kq5LBW',
+    placeholder: 'ヾ(=^▽^=)ノ',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/blog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

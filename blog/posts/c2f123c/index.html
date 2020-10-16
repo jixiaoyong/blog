@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/blog/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/favicon.ico?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon.ico?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon.ico?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/blog/images/favicon.ico?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script data-ad-client="ca-pub-2037953510405593" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+
+  <meta name="description" content="日常开发中，常用的存储键值对的数据结构是HashMap，根据Java笔记之HashMap保存数据和Java笔记之计算Java对象的大小及其应用可以知道，HashMap存储键值对会占用比较多的内存控件，而对于内存限制较大的Android平台来说，为了避免这种浪费，官方推荐我们使用SpareArray和ArrayMap，本文对这两个类的实现进行分析比较。 SpareArray以及他的衍生类都是以基本类">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android中的SpareArray和ArrayMap实现分析">
+<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/c2f123c/index.html">
+<meta property="og:site_name" content="Ji Xiaoyong&#39;s Blog">
+<meta property="og:description" content="日常开发中，常用的存储键值对的数据结构是HashMap，根据Java笔记之HashMap保存数据和Java笔记之计算Java对象的大小及其应用可以知道，HashMap存储键值对会占用比较多的内存控件，而对于内存限制较大的Android平台来说，为了避免这种浪费，官方推荐我们使用SpareArray和ArrayMap，本文对这两个类的实现进行分析比较。 SpareArray以及他的衍生类都是以基本类">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://jixiaoyong.github.io/images/20191222131219.png">
+<meta property="og:updated_time" content="2020-10-16T02:05:53.282Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android中的SpareArray和ArrayMap实现分析">
+<meta name="twitter:description" content="日常开发中，常用的存储键值对的数据结构是HashMap，根据Java笔记之HashMap保存数据和Java笔记之计算Java对象的大小及其应用可以知道，HashMap存储键值对会占用比较多的内存控件，而对于内存限制较大的Android平台来说，为了避免这种浪费，官方推荐我们使用SpareArray和ArrayMap，本文对这两个类的实现进行分析比较。 SpareArray以及他的衍生类都是以基本类">
+<meta name="twitter:image" content="https://jixiaoyong.github.io/images/20191222131219.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/c2f123c/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Android中的SpareArray和ArrayMap实现分析 | Ji Xiaoyong's Blog</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-138652239-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-138652239-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ji Xiaoyong's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/c2f123c/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JI, XIAOYONG">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ji Xiaoyong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android中的SpareArray和ArrayMap实现分析<a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/Android中的SpareArray和ArrayMap实现分析.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-22 09:35:37" itemprop="dateCreated datePublished" datetime="2019-12-22T09:35:37+00:00">2019-12-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-10-16 02:05:53" itemprop="dateModified" datetime="2020-10-16T02:05:53+00:00">2020-10-16</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/blog/posts/c2f123c/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/c2f123c/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/blog/posts/c2f123c/" class="leancloud_visitors" data-flag-title="Android中的SpareArray和ArrayMap实现分析">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>日常开发中，常用的存储键值对的数据结构是<code>HashMap</code>，根据<a href="https://xiaoyong.ml/blog/posts/ff927bd4/" target="_blank" rel="noopener">Java笔记之HashMap保存数据</a>和<a href="https://xiaoyong.ml/blog/posts/b0793c74/" target="_blank" rel="noopener">Java笔记之计算Java对象的大小及其应用</a>可以知道，<code>HashMap</code>存储<strong>键值对</strong>会占用比较多的内存控件，而对于内存限制较大的Android平台来说，为了避免这种浪费，官方推荐我们使用<code>SpareArray</code>和<code>ArrayMap</code>，本文对这两个类的实现进行分析比较。</p>
+<p><strong><code>SpareArray</code>以及他的衍生类</strong>都是以<strong>基本类型</strong>为<code>key</code>，因为避免了<em>自动装箱</em>，并且<strong>用数组直接保存key、value</strong>（而非像<code>HashMap</code>那样将其封装为<code>Node</code>对象后再保存），因而节省了内存。</p>
+<p><strong><code>ArrayMap</code></strong>则支持<strong>所有类型的key</strong>，他是<strong>将<code>key</code>和<code>value</code>全部保存在一个数组中</strong>（<code>n</code>位为<code>key</code>，<code>n+1</code>位为<code>value</code>），避免了将其封装为<code>Node</code>对象带来的内存消耗。</p>
+<p><strong>当要保存的数据量比较小（小于几千个）的时候，如果KEY是基本类型，推荐使用<code>SparseArray</code>及其衍生类以节省内存，如果KEY是其他类型则使用<code>ArrayMap</code>;否则使用<code>HashMap</code>更加高效</strong>。</p>
+<h1 id="SpareArray"><a href="#SpareArray" class="headerlink" title="SpareArray"></a>SpareArray</h1><p><code>SpareArray</code>以及他的衍生类主要用于<strong>以<code>基本类型</code>为<code>key</code>保存非大量数据的场景</strong>。</p>
+<p>相比<code>HashMap</code>而言，他的优点主要在于<strong>没有对保存的数据二次封装</strong>，没有对基本类型的数据<strong>自动装箱</strong>，存储单个数据的成本小，也没有<code>hash</code>计算。</p>
+<p>但他在添加数据时需要扩展数组(涉及到新建、复制数组，<code>gc()</code>等)，<del>在删除数据时需要缩减数组</del> (查看<code>gc()</code>等源码发现他的数组只会增加，不会缩减)，以及通过二分法查找索引都会消耗性能。</p>
+<blockquote>
+<p>为了避免每次删除时都需要缩减数组，<code>SpareArray</code>在删除数组时只会将其赋值为<code>DELETED</code>，在下次调用其<code>private void gc()</code>方法时丢弃掉这些数据</p>
+</blockquote>
+<p>先看一下<code>SpareArray</code>的结构：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SparseArray</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">Cloneable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> mGarbage = <span class="keyword">false</span>; <span class="comment">//是否调用gc()方法</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] mKeys;<span class="comment">//所有的key</span></span><br><span class="line">    <span class="keyword">private</span> Object[] mValues;<span class="comment">//所有的value</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mSize;<span class="comment">//所保存的数据个数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="void-put-int-key-E-value"><a href="#void-put-int-key-E-value" class="headerlink" title="void put(int key, E value)"></a>void put(int key, E value)</h2><p>添加方法先用<strong>二分法</strong>查找<code>key</code>对应的位置：</p>
+<ul>
+<li>如果有，则直接覆盖</li>
+<li>如果没有，则<strong>取反</strong>得到应该<code>插入的位置</code>，并分别插入<code>key</code>和<code>value</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, E value)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 先用二分法查找key对应的索引,找到的话返回对应索引，</span></span><br><span class="line">  <span class="comment">// 否则返回key应该插入的位置的取反值</span></span><br><span class="line">    <span class="keyword">int</span> i = ContainerHelpers.binarySearch(mKeys, mSize, key);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="comment">// 如果已存在值则直接覆盖</span></span><br><span class="line">        mValues[i] = value;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 对二分法查找到的值再取反，得到key应该插入的位置</span></span><br><span class="line">        i = ~i;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (i &lt; mSize &amp;&amp; mValues[i] == DELETED) &#123;</span><br><span class="line">            mKeys[i] = key;</span><br><span class="line">            mValues[i] = value;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (mGarbage &amp;&amp; mSize &gt;= mKeys.length) &#123;</span><br><span class="line">            gc();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Search again because indices may have changed.</span></span><br><span class="line">            i = ~ContainerHelpers.binarySearch(mKeys, mSize, key);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// public static &lt;T&gt; T[] insert(T[] array, int currentSize, int index, T element)</span></span><br><span class="line">      <span class="comment">// Inserts an element into the array at the specified index,</span></span><br><span class="line">      <span class="comment">// growing the array if there is no more room.</span></span><br><span class="line">        mKeys = GrowingArrayUtils.insert(mKeys, mSize, i, key);</span><br><span class="line">        mValues = GrowingArrayUtils.insert(mValues, mSize, i, value);</span><br><span class="line">        mSize++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="E-get-int-key"><a href="#E-get-int-key" class="headerlink" title="E get(int key)"></a>E get(int key)</h2><p>获取数据，先用<strong>二分法</strong>查找，如果找到就返回<code>对应的值</code>，否则返回<code>null</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> get(key, <span class="keyword">null</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> key, E valueIfKeyNotFound)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = ContainerHelpers.binarySearch(mKeys, mSize, key);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">0</span> || mValues[i] == DELETED) &#123;</span><br><span class="line">        <span class="keyword">return</span> valueIfKeyNotFound;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (E) mValues[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="void-remove-int-key"><a href="#void-remove-int-key" class="headerlink" title="void remove(int key)"></a>void remove(int key)</h2><p>删除<code>key</code>以及<code>对应的数据</code>。</p>
+<p>同样先用<strong>二分法</strong>查找<code>对应位置</code>，有的话则标记为<code>DELETED</code>，<strong>等待下次<code>gc()</code>时丢弃</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        delete(key);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = ContainerHelpers.binarySearch(mKeys, mSize, key);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (mValues[i] != DELETED) &#123;</span><br><span class="line">            mValues[i] = DELETED;</span><br><span class="line">            mGarbage = <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="gc"><a href="#gc" class="headerlink" title="gc()"></a>gc()</h2><p>在上文中我们看到，删除数据时，<code>mGarbage</code>被标记为<code>true</code>，这样当下一次进行<code>put/valueAt/append/size</code>等涉及到数组大小查询、改动等时，就出触发<code>gc()</code>以便整理数组结构。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">gc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Log.e("SparseArray", "gc start with " + mSize);</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n = mSize;</span><br><span class="line">    <span class="keyword">int</span> o = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span>[] keys = mKeys;</span><br><span class="line">    Object[] values = mValues;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        Object val = values[i];</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 这里的操作只是将没有被删除的数据移动到了数组的前面</span></span><br><span class="line">      <span class="comment">// 而保证了数组后面都是DELETED或null，方便后续操作</span></span><br><span class="line">        <span class="keyword">if</span> (val != DELETED) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i != o) &#123;</span><br><span class="line">                keys[o] = keys[i];</span><br><span class="line">                values[o] = val;</span><br><span class="line">                values[i] = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            o++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    mGarbage = <span class="keyword">false</span>;</span><br><span class="line">    mSize = o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="HashMap与SpareArray及其衍生类对应关系"><a href="#HashMap与SpareArray及其衍生类对应关系" class="headerlink" title="HashMap与SpareArray及其衍生类对应关系"></a>HashMap与SpareArray及其衍生类对应关系</h2><p>参考<a href="https://android.jlelse.eu/app-optimization-with-arraymap-sparsearray-in-android-c0b7de22541a" target="_blank" rel="noopener">下图</a></p>
+<p><img src="https://jixiaoyong.github.io/images/20191222131219.png" alt=""></p>
+<h1 id="ArrayMap"><a href="#ArrayMap" class="headerlink" title="ArrayMap"></a>ArrayMap</h1><p><code>ArrayMap</code>实现了<code>Map&lt;K, V&gt;</code>接口，他的API和<code>HashMap</code>相差无几，但是由于<strong>没有对数据再包装</strong>，<strong>动态调整数组的大小</strong>，一定范围内他比<code>HashMap</code>内存效率高。</p>
+<p>但是如果保存大量数据（超过千位）时，由于他需要<strong>二分法查找</strong>的影响会比<code>HashMap</code>慢很多。</p>
+<blockquote>
+<p><strong><code>ArrayMap</code>特殊之处在于将<code>key</code>，<code>value</code>保存到了同一个数组mArray中（n位保存key，n+1位保存value</strong>）。</p>
+</blockquote>
+<p>先看一下<code>ArrayMap</code>的结构：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> Object[] mBaseCache;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> mBaseCacheSize;</span><br><span class="line"><span class="keyword">static</span> Object[] mTwiceBaseCache;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> mTwiceBaseCacheSize;</span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> <span class="keyword">boolean</span> mIdentityHashCode;<span class="comment">//是否强制使用System.identityHashCode(key)获取key的HashCode</span></span><br><span class="line"><span class="comment">//System.identityHashCode(key)方法无论类是否重写了hashCode()方法，</span></span><br><span class="line"><span class="comment">//都会调用Object.identityHashCode(key)来获取对象的hashCode</span></span><br><span class="line"><span class="keyword">int</span>[] mHashes;<span class="comment">//存储所有key的hash值</span></span><br><span class="line">Object[] mArray;<span class="comment">//存储key和value，大小是mHashes的两倍</span></span><br><span class="line"><span class="comment">//n位保存key，n+1位保存value</span></span><br><span class="line"><span class="keyword">int</span> mSize;</span><br><span class="line">MapCollections&lt;K, V&gt; mCollections;</span><br></pre></td></tr></table></figure>
+<p>在使用时：</p>
+<ol>
+<li><p>计算<code>key</code>的<code>hash值</code>，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hash = mIdentityHashCode ? System.identityHashCode(key) : key.hashCode();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后使用<code>indexOf()</code>在<code>mHashes</code>中进行二分法查找对应的<code>index</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index = indexOf(key, hash);</span><br></pre></td></tr></table></figure>
+<p><code>indexOf()</code>方法会先用<strong>二分法</strong>查找<code>hash</code>对应的<code>index</code>,如果<code>index&lt;0</code>则返回<code>index</code>；否则在对比<code>mArray</code>中对应位置<code>mArray[index&lt;&lt;1]</code>的<code>key</code>与要<code>查询的key</code>：</p>
+<ul>
+<li>两者一致：返回<code>index</code></li>
+<li>两者不一致：从<code>index</code>开始，<strong>先向后，再向前</strong>查询是否有相同的<code>key</code>,如果有返回<code>对应index</code></li>
+<li>以上都没有找到：<strong>对<code>mHashes</code>中<code>最后一个与key的hash一致的后一位index</code>取反</strong>，并返回</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(Object key, <span class="keyword">int</span> hash)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> N = mSize;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Important fast case: if nothing is in here, nothing to look for.</span></span><br><span class="line">    <span class="keyword">if</span> (N == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> ~<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> index = binarySearchHashes(mHashes, N, hash);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If the hash code wasn't found, then we have no entry for this key.</span></span><br><span class="line">    <span class="keyword">if</span> (index &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If the key at the returned index matches, that's what we want.</span></span><br><span class="line">    <span class="keyword">if</span> (key.equals(mArray[index&lt;&lt;<span class="number">1</span>])) &#123;</span><br><span class="line">        <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Search for a matching key after the index.</span></span><br><span class="line">    <span class="keyword">int</span> end;</span><br><span class="line">    <span class="keyword">for</span> (end = index + <span class="number">1</span>; end &lt; N &amp;&amp; mHashes[end] == hash; end++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (key.equals(mArray[end &lt;&lt; <span class="number">1</span>])) <span class="keyword">return</span> end;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Search for a matching key before the index.</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = index - <span class="number">1</span>; i &gt;= <span class="number">0</span> &amp;&amp; mHashes[i] == hash; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (key.equals(mArray[i &lt;&lt; <span class="number">1</span>])) <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Key not found -- return negative value indicating where a</span></span><br><span class="line">    <span class="comment">// new entry for this key should go.  We use the end of the</span></span><br><span class="line">    <span class="comment">// hash chain to reduce the number of array entries that will</span></span><br><span class="line">    <span class="comment">// need to be copied when inserting.</span></span><br><span class="line">    <span class="keyword">return</span> ~end;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="V-put-K-key-V-value"><a href="#V-put-K-key-V-value" class="headerlink" title="V put(K key, V value)"></a>V put(K key, V value)</h2><p>当添加<code>item</code>时，按照前述规则，先在<code>mArray</code>中查找<code>key</code>对应的<code>索引index</code>：</p>
+<ul>
+<li><p><code>index &gt;= 0</code> ：已经有键为<code>key</code>的数据，直接覆盖旧值并返回</p>
+</li>
+<li><p><code>index &lt; 0</code>：没有键为<code>key</code>的数据，对数组进行扩容，并保存对应数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">index = ~index;<span class="comment">//上文indexOf()中计算得出的key应该添加的位置</span></span><br><span class="line">mHashes[index] = hash;</span><br><span class="line">mArray[index&lt;&lt;<span class="number">1</span>] = key;</span><br><span class="line">mArray[(index&lt;&lt;<span class="number">1</span>)+<span class="number">1</span>] = value;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="V-get-Object-key"><a href="#V-get-Object-key" class="headerlink" title="V get(Object key)"></a>V get(Object key)</h2><p><code>get()</code>方法就比较简单了，先查找<code>key</code>的索引，然后取出<code>对应的数据value</code>并返回即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> index = indexOfKey(key);</span><br><span class="line">    <span class="keyword">return</span> index &gt;= <span class="number">0</span> ? (V)mArray[(index&lt;&lt;<span class="number">1</span>)+<span class="number">1</span>] : <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="V-remove-Object-key"><a href="#V-remove-Object-key" class="headerlink" title="V remove(Object key)"></a>V remove(Object key)</h2><p><code>remove()</code>方法也会先使用<code>indexOfKey()</code>计算<code>key的index</code>，然后删除<code>对应位置的数据</code>。</p>
+<p>此外，如果<code>mHashes.length &gt; (BASE_SIZE*2) &amp;&amp; mSize &lt; mHashes.length/3</code>的话，还会缩减<code>数组的大小</code>为<code>osize &gt; (BASE_SIZE*2) ? (osize + (osize&gt;&gt;1)) : (BASE_SIZE*2)</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">removeAt</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">  <span class="comment">//...其他代码</span></span><br><span class="line">  <span class="keyword">if</span>(mHashes.length &gt; (BASE_SIZE*<span class="number">2</span>) &amp;&amp; mSize &lt; mHashes.length/<span class="number">3</span>)&#123;</span><br><span class="line">    <span class="comment">//...其他代码</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> n = osize &gt; (BASE_SIZE*<span class="number">2</span>) ? (osize + (osize&gt;&gt;<span class="number">1</span>)) : (BASE_SIZE*<span class="number">2</span>);</span><br><span class="line">    allocArrays(n);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//...其他代码</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">allocArrays</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">   <span class="comment">//...其他代码</span></span><br><span class="line">   mHashes = <span class="keyword">new</span> <span class="keyword">int</span>[size];</span><br><span class="line">   mArray = <span class="keyword">new</span> Object[size&lt;&lt;<span class="number">1</span>];</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://android.googlesource.com/platform/frameworks/base.git/+/master/core/java/com/android/internal/util/GrowingArrayUtils.java" target="_blank" rel="noopener">GrowingArrayUtils.java 源码</a></p>
+<p><a href="https://android.googlesource.com/platform/frameworks/base/+/master/core/java/android/util/SparseArray.java" target="_blank" rel="noopener">SparseArray.java 源码</a></p>
+<p><a href="https://android.googlesource.com/platform/frameworks/base/+/master/core/java/android/util/ArrayMap.java" target="_blank" rel="noopener">ArrayMap.java 源码</a></p>
+<p><a href="https://android.jlelse.eu/app-optimization-with-arraymap-sparsearray-in-android-c0b7de22541a" target="_blank" rel="noopener">App optimization with ArrayMap &amp; SparseArray in Android</a></p>
+<p><a href="https://xiaoyong.ml/blog/posts/ff927bd4/" target="_blank" rel="noopener">Java笔记之HashMap保存数据</a></p>
+<p><a href="https://xiaoyong.ml/blog/posts/b0793c74/" target="_blank" rel="noopener">Java笔记之计算Java对象的大小及其应用</a></p>
+<p><a href="https://extremej.itscoder.com/sparsearray_source_analyse/" target="_blank" rel="noopener">SparseArray 的使用及实现原理</a></p>
+
+      
+    </div>
+
+    
+
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JI, XIAOYONG</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://jixiaoyong.github.io/blog/posts/c2f123c/" title="Android中的SpareArray和ArrayMap实现分析">https://jixiaoyong.github.io/blog/posts/c2f123c/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/android/" rel="tag"># android</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/posts/b0793c74/" rel="next" title="Java笔记之计算Java对象的大小及其应用">
+                <i class="fa fa-chevron-left"></i> Java笔记之计算Java对象的大小及其应用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/posts/9d9183ec/" rel="prev" title="Java笔记之序列化与反序列化：Serializable、Externalizable和Parcelable">
+                Java笔记之序列化与反序列化：Serializable、Externalizable和Parcelable <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/blog/images/default_avatar.jpg" alt="JI, XIAOYONG">
+            
+              <p class="site-author-name" itemprop="name">JI, XIAOYONG</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/blog/archives/">
+                
+                    <span class="site-state-item-count">81</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/jixiaoyong" title="GitHub &rarr; https://github.com/jixiaoyong" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:jixiaoyong1995@gmail.com" title="E-Mail &rarr; mailto:jixiaoyong1995@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.wanandroid.com/" title="http://www.wanandroid.com/" rel="noopener" target="_blank">WanAndroid</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpareArray"><span class="nav-number">1.</span> <span class="nav-text">SpareArray</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#void-put-int-key-E-value"><span class="nav-number">1.1.</span> <span class="nav-text">void put(int key, E value)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#E-get-int-key"><span class="nav-number">1.2.</span> <span class="nav-text">E get(int key)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#void-remove-int-key"><span class="nav-number">1.3.</span> <span class="nav-text">void remove(int key)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gc"><span class="nav-number">1.4.</span> <span class="nav-text">gc()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap与SpareArray及其衍生类对应关系"><span class="nav-number">1.5.</span> <span class="nav-text">HashMap与SpareArray及其衍生类对应关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ArrayMap"><span class="nav-number">2.</span> <span class="nav-text">ArrayMap</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#V-put-K-key-V-value"><span class="nav-number">2.1.</span> <span class="nav-text">V put(K key, V value)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#V-get-Object-key"><span class="nav-number">2.2.</span> <span class="nav-text">V get(Object key)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#V-remove-Object-key"><span class="nav-number">2.3.</span> <span class="nav-text">V remove(Object key)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JI, XIAOYONG</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+  <div style="display: none;">
+    <script type="text/javascript" src="//s96.cnzz.com/z_stat.php?id=1277214306&web_id=1277214306"></script>
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script src="//cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/blog/js/utils.js?v=7.1.0"></script>
+
+  <script src="/blog/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/blog/js/schemes/muse.js?v=7.1.0"></script>
+
+
+
+  
+  <script src="/blog/js/scrollspy.js?v=7.1.0"></script>
+<script src="/blog/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/blog/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+  
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'eiCorogUwe1OdpPG65oSWEsP-MdYXbMMI',
+    appKey: 'glorq3CiX4j8RNIWf7kq5LBW',
+    placeholder: 'ヾ(=^▽^=)ノ',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/blog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
