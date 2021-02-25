@@ -351,6 +351,204 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/cf83ef31/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JI, XIAOYONG">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ji Xiaoyong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/posts/cf83ef31/" class="post-title-link" itemprop="url">JVM类加载机制解析</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-02-26 19:28:56" itemprop="dateCreated datePublished" datetime="2018-02-26T19:28:56+00:00">2018-02-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-02-25 04:05:56" itemprop="dateModified" datetime="2021-02-25T04:05:56+00:00">2021-02-25</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/blog/posts/cf83ef31/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/cf83ef31/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/blog/posts/cf83ef31/" class="leancloud_visitors" data-flag-title="JVM类加载机制解析">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              简述本文介绍了java虚拟机类加载机制。
+类加载机制JVM类加载一共7步，前五步是类加载机制，各个步骤按照顺序进行，但是并非固定的1,2,3步，在实际中有可能从其中间某一步开始。
+类加载机制一般分为三部分：加载Loading -&gt; 连接Linking -&gt; 初始化Initializing
+
+其中加载、验证、准备和初始化发生的顺序是确定的，但解析可以在初始化之后开始（java动态绑定）
+
+java绑定分为静态绑定和动态绑定：
+
+静态绑定：即前期绑定。在程序执行前方法已经被绑定，此时由编
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/posts/cf83ef31/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/f31c11c5/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -413,7 +611,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-31 16:30:29" itemprop="dateModified" datetime="2020-12-31T16:30:29+00:00">2020-12-31</time>
+                <time title="修改时间：2021-02-25 04:05:56" itemprop="dateModified" datetime="2021-02-25T04:05:56+00:00">2021-02-25</time>
               
             
           </span>
@@ -608,7 +806,7 @@ heap区：Eden Space（伊甸园）、Survivor Space(幸存者区)、Tenured Gen
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-31 16:30:29" itemprop="dateModified" datetime="2020-12-31T16:30:29+00:00">2020-12-31</time>
+                <time title="修改时间：2021-02-25 04:05:56" itemprop="dateModified" datetime="2021-02-25T04:05:56+00:00">2021-02-25</time>
               
             
           </span>
@@ -808,7 +1006,7 @@ Boot ROM ：开机时，引导芯片从ROM读取读取初始化代
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-31 16:30:29" itemprop="dateModified" datetime="2020-12-31T16:30:29+00:00">2020-12-31</time>
+                <time title="修改时间：2021-02-25 04:05:56" itemprop="dateModified" datetime="2021-02-25T04:05:56+00:00">2021-02-25</time>
               
             
           </span>
@@ -1002,7 +1200,7 @@ PendingI
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-31 16:30:29" itemprop="dateModified" datetime="2020-12-31T16:30:29+00:00">2020-12-31</time>
+                <time title="修改时间：2021-02-25 04:05:56" itemprop="dateModified" datetime="2021-02-25T04:05:56+00:00">2021-02-25</time>
               
             
           </span>
@@ -1201,7 +1399,7 @@ android.support.v7.widget.Toolbar
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-31 16:30:29" itemprop="dateModified" datetime="2020-12-31T16:30:29+00:00">2020-12-31</time>
+                <time title="修改时间：2021-02-25 04:05:56" itemprop="dateModified" datetime="2021-02-25T04:05:56+00:00">2021-02-25</time>
               
             
           </span>
@@ -1404,7 +1602,7 @@ Measur
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-31 16:30:29" itemprop="dateModified" datetime="2020-12-31T16:30:29+00:00">2020-12-31</time>
+                <time title="修改时间：2021-02-25 04:05:56" itemprop="dateModified" datetime="2021-02-25T04:05:56+00:00">2021-02-25</time>
               
             
           </span>
@@ -1596,7 +1794,7 @@ class ASingleton&#123;		private static ASingleton as;		private void ASinleton() 
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-31 16:30:29" itemprop="dateModified" datetime="2020-12-31T16:30:29+00:00">2020-12-31</time>
+                <time title="修改时间：2021-02-25 04:05:56" itemprop="dateModified" datetime="2021-02-25T04:05:56+00:00">2021-02-25</time>
               
             
           </span>
@@ -1791,7 +1989,7 @@ fun fun1(n: Int): BigInteger &#123;    if (n == 0) return BigInteger.valueOf(1L)
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-31 16:30:29" itemprop="dateModified" datetime="2020-12-31T16:30:29+00:00">2020-12-31</time>
+                <time title="修改时间：2021-02-25 04:05:56" itemprop="dateModified" datetime="2021-02-25T04:05:56+00:00">2021-02-25</time>
               
             
           </span>
@@ -1987,7 +2185,7 @@ var arr = arrayListOf&lt;String&gt;("a c v de  fb s e  gf d")arr.flatMap &#123; 
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-12-31 16:30:29" itemprop="dateModified" datetime="2020-12-31T16:30:29+00:00">2020-12-31</time>
+                <time title="修改时间：2021-02-25 04:05:56" itemprop="dateModified" datetime="2021-02-25T04:05:56+00:00">2021-02-25</time>
               
             
           </span>
@@ -2110,197 +2308,6 @@ var testInter
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/b35fe0f7/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JI, XIAOYONG">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ji Xiaoyong's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/blog/posts/b35fe0f7/" class="post-title-link" itemprop="url">Android中WebView使用的一些问题</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-02-08 00:11:13" itemprop="dateCreated datePublished" datetime="2018-02-08T00:11:13+00:00">2018-02-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-12-31 16:30:29" itemprop="dateModified" datetime="2020-12-31T16:30:29+00:00">2020-12-31</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/blog/posts/b35fe0f7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/b35fe0f7/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/blog/posts/b35fe0f7/" class="leancloud_visitors" data-flag-title="Android中WebView使用的一些问题">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              问题描述：WebView在fragment中不显示解决代码如下：
-//kotlin 代码webView.webViewClient = object : WebViewClient() &#123;            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean &#123;                view!!.loadUrl(url)                retur
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/blog/posts/b35fe0f7/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2349,7 +2356,7 @@ var testInter
                 
                   <a href="/blog/archives/">
                 
-                    <span class="site-state-item-count">81</span>
+                    <span class="site-state-item-count">82</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2476,7 +2483,7 @@ var testInter
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

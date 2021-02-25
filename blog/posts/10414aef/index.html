@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/blog/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/favicon.ico?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon.ico?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon.ico?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/blog/images/favicon.ico?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script data-ad-client="ca-pub-2037953510405593" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+
+  <meta name="description" content="前言Flow是Kotlin协程库中的库，用于异步返回多个值，官方介绍是参考RxJava等响应式流实现的，但是“拥有尽可能简单的设计， 对 Kotlin 以及挂起友好且遵从结构化并发”。本文主要参考Flow中文文档，梳理了学习过程中的要点和理解，以便日后查验。 正文对于异步返回多个值的需求，集合（如List等）只能一次性返回多个值，而序列（ Sequence ）只支持阻塞代码，Flow则支持挂起函数">
+<meta name="keywords" content="kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin笔记之Flow">
+<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/10414aef/index.html">
+<meta property="og:site_name" content="Ji Xiaoyong&#39;s Blog">
+<meta property="og:description" content="前言Flow是Kotlin协程库中的库，用于异步返回多个值，官方介绍是参考RxJava等响应式流实现的，但是“拥有尽可能简单的设计， 对 Kotlin 以及挂起友好且遵从结构化并发”。本文主要参考Flow中文文档，梳理了学习过程中的要点和理解，以便日后查验。 正文对于异步返回多个值的需求，集合（如List等）只能一次性返回多个值，而序列（ Sequence ）只支持阻塞代码，Flow则支持挂起函数">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-02-25T04:05:56.633Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin笔记之Flow">
+<meta name="twitter:description" content="前言Flow是Kotlin协程库中的库，用于异步返回多个值，官方介绍是参考RxJava等响应式流实现的，但是“拥有尽可能简单的设计， 对 Kotlin 以及挂起友好且遵从结构化并发”。本文主要参考Flow中文文档，梳理了学习过程中的要点和理解，以便日后查验。 正文对于异步返回多个值的需求，集合（如List等）只能一次性返回多个值，而序列（ Sequence ）只支持阻塞代码，Flow则支持挂起函数">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/10414aef/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Kotlin笔记之Flow | Ji Xiaoyong's Blog</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-138652239-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-138652239-1');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ji Xiaoyong's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/blog/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/10414aef/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JI, XIAOYONG">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ji Xiaoyong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Kotlin笔记之Flow<a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/Kotlin笔记之Flow.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-02-25 12:20:12 / 修改时间：04:05:56" itemprop="dateCreated datePublished" datetime="2021-02-25T12:20:12+00:00">2021-02-25</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/blog/posts/10414aef/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/10414aef/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/blog/posts/10414aef/" class="leancloud_visitors" data-flag-title="Kotlin笔记之Flow">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>Flow</code>是Kotlin协程库中的库，用于<strong>异步返回多个值</strong>，官方介绍是参考<code>RxJava</code>等响应式流实现的，但是“<em>拥有尽可能简单的设计， 对 Kotlin 以及挂起友好且遵从结构化并发</em>”。本文主要参考<a href="https://www.kotlincn.net/docs/reference/coroutines/flow.html" target="_blank" rel="noopener">Flow中文文档</a>，梳理了学习过程中的要点和理解，以便日后查验。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>对于异步返回多个值的需求，集合（如<code>List</code>等）只能一次性返回多个值，而序列（ <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/index.html" target="_blank" rel="noopener"><code>Sequence</code></a> ）只支持阻塞代码，<code>Flow</code>则支持挂起函数异步返回多个值。</p>
+<h2 id="创建Flow"><a href="#创建Flow" class="headerlink" title="创建Flow"></a>创建Flow</h2><ol>
+<li><p><code>flow{...}</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">simple</span><span class="params">()</span></span>: Flow&lt;<span class="built_in">Int</span>&gt; = flow&lt;<span class="built_in">Int</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>..<span class="number">3</span>) &#123;</span><br><span class="line">        delay(<span class="number">100</span>) <span class="comment">// 假装我们异步等待了 100 毫秒，也可以用Thread.sleep()但是会阻塞当前线程</span></span><br><span class="line">        emit(i) <span class="comment">// 发射下一个值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>.asFlow()</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">simple</span><span class="params">()</span></span>: Flow&lt;<span class="built_in">Int</span>&gt; = (<span class="number">1</span>..<span class="number">10</span>).asFlow()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>flowOf{}</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">simple</span><span class="params">()</span></span>: Flow&lt;<span class="built_in">Int</span>&gt; = flowOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>因为<strong>流只会在被收集的时候才会被启动</strong>（指执行类似<code>flow{...}</code>中的内容），所以上述<code>simple()</code>在被调用时会尽快返回且不等待，所以无需<code>suspend</code>修饰。</p>
+<h2 id="流的收集-末端流操作符"><a href="#流的收集-末端流操作符" class="headerlink" title="流的收集/末端流操作符"></a>流的收集/末端流操作符</h2><ul>
+<li><p><code>collect{...}</code> 收集<code>emit</code>发送的值</p>
+<p>配合<code>onEach{}</code>可以将<code>collect</code>中执行的代码放到<code>onEach</code>中。</p>
+</li>
+<li><p><code>collectLatest{...}</code> 收集<code>emit</code>发送的值，但每次新的<code>emit</code>到来时，取消之前的收集器，创建新的收集器（用新的值执行<code>{...}</code>中的代码）</p>
+</li>
+<li><p><code>launchIn</code> 指定在单独的协程中启动流的收集，这样就可以立即继续进一步执行代码，不会挂起后面的协程代码。</p>
+</li>
+<li><p><code>single()</code> 只接受flow发送的一个值，0个或多个都会报错</p>
+</li>
+<li><p><code>first{...}</code> 查找符合条件的第一个值</p>
+</li>
+<li><p><code>reduce()</code> 求和</p>
+</li>
+<li><p><code>fold(initial,{...})</code> 在初始值<code>initial</code>的基础上求和</p>
+</li>
+<li><p><code>toList</code>、<code>toSet</code></p>
+</li>
+</ul>
+<h2 id="过渡流操作符"><a href="#过渡流操作符" class="headerlink" title="过渡流操作符"></a>过渡流操作符</h2><p>过渡操作符应用于上游流，并返回下游流。就像流一样。这类操作符本身不是挂起函数。它运行的速度很快，返回新的转换流的定义。</p>
+<ul>
+<li><code>map{}</code></li>
+<li><code>filter{}</code></li>
+<li><code>take(n)</code> 限长操作符，只取前n个发射的值</li>
+</ul>
+<h2 id="流上下文"><a href="#流上下文" class="headerlink" title="流上下文"></a>流上下文</h2><p>流默认运行在收集器提供的上下文中，但是可以通过<code>flowOn</code>更改：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">simple</span><span class="params">()</span></span>: Flow&lt;<span class="built_in">Int</span>&gt; = flow &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;.flowOn(Dispatchers.Default) <span class="comment">// 在流构建器中改变消耗 CPU 代码上下文的正确方式</span></span><br></pre></td></tr></table></figure>
+<h2 id="展平流"><a href="#展平流" class="headerlink" title="展平流"></a>展平流</h2><p>将嵌套有<code>Flow</code>的<code>Flow</code>（如<code>Flow&lt;Flow&lt;String&gt;&gt;</code>）<strong>展平</strong>为单个流（如<code>Flow&lt;String&gt;</code>）。</p>
+<ul>
+<li><p><code>flatMapConcat</code> 将收集到的流交给<code>{...}</code>处理后，等待内部流处理完毕后，再去请求下一个流</p>
+</li>
+<li><p><code>flatMapMerge</code> 先顺序收集所有流，再同时收集结果流</p>
+</li>
+<li><p><code>flatMapLatest{...}</code> 类似于<code>collectLatest{...}</code>，在新柳发出的时候，立即取消<code>{...}</code>中所有的代码</p>
+</li>
+</ul>
+<ul>
+<li><p><code>flattenConcat</code> 依次展平流</p>
+</li>
+<li><p><code>flattenMerge{...}</code> 并发拼接，先执行<code>{...}</code>中的方法，再执行<code>collect</code>等方法，顺序会乱。</p>
+</li>
+</ul>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><ul>
+<li><p><code>try/catch</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">simple</span><span class="params">()</span></span>: Flow&lt;<span class="built_in">Int</span>&gt; = flow &#123;</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1</span>..<span class="number">3</span>) &#123;</span><br><span class="line">        println(<span class="string">"Emitting <span class="variable">$i</span>"</span>)</span><br><span class="line">        emit(i) <span class="comment">// 发射下一个值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> = runBlocking&lt;<span class="built_in">Unit</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        simple().collect &#123; value -&gt;         </span><br><span class="line">            println(value)</span><br><span class="line">            check(value &lt;= <span class="number">1</span>) &#123; <span class="string">"Collected <span class="variable">$value</span>"</span> &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e: Throwable) &#123;</span><br><span class="line">        println(<span class="string">"Caught <span class="variable">$e</span>"</span>)</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>catch()</code></p>
+<p><strong>透明捕获</strong>：只捕获上游异常，其之后的异常不会被处理。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">simple()</span><br><span class="line">    .<span class="keyword">catch</span> &#123; e -&gt; emit(<span class="string">"Caught <span class="variable">$e</span>"</span>) &#125; <span class="comment">// 发射一个异常</span></span><br><span class="line">    .collect &#123; </span><br><span class="line">        value -&gt; println(value) <span class="comment">//此处如有异常，不会被catch捕获</span></span><br><span class="line">             &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>声明式捕获</strong>：将<code>collect</code>的代码移动到<code>onEach</code>中，将其放到<code>catch</code>之前，从而使其被<code>catch</code>捕获。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">simple()</span><br><span class="line">    .onEach &#123; value -&gt;</span><br><span class="line">        check(value &lt;= <span class="number">1</span>) &#123; <span class="string">"Collected <span class="variable">$value</span>"</span> &#125; <span class="comment">//此处异常会被catch捕获             </span></span><br><span class="line">        println(value) </span><br><span class="line">    &#125;</span><br><span class="line">    .<span class="keyword">catch</span> &#123; e -&gt; println(<span class="string">"Caught <span class="variable">$e</span>"</span>) &#125;</span><br><span class="line">    .collect()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="流取消"><a href="#流取消" class="headerlink" title="流取消"></a>流取消</h2><ul>
+<li><code>flow { ... }</code> 创建的流的繁忙循环默认可以取消</li>
+<li>其他流如果需要取消，可以添加 <code>.onEach { currentCoroutineContext().ensureActive() }</code> 或者<code>.cancellable()</code></li>
+</ul>
+<h2 id="流完成"><a href="#流完成" class="headerlink" title="流完成"></a>流完成</h2><ul>
+<li><p>命令式</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">       simple().collect &#123; value -&gt; println(value) &#125;</span><br><span class="line">   &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">       println(<span class="string">"Done"</span>) <span class="comment">//监听流完成</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>声明式</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">simple()</span><br><span class="line">    .onCompletion &#123; println(<span class="string">"Done"</span>) &#125; <span class="comment">//监听流完成，在collect执行结束后才执行</span></span><br><span class="line">    .collect &#123; value -&gt; println(value) &#125;</span><br></pre></td></tr></table></figure>
+<p><code>onCompletion</code>的可空参数 <code>Throwable</code> 可以用于确定流收集是正常完成（为<code>null</code>）还是有异常发生。他不会处理异常。</p>
+</li>
+</ul>
+<h2 id="其余操作"><a href="#其余操作" class="headerlink" title="其余操作"></a>其余操作</h2><ul>
+<li><p><code>buffer()</code> 缓冲发射项，收集完成后再传给下一步</p>
+</li>
+<li><p><code>conflate()</code> 合并发射项，会丢弃来不及处理的中间值，只获取并处理最新的值</p>
+</li>
+<li><p><code>zip()</code> 合并两个流的值,两个流中的值一一对应</p>
+<p>例如<code>(1,2,3) 3s发射一次,(a,b,c) 4s发射一次</code>直接拼接，合并之后为 <code>(1a,2b,3c)</code></p>
+</li>
+<li><p><code>combine()</code> 结合两个流的值，任意一个流中的值发生变化都会触发执行计算</p>
+<p>例如<code>(1,2,3) 3s发射一次,(a,b,c) 4s发射一次</code>直接拼接，合并之后为 <code>(1a,2a,2b,3b,3c)</code></p>
+</li>
+</ul>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="https://www.kotlincn.net/docs/reference/coroutines/flow.html" target="_blank" rel="noopener">Kotlin Flow 中文文档</a></p>
+
+      
+    </div>
+
+    
+
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JI, XIAOYONG</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://jixiaoyong.github.io/blog/posts/10414aef/" title="Kotlin笔记之Flow">https://jixiaoyong.github.io/blog/posts/10414aef/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/kotlin/" rel="tag"># kotlin</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/posts/76d69fc6/" rel="next" title="Android今日头条屏幕适配方案的原理梳理">
+                <i class="fa fa-chevron-left"></i> Android今日头条屏幕适配方案的原理梳理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/blog/images/default_avatar.jpg" alt="JI, XIAOYONG">
+            
+              <p class="site-author-name" itemprop="name">JI, XIAOYONG</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/blog/archives/">
+                
+                    <span class="site-state-item-count">82</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/jixiaoyong" title="GitHub &rarr; https://github.com/jixiaoyong" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:jixiaoyong1995@gmail.com" title="E-Mail &rarr; mailto:jixiaoyong1995@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.wanandroid.com/" title="http://www.wanandroid.com/" rel="noopener" target="_blank">WanAndroid</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建Flow"><span class="nav-number">2.1.</span> <span class="nav-text">创建Flow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流的收集-末端流操作符"><span class="nav-number">2.2.</span> <span class="nav-text">流的收集/末端流操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过渡流操作符"><span class="nav-number">2.3.</span> <span class="nav-text">过渡流操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流上下文"><span class="nav-number">2.4.</span> <span class="nav-text">流上下文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#展平流"><span class="nav-number">2.5.</span> <span class="nav-text">展平流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常处理"><span class="nav-number">2.6.</span> <span class="nav-text">异常处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流取消"><span class="nav-number">2.7.</span> <span class="nav-text">流取消</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流完成"><span class="nav-number">2.8.</span> <span class="nav-text">流完成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其余操作"><span class="nav-number">2.9.</span> <span class="nav-text">其余操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JI, XIAOYONG</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+  <div style="display: none;">
+    <script type="text/javascript" src="//s96.cnzz.com/z_stat.php?id=1277214306&web_id=1277214306"></script>
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+
+  
+  <script src="//cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+
+  
+  <script src="//cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/blog/js/utils.js?v=7.1.0"></script>
+
+  <script src="/blog/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/blog/js/schemes/muse.js?v=7.1.0"></script>
+
+
+
+  
+  <script src="/blog/js/scrollspy.js?v=7.1.0"></script>
+<script src="/blog/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/blog/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+  
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'eiCorogUwe1OdpPG65oSWEsP-MdYXbMMI',
+    appKey: 'glorq3CiX4j8RNIWf7kq5LBW',
+    placeholder: 'ヾ(=^▽^=)ノ',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: 'zh-cn' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/blog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
