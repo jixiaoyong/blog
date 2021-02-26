@@ -234,7 +234,8 @@ foo()
 
 # Channel 
 
- [Channel](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-channel/index.html)  类似于BlockingQueue。但他的操作是挂起的。  通道提供了一种在流中传输值的方法 
+ [Channel](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-channel/index.html)  类似于BlockingQueue。但他的操作是挂起的。
+ Channel提供了在协程之间传递多个值的方法 
 
 `send` 发送 缓存区已满或不存在时调用方会被挂起
 
@@ -247,6 +248,27 @@ foo()
 [`ReceiveChannel<E>.consumeEach`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/consume-each.html ) 遍历ReceiveChannel的item执行指定action，并在块执行完毕后消耗掉这个ReceiveChannel（调用cancel()）。
 
  [ReceiveChannel](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/index.html).[cancel()](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/cancel.html) 取消接收来自这个通道的剩余元素，关闭通道并从中删除所有缓存的元素。
+
+`tickerChannel` 定时返回`Unit`的`channel`：
+
+```kotlin
+    val tickerChannel = ticker(delayMillis = 1000, initialDelayMillis = 0) // 创建计时器通道
+
+    repeat(10) {
+        println(tickerChannel.receive())// 每隔1s会打印一个kotlin.Unit
+    }
+
+    tickerChannel.cancel() // 表明不再需要更多的元素
+```
+
+# Flow/Channel/Sequence的区别
+
+`Flow`是用来异步返回多个值，其内部操作可以挂起
+
+`Channel` 用来在协程之间传递多个值（transfer a stream of values）
+
+`Sequence` 用来逐个在item中延迟执行完整操作，相比于`list`等整体执行完毕才进行下一级操作的“弓”字型，`Sequence`多级操作是逐个item依次完整执行多级操作的“几”字型。
+
 
 # 管道
 
