@@ -85,9 +85,7 @@ fun simple(): Flow<Int> = flow {
 
 * `flatMapMerge` 先顺序收集所有流，再同时收集结果流
 
-* `flatMapLatest{...}` 类似于`collectLatest{...}`，在新柳发出的时候，立即取消`{...}`中所有的代码
-
-  
+* `flatMapLatest{...}` 类似于`collectLatest{...}`，在新流发出的时候，立即取消`{...}`中所有的代码
 
 * `flattenConcat` 依次展平流
 
