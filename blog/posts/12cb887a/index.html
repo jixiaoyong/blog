@@ -103,14 +103,18 @@
 
 
 
-  <meta name="keywords" content="blog,jixiaoyong,android">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ji Xiaoyong&#39;s Blog">
-<meta property="og:url" content="https://jixiaoyong.github.io/blog/archives/2018/10/index.html">
+  <meta name="description" content="说明当APP目标版本是Android 10（API 29）及以后时，由于Android引入了分区存储，APP不能直接通过路径访问文件，访问外部存储空间中的媒体文件除了需要READ_EXTERNAL_STORAGE 或 WRITE_EXTERNAL_STORAGE 权限之外，需要通过其他APP分享的Uri读写文件，同理要给其余APP分享文件也许要通过FileProvider生成Uri并赋予对应的权限">
+<meta name="keywords" content="blog,jixiaoyong,android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android11文件分区存储在图片读写的适配">
+<meta property="og:url" content="https://jixiaoyong.github.io/blog/posts/12cb887a/index.html">
 <meta property="og:site_name" content="Ji Xiaoyong&#39;s Blog">
+<meta property="og:description" content="说明当APP目标版本是Android 10（API 29）及以后时，由于Android引入了分区存储，APP不能直接通过路径访问文件，访问外部存储空间中的媒体文件除了需要READ_EXTERNAL_STORAGE 或 WRITE_EXTERNAL_STORAGE 权限之外，需要通过其他APP分享的Uri读写文件，同理要给其余APP分享文件也许要通过FileProvider生成Uri并赋予对应的权限">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-06-01T08:22:46.473Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ji Xiaoyong&#39;s Blog">
+<meta name="twitter:title" content="Android11文件分区存储在图片读写的适配">
+<meta name="twitter:description" content="说明当APP目标版本是Android 10（API 29）及以后时，由于Android引入了分区存储，APP不能直接通过路径访问文件，访问外部存储空间中的媒体文件除了需要READ_EXTERNAL_STORAGE 或 WRITE_EXTERNAL_STORAGE 权限之外，需要通过其他APP分享的Uri读写文件，同理要给其余APP分享文件也许要通过FileProvider生成Uri并赋予对应的权限">
 
 
 
@@ -118,7 +122,7 @@
 
   
   
-  <link rel="canonical" href="https://jixiaoyong.github.io/blog/archives/2018/10/">
+  <link rel="canonical" href="https://jixiaoyong.github.io/blog/posts/12cb887a/">
 
 
 
@@ -128,7 +132,7 @@
   };
 </script>
 
-  <title>归档 | Ji Xiaoyong's Blog</title>
+  <title>Android11文件分区存储在图片读写的适配 | Ji Xiaoyong's Blog</title>
   
 
 
@@ -187,7 +191,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -259,7 +263,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -288,22 +292,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -350,77 +338,247 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      
-      <span class="archive-page-counter">
-        
-        
-         
-          
-        很好! 目前共计 83 篇日志。 继续努力。
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jixiaoyong.github.io/blog/blog/posts/12cb887a/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JI, XIAOYONG">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/images/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ji Xiaoyong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/blog/posts/e35c106d/" itemprop="url">
-            
-              <span itemprop="name">Flutter Widget简单入门</span>
-            
-          </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Android11文件分区存储在图片读写的适配<a href="https://github.com/jixiaoyong/jixiaoyong.github.io/edit/hexo_blog/blog/source/_posts/Android11文件分区存储在图片读写的适配.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pencil"></i></a>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-10-21T22:26:41+00:00" content="2018-10-21">
-          10-21
-        </time>
-      </div>
+              
+            
+          </h1>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-06-01 14:34:25 / 修改时间：08:22:46" itemprop="dateCreated datePublished" datetime="2021-06-01T14:34:25+00:00">2021-06-01</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/blog/posts/12cb887a/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/posts/12cb887a/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/blog/posts/12cb887a/" class="leancloud_visitors" data-flag-title="Android11文件分区存储在图片读写的适配">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>当APP目标版本是Android 10（API 29）及以后时，由于Android引入了分区存储，APP不能直接通过路径访问文件，访问外部存储空间中的媒体文件除了需要<code>READ_EXTERNAL_STORAGE</code> 或 <code>WRITE_EXTERNAL_STORAGE</code> 权限之外，需要通过其他APP分享的<code>Uri</code>读写文件，同理要给其余APP分享文件也许要通过<code>FileProvider</code>生成<code>Uri</code>并赋予对应的权限。</p>
+<p>本文以从相册中获取图片、请求系统裁剪并返回图片为例展示对应的适配方法。</p>
+<h1 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h1><p>1.<strong>从相册中获取图片</strong></p>
+<p>从相册中获取到的图片<code>Uri</code>一般如：<code>content://raw//storage/emulated/0/DCIM/Camera/IMG_20210531_183008.HEIC</code></p>
+<p>app内部要读取其内容的话，可以通过<code>context.getContentResolver().openInputStream(imageUri)</code></p>
+<p>或者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Cursor cursor = context.getContentResolver().query(uri, filePathColumn, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>);<span class="comment">//从系统表中查询指定Uri对应的照片</span></span><br><span class="line">            cursor.moveToFirst();</span><br><span class="line">            <span class="keyword">int</span> columnIndex = cursor.getColumnIndex(filePathColumn[<span class="number">0</span>]);</span><br><span class="line">            <span class="keyword">if</span> (columnIndex &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                picturePath = cursor.getString(columnIndex); </span><br><span class="line">                &#125;</span><br></pre></td></tr></table></figure>
+<p>等方式读取，操作该图片。</p>
+<p>2.<strong>将外部文件保存到本地并获取Uri</strong></p>
+<p>由于上述方式获取到的<code>Uri</code>只对本APP赋予了权限，要是希望将此图片分享给第三方APP进一步加工处理，则可能出现第三方APP没有读写权限而导致操作失败的情况，为了避免这种情况，可以将获取到的图片缓存到APP私有目录，并且重新生成<code>Uri</code>并赋予将要处理该图的第三方APP对应权限。</p>
+<p>将外部文件缓存本地的步骤参考第一步操作即可自行完成，主要讲解一下如何将对外分享的<code>Uri</code>赋予读写权限。</p>
+<p>下面这个方法在不同系统分别采用不同方式获取文件对应的<code>Uri</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Uri <span class="title">getUriForFile</span><span class="params">(Context context, File file)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.N) &#123;</span><br><span class="line">        <span class="keyword">return</span> FileProvider.getUriForFile(context, <span class="string">"com.your.app.packagename.fileprovider"</span>, file);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Uri.fromFile(file);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中<code>com.your.app.packagename.fileprovider</code>是<a href="https://developer.android.google.cn/reference/androidx/core/content/FileProvider" target="_blank" rel="noopener"><code>FileProvider</code></a>的<code>authorities</code>。</p>
+<p>要使用<code>FileProvider</code>可以参考<a href="https://developer.android.google.cn/reference/androidx/core/content/FileProvider#ProviderDefinition" target="_blank" rel="noopener">定义FileProvider</a>操作，一般只需要修改<code>authorities</code>即可，同时如果是开发Android库，为了避免与主工程已有的<code>FileProvider</code>冲突，可以继承<code>FileProvider</code>类并修改下文中<code>name</code>字段。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">manifest</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">application</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">        <span class="tag">&lt;<span class="name">provider</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">"androidx.core.content.FileProvider"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:authorities</span>=<span class="string">"com.mydomain.fileprovider"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:exported</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:grantUriPermissions</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">meta-data</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:name</span>=<span class="string">"android.support.FILE_PROVIDER_PATHS"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:resource</span>=<span class="string">"@xml/file_paths"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">provider</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>同时，为了定义此<code>FileProvider</code>可以使用的文件目录范围，可以在<code>res/xml</code>文件夹中新建<code>file_paths.xml</code>并做如下配置，也可参考官方文档或者<a href="https://www.jianshu.com/p/6192f04eca11" target="_blank" rel="noopener">Android N 7.0 FileProvider 兼容适配 原理解析</a>：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">paths</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">root-path</span></span></span><br><span class="line"><span class="tag">        <span class="attr">name</span>=<span class="string">"camera_photos"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">path</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">external-files-path</span> // 对应<span class="attr">Context</span>#<span class="attr">getExternalFilesDir</span>(<span class="attr">String</span>)获取的路径，一般为存储卡中<span class="attr">Android</span>/<span class="attr">data</span>/<span class="attr">com.your.app.packagename</span>/<span class="attr">file</span>下面的目录</span></span><br><span class="line"><span class="tag">        <span class="attr">name</span>=<span class="string">"external_files"</span> </span></span><br><span class="line"><span class="tag">        <span class="attr">path</span>=<span class="string">"."</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">paths</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>3.<strong>对外分享有权限的Uri</strong></p>
+<p>对于上述步骤获取到的图片Uri赋予权限有两种方式：</p>
+<p>第一种，通过<code>Intent</code>传递出去的<code>imgUri</code>，可以使用以下方式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);</span><br><span class="line">intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);</span><br><span class="line">intent.setDataAndType(imgUri, <span class="string">"image/*"</span>);</span><br></pre></td></tr></table></figure>
+<p>但是这种只适用于主动分享出去的文件，在调用第三方APP裁剪的场景中，一般还需要一个<code>outPutUri</code>用于保存裁剪之后的图片，对于这种场景，可以查询可能会调用的APP并赋予其访问权限：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.Q) &#123;</span><br><span class="line">    List&lt;ResolveInfo&gt; resInfoList = context.getPackageManager()</span><br><span class="line">            .queryIntentActivities(intent, PackageManager.MATCH_ALL);</span><br><span class="line">    <span class="keyword">for</span> (ResolveInfo resolveInfo : resInfoList) &#123;</span><br><span class="line">        String packageName = resolveInfo.activityInfo.packageName;</span><br><span class="line">        contextWrap.getActivity().grantUriPermission(packageName, outPutUri,</span><br><span class="line">                Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样不管是分享出去的原图，还是裁剪之后保存的图片都给第三方APP赋予了权限，保证其可以正常访问。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a href="https://developer.android.google.cn/reference/androidx/core/content/FileProvider" target="_blank" rel="noopener">https://developer.android.google.cn/reference/androidx/core/content/FileProvider</a></p>
+<p><a href="https://www.jianshu.com/p/6192f04eca11" target="_blank" rel="noopener">Android N 7.0 FileProvider 兼容适配 原理解析</a></p>
+
+      
     </div>
+
+    
+
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>JI, XIAOYONG</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://jixiaoyong.github.io/blog/posts/12cb887a/" title="Android11文件分区存储在图片读写的适配">https://jixiaoyong.github.io/blog/posts/12cb887a/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/posts/10414aef/" rel="next" title="Kotlin笔记之Flow">
+                <i class="fa fa-chevron-left"></i> Kotlin笔记之Flow
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -440,8 +598,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -571,6 +738,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实际操作"><span class="nav-number">2.</span> <span class="nav-text">实际操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -696,6 +880,10 @@
 
 
   
+  <script src="/blog/js/scrollspy.js?v=7.1.0"></script>
+<script src="/blog/js/post-details.js?v=7.1.0"></script>
+
+
 
   
 
@@ -743,6 +931,8 @@
 
 
 
+
+  
 
 
   
